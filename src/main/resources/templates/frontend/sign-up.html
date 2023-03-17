@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en"
+	  xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title th:text="${title}"></title>
+    <!-- HTML5 Shim and Respond.js IE9 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+      
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="Gradient Able Bootstrap admin template made using Bootstrap 4. The starter version of Gradient Able is completely free for personal project." />
+    <meta name="keywords" content="free dashboard template, free admin, free bootstrap template, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
+    <meta name="author" content="codedthemes">
+    
+    <!-- Favicon icon -->
+    <link rel="icon" th:href="@{../../backend/images/favicon.ico}" type="image/x-icon">
+    
+    <!-- Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600" rel="stylesheet">
+    
+    <!-- Required Fremwork -->
+    <link rel="stylesheet" type="text/css" th:href="@{../../backend/css/bootstrap/css/bootstrap.min.css}">
+    
+    <!-- themify-icons line icon -->
+    <link rel="stylesheet" type="text/css" th:href="@{../../backend/icon/themify-icons/themify-icons.css}">
+    
+    <!-- ico font -->
+    <link rel="stylesheet" type="text/css" th:href="@{../../backend/icon/icofont/css/icofont.css}">
+    
+    <!-- Style.css} -->
+    <link rel="stylesheet" type="text/css" th:href="@{../../backend/css/style.css}">
+</head>
+
+<body class="fix-menu">
+       <!-- Pre-loader start -->
+    <div class="theme-loader">
+        <div class="loader-track">
+            <div class="loader-bar"></div>
+        </div>
+    </div>
+    <!-- Pre-loader end -->
+    <section class="login p-fixed d-flex text-center bg-primary common-img-bg">
+        <!-- Container-fluid starts -->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <!-- Authentication card start -->
+                    <div class="signup-card card-block auth-body mr-auto ml-auto">
+                        <form method="POST" th:action="@{/sign-up}" th:object="${user}" class="md-float-material">
+                            <div class="auth-box">
+                                <div class="row m-b-20">
+                                
+                                	<!-- FLASH MESSAGE START -->
+		                            <div th:if="${message}">
+		                                <div class="alert text-center" th:classappend="${message.type}" role="alert" th:text="${message.content}">
+		                                </div>
+		                            </div>
+		                            <!-- FLASH MESSAGE END -->
+		                            
+                                    <div class="col-md-12">
+                                        <h3 class="text-center txt-primary">Sign Up Here</h3>
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="form-group">
+                                    <input 
+                                    	type="text"
+                                    	class="form-control" 
+                                    	name="name"
+                                    	th:field="*{name}"
+                                    	th:value="${user.name}"
+                                    	placeholder="Enter Your Name"
+                                    	th:classappend="${#fields.hasErrors('name') ? 'is-invalid' : ''}"
+                                    />
+                                    <div class="invalid-feedback text-left" th:each="error : ${#fields.errors('name')}" th:text="${error}">
+
+                                	</div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <input 
+                                    	type="email"
+                                    	class="form-control" 
+                                    	name="email"
+                                    	th:field="*{email}"
+                                    	th:value="${user.email}"
+                                    	placeholder="Enter Your Email Address"
+                                    	th:classappend="${#fields.hasErrors('email') ? 'is-invalid' : ''}"
+                                    />
+                                    <div class="invalid-feedback text-left" th:each="error : ${#fields.errors('email')}" th:text="${error}">
+                                    
+                                    </div>    
+                                </div>
+                                
+                                <div class="form-group">
+                                    <input 
+                                    	type="text"
+                                    	class="form-control" 
+                                    	name="phone"
+                                    	th:field="*{phone}"
+                                    	th:value="${user.phone}"
+                                    	placeholder="Enter Your Phone Number"
+                                    	th:classappend="${#fields.hasErrors('phone') ? 'is-invalid' : ''}"
+                                    />
+                                    <div class="invalid-feedback text-left" th:each="error : ${#fields.errors('phone')}" th:text="${error}">
+                                    
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <input 
+                                    	type="password"
+                                    	class="form-control" 
+                                    	name="password"
+                                    	th:field="*{password}"
+                                    	th:value="${user.password}"
+                                    	placeholder="Enter Your Password"
+                                    	th:classappend="${#fields.hasErrors('password') ? 'is-invalid' : ''}"
+                                    />
+                                    <div class="invalid-feedback text-left" th:each="error : ${#fields.errors('password')}" th:text="${error}">
+                                    
+                                    </div>
+                                </div>
+                                
+                                <div class="row m-t-25 text-left">
+                                    <div class="col-md-12">
+                                        <div class="checkbox-fade fade-in-primary">
+                                            <label>
+                                                <input type="checkbox" value="" name="isAgreed">
+                                                <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
+                                                <span class="text-inverse">I read and accept <a href="#">Terms &amp; Conditions.</a></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row m-t-30">
+                                    <div class="col-md-12">
+                                        <input type="submit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" value="submit">
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <p class="text-inverse text-left m-b-0"><a href="">Already have an account?</a></p>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <img th:src="@{../../backend/images/auth/Logo-small-bottom.png}" alt="small-logo.png}">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- end of form -->
+                    </div>
+                    <!-- Authentication card end -->
+                </div>
+                <!-- end of col-sm-12 -->
+            </div>
+            <!-- end of row -->
+        </div>
+        <!-- end of container-fluid -->
+    </section>
+    
+    <!-- Required Jquery -->
+    <script type="text/javascript" th:src="@{../../backend/js/jquery/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{../../backend/js/jquery-ui/jquery-ui.min.js}"></script>
+    <script type="text/javascript" th:src="@{../../backend/js/popper.js/popper.min.js}"></script>
+    <script type="text/javascript" th:src="@{../../backend/js/bootstrap/js/bootstrap.min.js}"></script>
+    
+    <!-- jquery slimscroll js -->
+    <script type="text/javascript" th:src="@{../../backend/js/jquery-slimscroll/jquery.slimscroll.js}"></script>
+    
+    <!-- modernizr js -->
+    <script type="text/javascript" th:src="@{../../backend/js/modernizr/modernizr.js}"></script>
+    <script type="text/javascript" th:src="@{../../backend/js/modernizr/css-scrollbars.js}"></script>
+    <script type="text/javascript" th:src="@{../../backend/js/common-pages.js}"></script>
+</body>
+
+</html>
