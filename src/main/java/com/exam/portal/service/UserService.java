@@ -9,4 +9,10 @@ public interface UserService {
 
 	void createUser(User user, Set<UserRole> userRoles) throws Exception;
 	
+	User getUserById(int id);
+	
+	User getUserByEmail(String email);
+	
+	void deleteUser(int id);
+	
 }
