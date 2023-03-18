@@ -13,7 +13,7 @@ public class AdminController {
 	@GetMapping
 	public String dashboard(Model model) {
 		model.addAttribute("title", "Dashboard");
-		return "backend/index";
+		return "admin-template/index";
 	}
 	
 }

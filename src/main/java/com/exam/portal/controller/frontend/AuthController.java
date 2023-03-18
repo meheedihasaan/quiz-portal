@@ -32,7 +32,7 @@ public class AuthController {
 	public String viewSignUpPage(Model model) {
 		model.addAttribute("title", "Sign up");
 		model.addAttribute("user", new User());
-		return "frontend/sign-up";
+		return "site-template/sign-up";
 	}
 	
 	@PostMapping("/sign-up")
@@ -46,7 +46,7 @@ public class AuthController {
 			if(bindingResult.hasErrors()) {
 				System.out.println(bindingResult.toString());
 				model.addAttribute("user", user);
-				return "frontend/sign-up";
+				return "site-template/sign-up";
 			}
 			
 			if(!isAgreed) {

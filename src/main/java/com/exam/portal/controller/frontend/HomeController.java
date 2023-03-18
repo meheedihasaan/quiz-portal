@@ -15,7 +15,7 @@ public class HomeController {
 	@GetMapping("/")
 	public String home(Model model) {
 		model.addAttribute("title", "Exam Portal");
-		return "frontend/index";
+		return "site-template/index";
 	}
 		
 }
