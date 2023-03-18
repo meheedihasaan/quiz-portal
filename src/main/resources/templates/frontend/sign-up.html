@@ -59,7 +59,7 @@
                                 <div class="row m-b-20">
                                 
                                 	<!-- FLASH MESSAGE START -->
-		                            <div th:if="${message}">
+		                            <div th:if="${message}" class="ml-auto mr-auto mt-3">
 		                                <div class="alert text-center" th:classappend="${message.type}" role="alert" th:text="${message.content}">
 		                                </div>
 		                            </div>
@@ -134,7 +134,7 @@
                                     <div class="col-md-12">
                                         <div class="checkbox-fade fade-in-primary">
                                             <label>
-                                                <input type="checkbox" value="" name="isAgreed">
+                                                <input type="checkbox" name="isAgreed">
                                                 <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
                                                 <span class="text-inverse">I read and accept <a href="#">Terms &amp; Conditions.</a></span>
                                             </label>

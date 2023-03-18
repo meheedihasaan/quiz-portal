@@ -24,12 +24,6 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void createUser(User user, Set<UserRole> userRoles) throws Exception {
-		User existingUser = this.userRepository.findByEmail(user.getEmail());
-		if(existingUser != null) {
-			System.out.println("User already exists with email: "+user.getEmail());
-			throw new AlreadyExistsException("User already exists with email: "+user.getEmail());
-		}
-		
 		userRoles.forEach(userRole-> this.roleRepository.save(userRole.getRole())); //To save roles
 		user.getUserRoles().addAll(userRoles); 
 		this.userRepository.save(user);
