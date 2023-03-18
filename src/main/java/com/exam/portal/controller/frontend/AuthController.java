@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -82,6 +83,12 @@ public class AuthController {
 			redirectAttributes.addFlashAttribute("message", new Message("alert-danger", "Something went wrong. "+e.getMessage()));
 			return "redirect:/sign-up";
 		}
+	}
+	
+	@GetMapping("/sign-in")
+	public String viewSignInPage(Model model) {
+		model.addAttribute("title", "Sign in");
+		return "site-template/sign-in";
 	}
 	
 }

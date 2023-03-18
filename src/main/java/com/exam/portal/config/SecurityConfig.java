@@ -28,6 +28,8 @@ public class SecurityConfig {
 						.requestMatchers("/backend/**").hasAnyRole("ADMIN", "NORMAL")
 					)
 					.formLogin()
+					.loginPage("/sign-in")
+					.loginProcessingUrl("/sign-in/process")
 					.defaultSuccessUrl("/backend")
 					.and()
 					.csrf()
