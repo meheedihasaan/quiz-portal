@@ -61,11 +61,13 @@
                                 <div class="row m-b-20">
                                 
                                 	<!-- FLASH MESSAGE START -->
-		                            <div th:if="${param.error}" class="alert alert-danger text-center">
-			                            <p>Invalid email or password!</p>
-			                        </div>
-			                        <div th:if="${param.logout}" class="alert alert-success text-center">
-			                            <p>You have been logged out.</p>
+                                	<div class="ml-auto mr-auto mt-3">
+			                            <div th:if="${param.error}" class="alert alert-danger text-center">
+				                            Invalid email or password!
+				                        </div>
+				                        <div th:if="${param.logout}" class="alert alert-success text-center">
+				                            You have been logged out.
+				                        </div>
 			                        </div>
 		                            <!-- FLASH MESSAGE END -->
                                 
@@ -106,7 +108,7 @@
                                 </div>
                                 <div class="row m-t-30">
                                     <div class="col-md-12">
-                                        <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Sign in</button>
+                                        <input type="submit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" value="Sign In">
                                     </div>
                                 </div>
                                 <hr/>

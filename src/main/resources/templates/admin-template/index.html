@@ -3,13 +3,13 @@
 	  xmlns="http://www.w3.org/1999/xhtml" 
 	  xmlns:th="http://www.thymeleaf.org">
 	  
-<head th:replace="~{admin-resources/base::head-fragment}">
+<head th:replace="~{admin-template/base::head-fragment}">
 
 </head>
 
 <body>
     <!-- Pre-loader Starts -->
-    <div th:replace="~{admin-resources/base::theme-loader-fragment}">
+    <div th:replace="~{admin-template/base::theme-loader-fragment}">
     
     </div>
     <!-- Pre-loader Ends -->
@@ -19,7 +19,7 @@
         <div class="pcoded-container navbar-wrapper">
         
 			<!-- Header Navbar Starts -->
-            <nav th:replace="~{admin-resources/base::header-navbar-fragment}">
+            <nav th:replace="~{admin-template/base::header-navbar-fragment}">
                
             </nav>
             <!-- Header Navbar Ends -->
@@ -28,7 +28,7 @@
                 <div class="pcoded-wrapper">
                 
                 	<!-- Sidebar Starts -->
-                    <nav th:replace="~{admin-resources/base::sidebar-fragment}">
+                    <nav th:replace="~{admin-template/base::sidebar-fragment}">
                         
                     </nav>
                     <!-- Sidebar Ends -->
