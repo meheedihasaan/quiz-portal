@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,6 +29,9 @@ public class AuthController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@GetMapping("/sign-up")
 	public String viewSignUpPage(Model model) {
@@ -71,6 +75,7 @@ public class AuthController {
 				Set<UserRole> userRoles = new HashSet<>();
 				userRoles.add(userRole);
 				
+				user.setPassword(passwordEncoder.encode(user.getPassword()));
 				user.setEnabled(true);
 				user.setAgreed(true);
 				user.setProfileImage("userProfile.jpg");

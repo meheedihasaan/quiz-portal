@@ -21,15 +21,11 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private RoleRepository roleRepository;
-	
-	@Autowired
-	private PasswordEncoder passwordEncoder;
 
 	@Override
 	public void createUser(User user, Set<UserRole> userRoles) throws Exception {
 		userRoles.forEach(userRole-> this.roleRepository.save(userRole.getRole())); //To save roles
 		user.getUserRoles().addAll(userRoles);
-		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		this.userRepository.save(user);
 	}
 

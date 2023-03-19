@@ -102,49 +102,6 @@
                            </li>
                        </ul>
                        <ul class="nav-right">
-                           <li class="header-notification">
-                               <a href="#!">
-                                   <i class="ti-bell"></i>
-                                   <span class="badge bg-c-pink"></span>
-                               </a>
-                               <ul class="show-notification">
-                                   <li>
-                                       <h6>Notifications</h6>
-                                       <label class="label label-danger">New</label>
-                                   </li>
-                                   <li>
-                                       <div class="media">
-                                           <img class="d-flex align-self-center img-radius" th:src="@{../../admin-resources/images/avatar-2.jpg}" alt="Generic placeholder image">
-                                           <div class="media-body">
-                                               <h5 class="notification-user">John Doe</h5>
-                                               <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                                               <span class="notification-time">30 minutes ago</span>
-                                           </div>
-                                       </div>
-                                   </li>
-                                   <li>
-                                       <div class="media">
-                                           <img class="d-flex align-self-center img-radius" th:src="@{../../admin-resources/images/avatar-4.jpg}" alt="Generic placeholder image">
-                                           <div class="media-body">
-                                               <h5 class="notification-user">Joseph William</h5>
-                                               <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                                               <span class="notification-time">30 minutes ago</span>
-                                           </div>
-                                       </div>
-                                   </li>
-                                   <li>
-                                       <div class="media">
-                                           <img class="d-flex align-self-center img-radius" th:src="@{../../admin-resources/images/avatar-3.jpg}" alt="Generic placeholder image">
-                                           <div class="media-body">
-                                               <h5 class="notification-user">Sara Soudein</h5>
-                                               <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                                               <span class="notification-time">30 minutes ago</span>
-                                           </div>
-                                       </div>
-                                   </li>
-                               </ul>
-                           </li>
-                           
                            <li class="user-profile header-notification">
                                <a href="#!">
                                    <img th:src="@{../../admin-resources/images/avatar-4.jpg}" class="img-radius" alt="User-Profile-Image">
@@ -169,7 +126,7 @@
                                        </a>
                                    </li>
                                    <li>
-                                       <a href="auth-normal-sign-in.html">
+                                       <a th:href="@{/logout}">
                                        <i class="ti-layout-sidebar-left"></i> Logout
                                    </a>
                                    </li>
@@ -191,7 +148,7 @@
                             <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Layout</div>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class="">
-                                    <a href="index.html">
+                                    <a th:href="@{/backend}">
                                         <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.dash.main">Dashboard</span>
                                         <span class="pcoded-mcaret"></span>
@@ -209,7 +166,7 @@
                             <div class="pcoded-navigatio-lavel" data-i18n="nav.category.other">Other</div>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class="">
-                                    <a href="">
+                                    <a th:href="@{/logout}">
                                         <span class="pcoded-micon"><i class="ti-arrow-left"></i><b>M</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.menu-levels.main">Logout</span>
                                         <span class="pcoded-mcaret"></span>
@@ -232,52 +189,6 @@
         </div>
     </div>
 
-
-    <!-- Warning Section Starts -->
-    <!-- Older IE warning message -->
-<!--[if lt IE 9]>
-<div class="ie-warning">
-    <h1>Warning!!</h1>
-    <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers
-        to access this website.</p>
-    <div class="iew-container">
-        <ul class="iew-download">
-            <li>
-                <a href="http://www.google.com/chrome/">
-                    <img th:src="@{../../admin-resources/images/browser/chrome.png}" alt="Chrome">
-                    <div>Chrome</div>
-                </a>
-            </li>
-            <li>
-                <a href="https://www.mozilla.org/en-US/firefox/new/">
-                    <img th:src="@{../../admin-resources/images/browser/firefox.png}" alt="Firefox">
-                    <div>Firefox</div>
-                </a>
-            </li>
-            <li>
-                <a href="http://www.opera.com">
-                    <img th:src="@{../../admin-resources/images/browser/opera.png}" alt="Opera">
-                    <div>Opera</div>
-                </a>
-            </li>
-            <li>
-                <a href="https://www.apple.com/safari/">
-                    <img th:src="@{../../admin-resources/images/browser/safari.png}" alt="Safari">
-                    <div>Safari</div>
-                </a>
-            </li>
-            <li>
-                <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
-                    <img th:src="@{../../admin-resources/images/browser/ie.png}" alt="">
-                    <div>IE (9 & above)</div>
-                </a>
-            </li>
-        </ul>
-    </div>
-    <p>Sorry for the inconvenience!</p>
-</div>
-<![endif]-->
-<!-- Warning Section Ends -->
 <!-- Required Jquery -->
 <script type="text/javascript" th:src="@{../../admin-resources/js/jquery/jquery.min.js}"></script>
 <script type="text/javascript" th:src="@{../../admin-resources/js/jquery-ui/jquery-ui.min.js}"></script>
