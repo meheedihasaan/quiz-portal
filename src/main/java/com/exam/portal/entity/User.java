@@ -47,7 +47,7 @@ public class User {
 	private String phone;
 	
 	@NotEmpty(message = "Password is required.")
-	@Size(min = 4, max = 32, message = "Password should be between 4 to 32 characters.")
+	@Size(min = 4, max = 64, message = "Password should be between 4 to 64 characters.")
 	private String password;
 	
 	private String profileImage;

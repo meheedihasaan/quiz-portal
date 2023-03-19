@@ -4,12 +4,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -27,12 +29,15 @@ public class AuthController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@GetMapping("/sign-up")
 	public String viewSignUpPage(Model model) {
 		model.addAttribute("title", "Sign up");
 		model.addAttribute("user", new User());
-		return "frontend/sign-up";
+		return "site-template/sign-up";
 	}
 	
 	@PostMapping("/sign-up")
@@ -46,7 +51,7 @@ public class AuthController {
 			if(bindingResult.hasErrors()) {
 				System.out.println(bindingResult.toString());
 				model.addAttribute("user", user);
-				return "frontend/sign-up";
+				return "site-template/sign-up";
 			}
 			
 			if(!isAgreed) {
@@ -70,6 +75,7 @@ public class AuthController {
 				Set<UserRole> userRoles = new HashSet<>();
 				userRoles.add(userRole);
 				
+				user.setPassword(passwordEncoder.encode(user.getPassword()));
 				user.setEnabled(true);
 				user.setAgreed(true);
 				user.setProfileImage("userProfile.jpg");
@@ -82,6 +88,12 @@ public class AuthController {
 			redirectAttributes.addFlashAttribute("message", new Message("alert-danger", "Something went wrong. "+e.getMessage()));
 			return "redirect:/sign-up";
 		}
+	}
+	
+	@GetMapping("/sign-in")
+	public String viewSignInPage(Model model) {
+		model.addAttribute("title", "Sign in");
+		return "site-template/sign-in";
 	}
 	
 }
