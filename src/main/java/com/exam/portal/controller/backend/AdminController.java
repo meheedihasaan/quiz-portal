@@ -33,4 +33,12 @@ public class AdminController {
 		return "admin-template/index";
 	}
 	
+	@GetMapping("/my-profile/{name}")
+	public String viewMyProfile(Model model, Principal principal) {
+		loadCommonData(model, principal);
+		model.addAttribute("title", "My Profile");
+		model.addAttribute("myProfileActive", "active");
+		return "admin-template/my-profile";
+	}
+	
 }
