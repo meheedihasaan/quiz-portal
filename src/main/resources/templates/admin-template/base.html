@@ -73,8 +73,8 @@
                                </div>
                            </div>
                        </div>
-                       <a href="index.html">
-                           <p style="font-size: 20px; margin-bottom: 0; padding-bottom: 0">Exam Portal</p>
+                       <a th:href="@{/}">
+                           <p class="ml-2" style="font-size: 20px; margin-bottom: 0; padding-bottom: 0">Exam Portal</p>
                        </a>
                        <a class="mobile-options">
                            <i class="ti-more"></i>
@@ -104,7 +104,7 @@
                        <ul class="nav-right">
                            <li class="user-profile header-notification">
                                <a href="#!">
-                                   <img th:src="@{../../admin-resources/images/userProfile.jpg}" style="height: 25px; width: 25px" class="img-circle" alt="User-Profile-Image">
+                                   <img th:src="@{../../admin-resources/images/userProfile.jpg}" style="height: 20px; width: 20px" class="img-circle" alt="User-Profile-Image">
                                    <span th:text="${user.name}"></span>
                                    <i class="ti-angle-down"></i>
                                </a>
