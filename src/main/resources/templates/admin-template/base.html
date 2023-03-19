@@ -73,8 +73,8 @@
                                </div>
                            </div>
                        </div>
-                       <a href="index.html">
-                           <p style="font-size: 20px; margin-bottom: 0; padding-bottom: 0">Exam Portal</p>
+                       <a th:href="@{/}">
+                           <p class="ml-2" style="font-size: 20px; margin-bottom: 0; padding-bottom: 0">Exam Portal</p>
                        </a>
                        <a class="mobile-options">
                            <i class="ti-more"></i>
@@ -104,8 +104,8 @@
                        <ul class="nav-right">
                            <li class="user-profile header-notification">
                                <a href="#!">
-                                   <img th:src="@{../../admin-resources/images/avatar-4.jpg}" class="img-radius" alt="User-Profile-Image">
-                                   <span>John Doe</span>
+                                   <img th:src="@{../../admin-resources/images/userProfile.jpg}" style="height: 20px; width: 20px" class="img-circle" alt="User-Profile-Image">
+                                   <span th:text="${user.name}"></span>
                                    <i class="ti-angle-down"></i>
                                </a>
                                <ul class="show-notification profile-notification">
@@ -115,7 +115,7 @@
                                        </a>
                                    </li>
                                    <li>
-                                       <a href="user-profile.html">
+                                       <a th:href="@{/backend/my-profile/{name} (name = ${user.name}) }">
                                            <i class="ti-user"></i> Profile
                                        </a>
                                    </li>
@@ -127,7 +127,7 @@
                                    </li>
                                    <li>
                                        <a th:href="@{/logout}">
-                                       <i class="ti-layout-sidebar-left"></i> Logout
+                                       <i class="ti-share-alt"></i> Logout
                                    </a>
                                    </li>
                                </ul>
@@ -147,7 +147,7 @@
                         <div class="pcoded-inner-navbar main-menu">
                             <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Layout</div>
                             <ul class="pcoded-item pcoded-left-item">
-                                <li class="">
+                                <li th:class="${dashboardActive}">
                                     <a th:href="@{/backend}">
                                         <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.dash.main">Dashboard</span>
@@ -161,13 +161,27 @@
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
+                                <li class="">
+                                    <a href="">
+                                        <span class="pcoded-micon"><i class="ti-marker-alt"></i></span>
+                                        <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Quizzes</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
                             </ul>
                             
                             <div class="pcoded-navigatio-lavel" data-i18n="nav.category.other">Other</div>
                             <ul class="pcoded-item pcoded-left-item">
+                            	<li th:class="${myProfileActive}">
+                                    <a th:href="@{/backend/my-profile/{name} (name = ${user.name}) }">
+                                        <span class="pcoded-micon"><i class="ti-user"></i><b>M</b></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.menu-levels.main">Profile</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
                                 <li class="">
                                     <a th:href="@{/logout}">
-                                        <span class="pcoded-micon"><i class="ti-arrow-left"></i><b>M</b></span>
+                                        <span class="pcoded-micon"><i class="ti-share-alt"></i><b>M</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.menu-levels.main">Logout</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
