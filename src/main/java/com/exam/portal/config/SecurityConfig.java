@@ -42,6 +42,9 @@ public class SecurityConfig {
 					.loginProcessingUrl("/sign-in/process")
 					.defaultSuccessUrl("/backend")
 					.and()
+					.logout()
+					.logoutSuccessUrl("/")
+					.and()
 					.csrf()
 					.disable();
 		
