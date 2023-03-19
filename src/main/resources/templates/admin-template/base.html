@@ -104,8 +104,8 @@
                        <ul class="nav-right">
                            <li class="user-profile header-notification">
                                <a href="#!">
-                                   <img th:src="@{../../admin-resources/images/avatar-4.jpg}" class="img-radius" alt="User-Profile-Image">
-                                   <span>John Doe</span>
+                                   <img th:src="@{../../admin-resources/images/userProfile.jpg}" style="height: 25px; width: 25px" class="img-circle" alt="User-Profile-Image">
+                                   <span th:text="${user.name}"></span>
                                    <i class="ti-angle-down"></i>
                                </a>
                                <ul class="show-notification profile-notification">
@@ -147,7 +147,7 @@
                         <div class="pcoded-inner-navbar main-menu">
                             <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Layout</div>
                             <ul class="pcoded-item pcoded-left-item">
-                                <li class="">
+                                <li th:class="${dashboardActive}">
                                     <a th:href="@{/backend}">
                                         <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.dash.main">Dashboard</span>
@@ -165,6 +165,13 @@
                             
                             <div class="pcoded-navigatio-lavel" data-i18n="nav.category.other">Other</div>
                             <ul class="pcoded-item pcoded-left-item">
+                            	<li class="">
+                                    <a th:href="@{/logout}">
+                                        <span class="pcoded-micon"><i class="ti-user"></i><b>M</b></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.menu-levels.main">Profile</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
                                 <li class="">
                                     <a th:href="@{/logout}">
                                         <span class="pcoded-micon"><i class="ti-arrow-left"></i><b>M</b></span>
