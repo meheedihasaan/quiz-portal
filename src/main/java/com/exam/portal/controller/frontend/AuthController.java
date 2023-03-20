@@ -11,7 +11,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -19,6 +18,7 @@ import com.exam.portal.constsant.AppConstant;
 import com.exam.portal.entity.Role;
 import com.exam.portal.entity.User;
 import com.exam.portal.entity.UserRole;
+import com.exam.portal.exception.AlreadyExistsException;
 import com.exam.portal.helper.Message;
 import com.exam.portal.service.UserService;
 
@@ -60,8 +60,7 @@ public class AuthController {
 			
 			User existingUser = this.userService.getUserByEmail(user.getEmail());
 			if(existingUser != null) {
-				redirectAttributes.addFlashAttribute("message", new Message("alert-danger", "User already exists with email "+user.getEmail()+"."));
-				return "redirect:/sign-up";
+				throw new AlreadyExistsException("User already exists with email "+user.getEmail());
 			}
 			else {
 				Role role = new Role();
