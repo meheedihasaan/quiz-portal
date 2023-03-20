@@ -46,4 +46,13 @@ public class CategoryController {
 		return "admin-template/categories";
 	}
 	
+	@GetMapping("/new-category")
+	public String viewNewCategoryPage(Model model, Principal principal) {
+		loadCommonData(model, principal);
+		model.addAttribute("title", "New Category");
+		model.addAttribute("categoriesActive", "active");
+		model.addAttribute("category", new Category());
+		return "admin-template/new-category";
+	}
+	
 }

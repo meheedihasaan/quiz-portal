@@ -41,7 +41,7 @@
 									<!-- Page-header start -->
                                     <div class="page-header card">
                                         <div class="card-block">
-                                            <h5 class="m-b-10">Categories</h5>
+                                            <h5 class="m-b-10">New Category</h5>
                                             <ul class="breadcrumb-title b-t-default p-t-10">
                                                 <li class="breadcrumb-item">
                                                     <a th:href="@{/}"> <i class="fa fa-home"></i> </a>
@@ -51,6 +51,9 @@
                                                 </li>
                                                 <li class="breadcrumb-item">
                                                 	<a th:href="@{/backend/categories/0}">Categories</a>
+                                                </li>
+                                                <li class="breadcrumb-item">
+                                                	<a th:href="@{/backend/categories/new-category}">New Category</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -64,8 +67,7 @@
                                                 <div class="card">
                                                     <div class="card-header">
                                                         <div class="d-inline">
-									                        <h5 class="mr-3">Category List</h5>
-									                        <a class="btn btn-sm btn-primary" th:href="@{/backend/categories/new-category}" data-toggle="tooltip" data-placement="top" data-original-title="Create Category" aria-describedby="tooltip529394"><i class="ti-plus"></i></a>
+									                        <h5 class="text-center">Create New Category</h5>
 									                    </div>
                                                         <div class="card-header-right">
 															<ul class="list-unstyled card-option">
@@ -76,25 +78,39 @@
 																<li><i class="fa fa-times close-card"></i></li>
 															</ul>
 														</div>
-
+														<hr/>
                                                     </div>
                                                     <div class="card-block">
-                                                        <div class="table-responsive">
-			                                                <table class="table">
-			                                                	<thead>
-		                                                    		<th scope="row">#</th>
-		                                                    		<th scope="row">Name</th>
-		                                                    		<th scope="row">Description</th>
-		                                                    	</thead>
-			                                                    <tbody>
-			                                                        <tr>
-			                                                        	<td>1</td>
-			                                                        	<td>Java Programming</td>
-			                                                        	<td><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis porro debitis sunt tenetur ratione voluptatum quia qui sit placeat laudantium dolorem tempore expedita assumenda quisquam.</p></td>
-			                                                        </tr>
-			                                                    </tbody>
-			                                                </table>
-			                                            </div>
+                                                        <form>
+                                                            <div class="form-group row">
+                                                                <label class="col-md-2 col-form-label">Category Name</label>
+                                                                <div class="col-md-10">
+                                                                    <input
+                                                                    	type="text" 
+                                                                    	class="form-control"
+                                                                    	placeholder="Enter Category Name"
+                                                                    >
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-md-2 col-form-label">Description</label>
+                                                                <div class="col-md-10">
+                                                                    <textarea 
+                                                                    	class="form-control" 
+                                                                    	rows="5"
+                                                                    	placeholder="Enter Category Description"></textarea>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="row">
+                                                            	<div class="col-md-2">
+                                                            		
+                                                            	</div>
+                                                            	<div class="col-md-10">
+                                                            		<input type="submit" class="btn btn-primary" value="Submit" />
+                                                            	</div>
+                                                            </div>
+                                                    	</form>
                                                     </div>
                                                 </div>
                                             </div>
