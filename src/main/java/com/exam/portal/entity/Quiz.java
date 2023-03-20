@@ -1,11 +1,19 @@
 package com.exam.portal.entity;
 
-import com.exam.portal.constsant.EntityConstant;
+import java.util.HashSet;
+import java.util.Set;
 
+import com.exam.portal.constsant.EntityConstant;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
@@ -47,5 +55,12 @@ public class Quiz {
 	private String description;
 	
 	private boolean isActive;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	private Category category;
+	
+	@OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
+	private Set<Question> qustions = new HashSet<>();
 	
 }

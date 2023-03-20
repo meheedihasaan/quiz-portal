@@ -3,9 +3,11 @@ package com.exam.portal.entity;
 import com.exam.portal.constsant.EntityConstant;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
@@ -48,6 +50,9 @@ public class Question {
 	
 	@NotEmpty(message = "Answer is required.")
 	@Size(max = 255, message = "Answer should be less than 255 characters.")
-	private String answer;	
+	private String answer;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	private Quiz quiz;
 	
 }

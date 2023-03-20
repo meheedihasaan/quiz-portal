@@ -1,12 +1,19 @@
 package com.exam.portal.entity;
 
-import com.exam.portal.constsant.EntityConstant;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
+import com.exam.portal.constsant.EntityConstant;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
@@ -35,5 +42,9 @@ public class Category {
 	@NotEmpty(message = "Category Description is required.")
 	@Size(min = 10, max = 5000, message = "Category description should be between 10 to 5000 characters.")
 	private String description;
+	
+	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JsonIgnore
+	Set<Quiz> quizzes = new LinkedHashSet<>();
 	
 }
