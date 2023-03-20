@@ -8,7 +8,7 @@ public interface CategoryService {
 	
 	void createCategory(Category category) throws Exception;
 	
-	Page<Category> getAllCategories(int pageNumber, int pageSize, String sortBy, String sortDirection);
+	Page<Category> getCategories(int pageNumber, int pageSize, String sortBy, String sortDirection);
 	
 	Category getCategoryById(int id);
 	

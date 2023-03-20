@@ -22,7 +22,7 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 
 	@Override
-	public Page<Category> getAllCategories(int pageNumber, int pageSize, String sortBy, String sortDirection) {
+	public Page<Category> getCategories(int pageNumber, int pageSize, String sortBy, String sortDirection) {
 		Sort sort = null;
 		if(sortDirection.equalsIgnoreCase("asc")) {
 			sort = Sort.by(sortBy).ascending();
