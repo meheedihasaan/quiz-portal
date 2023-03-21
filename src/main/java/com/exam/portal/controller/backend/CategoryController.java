@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.exam.portal.constsant.AppConstant;
 import com.exam.portal.entity.Category;
 import com.exam.portal.entity.Role;
 import com.exam.portal.entity.User;
@@ -49,8 +50,10 @@ public class CategoryController {
 		loadCommonData(model, principal);
 		model.addAttribute("title", "Categories");
 		model.addAttribute("categoriesActive", "active");
-		Page<Category> categoryPage = this.categoryService.getCategories(pageNumber, 5, "name", "asc");
+		Page<Category> categoryPage = this.categoryService.getCategories(pageNumber, AppConstant.CATEGORY_PAGE_SIZE, "name", "asc");
 		model.addAttribute("categoryPage", categoryPage);
+		model.addAttribute("currentPage", pageNumber);
+		model.addAttribute("totalPages", categoryPage.getTotalPages());
 		return "admin-template/categories";
 	}
 	
