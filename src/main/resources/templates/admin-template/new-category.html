@@ -81,15 +81,35 @@
 														<hr/>
                                                     </div>
                                                     <div class="card-block">
-                                                        <form>
+                                                        <form method="POST" th:action="@{/backend/categories/new-category}" th:object="${category}">
+                                                            <div class="row">
+                                                            	<div class="col-md-2">
+                                                            	
+                                                            	</div>
+                                                            	<div class="col-md-10">
+                                                            		<!-- FLASH MESSAGE START -->
+										                            <div th:if="${message}" class="ml-auto mr-auto">
+										                                <div class="alert text-center" th:classappend="${message.type}" role="alert" th:text="${message.content}">
+										                                </div>
+										                            </div>
+										                            <!-- FLASH MESSAGE END -->
+                                                            	</div>
+                                                            </div>
                                                             <div class="form-group row">
                                                                 <label class="col-md-2 col-form-label">Category Name</label>
                                                                 <div class="col-md-10">
                                                                     <input
                                                                     	type="text" 
                                                                     	class="form-control"
+                                                                    	th:field="*{name}"
+                                                                    	th:value="${category.name}"
                                                                     	placeholder="Enter Category Name"
+                                                                    	th:classappend="${#fields.hasErrors('name') ? 'is-invalid' : ''}"
                                                                     >
+                                                                   
+                                                                    <div class="invalid-feedback" th:each="error : ${#fields.errors('name')}" th:text="${error}">
+                                                                    
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
@@ -98,7 +118,14 @@
                                                                     <textarea 
                                                                     	class="form-control" 
                                                                     	rows="5"
-                                                                    	placeholder="Enter Category Description"></textarea>
+                                                                    	th:field="*{description}"
+                                                                    	th:value="${category.description}"
+                                                                    	placeholder="Enter Category Description"
+                                                                    	th:classappend="${#fields.hasErrors('description') ? 'is-invalid' : ''}"></textarea>
+                                                                	
+                                                                	<div class="invalid-feedback" th:each="error : ${#fields.errors('description')}" th:text="${error}">
+                                                                    
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                             
