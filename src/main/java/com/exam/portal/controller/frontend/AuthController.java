@@ -60,7 +60,7 @@ public class AuthController {
 			
 			User existingUser = this.userService.getUserByEmail(user.getEmail());
 			if(existingUser != null) {
-				throw new AlreadyExistsException("User already exists with email "+user.getEmail());
+				throw new AlreadyExistsException("User already exists with email "+user.getEmail()+".");
 			}
 			else {
 				Role role = new Role();
@@ -84,7 +84,7 @@ public class AuthController {
 			}
 		}
 		catch (Exception e) {
-			redirectAttributes.addFlashAttribute("message", new Message("alert-danger", "Something went wrong. "+e.getMessage()));
+			redirectAttributes.addFlashAttribute("message", new Message("alert-danger", e.getMessage()+" Please try again later."));
 			return "redirect:/sign-up";
 		}
 	}

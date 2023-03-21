@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.exam.portal.entity.Category;
 import com.exam.portal.entity.Role;
 import com.exam.portal.entity.User;
+import com.exam.portal.exception.AlreadyExistsException;
 import com.exam.portal.helper.Message;
 import com.exam.portal.service.CategoryService;
 import com.exam.portal.service.UserService;
@@ -78,12 +79,19 @@ public class CategoryController {
 				return "admin-template/new-category";
 			}
 			
-			redirectAttributes.addFlashAttribute("message", new Message("alert-primary", "Category is created successfully."));
-			return "redirect:/backend/categories/new-category";
+			Category existingCategory = this.categoryService.getCategoryByName(category.getName());
+			if(existingCategory != null) {
+				throw new AlreadyExistsException("Category already exists with name "+category.getName()+".");	
+			}
+			else {
+				this.categoryService.createCategory(category);
+				redirectAttributes.addFlashAttribute("message", new Message("alert-primary", "Category is created successfully."));
+				return "redirect:/backend/categories/new-category";
+			}
 		}
 		catch (Exception e) {
-			redirectAttributes.addFlashAttribute("message", new Message("alert-danger", "Something went wrong. "+e.getMessage()));
-			return "redirect:/backend/categories/0";
+			redirectAttributes.addFlashAttribute("message", new Message("alert-danger", e.getMessage()+" Please try again later."));
+			return "redirect:/backend/categories/new-category";
 		}
 	}
 	
