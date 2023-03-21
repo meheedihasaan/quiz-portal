@@ -45,7 +45,7 @@ public class CategoryController {
 		model.addAttribute("role", roles.get(0).getName());
 	}
 
-	@GetMapping("/{pageNumber}") 
+	@GetMapping("/page={pageNumber}") 
 	public String viewCategoriesPage(@PathVariable int pageNumber, Model model, Principal principal) {
 		loadCommonData(model, principal);
 		model.addAttribute("title", "Categories");
@@ -57,7 +57,7 @@ public class CategoryController {
 		return "admin-template/categories";
 	}
 	
-	@GetMapping("/new-category")
+	@GetMapping("/new")
 	public String viewNewCategoryPage(Model model, Principal principal) {
 		loadCommonData(model, principal);
 		model.addAttribute("title", "New Category");
@@ -66,7 +66,7 @@ public class CategoryController {
 		return "admin-template/new-category";
 	}
 	
-	@PostMapping("/new-category")
+	@PostMapping("/new")
 	public String createCategory(
 		@Valid @ModelAttribute Category category, BindingResult bindingResult,
 		RedirectAttributes redirectAttributes,
@@ -89,13 +89,25 @@ public class CategoryController {
 			else {
 				this.categoryService.createCategory(category);
 				redirectAttributes.addFlashAttribute("message", new Message("alert-primary", "Category is created successfully."));
-				return "redirect:/backend/categories/new-category";
+				return "redirect:/backend/categories/new";
 			}
 		}
 		catch (Exception e) {
 			redirectAttributes.addFlashAttribute("message", new Message("alert-danger", e.getMessage()+" Please try again later."));
-			return "redirect:/backend/categories/new-category";
+			return "redirect:/backend/categories/new";
 		}
 	}
+	
+	@GetMapping("/{id}/edit")
+    public String viewEditCategoryPage(@PathVariable int id, Model model, Principal principal) {
+        loadCommonData(model, principal);
+        model.addAttribute("title", "Edit Category");
+        model.addAttribute("categoriesActive", "active");
+
+        Category category = this.categoryService.getCategoryById(id);
+        model.addAttribute("category", category);
+
+        return "admin-template/edit-category";
+    }
 	
 }

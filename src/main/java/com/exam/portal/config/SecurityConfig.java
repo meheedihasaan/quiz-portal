@@ -27,13 +27,25 @@ public class SecurityConfig {
 			"/sign-in/process"
 	};
 	
+	public static final String[] STATIC_RESOURCES = {
+			"/admin-resources/**",
+			"/site-resources/**",
+			"/css/**",
+			"/js/**",
+			"/images/**",
+			"/images-old/**",
+			"/scss/**",
+			"/icon/**",
+			"/pages/**"
+	};
+	
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
 			.authorizeHttpRequests(
 				authorize->
 					authorize
-						.requestMatchers("/admin-resources/**", "/site-resources/**").permitAll()
+						.requestMatchers(STATIC_RESOURCES).permitAll()
 						.requestMatchers(PUBLIC_URLS).permitAll()
 						.requestMatchers("/backend/**").hasAnyRole("ADMIN", "NORMAL")
 					)

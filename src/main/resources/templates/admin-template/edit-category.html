@@ -4,7 +4,7 @@
 	  xmlns:th="http://www.thymeleaf.org">
 	  
 <head th:replace="~{admin-template/base::head-fragment}">
-
+ 
 </head>
 
 <body>
@@ -41,7 +41,7 @@
 									<!-- Page-header start -->
                                     <div class="page-header card">
                                         <div class="card-block">
-                                            <h5 class="m-b-10">New Category</h5>
+                                            <h5 class="m-b-10">Edit Category</h5>
                                             <ul class="breadcrumb-title b-t-default p-t-10">
                                                 <li class="breadcrumb-item">
                                                     <a th:href="@{/}"> <i class="fa fa-home"></i> </a>
@@ -53,7 +53,7 @@
                                                 	<a th:href="@{/backend/categories/page=0}">Categories</a>
                                                 </li>
                                                 <li class="breadcrumb-item">
-                                                	<a th:href="@{/backend/categories/new}">New Category</a>
+                                                	<a th:href="@{/backend/categories/new}">Edit Category</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -67,7 +67,7 @@
                                                 <div class="card">
                                                     <div class="card-header">
                                                         <div class="d-inline">
-									                        <h5 class="text-center">Create New Category</h5>
+									                        <h5 class="text-center">Edit Category Information</h5>
 									                    </div>
                                                         <div class="card-header-right">
 															<ul class="list-unstyled card-option">
@@ -81,7 +81,7 @@
 														<hr/>
                                                     </div>
                                                     <div class="card-block">
-                                                        <form method="POST" th:action="@{/backend/categories/new}" th:object="${category}">
+                                                        <form method="POST"  th:object="${category}">
                                                             <div class="row">
                                                             	<div class="col-md-2">
                                                             	
@@ -134,7 +134,7 @@
                                                             		
                                                             	</div>
                                                             	<div class="col-md-10">
-                                                            		<input type="submit" class="btn btn-primary" value="Submit" />
+                                                            		<input type="submit" class="btn btn-primary" value="Update" />
                                                             	</div>
                                                             </div>
                                                     	</form>
