@@ -68,7 +68,8 @@ public class CategoryController {
 	
 	@PostMapping("/new")
 	public String createCategory(
-		@Valid @ModelAttribute Category category, BindingResult bindingResult,
+		@Valid @ModelAttribute Category category, 
+		BindingResult bindingResult,
 		RedirectAttributes redirectAttributes,
 		Model model,
 		Principal principal
@@ -99,13 +100,46 @@ public class CategoryController {
 	}
 	
 	@GetMapping("/{id}/edit")
-    public String viewEditCategoryPage(@PathVariable int id, Model model, Principal principal) {
-        loadCommonData(model, principal);
-        model.addAttribute("title", "Edit Category");
-        model.addAttribute("categoriesActive", "active");
-        Category category = this.categoryService.getCategoryById(id);
-        model.addAttribute("category", category);
-        return "admin-template/edit-category";
+    public String viewEditCategoryPage(@PathVariable int id, Model model, Principal principal, RedirectAttributes redirectAttributes) {
+        try {
+        	loadCommonData(model, principal);
+            model.addAttribute("title", "Edit Category");
+            model.addAttribute("categoriesActive", "active");
+            Category category = this.categoryService.getCategoryById(id);
+            model.addAttribute("category", category);
+            return "admin-template/edit-category";
+        }
+        catch (Exception e) {
+        	redirectAttributes.addFlashAttribute("message", new Message("alert-danger", e.getMessage()+" Please try again later."));
+			return "redirect:/backend/categories/page=0";  //When category is not found
+        }
     }
+	
+	@PostMapping("/{id}/edit")
+	public String editCategory(
+		@Valid @ModelAttribute Category category, 
+		BindingResult bindingResult,
+		RedirectAttributes redirectAttributes,
+		Model model, 
+		Principal principal
+	) {
+		loadCommonData(model, principal);
+		model.addAttribute("title", "Edit Category");
+		model.addAttribute("categoriesActive", "active");
+		try {
+			if(bindingResult.hasErrors()) {
+				model.addAttribute("category", category);
+				return "admin-template/edit-category";
+			}
+			
+			this.categoryService.updateCategory(category.getId(), category);
+			redirectAttributes.addFlashAttribute("message", new Message("alert-primary", "Category is updated successfully."));
+			return "redirect:/backend/categories/page=0";
+		}
+		catch (Exception e) {
+			redirectAttributes.addFlashAttribute("message", new Message("alert-danger", e.getMessage()+" Please try again later."));
+			return "redirect:/backend/categories/page=0";
+		}
+	}
 	
 }

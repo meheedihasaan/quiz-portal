@@ -14,7 +14,7 @@ public interface CategoryService {
 	
 	Category getCategoryByName(String name);
 	
-	void updateCategory(Category category);
+	void updateCategory(int id, Category category);
 	
 	void deleteCategory(int id);
 

@@ -42,7 +42,8 @@ public class AuthController {
 	
 	@PostMapping("/sign-up")
 	public String signUpProcess(
-		@Valid @ModelAttribute User user, BindingResult bindingResult,
+		@Valid @ModelAttribute User user, 
+		BindingResult bindingResult,
 		@RequestParam(value = "isAgreed", defaultValue = "false") boolean isAgreed,
 		RedirectAttributes redirectAttributes,
 		Model model

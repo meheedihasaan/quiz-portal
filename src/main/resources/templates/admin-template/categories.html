@@ -79,7 +79,17 @@
 														<hr/>
                                                     </div>
                                                     <div class="card-block">
-                                                        <div class="row">
+                                                    	<div class="row">
+                                                    		<div class="col-12">
+                                                    			<!-- FLASH MESSAGE START -->
+									                            <div th:if="${message}" class="ml-auto mr-auto">
+									                                <div class="alert text-center" th:classappend="${message.type}" role="alert" th:text="${message.content}">
+									                                </div>
+									                            </div>
+									                            <!-- FLASH MESSAGE END -->
+                                                    		</div>
+                                                    	</div>
+                                                        <div class="row">                                                 
 				                                            <div th:each="category : ${categoryPage}" class="col-md-6">
 				                                                <div class="card text-primary order-card">
 				                                                    <div class="card-block">
