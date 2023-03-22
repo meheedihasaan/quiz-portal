@@ -103,10 +103,8 @@ public class CategoryController {
         loadCommonData(model, principal);
         model.addAttribute("title", "Edit Category");
         model.addAttribute("categoriesActive", "active");
-
         Category category = this.categoryService.getCategoryById(id);
         model.addAttribute("category", category);
-
         return "admin-template/edit-category";
     }
 	

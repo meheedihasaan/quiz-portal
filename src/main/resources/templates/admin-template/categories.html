@@ -85,7 +85,7 @@
 				                                                    <div class="card-block">
 				                                                        <h4 th:text="${category.name}" class="m-b-10"></h4>
 				                                                        <p th:text="${category.description}" class="m-b-20"></p> 
-				                                                    	<a class="mr-3" th:href="@{/backend/categories/{id}/edit (id = ${category.id})}" data-toggle="tooltip" data-placement="top" data-original-title="Edit Category" aria-describedby="tooltip529394"><i class="ti-pencil-alt text-primary"></i></a>
+				                                                    	<a class="mr-3" th:href="@{/backend/categories/{id}/edit (id = ${category.id}) }" data-toggle="tooltip" data-placement="top" data-original-title="Edit Category" aria-describedby="tooltip529394"><i class="ti-pencil-alt text-primary"></i></a>
 				                                                    	<a class="mr-3" href="" data-toggle="tooltip" data-placement="top" data-original-title="Delete Category" aria-describedby="tooltip529394"><i class="ti-trash text-primary"></i></a>
 				                                                    </div>
 				                                                </div>
@@ -124,21 +124,23 @@
     </div>
 
 <!-- Required Jquery -->
-<script type="text/javascript" th:src="@{../../admin-resources/js/jquery/jquery.min.js}"></script>
-<script type="text/javascript" th:src="@{../../admin-resources/js/jquery-ui/jquery-ui.min.js}"></script>
-<script type="text/javascript" th:src="@{../../admin-resources/js/popper.js/popper.min.js}"></script>
-<script type="text/javascript" th:src="@{../../admin-resources/js/bootstrap/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/admin-resources/js/jquery/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/admin-resources/js/jquery-ui/jquery-ui.min.js}"></script>
+<script type="text/javascript" th:src="@{/admin-resources/js/popper.js/popper.min.js}"></script>
+<script type="text/javascript" th:src="@{/admin-resources/js/bootstrap/js/bootstrap.min.js}"></script>
+
 <!-- jquery slimscroll js -->
-<script type="text/javascript" th:src="@{../../admin-resources/js/jquery-slimscroll/jquery.slimscroll.js}"></script>
+<script type="text/javascript" th:src="@{/admin-resources/js/jquery-slimscroll/jquery.slimscroll.js}"></script>
+
 <!-- modernizr js -->
-<script type="text/javascript" th:src="@{../../admin-resources/js/modernizr/modernizr.js}"></script>
-<script type="text/javascript" th:src="@{../../admin-resources/js/modernizr/css-scrollbars.js}"></script>
+<script type="text/javascript" th:src="@{/admin-resources/js/modernizr/modernizr.js}"></script>
+<script type="text/javascript" th:src="@{/admin-resources/js/modernizr/css-scrollbars.js}"></script>
 
 <!-- Custom js -->
-<script type="text/javascript" th:src="@{../../admin-resources/js/script.js}"></script>
-<script th:src="@{../../admin-resources/js/pcoded.min.js}"></script>
-<script th:src="@{../../admin-resources/js/vartical-demo.js}"></script>
-<script th:src="@{../../admin-resources/js/jquery.mCustomScrollbar.concat.min.js}"></script>
+<script type="text/javascript" th:src="@{/admin-resources/js/script.js}"></script>
+<script th:src="@{/admin-resources/js/pcoded.min.js}"></script>
+<script th:src="@{/admin-resources/js/vartical-demo.js}"></script>
+<script th:src="@{/admin-resources/js/jquery.mCustomScrollbar.concat.min.js}"></script>
 </body>
 
 </html>
