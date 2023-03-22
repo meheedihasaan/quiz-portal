@@ -41,7 +41,7 @@
 									<!-- Page-header start -->
                                     <div class="page-header card">
                                         <div class="card-block">
-                                            <h5 class="m-b-10">My Profile</h5>
+                                            <h5 class="m-b-10">Categories</h5>
                                             <ul class="breadcrumb-title b-t-default p-t-10">
                                                 <li class="breadcrumb-item">
                                                     <a th:href="@{/}"> <i class="fa fa-home"></i> </a>
@@ -50,7 +50,7 @@
                                                     <a th:href="@{/backend}">Dashboard</a>
                                                 </li>
                                                 <li class="breadcrumb-item">
-                                                	<a th:href="@{/backend/my-profile/{name} (name = ${user.name}) }">My Profile</a>
+                                                	<a th:href="@{/backend/categories/page=0}">Categories</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -64,8 +64,8 @@
                                                 <div class="card">
                                                     <div class="card-header">
                                                         <div class="d-inline">
-									                        <h5 class="mr-3">About Me</h5>
-									                        <a class="btn btn-sm btn-primary" href="" data-toggle="tooltip" data-placement="top" data-original-title="Edit Profile" aria-describedby="tooltip529394"><i class="ti-pencil-alt"></i></a>
+									                        <h5 class="mr-3">Category List</h5>
+									                        <a class="btn btn-sm btn-primary" th:href="@{/backend/categories/new}" data-toggle="tooltip" data-placement="top" data-original-title="New Category" aria-describedby="tooltip529394"><i class="ti-plus"></i></a>
 									                    </div>
                                                         <div class="card-header-right">
 															<ul class="list-unstyled card-option">
@@ -76,31 +76,43 @@
 																<li><i class="fa fa-times close-card"></i></li>
 															</ul>
 														</div>
-
+														<hr/>
                                                     </div>
                                                     <div class="card-block">
-                                                        <div class="table-responsive">
-			                                                <table class="table">
-			                                                    <tbody>
-			                                                        <tr>
-			                                                            <th scope="row">Name</th>
-			                                                            <td th:text="${user.name}"></td>
-			                                                        </tr>
-			                                                        <tr>
-			                                                            <th scope="row">Email</th>
-			                                                            <td th:text="${user.email}"></td>
-			                                                        </tr>
-			                                                        <tr>
-			                                                            <th scope="row">Phone</th>
-			                                                            <td th:text="${user.phone}"></td>
-			                                                        </tr>
-			                                                        <tr>
-			                                                            <th scope="row">Role</th>
-			                                                            <td><span class="badge badge-primary mr-auto" th:text="${role == 'ROLE_ADMIN' ? 'ADMIN' : 'USER'}"></span></td>
-			                                                        </tr>
-			                                                    </tbody>
-			                                                </table>
-			                                            </div>
+                                                    	<div class="row">
+                                                    		<div class="col-12">
+                                                    			<!-- FLASH MESSAGE START -->
+									                            <div th:if="${message}" class="ml-auto mr-auto">
+									                                <div class="alert text-center" th:classappend="${message.type}" role="alert" th:text="${message.content}">
+									                                </div>
+									                            </div>
+									                            <!-- FLASH MESSAGE END -->
+                                                    		</div>
+                                                    	</div>
+                                                        <div class="row">                                                 
+				                                            <div th:each="category : ${categoryPage}" class="col-md-6">
+				                                                <div class="card text-primary order-card">
+				                                                    <div class="card-block">
+				                                                        <h4 th:text="${category.name}" class="m-b-10"></h4>
+				                                                        <p th:text="${category.description}" class="m-b-20"></p> 
+				                                                    	<a class="mr-3" th:href="@{/backend/categories/{id}/edit (id = ${category.id}) }" data-toggle="tooltip" data-placement="top" data-original-title="Edit Category" aria-describedby="tooltip529394"><i class="ti-pencil-alt text-primary"></i></a>
+				                                                    	<a class="mr-3" th:href="@{/backend/categories/{id}/delete (id = ${category.id}) }" data-toggle="tooltip" data-placement="top" data-original-title="Delete Category" aria-describedby="tooltip529394"><i class="ti-trash text-primary"></i></a>
+				                                                    </div>
+				                                                </div>
+				                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                        	<div class="col-12">
+	                                                        	<!-- Pagination -->
+												                <nav aria-label="Page navigation example ">
+												                    <ul class="pagination">
+												                        <li th:if="${currentPage != 0}" class="page-item"><a class="page-link" th:href="@{'/backend/categories/page=' + ${currentPage-1}}">Prev</a></li>			
+												                        <li th:classappend="${currentPage == page-1? 'active' : ''}" th:each="page : ${#numbers.sequence(1, totalPages)}" class="page-item"><a class="page-link" th:href="@{'/backend/categories/page=' + ${page-1}}"><span th:text="${page}"></span></a></li>
+																		<li th:if="${currentPage+1 != totalPages}" class="page-item"><a class="page-link" th:href="@{'/backend/categories/page=' + ${currentPage+1}}">Next</a></li>
+												                    </ul>
+												                </nav>
+											                </div>
+                                                        </div>       
                                                     </div>
                                                 </div>
                                             </div>

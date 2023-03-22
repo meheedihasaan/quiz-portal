@@ -22,24 +22,24 @@
     <title th:text="${title}"></title>
     
     <!-- Favicon icon -->
-    <link rel="icon" th:href="@{../../admin-resources/images/favicon.ico}" type="image/x-icon">
+    <link rel="icon" th:href="@{/admin-resources/images/favicon.ico}" type="image/x-icon">
     
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600" rel="stylesheet">
     
     <!-- Required Fremwork -->
-    <link rel="stylesheet" type="text/css" th:href="@{../../admin-resources/css/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/admin-resources/css/bootstrap/css/bootstrap.min.css}">
     
     <!-- themify-icons line icon -->
-    <link rel="stylesheet" type="text/css" th:href="@{../../admin-resources/icon/themify-icons/themify-icons.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{../../admin-resources/icon/font-awesome/css/font-awesome.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/admin-resources/icon/themify-icons/themify-icons.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/admin-resources/icon/font-awesome/css/font-awesome.min.css}">
     
     <!-- ico font -->
-    <link rel="stylesheet" type="text/css" th:href="@{../../admin-resources/icon/icofont/css/icofont.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/admin-resources/icon/icofont/css/icofont.css}">
     
     <!-- Style.css} -->
-    <link rel="stylesheet" type="text/css" th:href="@{../../admin-resources/css/style.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{../../admin-resources/css/jquery.mCustomScrollbar.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/admin-resources/css/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/admin-resources/css/jquery.mCustomScrollbar.css}">
 </head>
 
 <body>
@@ -104,7 +104,7 @@
                        <ul class="nav-right">
                            <li class="user-profile header-notification">
                                <a href="#!">
-                                   <img th:src="@{../../admin-resources/images/userProfile.jpg}" style="height: 20px; width: 20px" class="img-circle" alt="User-Profile-Image">
+                                   <img th:src="@{/admin-resources/images/userProfile.jpg}" style="height: 20px; width: 20px" class="img-circle" alt="User-Profile-Image">
                                    <span th:text="${user.name}"></span>
                                    <i class="ti-angle-down"></i>
                                </a>
@@ -154,8 +154,8 @@
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
-                                <li class="">
-                                    <a href="">
+                                <li th:class="${categoriesActive}">
+                                    <a th:href="@{/backend/categories/page=0}">
                                         <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
                                         <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Categories</span>
                                         <span class="pcoded-mcaret"></span>
@@ -204,21 +204,23 @@
     </div>
 
 <!-- Required Jquery -->
-<script type="text/javascript" th:src="@{../../admin-resources/js/jquery/jquery.min.js}"></script>
-<script type="text/javascript" th:src="@{../../admin-resources/js/jquery-ui/jquery-ui.min.js}"></script>
-<script type="text/javascript" th:src="@{../../admin-resources/js/popper.js/popper.min.js}"></script>
-<script type="text/javascript" th:src="@{../../admin-resources/js/bootstrap/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/admin-resources/js/jquery/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/admin-resources/js/jquery-ui/jquery-ui.min.js}"></script>
+<script type="text/javascript" th:src="@{/admin-resources/js/popper.js/popper.min.js}"></script>
+<script type="text/javascript" th:src="@{/admin-resources/js/bootstrap/js/bootstrap.min.js}"></script>
+
 <!-- jquery slimscroll js -->
-<script type="text/javascript" th:src="@{../../admin-resources/js/jquery-slimscroll/jquery.slimscroll.js}"></script>
+<script type="text/javascript" th:src="@{/admin-resources/js/jquery-slimscroll/jquery.slimscroll.js}"></script>
+
 <!-- modernizr js -->
-<script type="text/javascript" th:src="@{../../admin-resources/js/modernizr/modernizr.js}"></script>
-<script type="text/javascript" th:src="@{../../admin-resources/js/modernizr/css-scrollbars.js}"></script>
+<script type="text/javascript" th:src="@{/admin-resources/js/modernizr/modernizr.js}"></script>
+<script type="text/javascript" th:src="@{/admin-resources/js/modernizr/css-scrollbars.js}"></script>
 
 <!-- Custom js -->
-<script type="text/javascript" th:src="@{../../admin-resources/js/script.js}"></script>
-<script th:src="@{../../admin-resources/js/pcoded.min.js}"></script>
-<script th:src="@{../../admin-resources/js/vartical-demo.js}"></script>
-<script th:src="@{../../admin-resources/js/jquery.mCustomScrollbar.concat.min.js}"></script>
+<script type="text/javascript" th:src="@{/admin-resources/js/script.js}"></script>
+<script th:src="@{/admin-resources/js/pcoded.min.js}"></script>
+<script th:src="@{/admin-resources/js/vartical-demo.js}"></script>
+<script th:src="@{/admin-resources/js/jquery.mCustomScrollbar.concat.min.js}"></script>
 </body>
 
 </html>
