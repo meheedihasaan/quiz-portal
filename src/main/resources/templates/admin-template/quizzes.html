@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" 
+	  xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org">
+	  
+<head th:replace="~{admin-template/base::head-fragment}">
+
+</head>
+
+<body>
+    <!-- Pre-loader Starts -->
+    <div th:replace="~{admin-template/base::theme-loader-fragment}">
+    
+    </div>
+    <!-- Pre-loader Ends -->
+    
+    <div id="pcoded" class="pcoded">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+        
+			<!-- Header Navbar Starts -->
+            <nav th:replace="~{admin-template/base::header-navbar-fragment}">
+               
+            </nav>
+            <!-- Header Navbar Ends -->
+
+            <div class="pcoded-main-container">
+                <div class="pcoded-wrapper">
+                
+                	<!-- Sidebar Starts -->
+                    <nav th:replace="~{admin-template/base::sidebar-fragment}">
+                        
+                    </nav>
+                    <!-- Sidebar Ends -->
+                    
+                    <!-- Replaceable Content Starts -->
+                    <div class="pcoded-content">
+                        <div class="pcoded-inner-content">
+                            <div class="main-body">
+                                <div class="page-wrapper">
+									<!-- Page-header start -->
+                                    <div class="page-header card">
+                                        <div class="card-block">
+                                            <h5 class="m-b-10">Quizzes</h5>
+                                            <ul class="breadcrumb-title b-t-default p-t-10">
+                                                <li class="breadcrumb-item">
+                                                    <a th:href="@{/}"> <i class="fa fa-home"></i> </a>
+                                                </li>
+                                                <li class="breadcrumb-item">
+                                                    <a th:href="@{/backend}">Dashboard</a>
+                                                </li>
+                                                <li class="breadcrumb-item">
+                                                	<a th:href="@{/backend/quizzes/page=0}">Quizzes</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- Page-header end -->
+                                    
+
+                                    <div class="page-body">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <div class="d-inline">
+									                        <h5 class="mr-3">Quiz List</h5>
+									                        <a class="btn btn-sm btn-primary" th:href="@{/backend/quizzes/new}" data-toggle="tooltip" data-placement="top" data-original-title="New Quiz" aria-describedby="tooltip529394"><i class="ti-plus"></i></a>
+									                    </div>
+                                                        <div class="card-header-right">
+															<ul class="list-unstyled card-option">
+																<li><i class="fa fa-chevron-left"></i></li>
+																<li><i class="fa fa-window-maximize full-card"></i></li>
+																<li><i class="fa fa-minus minimize-card"></i></li>
+																<li><i class="fa fa-refresh reload-card"></i></li>
+																<li><i class="fa fa-times close-card"></i></li>
+															</ul>
+														</div>
+														<hr/>
+                                                    </div>
+                                                    <div class="card-block">
+                                                    	<div class="row">
+                                                    		<div class="col-12">
+                                                    			<!-- FLASH MESSAGE START -->
+									                            <div th:if="${message}" class="ml-auto mr-auto">
+									                                <div class="alert text-center" th:classappend="${message.type}" role="alert" th:text="${message.content}">
+									                                </div>
+									                            </div>
+									                            <!-- FLASH MESSAGE END -->
+                                                    		</div>
+                                                    	</div>
+                                                        <div class="row">                                                 
+				                                            <div class="col-md-12">
+				                                                <div class="card text-primary order-card">
+				                                                    <div class="card-block">
+				                                                        <h4 class="m-b-10">Quiz Title</h4>
+				                                                        <p class="m-b-20">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea a optio iure asperiores suscipit voluptatem iste iusto magnam adipisci atque nulla ut deleniti cumque maiores illum. Accusantium unde commodi corporis eius sunt eum ea asperiores? Et neque atque quod soluta porro totam eligendi non ab similique placeat obcaecati minima debitis.</p> 
+				                                                    	<a class="mr-3" th:href="@{/backend/categories/{id}/edit (id = ${category.id}) }" data-toggle="tooltip" data-placement="top" data-original-title="Edit Category" aria-describedby="tooltip529394"><i class="ti-pencil-alt text-primary"></i></a>
+				                                                    	<a class="mr-3" href="#" th:onclick="|deleteCategory(${category.id})|" data-toggle="tooltip" data-placement="top" data-original-title="Delete Category" aria-describedby="tooltip529394"><i class="ti-trash text-primary"></i></a>
+				                                                    </div>
+				                                                </div>
+				                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                        	<div class="col-12">
+	                                                        	
+											                </div>
+                                                        </div>       
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="styleSelector">
+
+                            </div>
+                        </div>
+                    </div>
+                	<!-- Replaceable Content Ends -->
+               
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+  
+<!-- Sweet Alert -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+	function deleteCategory(id) {
+		
+		swal({
+			  title: "Are you sure to delete?",
+			  text: "Once deleted, you will not be able to recover this category!",
+			  icon: "warning",
+			  buttons: true,
+			  dangerMode: true,
+			})
+			.then((willDelete) => {
+				if (willDelete) {
+				    window.location = "/backend/categories/"+id+"/delete";
+				} 
+				else {
+				    swal("Category is safe!");
+				}
+			});
+		
+	}
+</script>
+
+<!-- Required Jquery -->
+<script type="text/javascript" th:src="@{/admin-resources/js/jquery/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/admin-resources/js/jquery-ui/jquery-ui.min.js}"></script>
+<script type="text/javascript" th:src="@{/admin-resources/js/popper.js/popper.min.js}"></script>
+<script type="text/javascript" th:src="@{/admin-resources/js/bootstrap/js/bootstrap.min.js}"></script>
+
+<!-- jquery slimscroll js -->
+<script type="text/javascript" th:src="@{/admin-resources/js/jquery-slimscroll/jquery.slimscroll.js}"></script>
+
+<!-- modernizr js -->
+<script type="text/javascript" th:src="@{/admin-resources/js/modernizr/modernizr.js}"></script>
+<script type="text/javascript" th:src="@{/admin-resources/js/modernizr/css-scrollbars.js}"></script>
+
+<!-- Custom js -->
+<script type="text/javascript" th:src="@{/admin-resources/js/script.js}"></script>
+<script th:src="@{/admin-resources/js/pcoded.min.js}"></script>
+<script th:src="@{/admin-resources/js/vartical-demo.js}"></script>
+<script th:src="@{/admin-resources/js/jquery.mCustomScrollbar.concat.min.js}"></script>
+</body>
+
+</html>
