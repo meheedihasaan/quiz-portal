@@ -40,7 +40,7 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	public Category getCategoryById(int id) {
-		Category category = this.categoryRepository.findById(id).orElseThrow(()-> new NotFoundException("Category not found with id "+id));
+		Category category = this.categoryRepository.findById(id).orElseThrow(()-> new NotFoundException("Category not found."));
 		return category;
 	}
 	
@@ -52,7 +52,7 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	public void updateCategory(int id, Category category) {
-		Category existingCategory = this.categoryRepository.findById(id).orElseThrow(()-> new NotFoundException("Category not found with id "+category.getId()));
+		Category existingCategory = this.categoryRepository.findById(id).orElseThrow(()-> new NotFoundException("Category not found."));
 		existingCategory.setName(category.getName());
 		existingCategory.setDescription(category.getDescription());
 		this.categoryRepository.save(existingCategory);
@@ -60,7 +60,7 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	public void deleteCategory(int id) {
-		Category category = this.categoryRepository.findById(id).orElseThrow(()-> new NotFoundException("Category not found with id "+id));
+		Category category = this.categoryRepository.findById(id).orElseThrow(()-> new NotFoundException("Category not found."));
 		this.categoryRepository.delete(category);
 	}
 
