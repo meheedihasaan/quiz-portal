@@ -1,5 +1,7 @@
 package com.exam.portal.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -36,6 +38,12 @@ public class CategoryServiceImpl implements CategoryService {
 		Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
 		Page<Category> categoryPage = this.categoryRepository.findAll(pageable);
 		return categoryPage;
+	}
+	
+	@Override
+	public List<Category> getCategoryList() {
+		List<Category> categories = this.categoryRepository.findAll();
+		return categories;
 	}
 
 	@Override
