@@ -7,5 +7,5 @@ import com.exam.portal.entity.Quiz;
 
 @Repository
 public interface QuizRepository extends JpaRepository<Quiz, Integer> {
-
+	
 }

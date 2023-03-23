@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
 	private RoleRepository roleRepository;
 
 	@Override
-	public void createUser(User user, Set<UserRole> userRoles) throws Exception {
+	public void createUser(User user, Set<UserRole> userRoles) {
 		userRoles.forEach(userRole-> this.roleRepository.save(userRole.getRole())); //To save roles
 		user.getUserRoles().addAll(userRoles);
 		this.userRepository.save(user);

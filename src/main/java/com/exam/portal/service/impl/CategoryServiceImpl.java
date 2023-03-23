@@ -19,7 +19,7 @@ public class CategoryServiceImpl implements CategoryService {
 	private CategoryRepository categoryRepository;
 
 	@Override
-	public void createCategory(Category category) throws Exception {
+	public void createCategory(Category category) {
 		this.categoryRepository.save(category);
 	}
 

@@ -7,7 +7,7 @@ import com.exam.portal.entity.UserRole;
 
 public interface UserService {
 
-	void createUser(User user, Set<UserRole> userRoles) throws Exception;
+	void createUser(User user, Set<UserRole> userRoles);
 	
 	User getUserById(int id);
 	

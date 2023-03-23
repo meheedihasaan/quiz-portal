@@ -6,7 +6,7 @@ import com.exam.portal.entity.Category;
 
 public interface CategoryService {
 	
-	void createCategory(Category category) throws Exception;
+	void createCategory(Category category);
 	
 	Page<Category> getCategories(int pageNumber, int pageSize, String sortBy, String sortDirection);
 	
