@@ -115,7 +115,7 @@
                                                             <div class="form-group row">
 								                                <label class="col-md-2 col-form-label">Category</label>
 								                                <div class="col-md-10">
-									                                <select class="form-control" name="categoryId" placeholder="Category">
+									                                <select class="form-control" name="categoryId">
 									                                    <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
 									                                </select>
 									                            </div>
@@ -130,6 +130,7 @@
                                                                     	th:value="${quiz.totalQuestions}"
                                                                     	placeholder="Enter Number of Questions"
                                                                     	th:classappend="${#fields.hasErrors('totalQuestions') ? 'is-invalid' : ''}"
+                                                                    	required
                                                                     >
                                                                    
                                                                     <div class="invalid-feedback" th:each="error : ${#fields.errors('totalQuestions')}" th:text="${error}">
@@ -147,6 +148,7 @@
                                                                     	th:value="${quiz.totalMarks}"
                                                                     	placeholder="Enter Total Marks"
                                                                     	th:classappend="${#fields.hasErrors('totalMarks') ? 'is-invalid' : ''}"
+                                                                    	required
                                                                     >
                                                                    
                                                                     <div class="invalid-feedback" th:each="error : ${#fields.errors('totalMarks')}" th:text="${error}">
@@ -164,6 +166,7 @@
                                                                     	th:value="${quiz.duration}"
                                                                     	placeholder="Enter Quiz Duration (Minute)"
                                                                     	th:classappend="${#fields.hasErrors('duration') ? 'is-invalid' : ''}"
+                                                                    	required
                                                                     >
                                                                    
                                                                     <div class="invalid-feedback" th:each="error : ${#fields.errors('duration')}" th:text="${error}">
@@ -176,6 +179,7 @@
                                                             	<div class="col-md-10">
 	                                                            	<input 
 	                                                            		type="checkbox"
+	                                                            		name="isActive"
 	                                                            		checked data-toggle="toggle" 
 	                                                            		data-on="Active" 
 	                                                            		data-off="Deactive" 

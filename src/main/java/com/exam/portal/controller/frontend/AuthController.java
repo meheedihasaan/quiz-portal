@@ -85,7 +85,7 @@ public class AuthController {
 			}
 		}
 		catch (Exception e) {
-			redirectAttributes.addFlashAttribute("message", new Message("alert-danger", e.getMessage()+" Please try again later."));
+			redirectAttributes.addFlashAttribute("message", new Message("alert-danger", "Something went wrong! "+e.getMessage()));
 			return "redirect:/sign-up";
 		}
 	}

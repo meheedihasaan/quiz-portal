@@ -94,7 +94,7 @@ public class CategoryController {
 			}
 		}
 		catch (Exception e) {
-			redirectAttributes.addFlashAttribute("message", new Message("alert-danger", e.getMessage()+" Please try again later."));
+			redirectAttributes.addFlashAttribute("message", new Message("alert-danger", "Something went wrong! "+e.getMessage()));
 			return "redirect:/backend/categories/new";
 		}
 	}
@@ -110,7 +110,7 @@ public class CategoryController {
             return "admin-template/edit-category";
         }
         catch (Exception e) {
-        	redirectAttributes.addFlashAttribute("message", new Message("alert-danger", e.getMessage()+" Please try again later."));
+        	redirectAttributes.addFlashAttribute("message", new Message("alert-danger", "Something went wrong! "+e.getMessage()));
 			return "redirect:/backend/categories/page=0";  //When category is not found
         }
     }
@@ -137,7 +137,7 @@ public class CategoryController {
 			return "redirect:/backend/categories/page=0";
 		}
 		catch (Exception e) {
-			redirectAttributes.addFlashAttribute("message", new Message("alert-danger", e.getMessage()+" Please try again later."));
+			redirectAttributes.addFlashAttribute("message", new Message("alert-danger", "Something went wrong! "+e.getMessage()));
 			return "redirect:/backend/categories/page=0";
 		}
 	}
@@ -153,7 +153,7 @@ public class CategoryController {
 			return "redirect:/backend/categories/page=0";
         }
         catch (Exception e) {
-        	redirectAttributes.addFlashAttribute("message", new Message("alert-danger", e.getMessage()+" Please try again later."));
+        	redirectAttributes.addFlashAttribute("message", new Message("alert-danger", "Something went wrong! "+e.getMessage()));
 			return "redirect:/backend/categories/page=0";  //When category is not found
         }
 	}
