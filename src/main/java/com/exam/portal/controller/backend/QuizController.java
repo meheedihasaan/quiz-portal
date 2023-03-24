@@ -90,6 +90,7 @@ public class QuizController {
 			Category category = this.categoryService.getCategoryById(categoryId);
 			quiz.setCategory(category);
 			quiz.setActive(isActive);
+			this.quizService.createQuiz(quiz);
 			redirectAttributes.addFlashAttribute("message", new Message("alert-primary", "Quiz is created successfully"));
 			return "redirect:/backend/quizzes/new";
 		}
