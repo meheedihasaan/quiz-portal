@@ -90,13 +90,17 @@
                                                     		</div>
                                                     	</div>
                                                         <div class="row">                                                 
-				                                            <div class="col-md-12">
+				                                            <div th:each="quiz : ${quizPage}" class="col-md-12">
 				                                                <div class="card text-primary order-card">
 				                                                    <div class="card-block">
-				                                                        <h4 class="m-b-10">Quiz Title</h4>
-				                                                        <p class="m-b-20">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea a optio iure asperiores suscipit voluptatem iste iusto magnam adipisci atque nulla ut deleniti cumque maiores illum. Accusantium unde commodi corporis eius sunt eum ea asperiores? Et neque atque quod soluta porro totam eligendi non ab similique placeat obcaecati minima debitis.</p> 
-				                                                    	<a class="mr-3" th:href="@{/backend/quizzes/edit }" data-toggle="tooltip" data-placement="top" data-original-title="Edit Category" aria-describedby="tooltip529394"><i class="ti-pencil-alt text-primary"></i></a>
-				                                                    	<a class="mr-3" href="#"  data-toggle="tooltip" data-placement="top" data-original-title="Delete Quiz" aria-describedby="tooltip529394"><i class="ti-trash text-primary"></i></a>
+				                                                    	<p th:text="${quiz.category.name}" class="badge badge-primary m-b-10"></p>
+				                                                        <h4 th:text="${quiz.title}" class="m-b-10"></h4>
+				                                                        <h6 class="badge badge-info m-b-10">Total Questions: <span th:text="${quiz.totalQuestions}"></span></h6>
+				                                                        <h6 class="badge badge-secondary m-b-10">Total Marks: <span th:text="${quiz.totalMarks}"></span></h6>
+				                                                        <h6 class="badge badge-warning m-b-10">Duration: <span th:text="${quiz.duration}"></span> Minutes</h6>
+				                                                        <p th:text="${quiz.description}" class="m-b-25"></p> 
+				                                                    	<a class="btn btn-success btn-sm mr-3" th:href="@{/backend/quizzes/edit }" data-toggle="tooltip" data-placement="top" data-original-title="Edit Category" aria-describedby="tooltip529394"><i style="font-size: 16px" class="ti-pencil-alt"></i></a>
+				                                                    	<a class="btn btn-danger btn-sm mr-3" href="#"  data-toggle="tooltip" data-placement="top" data-original-title="Delete Quiz" aria-describedby="tooltip529394"><i style="font-size: 16px" class="ti-trash"></i></a>
 				                                                    </div>
 				                                                </div>
 				                                            </div>

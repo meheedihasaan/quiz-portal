@@ -5,16 +5,19 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.exam.portal.constsant.AppConstant;
 import com.exam.portal.entity.Category;
 import com.exam.portal.entity.Quiz;
 import com.exam.portal.entity.Role;
@@ -48,10 +51,12 @@ public class QuizController {
 	}
 
 	@GetMapping("/page={pageNumber}")
-	public String viewQuizzesPage(Model model, Principal principal) {
+	public String viewQuizzesPage(@PathVariable int pageNumber, Model model, Principal principal) {
 		loadCommonData(model, principal);
 		model.addAttribute("title", "Quizzes");
 		model.addAttribute("quizzesActive", "active");
+		Page<Quiz> quizPage = this.quizService.getQuizzes(pageNumber, AppConstant.QUIZ_PAGE_SIZE, "title", "asc");
+		model.addAttribute("quizPage", quizPage);
 		return "admin-template/quizzes";
 	}
 	
