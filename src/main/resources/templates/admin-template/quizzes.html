@@ -99,7 +99,7 @@
 				                                                        <h6 class="badge badge-secondary m-b-10">Total Marks: <span th:text="${quiz.totalMarks}"></span></h6>
 				                                                        <h6 class="badge badge-warning m-b-10">Duration: <span th:text="${quiz.duration}"></span> Minutes</h6>
 				                                                        <p th:text="${quiz.description}" class="m-b-25"></p> 
-				                                                    	<a class="btn btn-success btn-sm mr-3" th:href="@{/backend/quizzes/edit }" data-toggle="tooltip" data-placement="top" data-original-title="Edit Category" aria-describedby="tooltip529394"><i style="font-size: 16px" class="ti-pencil-alt"></i></a>
+				                                                    	<a class="btn btn-success btn-sm mr-3" th:href="@{/backend/quizzes/edit }" data-toggle="tooltip" data-placement="top" data-original-title="Edit Quiz" aria-describedby="tooltip529394"><i style="font-size: 16px" class="ti-pencil-alt"></i></a>
 				                                                    	<a class="btn btn-danger btn-sm mr-3" href="#"  data-toggle="tooltip" data-placement="top" data-original-title="Delete Quiz" aria-describedby="tooltip529394"><i style="font-size: 16px" class="ti-trash"></i></a>
 				                                                    </div>
 				                                                </div>
@@ -107,7 +107,14 @@
                                                         </div>
                                                         <div class="row">
                                                         	<div class="col-12">
-	                                                        	
+	                                                        	<!-- Pagination -->
+												                <nav aria-label="Page navigation example ">
+												                    <ul class="pagination">
+												                        <li th:if="${currentPage != 0}" class="page-item"><a class="page-link" th:href="@{'/backend/quizzes/page=' + ${currentPage-1}}">Prev</a></li>			
+												                        <li th:classappend="${currentPage == page-1? 'active' : ''}" th:each="page : ${#numbers.sequence(1, totalPages)}" class="page-item"><a class="page-link" th:href="@{'/backend/quizzes/page=' + ${page-1}}"><span th:text="${page}"></span></a></li>
+																		<li th:if="${currentPage+1 != totalPages}" class="page-item"><a class="page-link" th:href="@{'/backend/quizzes/page=' + ${currentPage+1}}">Next</a></li>
+												                    </ul>
+												                </nav>	
 											                </div>
                                                         </div>       
                                                     </div>

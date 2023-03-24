@@ -57,6 +57,8 @@ public class QuizController {
 		model.addAttribute("quizzesActive", "active");
 		Page<Quiz> quizPage = this.quizService.getQuizzes(pageNumber, AppConstant.QUIZ_PAGE_SIZE, "title", "asc");
 		model.addAttribute("quizPage", quizPage);
+		model.addAttribute("currentPage", pageNumber);
+		model.addAttribute("totalPages", quizPage.getTotalPages());
 		return "admin-template/quizzes";
 	}
 	
