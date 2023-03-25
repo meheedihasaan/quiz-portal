@@ -107,4 +107,22 @@ public class QuizController {
 		}
 	}
 	
+	@GetMapping("/{id}/edit")
+	public String viewEditQuizPage(@PathVariable int id, Model model, Principal principal, RedirectAttributes redirectAttributes) {
+		try {
+			loadCommonData(model, principal);
+			model.addAttribute("title", "Edit Quiz");
+			model.addAttribute("quizzesActive", "active");
+			Quiz quiz = this.quizService.getQuizById(id);
+			model.addAttribute("quiz", quiz);
+			List<Category> categories = this.categoryService.getCategoryList();
+			model.addAttribute("categories", categories);
+			return "admin-template/edit-quiz";
+		}
+		catch (Exception e) {
+			redirectAttributes.addFlashAttribute("message", new Message("alert-danger", "Something went wrong! "+e.getMessage()));
+			return "redirect:/backend/quizzes/page=1";
+		}
+	}
+	
 }
