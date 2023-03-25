@@ -5,13 +5,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.exam.portal.entity.Category;
+import com.exam.portal.entity.Quiz;
 
 @Repository
-public interface CategoryRepository extends JpaRepository<Category, Integer> {
+public interface QuizRepository extends JpaRepository<Quiz, Integer> {
 	
-	Page<Category> findAll(Pageable pageable);
-
-	Category findByNameIgnoreCase(String name);
+	Page<Quiz> findAll(Pageable pageable);
 	
 }

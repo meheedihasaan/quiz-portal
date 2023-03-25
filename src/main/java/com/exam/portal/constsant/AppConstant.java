@@ -8,6 +8,7 @@ public class AppConstant {
 	public static final String NORMAL = "ROLE_NORMAL";
 	
 	public static final int CATEGORY_PAGE_SIZE = 4;
+	public static final int QUIZ_PAGE_SIZE = 5;
 	
 	public AppConstant() {
 		

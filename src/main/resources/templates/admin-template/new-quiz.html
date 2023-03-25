@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en" 
+	  xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org">
+	  
+<head th:replace="~{admin-template/base::head-fragment}">
+
+</head>
+
+<body>
+    <!-- Pre-loader Starts -->
+    <div th:replace="~{admin-template/base::theme-loader-fragment}">
+    
+    </div>
+    <!-- Pre-loader Ends -->
+    
+    <div id="pcoded" class="pcoded">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+        
+			<!-- Header Navbar Starts -->
+            <nav th:replace="~{admin-template/base::header-navbar-fragment}">
+               
+            </nav>
+            <!-- Header Navbar Ends -->
+
+            <div class="pcoded-main-container">
+                <div class="pcoded-wrapper">
+                
+                	<!-- Sidebar Starts -->
+                    <nav th:replace="~{admin-template/base::sidebar-fragment}">
+                        
+                    </nav>
+                    <!-- Sidebar Ends -->
+                    
+                    <!-- Replaceable Content Starts -->
+                    <div class="pcoded-content">
+                        <div class="pcoded-inner-content">
+                            <div class="main-body">
+                                <div class="page-wrapper">
+									<!-- Page-header start -->
+                                    <div class="page-header card">
+                                        <div class="card-block">
+                                            <h5 class="m-b-10">New Category</h5>
+                                            <ul class="breadcrumb-title b-t-default p-t-10">
+                                                <li class="breadcrumb-item">
+                                                    <a th:href="@{/}"> <i class="fa fa-home"></i> </a>
+                                                </li>
+                                                <li class="breadcrumb-item">
+                                                    <a th:href="@{/backend}">Dashboard</a>
+                                                </li>
+                                                <li class="breadcrumb-item">
+                                                	<a th:href="@{/backend/quizzes/page=0}">Quizzes</a>
+                                                </li>
+                                                <li class="breadcrumb-item">
+                                                	<a th:href="@{/backend/quizzes/new}">New Quiz</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- Page-header end -->
+                                    
+
+                                    <div class="page-body">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <div class="d-inline">
+									                        <h5 class="text-center">Create New Quiz</h5>
+									                    </div>
+                                                        <div class="card-header-right">
+															<ul class="list-unstyled card-option">
+																<li><i class="fa fa-chevron-left"></i></li>
+																<li><i class="fa fa-window-maximize full-card"></i></li>
+																<li><i class="fa fa-minus minimize-card"></i></li>
+																<li><i class="fa fa-refresh reload-card"></i></li>
+																<li><i class="fa fa-times close-card"></i></li>
+															</ul>
+														</div>
+														<hr/>
+                                                    </div>
+                                                    <div class="card-block">
+                                                        <form method="POST" th:action="@{/backend/quizzes/new}" th:object="${quiz}">
+                                                            <div class="row">
+                                                            	<div class="col-md-2">
+                                                            	
+                                                            	</div>
+                                                            	<div class="col-md-10">
+                                                            		<!-- FLASH MESSAGE START -->
+										                            <div th:if="${message}" class="ml-auto mr-auto">
+										                                <div class="alert text-center" th:classappend="${message.type}" role="alert" th:text="${message.content}">
+										                                </div>
+										                            </div>
+										                            <!-- FLASH MESSAGE END -->
+                                                            	</div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-md-2 col-form-label">Quiz Title</label>
+                                                                <div class="col-md-10">
+                                                                    <input
+                                                                    	type="text" 
+                                                                    	class="form-control"
+                                                                    	th:field="*{title}"
+                                                                    	th:value="${quiz.title}"
+                                                                    	placeholder="Enter Quiz Title"
+                                                                    	th:classappend="${#fields.hasErrors('title') ? 'is-invalid' : ''}"
+                                                                    >
+                                                                   
+                                                                    <div class="invalid-feedback" th:each="error : ${#fields.errors('title')}" th:text="${error}">
+                                                                    
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+								                                <label class="col-md-2 col-form-label">Category</label>
+								                                <div class="col-md-10">
+									                                <select class="form-control" name="categoryId">
+									                                    <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+									                                </select>
+									                            </div>
+								                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-md-2 col-form-label">Total Questions</label>
+                                                                <div class="col-md-10">
+                                                                    <input
+                                                                    	type="number" 
+                                                                    	class="form-control"
+                                                                    	th:field="*{totalQuestions}"
+                                                                    	th:value="${quiz.totalQuestions}"
+                                                                    	placeholder="Enter Number of Questions"
+                                                                    	th:classappend="${#fields.hasErrors('totalQuestions') ? 'is-invalid' : ''}"
+                                                                    	required
+                                                                    >
+                                                                   
+                                                                    <div class="invalid-feedback" th:each="error : ${#fields.errors('totalQuestions')}" th:text="${error}">
+                                                                    
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-md-2 col-form-label">Total Marks</label>
+                                                                <div class="col-md-10">
+                                                                    <input
+                                                                    	type="number" 
+                                                                    	class="form-control"
+                                                                    	th:field="*{totalMarks}"
+                                                                    	th:value="${quiz.totalMarks}"
+                                                                    	placeholder="Enter Total Marks"
+                                                                    	th:classappend="${#fields.hasErrors('totalMarks') ? 'is-invalid' : ''}"
+                                                                    	required
+                                                                    >
+                                                                   
+                                                                    <div class="invalid-feedback" th:each="error : ${#fields.errors('totalMarks')}" th:text="${error}">
+                                                                    
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-md-2 col-form-label">Quiz Duration</label>
+                                                                <div class="col-md-10">
+                                                                    <input
+                                                                    	type="number" 
+                                                                    	class="form-control"
+                                                                    	th:field="*{duration}"
+                                                                    	th:value="${quiz.duration}"
+                                                                    	placeholder="Enter Quiz Duration (Minute)"
+                                                                    	th:classappend="${#fields.hasErrors('duration') ? 'is-invalid' : ''}"
+                                                                    	required
+                                                                    >
+                                                                   
+                                                                    <div class="invalid-feedback" th:each="error : ${#fields.errors('duration')}" th:text="${error}">
+                                                                    
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="from-group row mb-3">
+                                                            	<label class="col-md-2">Activate Quiz</label>
+                                                            	<div class="col-md-10">
+	                                                            	<input 
+	                                                            		type="checkbox"
+	                                                            		name="isActive"
+	                                                            		checked data-toggle="toggle" 
+	                                                            		data-on="Active" 
+	                                                            		data-off="Deactive" 
+	                                                            		data-onstyle="success" 
+	                                                            		data-offstyle="danger"
+	                                                            	>
+	                                                            </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-md-2 col-form-label">Description</label>
+                                                                <div class="col-md-10">
+                                                                    <textarea 
+                                                                    	class="form-control" 
+                                                                    	rows="5"
+                                                                    	th:field="*{description}"
+                                                                    	th:text="${quiz.description}"
+                                                                    	placeholder="Enter Quiz Description"
+                                                                    	th:classappend="${#fields.hasErrors('description') ? 'is-invalid' : ''}"></textarea>
+                                                                	
+                                                                	<div class="invalid-feedback" th:each="error : ${#fields.errors('description')}" th:text="${error}">
+                                                                    
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="row">
+                                                            	<div class="col-md-2">
+                                                            		
+                                                            	</div>
+                                                            	<div class="col-md-10">
+                                                            		<input type="submit" class="btn btn-primary" value="Submit" />
+                                                            	</div>
+                                                            </div>
+                                                    	</form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="styleSelector">
+
+                            </div>
+                        </div>
+                    </div>
+                	<!-- Replaceable Content Ends -->
+               
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+<!-- Required Jquery -->
+<script type="text/javascript" th:src="@{/admin-resources/js/jquery/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/admin-resources/js/jquery-ui/jquery-ui.min.js}"></script>
+<script type="text/javascript" th:src="@{/admin-resources/js/popper.js/popper.min.js}"></script>
+<script type="text/javascript" th:src="@{/admin-resources/js/bootstrap/js/bootstrap.min.js}"></script>
+
+<!-- Bootstrap Toggle Switch Button -->
+<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+
+<!-- jquery slimscroll js -->
+<script type="text/javascript" th:src="@{/admin-resources/js/jquery-slimscroll/jquery.slimscroll.js}"></script>
+
+<!-- modernizr js -->
+<script type="text/javascript" th:src="@{/admin-resources/js/modernizr/modernizr.js}"></script>
+<script type="text/javascript" th:src="@{/admin-resources/js/modernizr/css-scrollbars.js}"></script>
+
+<!-- Custom js -->
+<script type="text/javascript" th:src="@{/admin-resources/js/script.js}"></script>
+<script th:src="@{/admin-resources/js/pcoded.min.js}"></script>
+<script th:src="@{/admin-resources/js/vartical-demo.js}"></script>
+<script th:src="@{/admin-resources/js/jquery.mCustomScrollbar.concat.min.js}"></script>
+</body>
+
+</html>

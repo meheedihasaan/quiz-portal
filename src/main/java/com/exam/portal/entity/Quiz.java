@@ -3,6 +3,8 @@ package com.exam.portal.entity;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.hibernate.validator.constraints.Range;
+
 import com.exam.portal.constsant.EntityConstant;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -38,16 +40,13 @@ public class Quiz {
 	@Size(min = 4, max = 50, message = "Quiz title should be between 4 to 50 characters.")
 	private String title;
 	
-	@NotEmpty(message = "Total marks is required.")
-	@Size(min = 5, message = "Total marks should be greater than or equal 5.")
+	@Range(min = 5, message = "Total marks should be greater than or equal 5.")
 	private int totalMarks;
 	
-	@NotEmpty(message = "Total questions is required.")
-	@Size(min = 5, max = 100, message = "Toal questions should be between 5 to 100.")
+	@Range(min = 5, max = 100, message = "Toal questions should be between 5 to 100.")
 	private int totalQuestions;
 	
-	@NotEmpty(message = "Quiz duration is required.")
-	@Size(min = 1, max = 100, message = "Quiz duration should be between 1 to 100 minutes.")
+	@Range(min = 1, max = 100, message = "Quiz duration should be between 1 to 100 minutes.")
 	private int duration;
 	
 	@NotEmpty(message = "Quiz description is required.")

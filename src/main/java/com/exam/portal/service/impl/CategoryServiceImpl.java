@@ -1,5 +1,7 @@
 package com.exam.portal.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,7 +21,7 @@ public class CategoryServiceImpl implements CategoryService {
 	private CategoryRepository categoryRepository;
 
 	@Override
-	public void createCategory(Category category) throws Exception {
+	public void createCategory(Category category) {
 		this.categoryRepository.save(category);
 	}
 
@@ -37,10 +39,16 @@ public class CategoryServiceImpl implements CategoryService {
 		Page<Category> categoryPage = this.categoryRepository.findAll(pageable);
 		return categoryPage;
 	}
+	
+	@Override
+	public List<Category> getCategoryList() {
+		List<Category> categories = this.categoryRepository.findAll();
+		return categories;
+	}
 
 	@Override
 	public Category getCategoryById(int id) {
-		Category category = this.categoryRepository.findById(id).orElseThrow(()-> new NotFoundException("Category not found with id "+id));
+		Category category = this.categoryRepository.findById(id).orElseThrow(()-> new NotFoundException("Category not found."));
 		return category;
 	}
 	
@@ -52,7 +60,7 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	public void updateCategory(int id, Category category) {
-		Category existingCategory = this.categoryRepository.findById(id).orElseThrow(()-> new NotFoundException("Category not found with id "+category.getId()));
+		Category existingCategory = this.categoryRepository.findById(id).orElseThrow(()-> new NotFoundException("Category not found."));
 		existingCategory.setName(category.getName());
 		existingCategory.setDescription(category.getDescription());
 		this.categoryRepository.save(existingCategory);
@@ -60,7 +68,7 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	public void deleteCategory(int id) {
-		Category category = this.categoryRepository.findById(id).orElseThrow(()-> new NotFoundException("Category not found with id "+id));
+		Category category = this.categoryRepository.findById(id).orElseThrow(()-> new NotFoundException("Category not found."));
 		this.categoryRepository.delete(category);
 	}
 

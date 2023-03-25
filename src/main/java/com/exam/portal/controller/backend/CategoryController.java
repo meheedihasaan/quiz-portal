@@ -94,7 +94,7 @@ public class CategoryController {
 			}
 		}
 		catch (Exception e) {
-			redirectAttributes.addFlashAttribute("message", new Message("alert-danger", e.getMessage()+" Please try again later."));
+			redirectAttributes.addFlashAttribute("message", new Message("alert-danger", "Something went wrong! "+e.getMessage()));
 			return "redirect:/backend/categories/new";
 		}
 	}
@@ -110,7 +110,7 @@ public class CategoryController {
             return "admin-template/edit-category";
         }
         catch (Exception e) {
-        	redirectAttributes.addFlashAttribute("message", new Message("alert-danger", e.getMessage()+" Please try again later."));
+        	redirectAttributes.addFlashAttribute("message", new Message("alert-danger", "Something went wrong! "+e.getMessage()));
 			return "redirect:/backend/categories/page=0";  //When category is not found
         }
     }
@@ -137,23 +137,20 @@ public class CategoryController {
 			return "redirect:/backend/categories/page=0";
 		}
 		catch (Exception e) {
-			redirectAttributes.addFlashAttribute("message", new Message("alert-danger", e.getMessage()+" Please try again later."));
+			redirectAttributes.addFlashAttribute("message", new Message("alert-danger", "Something went wrong! "+e.getMessage()));
 			return "redirect:/backend/categories/page=0";
 		}
 	}
 	
 	@GetMapping("/{id}/delete")
-	public String deleteCategory(@PathVariable int id, RedirectAttributes redirectAttributes, Model model, Principal principal) {
+	public String deleteCategory(@PathVariable int id, RedirectAttributes redirectAttributes) {
 		try {
-        	loadCommonData(model, principal);
-            model.addAttribute("title", "Delete Category");
-            model.addAttribute("categoriesActive", "active");
             this.categoryService.deleteCategory(id);
             redirectAttributes.addFlashAttribute("message", new Message("alert-success", "Category is deleted successfully."));
 			return "redirect:/backend/categories/page=0";
         }
         catch (Exception e) {
-        	redirectAttributes.addFlashAttribute("message", new Message("alert-danger", e.getMessage()+" Please try again later."));
+        	redirectAttributes.addFlashAttribute("message", new Message("alert-danger", "Something went wrong! "+e.getMessage()));
 			return "redirect:/backend/categories/page=0";  //When category is not found
         }
 	}

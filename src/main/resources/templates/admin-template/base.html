@@ -24,6 +24,9 @@
     <!-- Favicon icon -->
     <link rel="icon" th:href="@{/admin-resources/images/favicon.ico}" type="image/x-icon">
     
+    <!-- Bootstrap Toggle Switch Button -->
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+    
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600" rel="stylesheet">
     
@@ -161,9 +164,9 @@
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
-                                <li class="">
-                                    <a href="">
-                                        <span class="pcoded-micon"><i class="ti-marker-alt"></i></span>
+                                <li th:class="${quizzesActive}">
+                                    <a th:href="@{/backend/quizzes/page=0}">
+                                        <span class="pcoded-micon"><i class="ti-write"></i></span>
                                         <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Quizzes</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>

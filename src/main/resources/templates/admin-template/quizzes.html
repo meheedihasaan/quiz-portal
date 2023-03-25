@@ -41,7 +41,7 @@
 									<!-- Page-header start -->
                                     <div class="page-header card">
                                         <div class="card-block">
-                                            <h5 class="m-b-10">Categories</h5>
+                                            <h5 class="m-b-10">Quizzes</h5>
                                             <ul class="breadcrumb-title b-t-default p-t-10">
                                                 <li class="breadcrumb-item">
                                                     <a th:href="@{/}"> <i class="fa fa-home"></i> </a>
@@ -50,7 +50,7 @@
                                                     <a th:href="@{/backend}">Dashboard</a>
                                                 </li>
                                                 <li class="breadcrumb-item">
-                                                	<a th:href="@{/backend/categories/page=0}">Categories</a>
+                                                	<a th:href="@{/backend/quizzes/page=0}">Quizzes</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -64,8 +64,8 @@
                                                 <div class="card">
                                                     <div class="card-header">
                                                         <div class="d-inline">
-									                        <h5 class="mr-3">Category List</h5>
-									                        <a class="btn btn-sm btn-primary" th:href="@{/backend/categories/new}" data-toggle="tooltip" data-placement="top" data-original-title="New Category" aria-describedby="tooltip529394"><i class="ti-plus"></i></a>
+									                        <h5 class="mr-3">Quiz List</h5>
+									                        <a class="btn btn-sm btn-primary" th:href="@{/backend/quizzes/new}" data-toggle="tooltip" data-placement="top" data-original-title="New Quiz" aria-describedby="tooltip529394"><i class="ti-plus"></i></a>
 									                    </div>
                                                         <div class="card-header-right">
 															<ul class="list-unstyled card-option">
@@ -90,14 +90,21 @@
                                                     		</div>
                                                     	</div>
                                                         <div class="row">                                                 
-				                                            <div th:each="category : ${categoryPage}" class="col-md-6">
+				                                            <div th:each="quiz : ${quizPage}" class="col-md-12">
 				                                                <div class="card text-primary order-card">
 				                                                    <div class="card-block">
-				                                                        <h4 th:text="${category.name}" class="m-b-10"></h4>
-				                                                        <p th:text="${category.description}" class="m-b-20"></p> 
-				                                                        
-				                                                    	<a class="btn btn-success btn-sm mr-3" th:href="@{/backend/categories/{id}/edit (id = ${category.id}) }" data-toggle="tooltip" data-placement="top" data-original-title="Edit Category" aria-describedby="tooltip529394"><i style="font-size: 16px" class="ti-pencil-alt"></i></a>
-				                                                    	<a class="btn btn-danger btn-sm mr-3" href="#" th:onclick="|deleteCategory(${category.id})|" data-toggle="tooltip" data-placement="top" data-original-title="Delete Category" aria-describedby="tooltip529394"><i style="font-size: 16px" class="ti-trash"></i></a>
+				                                                    	<p th:text="${quiz.category.name}" class="badge badge-primary m-b-10"></p>
+				                                                    	<h6 class="badge badge-success" th:if="${quiz.isActive}" th:text="Active"></h6>				             
+				                                                    	<h6 class="badge badge-danger" th:unless="${quiz.isActive}" th:text="Deactive"></h6>
+				                                                    	
+				                                                        <h4 th:text="${quiz.title}" class="m-b-10"></h4>
+				                                                        <h6 class="badge badge-info m-b-10">Total Questions: <span th:text="${quiz.totalQuestions}"></span></h6>
+				                                                        <h6 class="badge badge-secondary m-b-10">Total Marks: <span th:text="${quiz.totalMarks}"></span></h6>
+				                                                        <h6 class="badge badge-warning m-b-10">Duration: <span th:text="${quiz.duration}"></span> Minutes</h6>
+				                                                        <p th:text="${quiz.description}" class="m-b-25"></p>
+				                                                         
+				                                                    	<a class="btn btn-success btn-sm mr-3" th:href="@{/backend/quizzes/{id}/edit (id = ${quiz.id}) }" data-toggle="tooltip" data-placement="top" data-original-title="Edit Quiz" aria-describedby="tooltip529394"><i style="font-size: 16px" class="ti-pencil-alt"></i></a>
+				                                                    	<a class="btn btn-danger btn-sm mr-3" href="#" th:onclick="|deleteQuiz(${quiz.id})|"  data-toggle="tooltip" data-placement="top" data-original-title="Delete Quiz" aria-describedby="tooltip529394"><i style="font-size: 16px" class="ti-trash"></i></a>
 				                                                    </div>
 				                                                </div>
 				                                            </div>
@@ -107,11 +114,11 @@
 	                                                        	<!-- Pagination -->
 												                <nav aria-label="Page navigation example ">
 												                    <ul class="pagination">
-												                        <li th:if="${currentPage != 0}" class="page-item"><a class="page-link" th:href="@{'/backend/categories/page=' + ${currentPage-1}}">Prev</a></li>			
-												                        <li th:classappend="${currentPage == page-1? 'active' : ''}" th:each="page : ${#numbers.sequence(1, totalPages)}" class="page-item"><a class="page-link" th:href="@{'/backend/categories/page=' + ${page-1}}"><span th:text="${page}"></span></a></li>
-																		<li th:if="${currentPage+1 != totalPages}" class="page-item"><a class="page-link" th:href="@{'/backend/categories/page=' + ${currentPage+1}}">Next</a></li>
+												                        <li th:if="${currentPage != 0}" class="page-item"><a class="page-link" th:href="@{'/backend/quizzes/page=' + ${currentPage-1}}">Prev</a></li>			
+												                        <li th:classappend="${currentPage == page-1? 'active' : ''}" th:each="page : ${#numbers.sequence(1, totalPages)}" class="page-item"><a class="page-link" th:href="@{'/backend/quizzes/page=' + ${page-1}}"><span th:text="${page}"></span></a></li>
+																		<li th:if="${currentPage+1 != totalPages}" class="page-item"><a class="page-link" th:href="@{'/backend/quizzes/page=' + ${currentPage+1}}">Next</a></li>
 												                    </ul>
-												                </nav>
+												                </nav>	
 											                </div>
                                                         </div>       
                                                     </div>
@@ -138,21 +145,21 @@
 <!-- Sweet Alert -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-	function deleteCategory(id) {
+	function deleteQuiz(id) {
 		
 		swal({
 			  title: "Are you sure to delete?",
-			  text: "Once deleted, you will not be able to recover this category!",
+			  text: "Once deleted, you will not be able to recover this quiz!",
 			  icon: "warning",
 			  buttons: true,
 			  dangerMode: true,
 			})
 			.then((willDelete) => {
 				if (willDelete) {
-				    window.location = "/backend/categories/"+id+"/delete";
+				    window.location = "/backend/quizzes/"+id+"/delete";
 				} 
 				else {
-				    swal("Category is safe!");
+				    swal("Quiz is safe!");
 				}
 			});
 		
