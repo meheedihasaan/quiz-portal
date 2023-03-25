@@ -143,11 +143,8 @@ public class CategoryController {
 	}
 	
 	@GetMapping("/{id}/delete")
-	public String deleteCategory(@PathVariable int id, RedirectAttributes redirectAttributes, Model model, Principal principal) {
+	public String deleteCategory(@PathVariable int id, RedirectAttributes redirectAttributes) {
 		try {
-        	loadCommonData(model, principal);
-            model.addAttribute("title", "Delete Category");
-            model.addAttribute("categoriesActive", "active");
             this.categoryService.deleteCategory(id);
             redirectAttributes.addFlashAttribute("message", new Message("alert-success", "Category is deleted successfully."));
 			return "redirect:/backend/categories/page=0";

@@ -161,4 +161,17 @@ public class QuizController {
 		}
 	}
 	
+	@GetMapping("/{id}/delete")
+	public String deleteQuiz(@PathVariable int id, RedirectAttributes redirectAttributes) {
+		try {
+			this.quizService.deleteQuiz(id);
+			redirectAttributes.addFlashAttribute("message", new Message("alert-success", "Quiz is deleted successfully."));
+			return "redirect:/backend/quizzes/page=0";
+		}
+		catch (Exception e) {
+			redirectAttributes.addFlashAttribute("message", new Message("alert-danger", "Something went wrong! "+e.getMessage()));
+			return "redirect:/backend/quizzes/page=0";
+		}
+	}
+	
 }

@@ -95,6 +95,7 @@
 				                                                    <div class="card-block">
 				                                                        <h4 th:text="${category.name}" class="m-b-10"></h4>
 				                                                        <p th:text="${category.description}" class="m-b-20"></p> 
+				                                                        
 				                                                    	<a class="btn btn-success btn-sm mr-3" th:href="@{/backend/categories/{id}/edit (id = ${category.id}) }" data-toggle="tooltip" data-placement="top" data-original-title="Edit Category" aria-describedby="tooltip529394"><i style="font-size: 16px" class="ti-pencil-alt"></i></a>
 				                                                    	<a class="btn btn-danger btn-sm mr-3" href="#" th:onclick="|deleteCategory(${category.id})|" data-toggle="tooltip" data-placement="top" data-original-title="Delete Category" aria-describedby="tooltip529394"><i style="font-size: 16px" class="ti-trash"></i></a>
 				                                                    </div>

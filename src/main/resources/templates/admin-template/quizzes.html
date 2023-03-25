@@ -94,15 +94,17 @@
 				                                                <div class="card text-primary order-card">
 				                                                    <div class="card-block">
 				                                                    	<p th:text="${quiz.category.name}" class="badge badge-primary m-b-10"></p>
-				                                                    	<h6 class="badge badge-success" th:if="${quiz.isActive}" th:text="Active"></h6>
+				                                                    	<h6 class="badge badge-success" th:if="${quiz.isActive}" th:text="Active"></h6>				             
 				                                                    	<h6 class="badge badge-danger" th:unless="${quiz.isActive}" th:text="Deactive"></h6>
+				                                                    	
 				                                                        <h4 th:text="${quiz.title}" class="m-b-10"></h4>
 				                                                        <h6 class="badge badge-info m-b-10">Total Questions: <span th:text="${quiz.totalQuestions}"></span></h6>
 				                                                        <h6 class="badge badge-secondary m-b-10">Total Marks: <span th:text="${quiz.totalMarks}"></span></h6>
 				                                                        <h6 class="badge badge-warning m-b-10">Duration: <span th:text="${quiz.duration}"></span> Minutes</h6>
-				                                                        <p th:text="${quiz.description}" class="m-b-25"></p> 
+				                                                        <p th:text="${quiz.description}" class="m-b-25"></p>
+				                                                         
 				                                                    	<a class="btn btn-success btn-sm mr-3" th:href="@{/backend/quizzes/{id}/edit (id = ${quiz.id}) }" data-toggle="tooltip" data-placement="top" data-original-title="Edit Quiz" aria-describedby="tooltip529394"><i style="font-size: 16px" class="ti-pencil-alt"></i></a>
-				                                                    	<a class="btn btn-danger btn-sm mr-3" href="#"  data-toggle="tooltip" data-placement="top" data-original-title="Delete Quiz" aria-describedby="tooltip529394"><i style="font-size: 16px" class="ti-trash"></i></a>
+				                                                    	<a class="btn btn-danger btn-sm mr-3" href="#" th:onclick="|deleteQuiz(${quiz.id})|"  data-toggle="tooltip" data-placement="top" data-original-title="Delete Quiz" aria-describedby="tooltip529394"><i style="font-size: 16px" class="ti-trash"></i></a>
 				                                                    </div>
 				                                                </div>
 				                                            </div>
@@ -143,21 +145,21 @@
 <!-- Sweet Alert -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-	function deleteCategory(id) {
+	function deleteQuiz(id) {
 		
 		swal({
 			  title: "Are you sure to delete?",
-			  text: "Once deleted, you will not be able to recover this category!",
+			  text: "Once deleted, you will not be able to recover this quiz!",
 			  icon: "warning",
 			  buttons: true,
 			  dangerMode: true,
 			})
 			.then((willDelete) => {
 				if (willDelete) {
-				    window.location = "/backend/categories/"+id+"/delete";
+				    window.location = "/backend/quizzes/"+id+"/delete";
 				} 
 				else {
-				    swal("Category is safe!");
+				    swal("Quiz is safe!");
 				}
 			});
 		
