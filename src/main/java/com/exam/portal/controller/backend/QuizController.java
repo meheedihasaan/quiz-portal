@@ -125,4 +125,37 @@ public class QuizController {
 		}
 	}
 	
+	@PostMapping("/{id}/edit")
+	public String editQuiz(
+		@Valid @ModelAttribute Quiz quiz,
+		BindingResult bindingResult,
+		@PathVariable int id,
+		@RequestParam(value = "categoryId") int categoryId,
+		@RequestParam(value = "isActive", defaultValue = "false") boolean isActive,
+		RedirectAttributes redirectAttributes,
+		Model model,
+		Principal principal
+	) {
+		loadCommonData(model, principal);
+		model.addAttribute("title", "Edit Quiz");
+		model.addAttribute("quizzesActive", "active");
+		try {
+			if(bindingResult.hasErrors()) {
+				Category category = this.categoryService.getCategoryById(categoryId);
+				quiz.setCategory(category);
+				model.addAttribute("quiz", quiz);
+				List<Category> categories = this.categoryService.getCategoryList();
+				model.addAttribute("categories", categories);
+				return "admin-template/edit-quiz";
+			}
+			
+			redirectAttributes.addFlashAttribute("message", new Message("alert-primary", "Quiz is updated successfully."));
+			return "redirect:/backend/quizzes/page=0";
+		}
+		catch (Exception e) {
+			redirectAttributes.addFlashAttribute("message", new Message("alert-danger", "Something went wrong! "+e.getMessage()));
+			return "redirect:/backend/quizzes/page=0";
+		}
+	}
+	
 }
