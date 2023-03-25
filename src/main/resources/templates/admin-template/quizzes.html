@@ -94,6 +94,8 @@
 				                                                <div class="card text-primary order-card">
 				                                                    <div class="card-block">
 				                                                    	<p th:text="${quiz.category.name}" class="badge badge-primary m-b-10"></p>
+				                                                    	<h6 class="badge badge-success" th:if="${quiz.isActive}" th:text="Active"></h6>
+				                                                    	<h6 class="badge badge-danger" th:unless="${quiz.isActive}" th:text="Deactive"></h6>
 				                                                        <h4 th:text="${quiz.title}" class="m-b-10"></h4>
 				                                                        <h6 class="badge badge-info m-b-10">Total Questions: <span th:text="${quiz.totalQuestions}"></span></h6>
 				                                                        <h6 class="badge badge-secondary m-b-10">Total Marks: <span th:text="${quiz.totalMarks}"></span></h6>

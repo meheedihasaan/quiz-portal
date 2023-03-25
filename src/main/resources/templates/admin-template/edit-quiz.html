@@ -53,7 +53,7 @@
                                                 	<a th:href="@{/backend/quizzes/page=0}">Quizzes</a>
                                                 </li>
                                                 <li class="breadcrumb-item">
-                                                	<a th:href="@{/backend/quizzes/new}">Edit Quiz</a>
+                                                	<a th:href="@{/backend/quizzes/{id}/edit (id = ${quiz.id}) }">Edit Quiz</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -83,7 +83,7 @@
                                                     <div class="card-block">
                                                         <form method="POST" th:action="@{/backend/quizzes/{id}/edit (id = ${quiz.id}) }" th:object="${quiz}">                                                        
                                                             <div class="form-group row">
-                                                            	<input type="text" class="form-control" th:field="*{id}" th:value="${quiz.id}">
+                                                            	<input type="hidden" class="form-control" th:field="*{id}" th:value="${quiz.id}">
                                                             </div>
                                                             <div class="form-group row">
                                                                 <label class="col-md-2 col-form-label">Quiz Title</label>

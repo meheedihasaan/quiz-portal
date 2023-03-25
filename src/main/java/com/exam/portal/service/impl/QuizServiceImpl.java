@@ -53,6 +53,7 @@ public class QuizServiceImpl implements QuizService {
 		existingQuiz.setTotalMarks(quiz.getTotalMarks());
 		existingQuiz.setDuration(quiz.getDuration());
 		existingQuiz.setActive(quiz.isActive());
+		existingQuiz.setDescription(quiz.getDescription());
 		this.quizRepository.save(existingQuiz);
 	}
 

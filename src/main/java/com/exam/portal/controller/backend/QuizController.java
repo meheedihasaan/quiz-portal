@@ -129,7 +129,6 @@ public class QuizController {
 	public String editQuiz(
 		@Valid @ModelAttribute Quiz quiz,
 		BindingResult bindingResult,
-		@PathVariable int id,
 		@RequestParam(value = "categoryId") int categoryId,
 		@RequestParam(value = "isActive", defaultValue = "false") boolean isActive,
 		RedirectAttributes redirectAttributes,
@@ -149,6 +148,10 @@ public class QuizController {
 				return "admin-template/edit-quiz";
 			}
 			
+			Category category = this.categoryService.getCategoryById(categoryId);
+			quiz.setCategory(category);
+			quiz.setActive(isActive);
+			this.quizService.updateQuiz(quiz.getId(), quiz);
 			redirectAttributes.addFlashAttribute("message", new Message("alert-primary", "Quiz is updated successfully."));
 			return "redirect:/backend/quizzes/page=0";
 		}
