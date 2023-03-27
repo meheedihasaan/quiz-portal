@@ -52,6 +52,9 @@
                                                 <li class="breadcrumb-item">
                                                 	<a th:href="@{/backend/quizzes/page=0}">Quizzes</a>
                                                 </li>
+                                                <li class="breadcrumb-item">
+                                                	<a th:href="@{/backend/quizzes/page=0}">Questions</a>
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>
@@ -64,8 +67,8 @@
                                                 <div class="card">
                                                     <div class="card-header">
                                                         <div class="d-inline">
-									                        <h5 class="mr-3">Quiz List</h5>
-									                        <a class="btn btn-sm btn-primary" th:href="@{/backend/quizzes/new}" data-toggle="tooltip" data-placement="top" data-original-title="New Quiz" aria-describedby="tooltip529394"><i class="ti-plus"></i></a>
+									                        <h5 class="mr-3">Question Set</h5>
+									                        <a class="btn btn-sm btn-primary" th:href="@{/backend/quizzes/new}" data-toggle="tooltip" data-placement="top" data-original-title="Add Question" aria-describedby="tooltip529394"><i class="ti-plus"></i></a>
 									                    </div>
                                                         <div class="card-header-right">
 															<ul class="list-unstyled card-option">
@@ -90,37 +93,33 @@
                                                     		</div>
                                                     	</div>
                                                         <div class="row">                                                 
-				                                            <div th:each="quiz : ${quizPage}" class="col-md-12">
+				                                            <div class="col-md-12">
 				                                                <div class="card text-primary order-card">
 				                                                    <div class="card-block">
-				                                                    	<p th:text="${quiz.category.name}" class="badge badge-primary m-b-10"></p>
-				                                                    	<h6 class="badge badge-success" th:if="${quiz.isActive}" th:text="Active"></h6>				             
-				                                                    	<h6 class="badge badge-danger" th:unless="${quiz.isActive}" th:text="Deactive"></h6>
-				                                                    	
-				                                                        <h4 th:text="${quiz.title}" class="m-b-10"></h4>
-				                                                        <h6 class="badge badge-info m-b-10">Total Questions: <span th:text="${quiz.totalQuestions}"></span></h6>
-				                                                        <h6 class="badge badge-secondary m-b-10">Total Marks: <span th:text="${quiz.totalMarks}"></span></h6>
-				                                                        <h6 class="badge badge-warning m-b-10">Duration: <span th:text="${quiz.duration}"></span> Minutes</h6>
-				                                                        <p th:text="${quiz.description}" class="m-b-25"></p>                                                      
-				                                                        
-				                                                        <a class="btn btn-warning btn-sm mr-3" th:href="@{/backend/quizzes/{id}/questions (id = ${quiz.id}) }" data-toggle="tooltip" data-placement="top" data-original-title="View Questions" aria-describedby="tooltip529394"><i style="font-size: 16px" class="ti-eye"></i></a>
-			                                                    		<a class="btn btn-success btn-sm mr-3" th:href="@{/backend/quizzes/{id}/edit (id = ${quiz.id}) }" data-toggle="tooltip" data-placement="top" data-original-title="Edit Quiz" aria-describedby="tooltip529394"><i style="font-size: 16px" class="ti-pencil-alt"></i></a>
-			                                                    		<a class="btn btn-danger btn-sm mr-3" href="#" th:onclick="|deleteQuiz(${quiz.id})|"  data-toggle="tooltip" data-placement="top" data-original-title="Delete Quiz" aria-describedby="tooltip529394"><i style="font-size: 16px" class="ti-trash"></i></a>				                                             
-			                                                    		<a class="btn btn-primary btn-sm mr-3" href="#" th:onclick="|attemptQuiz(${quiz.id})|">Attempt Quiz</a>
+				                                                    	<p class="text-bold">1. What is the most popular programming language?</p>
+				                                                    	<div class="row">
+				                                                    		<div class="col-md-6">
+				                                                    			<p>A. Java</p>
+				                                                    		</div>
+				                                                    		<div class="col-md-6">
+				                                                    			<p>B. Python</p>
+				                                                    		</div>
+				                                                    		<div class="col-md-6">
+				                                                    			<p>C. C</p>
+				                                                    		</div>
+				                                                    		<div class="col-md-6">
+				                                                    			<p>D. C++</p>
+				                                                    		</div>
+				                                                    	</div>
+				                                                    	<hr />
+				                                                    	<p>Correct Ans: Java</p>
 			                                                    	</div>
 				                                                </div>
 				                                            </div>
                                                         </div>
                                                         <div class="row">
                                                         	<div class="col-12">
-	                                                        	<!-- Pagination -->
-												                <nav aria-label="Page navigation example ">
-												                    <ul class="pagination">
-												                        <li th:if="${currentPage != 0}" class="page-item"><a class="page-link" th:href="@{'/backend/quizzes/page=' + ${currentPage-1}}">Prev</a></li>			
-												                        <li th:classappend="${currentPage == page-1? 'active' : ''}" th:each="page : ${#numbers.sequence(1, totalPages)}" class="page-item"><a class="page-link" th:href="@{'/backend/quizzes/page=' + ${page-1}}"><span th:text="${page}"></span></a></li>
-																		<li th:if="${currentPage+1 != totalPages}" class="page-item"><a class="page-link" th:href="@{'/backend/quizzes/page=' + ${currentPage+1}}">Next</a></li>
-												                    </ul>
-												                </nav>	
+	                                                        		
 											                </div>
                                                         </div>       
                                                     </div>
