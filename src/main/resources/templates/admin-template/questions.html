@@ -41,7 +41,7 @@
 									<!-- Page-header start -->
                                     <div class="page-header card">
                                         <div class="card-block">
-                                            <h5 class="m-b-10">Quizzes</h5>
+                                            <h5 class="m-b-10" th:text="${quiz.title}"></h5>
                                             <ul class="breadcrumb-title b-t-default p-t-10">
                                                 <li class="breadcrumb-item">
                                                     <a th:href="@{/}"> <i class="fa fa-home"></i> </a>
@@ -53,7 +53,7 @@
                                                 	<a th:href="@{/backend/quizzes/page=0}">Quizzes</a>
                                                 </li>
                                                 <li class="breadcrumb-item">
-                                                	<a th:href="@{/backend/quizzes/page=0}">Questions</a>
+                                                	<a th:href="@{/backend/quizzes/{id}/questions/page=0 (id = ${quiz.id}) }"><span th:text="${quiz.title}"></span></a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -96,19 +96,19 @@
 				                                            <div class="col-md-12">
 				                                                <div class="card text-primary order-card">
 				                                                    <div class="card-block">
-				                                                    	<p class="text-bold">1. What is the most popular programming language?</p>
+				                                                    	<p><b>1. Which is the most popular programming language?</b></p>
 				                                                    	<div class="row">
 				                                                    		<div class="col-md-6">
-				                                                    			<p>A. Java</p>
+				                                                    			<p><b>(a) </b> Java</p>
 				                                                    		</div>
 				                                                    		<div class="col-md-6">
-				                                                    			<p>B. Python</p>
+				                                                    			<p><b>(b) </b> Python</p>
 				                                                    		</div>
 				                                                    		<div class="col-md-6">
-				                                                    			<p>C. C</p>
+				                                                    			<p><b>(c) </b> JavaScript</p>
 				                                                    		</div>
 				                                                    		<div class="col-md-6">
-				                                                    			<p>D. C++</p>
+				                                                    			<p><b>(d) </b> C++</p>
 				                                                    		</div>
 				                                                    	</div>
 				                                                    	<hr />
