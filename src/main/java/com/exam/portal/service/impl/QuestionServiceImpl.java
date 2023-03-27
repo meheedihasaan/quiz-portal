@@ -8,8 +8,10 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.exam.portal.entity.Question;
+import com.exam.portal.entity.Quiz;
 import com.exam.portal.exception.NotFoundException;
 import com.exam.portal.repository.QuestionRepository;
+import com.exam.portal.repository.QuizRepository;
 import com.exam.portal.service.QuestionService;
 
 @Service
@@ -17,6 +19,9 @@ public class QuestionServiceImpl implements QuestionService {
 	
 	@Autowired
 	private QuestionRepository questionRepository;
+	
+	@Autowired
+	private QuizRepository quizRepository;
 
 	@Override
 	public void createQuestion(Question question) {
@@ -35,6 +40,22 @@ public class QuestionServiceImpl implements QuestionService {
 		
 		Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
 		Page<Question> questionPage = questionRepository.findAll(pageable);
+		return questionPage;
+	}
+	
+	@Override
+	public Page<Question> getQuestionsByQuiz(int quizId, int pageNumber, int pageSize, String sortBy, String sortDirection){
+		Sort sort = null;
+		if(sortDirection.equalsIgnoreCase("asc")) {
+			sort = Sort.by(sortBy).ascending();
+		}
+		else if(sortDirection.equalsIgnoreCase("desc")) {
+			sort = Sort.by(sortBy).descending();
+		}
+		
+		Quiz quiz = this.quizRepository.findById(quizId).orElseThrow(()-> new NotFoundException("Quiz not found."));
+		Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
+		Page<Question> questionPage = questionRepository.findByQuiz(pageable, quiz);
 		return questionPage;
 	}
 
