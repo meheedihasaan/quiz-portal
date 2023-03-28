@@ -41,7 +41,7 @@ public class QuestionController {
 		model.addAttribute("role", roles.get(0).getName());
 	}
 	
-	@GetMapping("/quizzes/{quizId}/questions/page={pageNumber}")
+	@GetMapping("/quizzes/{quizId}/{title}/questions/page={pageNumber}")
 	public String viewAddQuestionPage(@PathVariable int quizId, @PathVariable int pageNumber, Model model, Principal principal) {
 		loadCommonData(model, principal);
 		model.addAttribute("title", "Add Question");

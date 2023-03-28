@@ -53,7 +53,7 @@
                                                 	<a th:href="@{/backend/quizzes/page=0}">Quizzes</a>
                                                 </li>
                                                 <li class="breadcrumb-item">
-                                                	<a th:href="@{/backend/quizzes/{id}/questions/page=0 (id = ${quiz.id}) }"><span th:text="${quiz.title}"></span></a>
+                                                	<a th:href="@{/backend/quizzes/{id}/{title}/questions/page=0 (id = ${quiz.id}, name = ${quiz.title}) }"><span th:text="${quiz.title}"></span></a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -112,7 +112,7 @@
 				                                                    		</div>
 				                                                    	</div>
 				                                                    	<hr />
-				                                                    	<p>Correct Ans: Java</p>
+				                                                    	<p><b>Correct Answer:</b> Java</p>
 			                                                    	</div>
 				                                                </div>
 				                                            </div>
