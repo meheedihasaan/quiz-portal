@@ -121,7 +121,14 @@
                                                         </div>
                                                         <div class="row">
                                                         	<div class="col-12">
-	                                                        		
+	                                                        	<!-- Pagination -->
+												                <nav aria-label="Page navigation example ">
+												                    <ul class="pagination">
+												                        <li th:if="${currentPage != 0}" class="page-item"><a class="page-link" th:href="@{'/backend/quizzes/{id}/{title}/questions/page=' + ${currentPage-1} (id = ${quiz.id}, title = ${quiz.title}) }">Prev</a></li>			
+												                        <li th:classappend="${currentPage == page-1? 'active' : ''}" th:each="page : ${#numbers.sequence(1, totalPages)}" class="page-item"><a class="page-link" th:href="@{'/backend/quizzes/{id}/{title}/questions/page=' + ${page-1} (id = ${quiz.id}, title = ${quiz.title}) }"><span th:text="${page}"></span></a></li>
+																		<li th:if="${currentPage+1 != totalPages}" class="page-item"><a class="page-link" th:href="@{'/backend/quizzes/{id}/{title}/questions/page=' + ${currentPage+1} (id = ${quiz.id}, title = ${quiz.title}) }">Next</a></li>
+												                    </ul>
+												                </nav>	
 											                </div>
                                                         </div>       
                                                     </div>

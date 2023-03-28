@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.exam.portal.constsant.AppConstant;
 import com.exam.portal.entity.Question;
 import com.exam.portal.entity.Quiz;
 import com.exam.portal.entity.Role;
@@ -54,7 +55,7 @@ public class QuestionController {
 		loadCommonData(model, principal);
 		model.addAttribute("title", "Add Question");
 		model.addAttribute("quizzesActive", "active");
-		Page<Question> questionPage = this.questionService.getQuestionsByQuiz(quizId, pageNumber, 25, "content", "asc");
+		Page<Question> questionPage = this.questionService.getQuestionsByQuiz(quizId, pageNumber, AppConstant.QUESTION_PAGE_SIZE, "content", "asc");
 		model.addAttribute("questionPage", questionPage);
 		model.addAttribute("currentPage", pageNumber);
 		model.addAttribute("totalPages", questionPage.getTotalPages());
