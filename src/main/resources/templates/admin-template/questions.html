@@ -68,7 +68,7 @@
                                                     <div class="card-header">
                                                         <div class="d-inline">
 									                        <h5 class="mr-3">Question Set</h5>
-									                        <a class="btn btn-sm btn-primary" th:href="@{/backend/quizzes/new}" data-toggle="tooltip" data-placement="top" data-original-title="Add Question" aria-describedby="tooltip529394"><i class="ti-plus"></i></a>
+									                        <a class="btn btn-sm btn-primary" th:href="@{/backend/quizzes/{id}/{title}/questions/add (id = ${quiz.id}, title = ${quiz.title}) }" data-toggle="tooltip" data-placement="top" data-original-title="Add Question" aria-describedby="tooltip529394"><i class="ti-plus"></i></a>
 									                    </div>
                                                         <div class="card-header-right">
 															<ul class="list-unstyled card-option">
