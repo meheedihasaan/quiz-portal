@@ -3,6 +3,7 @@ package com.exam.portal.service;
 import org.springframework.data.domain.Page;
 
 import com.exam.portal.entity.Question;
+import com.exam.portal.entity.Quiz;
 
 public interface QuestionService {
 
@@ -17,5 +18,7 @@ public interface QuestionService {
 	void updateQuestion(int id, Question question);
 	
 	void delteQuestion(int id);
+	
+	long countByQuiz(Quiz quiz);
 	
 }

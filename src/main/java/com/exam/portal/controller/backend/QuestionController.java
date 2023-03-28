@@ -75,7 +75,7 @@ public class QuestionController {
 	}
 	
 	@PostMapping("/quizzes/{quizId}/{title}/questions/add")
-	public String addQuestion(
+	public String createQuestion(
 		@Valid @ModelAttribute Question question,
 		BindingResult bindingResult,
 		@PathVariable int quizId,
@@ -88,19 +88,39 @@ public class QuestionController {
 		model.addAttribute("title","Add Question");
 		model.addAttribute("quizzesActive", "active");
 		Quiz quiz = this.quizService.getQuizById(quizId);
-		System.out.println(answer);
 		try {
+			if(quiz.getTotalQuestions() == this.questionService.countByQuiz(quiz)) {
+				throw new Exception("This quiz has already required number of questions.");
+			}
+			
 			if(bindingResult.hasErrors()) {
 				model.addAttribute("question", question);
 				model.addAttribute("quiz", quiz);
 				return "admin-template/new-question";
 			}
+			
+			if(answer.equals("A")) {
+				answer = question.getOptionA();
+			}
+			else if(answer.equals("B")) {
+				answer = question.getOptionB();
+			}
+			else if(answer.equals("C")) {
+				answer = question.getOptionC();
+			}
+			else if(answer.equals("C")) {
+				answer = question.getOptionD();
+			}
+			
+			question.setAnswer(answer);
+			question.setQuiz(quiz);
+			this.questionService.createQuestion(question);
 			redirectAttributes.addFlashAttribute("message", new Message("alert-primary", "Question is added successfully."));
-			return "";
+			return "redirect:/backend/quizzes/"+quiz.getId()+"/"+quiz.getTitle()+"/questions/add";
 		}
 		catch (Exception e) {
 			redirectAttributes.addFlashAttribute("message", new Message("alert-primary", "Something went wrong! "+e.getMessage()));
-			return "";
+			return "redirect:/backend/quizzes/"+quiz.getId()+"/"+quiz.getTitle()+"/questions/add";
 		}
 	}
 	

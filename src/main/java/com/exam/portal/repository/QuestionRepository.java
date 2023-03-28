@@ -15,4 +15,6 @@ public interface QuestionRepository extends JpaRepository<Question, Integer> {
 	
 	Page<Question> findByQuiz(Pageable pageable, Quiz quiz);
 	
+	long countByQuiz(Quiz quiz);
+	
 }

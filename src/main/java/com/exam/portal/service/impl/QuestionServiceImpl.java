@@ -82,5 +82,11 @@ public class QuestionServiceImpl implements QuestionService {
 		Question question = this.questionRepository.findById(id).orElseThrow(()-> new NotFoundException("Question not found."));
 		this.questionRepository.delete(question);
 	}
+	
+	@Override
+	public long countByQuiz(Quiz quiz) {
+		long count = this.questionRepository.countByQuiz(quiz);
+		return count;
+	}
 
 }
