@@ -60,7 +60,7 @@ public class QuizServiceImpl implements QuizService {
 	@Override
 	public void deleteQuiz(int id) {
 		Quiz quiz = this.quizRepository.findById(id).orElseThrow(() -> new NotFoundException("Quiz not found."));
-		quiz.getCategory().getQuizzes().remove(quiz);
+		//quiz.getCategory().getQuizzes().remove(quiz);
 		this.quizRepository.delete(quiz);
 	}
 

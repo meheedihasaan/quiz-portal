@@ -43,7 +43,7 @@ public class Category {
 	@Size(min = 10, max = 5000, message = "Category description should be between 10 to 5000 characters.")
 	private String description;
 	
-	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JsonIgnore
 	Set<Quiz> quizzes = new LinkedHashSet<>();
 	
