@@ -171,7 +171,7 @@ public class QuestionController {
 				answer = question.getOptionD();
 			}
 			
-			question.setAnswer(answer);
+			question.setAnswer(answer);  //To pass the answer in view if there is validation error
 			
 			if(bindingResult.hasErrors()) {
 				model.addAttribute("question", question);
@@ -179,6 +179,7 @@ public class QuestionController {
 				return "admin-template/edit-question";
 			}
 			
+			this.questionService.updateQuestion(question.getId(), question);
 			redirectAttributes.addFlashAttribute("message", new Message("alert-primary", "Question is updated successfully."));
 			return "redirect:/backend/quizzes/"+quiz.getId()+"/"+quiz.getTitle()+"/questions/page=0";
 		} catch (Exception e) {

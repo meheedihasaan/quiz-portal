@@ -85,18 +85,8 @@
                                                     </div>
                                                     <div class="card-block">
                                                         <form method="POST" th:action="@{/backend/quizzes/{quizId}/{title}/questions/{questionId}/edit (quizId = ${quiz.id}, title = ${quiz.title}, questionId = ${question.id}) }" th:object="${question}">
-                                                            <div class="row">
-                                                            	<div class="col-md-2">
-                                                            	
-                                                            	</div>
-                                                            	<div class="col-md-10">
-                                                            		<!-- FLASH MESSAGE START -->
-										                            <div th:if="${message}" class="ml-auto mr-auto">
-										                                <div class="alert text-center" th:classappend="${message.type}" role="alert" th:text="${message.content}">
-										                                </div>
-										                            </div>
-										                            <!-- FLASH MESSAGE END -->
-                                                            	</div>
+                                                            <div class="form-group row">
+                                                            	<input type="hidden" class="form-control" th:field="*{id}" th:value="${question.id}">
                                                             </div>
                                                             <div class="form-group row">
                                                                 <label class="col-md-2 col-form-label">Question</label>
