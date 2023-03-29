@@ -142,4 +142,49 @@ public class QuestionController {
 		}
 	}
 	
+	@PostMapping("/quizzes/{quizId}/{title}/questions/{questionId}/edit")
+	public String editQuestion(
+		@Valid Question question,
+		BindingResult bindingResult,
+		@PathVariable int quizId,
+		@PathVariable int questionId,
+		@RequestParam(value = "answer") String answer,
+		RedirectAttributes redirectAttributes,
+		Model model,
+		Principal principal
+	) {
+		loadCommonData(model, principal);
+		model.addAttribute("title", "Edit Question");
+		model.addAttribute("quizzesActive", "active");
+		Quiz quiz = quizService.getQuizById(quizId);
+		try {
+			if(answer.equals("A")) {
+				answer = question.getOptionA();
+			}
+			else if(answer.equals("B")) {
+				answer = question.getOptionB();
+			}
+			else if(answer.equals("C")) {
+				answer = question.getOptionC();
+			}
+			else if(answer.equals("C")) {
+				answer = question.getOptionD();
+			}
+			
+			question.setAnswer(answer);
+			
+			if(bindingResult.hasErrors()) {
+				model.addAttribute("question", question);
+				model.addAttribute("quiz", quiz);
+				return "admin-template/edit-question";
+			}
+			
+			redirectAttributes.addFlashAttribute("message", new Message("alert-primary", "Question is updated successfully."));
+			return "redirect:/backend/quizzes/"+quiz.getId()+"/"+quiz.getTitle()+"/questions/page=0";
+		} catch (Exception e) {
+			redirectAttributes.addFlashAttribute("message", new Message("alert-danger", "Something went wrong! "+e.getMessage()));
+			return "redirect:/backend/quizzes/"+quiz.getId()+"/"+quiz.getTitle()+"/questions/page=0";
+		}
+	}
+	
 }
