@@ -113,7 +113,7 @@
 				                                                    	</div>
 				                                                    	<hr />
 				                                                    	<p><b>Correct Answer:</b> <span th:text="${question.answer}"></span></p>
-				                                                    	<a class="btn btn-success btn-sm mr-3" href="#" data-toggle="tooltip" data-placement="top" data-original-title="Edit Question" aria-describedby="tooltip529394"><i style="font-size: 16px" class="ti-pencil-alt"></i></a>
+				                                                    	<a class="btn btn-success btn-sm mr-3" th:href="@{/backend/quizzes/{quizId}/{title}/questions/{questionId}/edit (quizId = ${quiz.id}, title = ${quiz.title} questionId = ${question.id}) }" data-toggle="tooltip" data-placement="top" data-original-title="Edit Question" aria-describedby="tooltip529394"><i style="font-size: 16px" class="ti-pencil-alt"></i></a>
 			                                                    		<a class="btn btn-danger btn-sm mr-3" href="#" data-toggle="tooltip" data-placement="top" data-original-title="Delete Question" aria-describedby="tooltip529394"><i style="font-size: 16px" class="ti-trash"></i></a>				                                             			                                                    		
 			                                                    	</div>
 				                                                </div>

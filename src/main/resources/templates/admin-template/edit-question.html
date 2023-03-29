@@ -41,7 +41,7 @@
 									<!-- Page-header start -->
                                     <div class="page-header card">
                                         <div class="card-block">
-                                            <h5 class="m-b-10">New Question</h5>
+                                            <h5 class="m-b-10">Edit Question</h5>
                                             <ul class="breadcrumb-title b-t-default p-t-10">
                                                 <li class="breadcrumb-item">
                                                     <a th:href="@{/}"> <i class="fa fa-home"></i> </a>
@@ -56,7 +56,7 @@
                                                 	<a th:href="@{/backend/quizzes/{id}/{title}/questions/page=0 (id = ${quiz.id}, name = ${quiz.title}) }"><span th:text="${quiz.title}"></span></a>
                                                 </li>
                                                 <li class="breadcrumb-item">
-                                                	<a th:href="@{/backend/quizzes/{id}/{title}/questions/add (id = ${quiz.id}, title = ${quiz.title}) }">New Question</a>
+                                                	<a th:href="@{/backend/quizzes/{quizId}/{title}/questions/{quiestionId}/edit (quizId = ${quiz.id}, title = ${quiz.title}, questionId = ${questionId}) }">Edit Question</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -70,7 +70,7 @@
                                                 <div class="card">
                                                     <div class="card-header">
                                                         <div class="d-inline">
-									                        <h5 class="text-center">Add Question</h5>
+									                        <h5 class="text-center">Edit Question</h5>
 									                    </div>
                                                         <div class="card-header-right">
 															<ul class="list-unstyled card-option">
@@ -84,7 +84,7 @@
 														<hr/>
                                                     </div>
                                                     <div class="card-block">
-                                                        <form method="POST" th:action="@{/backend/quizzes/{id}/{title}/questions/add (id = ${quiz.id}, title = ${quiz.title}) }" th:object="${question}">
+                                                        <form method="POST" th:action="@{/backend/quizzes/{quizId}/{title}/questions/{questionId}/edit (quizId = ${quiz.id}, title = ${quiz.title}, questionId = ${question.id}) }" th:object="${question}">
                                                             <div class="row">
                                                             	<div class="col-md-2">
                                                             	
