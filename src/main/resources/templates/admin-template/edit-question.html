@@ -41,7 +41,7 @@
 									<!-- Page-header start -->
                                     <div class="page-header card">
                                         <div class="card-block">
-                                            <h5 class="m-b-10">Edit Question</h5>
+                                            <h5 class="m-b-10"><span th:text="${quiz.title}"></span></h5>
                                             <ul class="breadcrumb-title b-t-default p-t-10">
                                                 <li class="breadcrumb-item">
                                                     <a th:href="@{/}"> <i class="fa fa-home"></i> </a>
@@ -186,10 +186,10 @@
 								                                <label class="col-md-2 col-form-label">Answer</label>
 								                                <div class="col-md-10">
 									                                <select class="form-control" name="answer">
-									                                    <option value="A">Option A</option>
-									                                    <option value="B">Option B</option>
-									                                    <option value="C">Option C</option>
-									                                    <option value="D">Option D</option>
+									                                    <option value="A" th:selected="${question.getAnswer() == question.getOptionA()}">Option A</option>
+									                                    <option value="B" th:selected="${question.getAnswer() == question.getOptionB()}">Option B</option>
+									                                    <option value="C" th:selected="${question.getAnswer() == question.getOptionC()}">Option C</option>
+									                                    <option value="D" th:selected="${question.getAnswer() == question.getOptionD()}">Option D</option>
 									                                </select>
 									                            </div>
 								                            </div>                                   
