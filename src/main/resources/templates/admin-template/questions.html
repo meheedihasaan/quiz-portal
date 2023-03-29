@@ -114,7 +114,7 @@
 				                                                    	<hr />
 				                                                    	<p><b>Correct Answer:</b> <span th:text="${question.answer}"></span></p>
 				                                                    	<a class="btn btn-success btn-sm mr-3" th:href="@{/backend/quizzes/{quizId}/{title}/questions/{questionId}/edit (quizId = ${quiz.id}, title = ${quiz.title}, questionId = ${question.id}) }" data-toggle="tooltip" data-placement="top" data-original-title="Edit Question" aria-describedby="tooltip529394"><i style="font-size: 16px" class="ti-pencil-alt"></i></a>
-			                                                    		<a class="btn btn-danger btn-sm mr-3" href="#" data-toggle="tooltip" data-placement="top" data-original-title="Delete Question" aria-describedby="tooltip529394"><i style="font-size: 16px" class="ti-trash"></i></a>				                                             			                                                    		
+			                                                    		<a class="btn btn-danger btn-sm mr-3" href="#" th:onclick="|deleteQuestion(${question.id})|" data-toggle="tooltip" data-placement="top" data-original-title="Delete Question" aria-describedby="tooltip529394"><i style="font-size: 16px" class="ti-trash"></i></a>				                                             			                                                    		
 			                                                    	</div>
 				                                                </div>
 				                                            </div>
@@ -155,38 +155,21 @@
 <!-- Sweet Alert -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-	function deleteQuiz(id) {
+	function deleteQuestion(id) {
 		
 		swal({
 			  title: "Are you sure to delete?",
-			  text: "Once deleted, you will not be able to recover this quiz!",
+			  text: "Once deleted, you will not be able to recover this question!",
 			  icon: "warning",
 			  buttons: true,
 			  dangerMode: true,
 			})
 			.then((willDelete) => {
 				if (willDelete) {
-				    window.location = "/backend/quizzes/"+id+"/delete";
+				    window.location = "/backend/questions/"+id+"/delete";
 				} 
 				else {
-				    swal("Quiz is safe!");
-				}
-			});
-		
-	};
-	
-	function attemptQuiz(id) {
-		
-		swal({
-			  title: "Are you sure to Attemp this quiz?",
-			  text: "Do not follow any illegal ways.!",
-			  icon: "warning",
-			  buttons: true,
-			  dangerMode: true,
-			})
-			.then((willDelete) => {
-				if (willDelete) {
-				    window.location = "/backend/quizzes/"+id+"/attempt";
+				    swal("Question is safe!");
 				}
 			});
 		
