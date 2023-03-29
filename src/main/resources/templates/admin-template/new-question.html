@@ -41,6 +41,7 @@
 									<!-- Page-header start -->
                                     <div class="page-header card">
                                         <div class="card-block">
+                                        	<p th:text="${quiz.category.name}" class="badge badge-primary m-b-10"></p>
                                             <h5 class="m-b-10"><span th:text="${quiz.title}"></span></h5>
                                             <ul class="breadcrumb-title b-t-default p-t-10">
                                                 <li class="breadcrumb-item">
@@ -53,7 +54,7 @@
                                                 	<a th:href="@{/backend/quizzes/page=0}">Quizzes</a>
                                                 </li>
                                                 <li class="breadcrumb-item">
-                                                	<a th:href="@{/backend/quizzes/{quizId}/{title}/questions/page=0 (quizId = ${quiz.id}, name = ${quiz.title}) }"><span th:text="${quiz.title}"></span></a>
+                                                	<a th:href="@{/backend/quizzes/{id}/{title}/questions/page=0 (id = ${quiz.id}, title = ${quiz.title}) }"><span th:text="${quiz.title}"></span></a>
                                                 </li>
                                                 <li class="breadcrumb-item">
                                                 	<a th:href="@{/backend/quizzes/{quizId}/{title}/questions/add (quizId = ${quiz.id}, title = ${quiz.title}) }">New Question</a>
