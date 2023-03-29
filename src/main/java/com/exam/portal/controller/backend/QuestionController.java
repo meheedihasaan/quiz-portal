@@ -188,4 +188,18 @@ public class QuestionController {
 		}
 	}
 	
+	@GetMapping("/quizzes/{quizId}/{title}/questions/{questionId}/delete")
+	public String deleteQuestion(@PathVariable int quizId, @PathVariable int questionId, RedirectAttributes redirectAttributes) {
+		Quiz quiz = this.quizService.getQuizById(quizId);
+		try {
+			this.questionService.delteQuestion(questionId);
+			redirectAttributes.addFlashAttribute("message", new Message("alert-success", "Question is deleted successfully."));
+			return "redirect:/backend/quizzes/"+quiz.getId()+"/"+quiz.getTitle()+"/questions/page=0";
+
+		} catch (Exception e) {
+			redirectAttributes.addFlashAttribute("message", new Message("alert-danger", "Something went wrong! "+e.getMessage()));
+			return "redirect:/backend/quizzes/"+quiz.getId()+"/"+quiz.getTitle()+"/questions/page=0";
+		}
+	}
+	
 }

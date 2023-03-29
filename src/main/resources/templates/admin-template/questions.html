@@ -114,7 +114,7 @@
 				                                                    	<hr />
 				                                                    	<p><b>Correct Answer:</b> <span th:text="${question.answer}"></span></p>
 				                                                    	<a class="btn btn-success btn-sm mr-3" th:href="@{/backend/quizzes/{quizId}/{title}/questions/{questionId}/edit (quizId = ${quiz.id}, title = ${quiz.title}, questionId = ${question.id}) }" data-toggle="tooltip" data-placement="top" data-original-title="Edit Question" aria-describedby="tooltip529394"><i style="font-size: 16px" class="ti-pencil-alt"></i></a>
-			                                                    		<a class="btn btn-danger btn-sm mr-3" href="#" th:onclick="|deleteQuestion(${question.id})|" data-toggle="tooltip" data-placement="top" data-original-title="Delete Question" aria-describedby="tooltip529394"><i style="font-size: 16px" class="ti-trash"></i></a>				                                             			                                                    		
+			                                                    		<a class="btn btn-danger btn-sm mr-3" href="#" th:onclick="deleteQuestion([[${quiz.id}]], [[${quiz.title}]], [[${question.id}]])" data-toggle="tooltip" data-placement="top" data-original-title="Delete Question" aria-describedby="tooltip529394"><i style="font-size: 16px" class="ti-trash"></i></a>				                                             			                                                    		
 			                                                    	</div>
 				                                                </div>
 				                                            </div>
@@ -155,7 +155,7 @@
 <!-- Sweet Alert -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-	function deleteQuestion(id) {
+	function deleteQuestion(quizId, title, questionId) {
 		
 		swal({
 			  title: "Are you sure to delete?",
@@ -166,7 +166,7 @@
 			})
 			.then((willDelete) => {
 				if (willDelete) {
-				    window.location = "/backend/questions/"+id+"/delete";
+				    window.location = "/backend/quizzes/"+quizId+"/"+title+"/questions/"+questionId+"/delete";
 				} 
 				else {
 				    swal("Question is safe!");
