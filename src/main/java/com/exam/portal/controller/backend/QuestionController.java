@@ -65,11 +65,20 @@ public class QuestionController {
 	}
 	
 	@GetMapping("/quizzes/{quizId}/{title}/questions/add")
-	public String viewNewQuestionPage(@PathVariable int quizId, Model model, Principal principal) {
+	public String viewNewQuestionPage(@PathVariable int quizId, Model model, Principal principal, RedirectAttributes redirectAttributes) {
 		loadCommonData(model, principal);
 		model.addAttribute("title", "Add Question");
 		model.addAttribute("quizzesActive", "active");
-		Quiz quiz = this.quizService.getQuizById(quizId);
+		
+		//To check if quiz is exist or not
+		Quiz quiz;
+		try {
+			quiz = this.quizService.getQuizById(quizId);
+		} catch (Exception e) {
+			redirectAttributes.addFlashAttribute("message", new Message("alert-danger", "Something went wrong! "+e.getMessage()));
+			return "redirect:/backend/quizzes/page=0";
+		}
+		
 		model.addAttribute("quiz", quiz);
 		model.addAttribute("question", new Question());
 		return "admin-template/new-question";
@@ -127,7 +136,15 @@ public class QuestionController {
 	
 	@GetMapping("/quizzes/{quizId}/{title}/questions/{questionId}/edit")
 	public String viewEditQuestionPage(@PathVariable int quizId, @PathVariable int questionId, Model model, Principal principal, RedirectAttributes redirectAttributes) {
-		Quiz quiz = this.quizService.getQuizById(quizId);
+		//To check if quiz is exist or not
+		Quiz quiz;
+		try {
+			quiz = this.quizService.getQuizById(quizId);
+		} catch (Exception e) {
+			redirectAttributes.addFlashAttribute("message", new Message("alert-danger", "Something went wrong! "+e.getMessage()));
+			return "redirect:/backend/quizzes/page=0";
+		}
+		
 		try {
 			loadCommonData(model, principal);
 			model.addAttribute("title", "Edit Question");
