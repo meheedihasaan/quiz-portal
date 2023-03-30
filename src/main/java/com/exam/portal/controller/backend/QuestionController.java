@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -50,6 +51,7 @@ public class QuestionController {
 		model.addAttribute("role", roles.get(0).getName());
 	}
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/quizzes/{quizId}/{title}/questions/page={pageNumber}")
 	public String viewQuestionsPage(@PathVariable int quizId, @PathVariable int pageNumber, Model model, Principal principal) {
 		loadCommonData(model, principal);
@@ -64,6 +66,7 @@ public class QuestionController {
 		return "admin-template/questions";
 	}
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/quizzes/{quizId}/{title}/questions/add")
 	public String viewNewQuestionPage(@PathVariable int quizId, Model model, Principal principal, RedirectAttributes redirectAttributes) {
 		loadCommonData(model, principal);
@@ -84,6 +87,7 @@ public class QuestionController {
 		return "admin-template/new-question";
 	}
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/quizzes/{quizId}/{title}/questions/add")
 	public String createQuestion(
 		@Valid @ModelAttribute Question question,
@@ -134,6 +138,7 @@ public class QuestionController {
 		}
 	}
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/quizzes/{quizId}/{title}/questions/{questionId}/edit")
 	public String viewEditQuestionPage(@PathVariable int quizId, @PathVariable int questionId, Model model, Principal principal, RedirectAttributes redirectAttributes) {
 		//To check if quiz is exist or not
@@ -159,6 +164,7 @@ public class QuestionController {
 		}
 	}
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/quizzes/{quizId}/{title}/questions/{questionId}/edit")
 	public String editQuestion(
 		@Valid Question question,
@@ -205,6 +211,7 @@ public class QuestionController {
 		}
 	}
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/quizzes/{quizId}/{title}/questions/{questionId}/delete")
 	public String deleteQuestion(@PathVariable int quizId, @PathVariable int questionId, RedirectAttributes redirectAttributes) {
 		Quiz quiz = this.quizService.getQuizById(quizId);

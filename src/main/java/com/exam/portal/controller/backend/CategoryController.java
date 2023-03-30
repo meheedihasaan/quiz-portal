@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -57,6 +58,7 @@ public class CategoryController {
 		return "admin-template/categories";
 	}
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/new")
 	public String viewNewCategoryPage(Model model, Principal principal) {
 		loadCommonData(model, principal);
@@ -66,6 +68,7 @@ public class CategoryController {
 		return "admin-template/new-category";
 	}
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/new")
 	public String createCategory(
 		@Valid @ModelAttribute Category category, 
@@ -99,6 +102,7 @@ public class CategoryController {
 		}
 	}
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/{id}/edit")
     public String viewEditCategoryPage(@PathVariable int id, Model model, Principal principal, RedirectAttributes redirectAttributes) {
         try {
@@ -115,6 +119,7 @@ public class CategoryController {
         }
     }
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/{id}/edit")
 	public String editCategory(
 		@Valid @ModelAttribute Category category, 
@@ -142,6 +147,7 @@ public class CategoryController {
 		}
 	}
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/{id}/delete")
 	public String deleteCategory(@PathVariable int id, RedirectAttributes redirectAttributes) {
 		try {
