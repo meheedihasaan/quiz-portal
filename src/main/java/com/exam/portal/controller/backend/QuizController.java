@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -62,6 +63,7 @@ public class QuizController {
 		return "admin-template/quizzes";
 	}
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/new")
 	public String viewCreateQuizPage(Model model, Principal principal) {
 		loadCommonData(model, principal);
@@ -73,6 +75,7 @@ public class QuizController {
 		return "admin-template/new-quiz";
 	}
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/new")
 	public String createQuiz(
 		@Valid @ModelAttribute Quiz quiz,
@@ -107,6 +110,7 @@ public class QuizController {
 		}
 	}
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/{id}/edit")
 	public String viewEditQuizPage(@PathVariable int id, Model model, Principal principal, RedirectAttributes redirectAttributes) {
 		try {
@@ -125,6 +129,7 @@ public class QuizController {
 		}
 	}
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/{id}/edit")
 	public String editQuiz(
 		@Valid @ModelAttribute Quiz quiz,
@@ -161,6 +166,7 @@ public class QuizController {
 		}
 	}
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/{id}/delete")
 	public String deleteQuiz(@PathVariable int id, RedirectAttributes redirectAttributes) {
 		try {
