@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" 
 	  xmlns="http://www.w3.org/1999/xhtml" 
-	  xmlns:th="http://www.thymeleaf.org">
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 	  
 <head th:replace="~{admin-template/base::head-fragment}">
 
@@ -65,7 +66,7 @@
                                                     <div class="card-header">
                                                         <div class="d-inline">
 									                        <h5 class="mr-3">Category List</h5>
-									                        <a class="btn btn-sm btn-primary" th:href="@{/backend/categories/new}" data-toggle="tooltip" data-placement="top" data-original-title="New Category" aria-describedby="tooltip529394"><i class="ti-plus"></i></a>
+									                        <a sec:authorize="hasRole('ADMIN')" class="btn btn-sm btn-primary" th:href="@{/backend/categories/new}" data-toggle="tooltip" data-placement="top" data-original-title="New Category" aria-describedby="tooltip529394"><i class="ti-plus"></i></a>
 									                    </div>
                                                         <div class="card-header-right">
 															<ul class="list-unstyled card-option">
@@ -96,8 +97,9 @@
 				                                                        <h4 th:text="${category.name}" class="m-b-10"></h4>
 				                                                        <p th:text="${category.description}" class="m-b-20"></p> 
 				                                                        
-				                                                    	<a class="btn btn-success btn-sm mr-3" th:href="@{/backend/categories/{id}/edit (id = ${category.id}) }" data-toggle="tooltip" data-placement="top" data-original-title="Edit Category" aria-describedby="tooltip529394"><i style="font-size: 16px" class="ti-pencil-alt"></i></a>
-				                                                    	<a class="btn btn-danger btn-sm mr-3" href="#" th:onclick="|deleteCategory(${category.id})|" data-toggle="tooltip" data-placement="top" data-original-title="Delete Category" aria-describedby="tooltip529394"><i style="font-size: 16px" class="ti-trash"></i></a>
+				                                                        <a sec:authorize="hasRole('ADMIN')" class="btn btn-success btn-sm mr-3" th:href="@{/backend/categories/{id}/edit (id = ${category.id}) }" data-toggle="tooltip" data-placement="top" data-original-title="Edit Category" aria-describedby="tooltip529394"><i style="font-size: 16px" class="ti-pencil-alt"></i></a>
+				                                                    	<a sec:authorize="hasRole('ADMIN')" class="btn btn-danger btn-sm mr-3" href="#" th:onclick="|deleteCategory(${category.id})|" data-toggle="tooltip" data-placement="top" data-original-title="Delete Category" aria-describedby="tooltip529394"><i style="font-size: 16px" class="ti-trash"></i></a>
+				                                                    	<a class="btn btn-primary" href="#">View Quizzes</a>
 				                                                    </div>
 				                                                </div>
 				                                            </div>
