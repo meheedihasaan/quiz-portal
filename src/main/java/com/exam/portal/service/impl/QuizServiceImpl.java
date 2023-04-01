@@ -41,6 +41,21 @@ public class QuizServiceImpl implements QuizService {
 	}
 	
 	@Override
+	Page<Quiz> getPublishedQuizzes(int pageNumber, int pageSize, String sortBy, String sortDirection) {
+		Sort sort = null;
+		if(sortDirection.equalsIgnoreCase("asc")) {
+			sort = Sort.by(sortBy).ascending();
+		}
+		else if(sortDirection.equalsIgnoreCase("desc")) {
+			sort = Sort.by(sortBy).descending();
+		}
+		
+		Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
+		Page<Quiz> publishedQuizPage = this.quizRepository.findAll(true, pageable);
+		return publishedQuizPage;
+	}
+	
+	@Override
 	public List<Quiz> getPublishedQuizzes() {
 		List<Quiz> quizzes = this.quizRepository.findByIsActive(true);
 		return quizzes;

@@ -12,6 +12,8 @@ public interface QuizService {
 	
 	Page<Quiz> getQuizzes(int pageNumber, int pageSize, String sortBy, String sortDirection);
 	
+	Page<Quiz> getPublishedQuizzes(int pageNumber, int pageSize, String sortBy, String sortDirection);
+	
 	List<Quiz> getPublishedQuizzes();
 	
 	Quiz getQuizById(int id);

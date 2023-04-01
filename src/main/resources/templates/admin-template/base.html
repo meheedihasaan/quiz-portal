@@ -172,7 +172,14 @@
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
-                                <li th:class="${quizzesActive}">
+                                <li sec:authorize="hasRole('NORMAL')" th:class="${quizzesActive}">
+                                    <a th:href="@{/backend/quizzes/page=0}">
+                                        <span class="pcoded-micon"><i class="ti-write"></i></span>
+                                        <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Quizzes</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                                <li sec:authorize="hasRole('ADMIN')" th:class="${quizzesActive}">
                                     <a th:href="@{/backend/quizzes/page=0}">
                                         <span class="pcoded-micon"><i class="ti-write"></i></span>
                                         <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Quizzes</span>
