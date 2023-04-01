@@ -15,6 +15,8 @@ public interface QuizRepository extends JpaRepository<Quiz, Integer> {
 	
 	Page<Quiz> findAll(Pageable pageable);
 	
+	Page<Quiz> findByCategory(Category category, Pageable pageable);
+	
 	Page<Quiz> findByIsActive(boolean isActive, Pageable pageable);
 	
 	List<Quiz> findByIsActive(boolean isActive);

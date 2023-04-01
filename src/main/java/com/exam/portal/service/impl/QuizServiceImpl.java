@@ -46,6 +46,23 @@ public class QuizServiceImpl implements QuizService {
 	}
 	
 	@Override
+	public Page<Quiz> getQuizzesByCategory(int categoryId, int pageNumber, int pageSize, String sortBy, String sortDirection) {
+		Category category = this.categoryRepository.findById(categoryId).orElseThrow(()-> new NotFoundException("Category not found."));
+		
+		Sort sort = null;
+		if(sortDirection.equalsIgnoreCase("asc")) {
+			sort = Sort.by(sortBy).ascending();
+		}
+		else if(sortDirection.equalsIgnoreCase("desc")) {
+			sort = Sort.by(sortBy).descending();
+		}
+		
+		Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
+		Page<Quiz> quizPage = this.quizRepository.findByCategory(category, pageable);
+		return quizPage;
+	}
+	
+	@Override
 	public Page<Quiz> getPublishedQuizzes(int pageNumber, int pageSize, String sortBy, String sortDirection) {
 		Sort sort = null;
 		if(sortDirection.equalsIgnoreCase("asc")) {
@@ -56,8 +73,8 @@ public class QuizServiceImpl implements QuizService {
 		}
 		
 		Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
-		Page<Quiz> publishedQuizPage = this.quizRepository.findByIsActive(true, pageable);
-		return publishedQuizPage;
+		Page<Quiz> quizPage = this.quizRepository.findByIsActive(true, pageable);
+		return quizPage;
 	}
 	
 	@Override
@@ -79,8 +96,8 @@ public class QuizServiceImpl implements QuizService {
 		}
 		
 		Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
-		Page<Quiz> publishedQuizPage = this.quizRepository.findByCategoryAndIsActive(category, true, pageable);
-		return publishedQuizPage;
+		Page<Quiz> quizPage = this.quizRepository.findByCategoryAndIsActive(category, true, pageable);
+		return quizPage;
 	}
 
 	@Override

@@ -40,8 +40,8 @@ public class AdminController {
 		loadCommonData(model, principal);
 		model.addAttribute("title", "Dashboard");
 		model.addAttribute("dashboardActive", "active");
-		List<Quiz> publishedQuizzes = this.quizService.getPublishedQuizzes();
-		model.addAttribute("publishedQuizzes", publishedQuizzes);
+		List<Quiz> quizzes = this.quizService.getPublishedQuizzes();
+		model.addAttribute("quizzes", quizzes);
 		return "admin-template/index";
 	}
 	

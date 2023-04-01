@@ -70,10 +70,10 @@ public class QuizController {
 		loadCommonData(model, principal);
 		model.addAttribute("title", "Quizzes");
 		model.addAttribute("quizzesActive", "active");
-		Page<Quiz> publishedQuizPage = this.quizService.getPublishedQuizzes(pageNumber, AppConstant.QUIZ_PAGE_SIZE, "title", "asc");
-		model.addAttribute("publishedQuizPage", publishedQuizPage);
+		Page<Quiz> quizPage = this.quizService.getPublishedQuizzes(pageNumber, AppConstant.QUIZ_PAGE_SIZE, "title", "asc");
+		model.addAttribute("quizPage", quizPage);
 		model.addAttribute("currentPage", pageNumber);
-		model.addAttribute("totalPages", publishedQuizPage.getTotalPages());
+		model.addAttribute("totalPages", quizPage.getTotalPages());
 		return "admin-template/normal/published-quizzes";
 	}
 	
