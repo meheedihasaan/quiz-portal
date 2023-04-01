@@ -139,31 +139,6 @@
             
         </div>
     </div>
-    
-  
-<!-- Sweet Alert -->
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script>
-	function deleteQuiz(id) {
-		
-		swal({
-			  title: "Are you sure to delete?",
-			  text: "Once deleted, you will not be able to recover this quiz!",
-			  icon: "warning",
-			  buttons: true,
-			  dangerMode: true,
-			})
-			.then((willDelete) => {
-				if (willDelete) {
-				    window.location = "/backend/quizzes/"+id+"/delete";
-				} 
-				else {
-				    swal("Quiz is safe!");
-				}
-			});
-		
-	}
-</script>
 
 <!-- Required Jquery -->
 <script type="text/javascript" th:src="@{/admin-resources/js/jquery/jquery.min.js}"></script>
