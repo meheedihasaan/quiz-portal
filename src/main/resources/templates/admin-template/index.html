@@ -100,7 +100,7 @@
 				                                                <div class="card text-primary order-card">
 				                                                    <div class="card-block">
 				                                                    	<p class="badge badge-primary m-b-10" th:text="${quiz.title}"></p>
-				                                                    	<h6 sec:authorize="hasRole('ADMIN')" class="badge badge-success"  th:text="Published"></h6>
+				                                                    	<h6 class="badge badge-success"  th:text="Published"></h6>
 				                                                    	
 				                                                        <h4 class="m-b-10" th:text="${quiz.title}"></h4>
 				                                                        <h6 class="badge badge-info m-b-10">Total Questions: <span th:text="${quiz.totalQuestions}"></span></h6>
@@ -108,7 +108,7 @@
 				                                                        <h6 class="badge badge-warning m-b-10">Duration: <span th:text="${quiz.duration}"></span> Minutes</h6>
 				                                                        <p class="m-b-25" th:text="${quiz.description}"></p>                                                      
 				                                                        
-				                                                        <a sec:authorize="hasRole('ADMIN')" class="btn btn-primary btn-sm" href="#">View Questions</a>
+				                                                        <a sec:authorize="hasRole('ADMIN')" class="btn btn-primary btn-sm" th:href="@{/backend/quizzes/{id}/{title}/questions/page=0 (id = ${quiz.id}, title = ${quiz.title}) }">View Questions</a>
 				                                                        <a sec:authorize="hasRole('NORMAL')" class="btn btn-primary btn-sm" href="#">Attempt Quiz</a>
 			                                                    	</div>
 				                                                </div>
