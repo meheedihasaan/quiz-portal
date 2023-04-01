@@ -1,5 +1,7 @@
 package com.exam.portal.service;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 
 import com.exam.portal.entity.Quiz;
@@ -9,6 +11,8 @@ public interface QuizService {
 	void createQuiz(Quiz quiz);
 	
 	Page<Quiz> getQuizzes(int pageNumber, int pageSize, String sortBy, String sortDirection);
+	
+	List<Quiz> getQuizList(String sortBy, String sortDirection);
 	
 	Quiz getQuizById(int id);
 	

@@ -1,5 +1,7 @@
 package com.exam.portal.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -36,6 +38,11 @@ public class QuizServiceImpl implements QuizService {
 		Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
 		Page<Quiz> quizPage = this.quizRepository.findAll(pageable);
 		return quizPage;
+	}
+	
+	@Override
+	public List<Quiz> getQuizList(String sortBy, String sortDirection) {
+		
 	}
 
 	@Override
