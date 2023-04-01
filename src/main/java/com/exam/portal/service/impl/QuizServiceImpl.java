@@ -9,8 +9,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.exam.portal.entity.Category;
 import com.exam.portal.entity.Quiz;
 import com.exam.portal.exception.NotFoundException;
+import com.exam.portal.repository.CategoryRepository;
 import com.exam.portal.repository.QuizRepository;
 import com.exam.portal.service.QuizService;
 
@@ -19,6 +21,9 @@ public class QuizServiceImpl implements QuizService {
 	
 	@Autowired
 	private QuizRepository quizRepository;
+	
+	@Autowired
+	private CategoryRepository categoryRepository;
 
 	@Override
 	public void createQuiz(Quiz quiz) {
@@ -59,6 +64,23 @@ public class QuizServiceImpl implements QuizService {
 	public List<Quiz> getPublishedQuizzes() {
 		List<Quiz> quizzes = this.quizRepository.findByIsActive(true);
 		return quizzes;
+	}
+	
+	@Override
+	public Page<Quiz> getPublishedQuizzesByCategory(int categoryId, int pageNumber, int pageSize, String sortBy, String sortDirection) {
+		Category category = this.categoryRepository.findById(categoryId).orElseThrow(()-> new NotFoundException("Category not found."));
+		
+		Sort sort = null;
+		if(sortDirection.equalsIgnoreCase("asc")) {
+			sort = Sort.by(sortBy).ascending();
+		}
+		else if(sortDirection.equalsIgnoreCase("desc")) {
+			sort = Sort.by(sortBy).descending();
+		}
+		
+		Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
+		Page<Quiz> publishedQuizPage = this.quizRepository.findByCategoryAndIsActive(category, true, pageable);
+		return publishedQuizPage;
 	}
 
 	@Override
