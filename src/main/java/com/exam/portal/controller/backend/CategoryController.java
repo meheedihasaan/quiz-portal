@@ -55,7 +55,7 @@ public class CategoryController {
 		model.addAttribute("categoryPage", categoryPage);
 		model.addAttribute("currentPage", pageNumber);
 		model.addAttribute("totalPages", categoryPage.getTotalPages());
-		return "admin-template/categories";
+		return "admin-template/admin/categories";
 	}
 	
 	@PreAuthorize("hasRole('ADMIN')")
@@ -65,7 +65,7 @@ public class CategoryController {
 		model.addAttribute("title", "New Category");
 		model.addAttribute("categoriesActive", "active");
 		model.addAttribute("category", new Category());
-		return "admin-template/new-category";
+		return "admin-template/admin/new-category";
 	}
 	
 	@PreAuthorize("hasRole('ADMIN')")
@@ -83,7 +83,7 @@ public class CategoryController {
 		try {
 			if(bindingResult.hasErrors()) {
 				model.addAttribute("category", category);
-				return "admin-template/new-category";
+				return "admin-template/admin/new-category";
 			}
 			
 			Category existingCategory = this.categoryService.getCategoryByName(category.getName());
@@ -111,7 +111,7 @@ public class CategoryController {
             model.addAttribute("categoriesActive", "active");
             Category category = this.categoryService.getCategoryById(id);
             model.addAttribute("category", category);
-            return "admin-template/edit-category";
+            return "admin-template/admin/edit-category";
         }
         catch (Exception e) {
         	redirectAttributes.addFlashAttribute("message", new Message("alert-danger", "Something went wrong! "+e.getMessage()));
@@ -134,7 +134,7 @@ public class CategoryController {
 		try {
 			if(bindingResult.hasErrors()) {
 				model.addAttribute("category", category);
-				return "admin-template/edit-category";
+				return "admin-template/admin/edit-category";
 			}
 			
 			this.categoryService.updateCategory(category.getId(), category);

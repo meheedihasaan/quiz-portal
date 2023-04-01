@@ -61,7 +61,7 @@ public class QuizController {
 		model.addAttribute("quizPage", quizPage);
 		model.addAttribute("currentPage", pageNumber);
 		model.addAttribute("totalPages", quizPage.getTotalPages());
-		return "admin-template/quizzes";
+		return "admin-template/admin/quizzes";
 	}
 	
 	@PreAuthorize("hasRole('NORMAL')")
@@ -74,7 +74,7 @@ public class QuizController {
 		model.addAttribute("publishedQuizPage", publishedQuizPage);
 		model.addAttribute("currentPage", pageNumber);
 		model.addAttribute("totalPages", publishedQuizPage.getTotalPages());
-		return "admin-template/published-quizzes";
+		return "admin-template/normal/published-quizzes";
 	}
 	
 	@PreAuthorize("hasRole('ADMIN')")
@@ -86,7 +86,7 @@ public class QuizController {
 		model.addAttribute("quiz", new Quiz());
 		List<Category> categories = this.categoryService.getCategoryList();
 		model.addAttribute("categories", categories);
-		return "admin-template/new-quiz";
+		return "admin-template/admin/new-quiz";
 	}
 	
 	@PreAuthorize("hasRole('ADMIN')")
@@ -108,7 +108,7 @@ public class QuizController {
 				model.addAttribute("quiz", quiz);
 				List<Category> categories = this.categoryService.getCategoryList();
 				model.addAttribute("categories", categories);
-				return "admin-template/new-quiz";
+				return "admin-template/admin/new-quiz";
 			}
 			
 			Category category = this.categoryService.getCategoryById(categoryId);
@@ -135,7 +135,7 @@ public class QuizController {
 			model.addAttribute("quiz", quiz);
 			List<Category> categories = this.categoryService.getCategoryList();
 			model.addAttribute("categories", categories);
-			return "admin-template/edit-quiz";
+			return "admin-template/admin/edit-quiz";
 		}
 		catch (Exception e) {
 			redirectAttributes.addFlashAttribute("message", new Message("alert-danger", "Something went wrong! "+e.getMessage()));
@@ -164,7 +164,7 @@ public class QuizController {
 				model.addAttribute("quiz", quiz);
 				List<Category> categories = this.categoryService.getCategoryList();
 				model.addAttribute("categories", categories);
-				return "admin-template/edit-quiz";
+				return "admin-template/admin/edit-quiz";
 			}
 			
 			Category category = this.categoryService.getCategoryById(categoryId);
