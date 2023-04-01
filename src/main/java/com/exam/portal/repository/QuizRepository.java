@@ -1,7 +1,5 @@
 package com.exam.portal.repository;
 
-import java.util.List;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,7 +11,5 @@ import com.exam.portal.entity.Quiz;
 public interface QuizRepository extends JpaRepository<Quiz, Integer> {
 	
 	Page<Quiz> findAll(Pageable pageable);
-	
-	List<Quiz> findAll(String sortBy, String sortDirection);
 	
 }

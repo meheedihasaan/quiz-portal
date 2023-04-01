@@ -42,7 +42,16 @@ public class QuizServiceImpl implements QuizService {
 	
 	@Override
 	public List<Quiz> getQuizList(String sortBy, String sortDirection) {
+		Sort sort;
+		if(sortDirection.equalsIgnoreCase("asc")) {
+			sort = Sort.by(sortBy).ascending();
+		}
+		else {
+			sort = Sort.by(sortBy).descending();
+		}
 		
+		List<Quiz> quizzes = this.quizRepository.findAll(sort);
+		return quizzes;
 	}
 
 	@Override
