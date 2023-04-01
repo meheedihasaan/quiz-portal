@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import com.exam.portal.entity.Category;
 import com.exam.portal.entity.Quiz;
 
 @Repository
@@ -17,5 +18,7 @@ public interface QuizRepository extends JpaRepository<Quiz, Integer> {
 	Page<Quiz> findByIsActive(boolean isActive, Pageable pageable);
 	
 	List<Quiz> findByIsActive(boolean isActive);
+	
+	Page<Quiz> findByCategoryAndIsActive(Category category, boolean isActive, Pageable pageable);
 	
 }
