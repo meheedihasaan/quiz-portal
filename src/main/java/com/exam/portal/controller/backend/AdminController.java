@@ -10,8 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.exam.portal.entity.Quiz;
 import com.exam.portal.entity.Role;
 import com.exam.portal.entity.User;
+import com.exam.portal.service.QuizService;
 import com.exam.portal.service.UserService;
 
 
@@ -21,6 +23,9 @@ public class AdminController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired 
+	private QuizService quizService;
 	
 	public void loadCommonData(Model model, Principal principal) {
 		String email = principal.getName();
@@ -35,6 +40,8 @@ public class AdminController {
 		loadCommonData(model, principal);
 		model.addAttribute("title", "Dashboard");
 		model.addAttribute("dashboardActive", "active");
+		List<Quiz> quizzes = this.quizService.getQuizList("title", "asc");
+		model.addAttribute("quizzes", quizzes);
 		return "admin-template/index";
 	}
 	
