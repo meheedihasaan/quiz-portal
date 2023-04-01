@@ -51,6 +51,7 @@ public class QuizController {
 		model.addAttribute("role", roles.get(0).getName());
 	}
 
+	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/page={pageNumber}")
 	public String viewQuizzesPage(@PathVariable int pageNumber, Model model, Principal principal) {
 		loadCommonData(model, principal);
@@ -61,6 +62,19 @@ public class QuizController {
 		model.addAttribute("currentPage", pageNumber);
 		model.addAttribute("totalPages", quizPage.getTotalPages());
 		return "admin-template/quizzes";
+	}
+	
+	@PreAuthorize("hasRole('NORMAL')")
+	@GetMapping("/published-page={pageNumber}")
+	public String viewPublishedQuizzesPage(@PathVariable int pageNumber, Model model, Principal principal) {
+		loadCommonData(model, principal);
+		model.addAttribute("title", "Quizzes");
+		model.addAttribute("quizzesActive", "active");
+		Page<Quiz> publishedQuizPage = this.quizService.getPublishedQuizzes(pageNumber, AppConstant.QUIZ_PAGE_SIZE, "title", "asc");
+		model.addAttribute("publishedQuizPage", publishedQuizPage);
+		model.addAttribute("currentPage", pageNumber);
+		model.addAttribute("totalPages", publishedQuizPage.getTotalPages());
+		return "admin-template/published-quizzes";
 	}
 	
 	@PreAuthorize("hasRole('ADMIN')")
