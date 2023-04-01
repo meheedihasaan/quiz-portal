@@ -19,11 +19,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.exam.portal.constsant.AppConstant;
 import com.exam.portal.entity.Category;
+import com.exam.portal.entity.Quiz;
 import com.exam.portal.entity.Role;
 import com.exam.portal.entity.User;
 import com.exam.portal.exception.AlreadyExistsException;
 import com.exam.portal.helper.Message;
 import com.exam.portal.service.CategoryService;
+import com.exam.portal.service.QuizService;
 import com.exam.portal.service.UserService;
 
 import jakarta.validation.Valid;
@@ -34,6 +36,9 @@ public class CategoryController {
 	
 	@Autowired
 	private CategoryService categoryService;
+	
+	@Autowired
+	private QuizService quizService;
 	
 	@Autowired
 	private UserService userService;
@@ -56,6 +61,20 @@ public class CategoryController {
 		model.addAttribute("currentPage", pageNumber);
 		model.addAttribute("totalPages", categoryPage.getTotalPages());
 		return "admin-template/admin/categories";
+	}
+	
+	@GetMapping("/{id}/{name}/quizzes/page={pageNumber}")
+	public String viewCategorizedQuizPage(@PathVariable int id, @PathVariable int pageNumber, Model model, Principal principal) {
+		loadCommonData(model, principal);
+		model.addAttribute("title", "Categories");
+		model.addAttribute("categoriesActive", "active");
+		Category category = this.categoryService.getCategoryById(id);
+		model.addAttribute("category", category);
+		Page<Quiz> quizPage = this.quizService.getQuizzesByCategory(id, pageNumber, AppConstant.QUIZ_PAGE_SIZE, "title", "asc");
+		model.addAttribute("quizPage", quizPage);
+		model.addAttribute("currentPage", pageNumber);
+		model.addAttribute("totalPages", quizPage.getTotalPages());
+		return "admin-template/admin/categorized-quizzes";
 	}
 	
 	@PreAuthorize("hasRole('ADMIN')")
@@ -103,7 +122,7 @@ public class CategoryController {
 	}
 	
 	@PreAuthorize("hasRole('ADMIN')")
-	@GetMapping("/{id}/edit")
+	@GetMapping("/{id}/{name}/edit")
     public String viewEditCategoryPage(@PathVariable int id, Model model, Principal principal, RedirectAttributes redirectAttributes) {
         try {
         	loadCommonData(model, principal);
@@ -120,7 +139,7 @@ public class CategoryController {
     }
 	
 	@PreAuthorize("hasRole('ADMIN')")
-	@PostMapping("/{id}/edit")
+	@PostMapping("/{id}/{name}/edit")
 	public String editCategory(
 		@Valid @ModelAttribute Category category, 
 		BindingResult bindingResult,
@@ -148,7 +167,7 @@ public class CategoryController {
 	}
 	
 	@PreAuthorize("hasRole('ADMIN')")
-	@GetMapping("/{id}/delete")
+	@GetMapping("/{id}/{name}/delete")
 	public String deleteCategory(@PathVariable int id, RedirectAttributes redirectAttributes) {
 		try {
             this.categoryService.deleteCategory(id);
