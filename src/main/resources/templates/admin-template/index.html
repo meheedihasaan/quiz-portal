@@ -39,27 +39,43 @@
                         <div class="pcoded-inner-content">
                             <div class="main-body">
                                 <div class="page-wrapper">
-									<!-- Page-header start -->
-                                    <div class="page-header card">
-                                        <div class="card-block">
-                                            <h5 class="m-b-10">Dashboard</h5>
-                                            <ul class="breadcrumb-title b-t-default p-t-10">
-                                                <li class="breadcrumb-item">
-                                                    <a href="index.html"> <i class="fa fa-home"></i> </a>
-                                                </li>
-                                                <li class="breadcrumb-item">
-                                                	<a href="#!">Pages</a>
-                                                </li>
-                                                <li class="breadcrumb-item">
-                                                	<a href="#!">Sample page</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <!-- Page-header end -->
-                                    
-
-                                    <div class="page-body">
+                                	<div class="page-body">
+                                		<div class="row">
+                                			<!-- order-card start -->
+                                            <div class="col-md-6 col-xl-4">
+                                                <div class="card bg-c-blue order-card">
+                                                    <div class="card-block">
+                                                        <h4 class="m-b-20">Total Categories</h4>
+                                                        <h2 class="text-right"><i class="ti-layout-grid2-alt f-left"></i><span>1641</span></h2>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-xl-4">
+                                                <div class="card bg-c-green order-card">
+                                                    <div class="card-block">
+                                                        <h4 class="m-b-20">Total Quizzes</h4>
+                                                        <h2 class="text-right"><i class="ti-write f-left"></i><span>1641</span></h2>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div sec:authorize="hasRole('ADMIN')" class="col-md-6 col-xl-4">
+                                                <div class="card bg-c-yellow order-card">
+                                                    <div class="card-block">
+                                                        <h4 class="m-b-20">Total Participant</h4>
+                                                        <h2 class="text-right"><i class="fa fa-users f-left"></i><span>1641</span></h2>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div sec:authorize="hasRole('ADMIN')" class="col-md-6 col-xl-4">
+                                                <div class="card bg-c-yellow order-card">
+                                                    <div class="card-block">
+                                                        <h4 class="m-b-20">Attempted Quizzes</h4>
+                                                        <h2 class="text-right"><i class="ti-bookmark-alt f-left"></i><span>1641</span></h2>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                		</div>
+                                		
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="card">

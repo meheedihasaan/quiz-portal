@@ -158,6 +158,13 @@
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
+                                <li sec:authorize="hasRole('NORMAL')" th:class="${quizzesActive}">
+                                    <a href="#">
+                                        <span class="pcoded-micon"><i class="ti-bookmark-alt"></i></span>
+                                        <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Attempted Quizzes</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
                                 <li th:class="${categoriesActive}">
                                     <a th:href="@{/backend/categories/page=0}">
                                         <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
