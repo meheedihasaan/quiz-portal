@@ -12,7 +12,7 @@ public interface QuizService {
 	
 	Page<Quiz> getQuizzes(int pageNumber, int pageSize, String sortBy, String sortDirection);
 	
-	List<Quiz> getQuizList(String sortBy, String sortDirection);
+	List<Quiz> getPublishedQuizzes();
 	
 	Quiz getQuizById(int id);
 	
