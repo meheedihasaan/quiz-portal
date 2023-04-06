@@ -39,33 +39,60 @@
                         <div class="pcoded-inner-content">
                             <div class="main-body">
                                 <div class="page-wrapper">
-									<!-- Page-header start -->
-                                    <div class="page-header card">
-                                        <div class="card-block">
-                                            <h5 class="m-b-10">Dashboard</h5>
-                                            <ul class="breadcrumb-title b-t-default p-t-10">
-                                                <li class="breadcrumb-item">
-                                                    <a href="index.html"> <i class="fa fa-home"></i> </a>
-                                                </li>
-                                                <li class="breadcrumb-item">
-                                                	<a href="#!">Pages</a>
-                                                </li>
-                                                <li class="breadcrumb-item">
-                                                	<a href="#!">Sample page</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <!-- Page-header end -->
-                                    
-
-                                    <div class="page-body">
+                                	<div class="page-body">
+                                		<div class="row">
+                                			<!-- Card Starts -->
+                                            <div class="col-md-6 col-xl-3">
+                                                <div class="card bg-c-blue order-card">
+                                                    <div class="card-block">
+                                                        <h4 class="m-b-20">Total Category</h4>
+                                                        <h2 class="text-right"><i class="ti-layout-grid2-alt f-left"></i><span th:text="${totalCategory}"></span></h2>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div sec:authorize="hasRole('ADMIN')" class="col-md-6 col-xl-3">
+                                                <div class="card bg-c-green order-card">
+                                                    <div class="card-block">
+                                                        <h4 class="m-b-20">Total Quiz</h4>
+                                                        <h2 class="text-right"><i class="ti-write f-left"></i><span th:text="${totalQuiz}"></span></h2>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-xl-3">
+                                                <div class="card bg-c-pink order-card">
+                                                    <div class="card-block">
+                                                        <h4 sec:authorize="hasRole('ADMIN')" class="m-b-20">Published</h4>
+                                                        <h2 sec:authorize="hasRole('ADMIN')" class="text-right"><i class="ti-bookmark-alt f-left"></i><span th:text="${totalPublishedQuiz}"></span></h2>                                         
+                                                        <h4 sec:authorize="hasRole('NORMAL')" class="m-b-20">Total Quiz</h4>
+                                                        <h2 sec:authorize="hasRole('NORMAL')" class="text-right"><i class="ti-write f-left"></i><span th:text="${totalPublishedQuiz}"></span></h2>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div sec:authorize="hasRole('ADMIN')" class="col-md-6 col-xl-3">
+                                                <div class="card bg-c-yellow order-card">
+                                                    <div class="card-block">
+                                                        <h4 class="m-b-20">Participant</h4>
+                                                        <h2 class="text-right"><i class="fa fa-users f-left"></i><span>1641</span></h2>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div sec:authorize="hasRole('NORMAL')" class="col-md-6 col-xl-3">
+                                                <div class="card bg-c-yellow order-card">
+                                                    <div class="card-block">
+                                                        <h4 class="m-b-20">Attempts</h4>
+                                                        <h2 class="text-right"><i class="ti-bookmark-alt f-left"></i><span>1641</span></h2>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                		</div>
+                                		<!-- Card Ends -->
+                                		
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="card">
                                                     <div class="card-header">
-                                                        <h5>Hello card</h5>
-                                                        <span>lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
+                                                        <h5>Available Quizzes</h5>
+                                                        <span>These Quizzes are now available in this site.</span>
                                                         <div class="card-header-right">
 															<ul class="list-unstyled card-option">
 																<li><i class="fa fa-chevron-left"></i></li>
@@ -75,18 +102,28 @@
 																<li><i class="fa fa-times close-card"></i></li>
 															</ul>
 														</div>
-
+														<hr/>
                                                     </div>
                                                     <div class="card-block">
-                                                        <p>
-                                                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                                                            enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                                                            nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                                                            in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                                                            nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                                                            sunt in culpa qui officia deserunt mollit anim id est laborum."
-                                                        </p>
+                                                        <div class="row">                                                 
+				                                            <div th:each="quiz : ${quizzes}" class="col-md-12">
+				                                                <div class="card text-primary order-card">
+				                                                    <div class="card-block">
+				                                                    	<p class="badge badge-primary m-b-10" th:text="${quiz.title}"></p>
+				                                                    	<h6 class="badge badge-success"  th:text="Published"></h6>
+				                                                    	
+				                                                        <h4 class="m-b-10" th:text="${quiz.title}"></h4>
+				                                                        <h6 class="badge badge-info m-b-10">Total Questions: <span th:text="${quiz.totalQuestions}"></span></h6>
+				                                                        <h6 class="badge badge-secondary m-b-10">Total Marks: <span th:text="${quiz.totalMarks}"></span></h6>
+				                                                        <h6 class="badge badge-warning m-b-10">Duration: <span th:text="${quiz.duration}"></span> Minutes</h6>
+				                                                        <p class="m-b-25" th:text="${quiz.description}"></p>                                                      
+				                                                        
+				                                                        <a sec:authorize="hasRole('ADMIN')" class="btn btn-primary btn-sm" th:href="@{/backend/quizzes/{id}/{title}/questions/page=0 (id = ${quiz.id}, title = ${quiz.title}) }">View Questions</a>
+				                                                        <a sec:authorize="hasRole('NORMAL')" class="btn btn-primary btn-sm" href="#">Attempt Quiz</a>
+			                                                    	</div>
+				                                                </div>
+				                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

@@ -63,7 +63,7 @@ public class QuestionController {
 		model.addAttribute("totalPages", questionPage.getTotalPages());
 		Quiz quiz = this.quizService.getQuizById(quizId);
 		model.addAttribute("quiz", quiz);
-		return "admin-template/questions";
+		return "admin-template/admin/questions";
 	}
 	
 	@PreAuthorize("hasRole('ADMIN')")
@@ -84,7 +84,7 @@ public class QuestionController {
 		
 		model.addAttribute("quiz", quiz);
 		model.addAttribute("question", new Question());
-		return "admin-template/new-question";
+		return "admin-template/admin/new-question";
 	}
 	
 	@PreAuthorize("hasRole('ADMIN')")
@@ -110,7 +110,7 @@ public class QuestionController {
 			if(bindingResult.hasErrors()) {
 				model.addAttribute("question", question);
 				model.addAttribute("quiz", quiz);
-				return "admin-template/new-question";
+				return "admin-template/admin/new-question";
 			}
 			
 			if(answer.equals("A")) {
@@ -157,7 +157,7 @@ public class QuestionController {
 			model.addAttribute("quiz", quiz);
 			Question question = this.questionService.getQuestionById(questionId);
 			model.addAttribute("question", question);
-			return "admin-template/edit-question";
+			return "admin-template/admin/edit-question";
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("message", new Message("alert-danger", "Something went wrong! "+e.getMessage()));
 			return "redirect:/backend/quizzes/"+quiz.getId()+"/"+quiz.getTitle()+"/questions/page=0";
@@ -199,7 +199,7 @@ public class QuestionController {
 			if(bindingResult.hasErrors()) {
 				model.addAttribute("question", question);
 				model.addAttribute("quiz", quiz);
-				return "admin-template/edit-question";
+				return "admin-template/admin/edit-question";
 			}
 			
 			this.questionService.updateQuestion(question.getId(), question);

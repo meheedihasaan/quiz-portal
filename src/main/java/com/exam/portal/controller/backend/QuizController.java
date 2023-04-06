@@ -51,6 +51,7 @@ public class QuizController {
 		model.addAttribute("role", roles.get(0).getName());
 	}
 
+	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/page={pageNumber}")
 	public String viewQuizzesPage(@PathVariable int pageNumber, Model model, Principal principal) {
 		loadCommonData(model, principal);
@@ -60,7 +61,20 @@ public class QuizController {
 		model.addAttribute("quizPage", quizPage);
 		model.addAttribute("currentPage", pageNumber);
 		model.addAttribute("totalPages", quizPage.getTotalPages());
-		return "admin-template/quizzes";
+		return "admin-template/admin/quizzes";
+	}
+	
+	@PreAuthorize("hasRole('NORMAL')")
+	@GetMapping("/page-{pageNumber}")
+	public String viewPublishedQuizzesPage(@PathVariable int pageNumber, Model model, Principal principal) {
+		loadCommonData(model, principal);
+		model.addAttribute("title", "Quizzes");
+		model.addAttribute("quizzesActive", "active");
+		Page<Quiz> quizPage = this.quizService.getPublishedQuizzes(pageNumber, AppConstant.QUIZ_PAGE_SIZE, "title", "asc");
+		model.addAttribute("quizPage", quizPage);
+		model.addAttribute("currentPage", pageNumber);
+		model.addAttribute("totalPages", quizPage.getTotalPages());
+		return "admin-template/normal/published-quizzes";
 	}
 	
 	@PreAuthorize("hasRole('ADMIN')")
@@ -72,7 +86,7 @@ public class QuizController {
 		model.addAttribute("quiz", new Quiz());
 		List<Category> categories = this.categoryService.getCategoryList();
 		model.addAttribute("categories", categories);
-		return "admin-template/new-quiz";
+		return "admin-template/admin/new-quiz";
 	}
 	
 	@PreAuthorize("hasRole('ADMIN')")
@@ -94,7 +108,7 @@ public class QuizController {
 				model.addAttribute("quiz", quiz);
 				List<Category> categories = this.categoryService.getCategoryList();
 				model.addAttribute("categories", categories);
-				return "admin-template/new-quiz";
+				return "admin-template/admin/new-quiz";
 			}
 			
 			Category category = this.categoryService.getCategoryById(categoryId);
@@ -121,7 +135,7 @@ public class QuizController {
 			model.addAttribute("quiz", quiz);
 			List<Category> categories = this.categoryService.getCategoryList();
 			model.addAttribute("categories", categories);
-			return "admin-template/edit-quiz";
+			return "admin-template/admin/edit-quiz";
 		}
 		catch (Exception e) {
 			redirectAttributes.addFlashAttribute("message", new Message("alert-danger", "Something went wrong! "+e.getMessage()));
@@ -130,7 +144,7 @@ public class QuizController {
 	}
 	
 	@PreAuthorize("hasRole('ADMIN')")
-	@PostMapping("/{id}/edit")
+	@PostMapping("/edit")
 	public String editQuiz(
 		@Valid @ModelAttribute Quiz quiz,
 		BindingResult bindingResult,
@@ -150,7 +164,7 @@ public class QuizController {
 				model.addAttribute("quiz", quiz);
 				List<Category> categories = this.categoryService.getCategoryList();
 				model.addAttribute("categories", categories);
-				return "admin-template/edit-quiz";
+				return "admin-template/admin/edit-quiz";
 			}
 			
 			Category category = this.categoryService.getCategoryById(categoryId);
