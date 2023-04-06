@@ -21,5 +21,7 @@ public interface CategoryService {
 	void updateCategory(int id, Category category);
 	
 	void deleteCategory(int id);
+	
+	long countCategory();
 
 }

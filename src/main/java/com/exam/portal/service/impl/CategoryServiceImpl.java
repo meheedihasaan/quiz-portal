@@ -71,5 +71,11 @@ public class CategoryServiceImpl implements CategoryService {
 		Category category = this.categoryRepository.findById(id).orElseThrow(()-> new NotFoundException("Category not found."));
 		this.categoryRepository.delete(category);
 	}
+	
+	@Override
+	public long countCategory() {
+		long totalCategory = this.categoryRepository.count();
+		return totalCategory;
+	}
 
 }
