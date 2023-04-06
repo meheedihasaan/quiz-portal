@@ -81,7 +81,7 @@
 														<hr/>
                                                     </div>
                                                     <div class="card-block">
-                                                        <form method="POST" th:action="@{/backend/quizzes/{id}/edit (id = ${quiz.id}) }" th:object="${quiz}">                                                        
+                                                        <form method="POST" th:action="@{/backend/quizzes/edit}" th:object="${quiz}">                                                        
                                                             <div class="form-group row">
                                                             	<input type="hidden" class="form-control" th:field="*{id}" th:value="${quiz.id}">
                                                             </div>

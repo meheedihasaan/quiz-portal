@@ -122,7 +122,7 @@ public class CategoryController {
 	}
 	
 	@PreAuthorize("hasRole('ADMIN')")
-	@GetMapping("/{id}/{name}/edit")
+	@GetMapping("/{id}/edit")
     public String viewEditCategoryPage(@PathVariable int id, Model model, Principal principal, RedirectAttributes redirectAttributes) {
         try {
         	loadCommonData(model, principal);
@@ -139,7 +139,7 @@ public class CategoryController {
     }
 	
 	@PreAuthorize("hasRole('ADMIN')")
-	@PostMapping("/{id}/{name}/edit")
+	@PostMapping("/edit")
 	public String editCategory(
 		@Valid @ModelAttribute Category category, 
 		BindingResult bindingResult,

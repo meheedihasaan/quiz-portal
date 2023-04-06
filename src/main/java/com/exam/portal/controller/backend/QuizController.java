@@ -144,7 +144,7 @@ public class QuizController {
 	}
 	
 	@PreAuthorize("hasRole('ADMIN')")
-	@PostMapping("/{id}/edit")
+	@PostMapping("/edit")
 	public String editQuiz(
 		@Valid @ModelAttribute Quiz quiz,
 		BindingResult bindingResult,
