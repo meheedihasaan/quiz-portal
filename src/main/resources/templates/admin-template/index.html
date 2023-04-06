@@ -50,7 +50,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6 col-xl-3">
+                                            <div sec:authorize="hasRole('ADMIN')" class="col-md-6 col-xl-3">
                                                 <div class="card bg-c-green order-card">
                                                     <div class="card-block">
                                                         <h4 class="m-b-20">Total Quiz</h4>
@@ -58,10 +58,20 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="col-md-6 col-xl-3">
+                                                <div class="card bg-c-pink order-card">
+                                                    <div class="card-block">
+                                                        <h4 sec:authorize="hasRole('ADMIN')" class="m-b-20">Published</h4>
+                                                        <h2 sec:authorize="hasRole('ADMIN')" class="text-right"><i class="ti-bookmark-alt f-left"></i><span th:text="${totalPublishedQuiz}"></span></h2>                                         
+                                                        <h4 sec:authorize="hasRole('NORMAL')" class="m-b-20">Total Quiz</h4>
+                                                        <h2 sec:authorize="hasRole('NORMAL')" class="text-right"><i class="ti-write f-left"></i><span th:text="${totalPublishedQuiz}"></span></h2>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div sec:authorize="hasRole('ADMIN')" class="col-md-6 col-xl-3">
                                                 <div class="card bg-c-yellow order-card">
                                                     <div class="card-block">
-                                                        <h4 class="m-b-20">Total Participant</h4>
+                                                        <h4 class="m-b-20">Participant</h4>
                                                         <h2 class="text-right"><i class="fa fa-users f-left"></i><span>1641</span></h2>
                                                     </div>
                                                 </div>
@@ -69,7 +79,7 @@
                                             <div sec:authorize="hasRole('NORMAL')" class="col-md-6 col-xl-3">
                                                 <div class="card bg-c-yellow order-card">
                                                     <div class="card-block">
-                                                        <h4 class="m-b-20">Attempted</h4>
+                                                        <h4 class="m-b-20">Attempts</h4>
                                                         <h2 class="text-right"><i class="ti-bookmark-alt f-left"></i><span>1641</span></h2>
                                                     </div>
                                                 </div>

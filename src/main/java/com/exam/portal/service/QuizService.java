@@ -28,4 +28,6 @@ public interface QuizService {
 	
 	long countQuizzes();
 	
+	long countPublishedQuizzes();
+	
 }

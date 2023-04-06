@@ -131,5 +131,11 @@ public class QuizServiceImpl implements QuizService {
 		long totalQuiz = this.quizRepository.count();
 		return totalQuiz;
 	}
+	
+	@Override
+	public long countPublishedQuizzes() {
+		long totalPublishedQuiz = this.quizRepository.countByIsActive(true);
+		return totalPublishedQuiz;
+	}
 
 }

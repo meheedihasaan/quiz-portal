@@ -46,6 +46,7 @@ public class AdminController {
 		model.addAttribute("dashboardActive", "active");
 		model.addAttribute("totalCategory", categoryService.countCategories());
 		model.addAttribute("totalQuiz", quizService.countQuizzes());
+		model.addAttribute("totalPublishedQuiz", quizService.countPublishedQuizzes());
 		List<Quiz> quizzes = this.quizService.getPublishedQuizzes();
 		model.addAttribute("quizzes", quizzes);
 		return "admin-template/index";

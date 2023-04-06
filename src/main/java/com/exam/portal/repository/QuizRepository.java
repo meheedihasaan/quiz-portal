@@ -23,4 +23,6 @@ public interface QuizRepository extends JpaRepository<Quiz, Integer> {
 	
 	Page<Quiz> findByCategoryAndIsActive(Category category, boolean isActive, Pageable pageable);
 	
+	long countByIsActive(boolean isActive);
+	
 }
