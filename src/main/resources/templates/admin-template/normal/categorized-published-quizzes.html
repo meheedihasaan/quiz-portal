@@ -54,7 +54,7 @@
                                                 	<a th:href="@{/backend/categories/page=0}">Categories</a>
                                                 </li>
                                                 <li class="breadcrumb-item">
-                                                	<a th:href="@{/backend/categories/{id}/{name}/quizzes/page=0 (id = ${category.id}, name = ${category.name}) }">Quizzes</a>
+                                                	<a th:href="@{/backend/categories/{id}/{name}/quizzes/page-0 (id = ${category.id}, name = ${category.name}) }">Quizzes</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -69,7 +69,6 @@
                                                     <div class="card-header">
                                                         <div class="d-inline">
 									                        <h5 class="mr-3">Quiz List</h5>
-									                        <a sec:authorize="hasRole('ADMIN')" class="btn btn-sm btn-primary" th:href="@{/backend/quizzes/new}" data-toggle="tooltip" data-placement="top" data-original-title="New Quiz" aria-describedby="tooltip529394"><i class="ti-plus"></i></a>
 									                    </div>
                                                         <div class="card-header-right">
 															<ul class="list-unstyled card-option">
@@ -106,10 +105,8 @@
 				                                                        <h6 class="badge badge-warning m-b-10">Duration: <span th:text="${quiz.duration}"></span> Minutes</h6>
 				                                                        <p th:text="${quiz.description}" class="m-b-25"></p>                                                      
 				                                                        
-				                                                        <a class="btn btn-warning btn-sm mr-3" th:href="@{/backend/quizzes/{id}/{title}/questions/page=0 (id = ${quiz.id}, title = ${quiz.title}) }" data-toggle="tooltip" data-placement="top" data-original-title="View Questions" aria-describedby="tooltip529394"><i style="font-size: 16px" class="ti-eye"></i></a>			                                                    					                                                  
-				                                                        <a class="btn btn-success btn-sm mr-3" th:href="@{/backend/quizzes/{id}/edit (id = ${quiz.id}) }" data-toggle="tooltip" data-placement="top" data-original-title="Edit Quiz" aria-describedby="tooltip529394"><i style="font-size: 16px" class="ti-pencil-alt"></i></a>
-			                                                    		<a class="btn btn-danger btn-sm mr-3" href="#" th:onclick="|deleteQuiz(${quiz.id})|"  data-toggle="tooltip" data-placement="top" data-original-title="Delete Quiz" aria-describedby="tooltip529394"><i style="font-size: 16px" class="ti-trash"></i></a>				                                             			         
-			                                                    	</div>
+				                                                        <a class="btn btn-primary btn-sm" href="#">Attempt Quiz</a>
+				                                                	</div>
 				                                                </div>
 				                                            </div>
                                                         </div>
@@ -118,9 +115,9 @@
 	                                                        	<!-- Pagination -->
 												                <nav aria-label="Page navigation example ">
 												                    <ul class="pagination">
-												                        <li th:if="${currentPage != 0}" class="page-item"><a class="page-link" th:href="@{'/backend/quizzes/page=' + ${currentPage-1}}">Prev</a></li>			
-												                        <li th:classappend="${currentPage == page-1? 'active' : ''}" th:each="page : ${#numbers.sequence(1, totalPages)}" class="page-item"><a class="page-link" th:href="@{'/backend/quizzes/page=' + ${page-1}}"><span th:text="${page}"></span></a></li>
-																		<li th:if="${currentPage+1 != totalPages}" class="page-item"><a class="page-link" th:href="@{'/backend/quizzes/page=' + ${currentPage+1}}">Next</a></li>
+												                        <li th:if="${currentPage != 0}" class="page-item"><a class="page-link" th:href="@{'/backend/quizzes/page-' + ${currentPage-1}}">Prev</a></li>			
+												                        <li th:classappend="${currentPage == page-1? 'active' : ''}" th:each="page : ${#numbers.sequence(1, totalPages)}" class="page-item"><a class="page-link" th:href="@{'/backend/quizzes/page-' + ${page-1}}"><span th:text="${page}"></span></a></li>
+																		<li th:if="${currentPage+1 != totalPages}" class="page-item"><a class="page-link" th:href="@{'/backend/quizzes/page-' + ${currentPage+1}}">Next</a></li>
 												                    </ul>
 												                </nav>	
 											                </div>
