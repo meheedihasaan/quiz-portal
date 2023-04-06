@@ -125,5 +125,11 @@ public class QuizServiceImpl implements QuizService {
 		//quiz.getCategory().getQuizzes().remove(quiz);
 		this.quizRepository.delete(quiz);
 	}
+	
+	@Override
+	public long countQuizzes() {
+		long totalQuiz = this.quizRepository.count();
+		return totalQuiz;
+	}
 
 }

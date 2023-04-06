@@ -73,7 +73,7 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 	
 	@Override
-	public long countCategory() {
+	public long countCategories() {
 		long totalCategory = this.categoryRepository.count();
 		return totalCategory;
 	}

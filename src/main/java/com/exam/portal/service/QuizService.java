@@ -26,4 +26,6 @@ public interface QuizService {
 	
 	void deleteQuiz(int id);
 	
+	long countQuizzes();
+	
 }
