@@ -63,18 +63,34 @@ public class CategoryController {
 		return "admin-template/admin/categories";
 	}
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/{id}/{name}/quizzes/page={pageNumber}")
 	public String viewCategorizedQuizPage(@PathVariable int id, @PathVariable int pageNumber, Model model, Principal principal) {
 		loadCommonData(model, principal);
-		model.addAttribute("title", "Categories");
 		model.addAttribute("categoriesActive", "active");
 		Category category = this.categoryService.getCategoryById(id);
 		model.addAttribute("category", category);
+		model.addAttribute("title", category.getName());
 		Page<Quiz> quizPage = this.quizService.getQuizzesByCategory(id, pageNumber, AppConstant.QUIZ_PAGE_SIZE, "title", "asc");
 		model.addAttribute("quizPage", quizPage);
 		model.addAttribute("currentPage", pageNumber);
 		model.addAttribute("totalPages", quizPage.getTotalPages());
 		return "admin-template/admin/categorized-quizzes";
+	}
+	
+	@PreAuthorize("hasRole('NORMAL')")
+	@GetMapping("/{id}/{name}/quizzes/page-{pageNumber}")
+	public String viewCategorizedPublishedQuizzes(@PathVariable int id, @PathVariable int pageNumber, Model model, Principal principal) {
+		loadCommonData(model, principal);
+		model.addAttribute("categoriesActive", "active");
+		Category category = this.categoryService.getCategoryById(id);
+		model.addAttribute("category", category);
+		model.addAttribute("title", category.getName());
+		Page<Quiz> quizPage = this.quizService.getPublishedQuizzesByCategory(id, pageNumber, AppConstant.QUIZ_PAGE_SIZE, "title", "asc");
+		model.addAttribute("quizPage", quizPage);
+		model.addAttribute("currentPage", pageNumber);
+		model.addAttribute("totalPages", quizPage.getTotalPages());
+		return "admin-template/normal/categorized-published-quizzes";
 	}
 	
 	@PreAuthorize("hasRole('ADMIN')")

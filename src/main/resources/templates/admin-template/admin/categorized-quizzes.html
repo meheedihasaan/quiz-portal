@@ -54,7 +54,7 @@
                                                 	<a th:href="@{/backend/categories/page=0}">Categories</a>
                                                 </li>
                                                 <li class="breadcrumb-item">
-                                                	<a th:href="@{/backend/categories/{id}/{name}/quizzes/page=0 (id = ${category.id}, name = ${category.name}) }">Quizzes</a>
+                                                	<a th:href="@{/backend/categories/{id}/{name}/quizzes/page=0 (id = ${category.id}, name = ${category.name}) }"><span th:text="${category.name}"></span></a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -118,9 +118,9 @@
 	                                                        	<!-- Pagination -->
 												                <nav aria-label="Page navigation example ">
 												                    <ul class="pagination">
-												                        <li th:if="${currentPage != 0}" class="page-item"><a class="page-link" th:href="@{'/backend/quizzes/page=' + ${currentPage-1}}">Prev</a></li>			
-												                        <li th:classappend="${currentPage == page-1? 'active' : ''}" th:each="page : ${#numbers.sequence(1, totalPages)}" class="page-item"><a class="page-link" th:href="@{'/backend/quizzes/page=' + ${page-1}}"><span th:text="${page}"></span></a></li>
-																		<li th:if="${currentPage+1 != totalPages}" class="page-item"><a class="page-link" th:href="@{'/backend/quizzes/page=' + ${currentPage+1}}">Next</a></li>
+												                        <li th:if="${currentPage != 0}" class="page-item"><a class="page-link" th:href="@{'/backend/categories/{id}/{name}/quizzes/page=' + ${currentPage-1} (id = ${category.id}, name = ${category.name}) }">Prev</a></li>			
+												                        <li th:classappend="${currentPage == page-1? 'active' : ''}" th:each="page : ${#numbers.sequence(1, totalPages)}" class="page-item"><a class="page-link" th:href="@{'/backend/categories/{id}/{name}/quizzes/page=' + ${page-1} (id = ${category.id}, name = ${category.name}) }"><span th:text="${page}"></span></a></li>
+																		<li th:if="${currentPage+1 != totalPages}" class="page-item"><a class="page-link" th:href="@{'/backend/categories/{id}/{name}/quizzes/page=' + ${currentPage+1} (id = ${category.id}, name = ${category.name}) }">Next</a></li>
 												                    </ul>
 												                </nav>	
 											                </div>

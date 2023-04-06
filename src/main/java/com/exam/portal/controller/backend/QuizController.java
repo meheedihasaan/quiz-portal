@@ -65,7 +65,7 @@ public class QuizController {
 	}
 	
 	@PreAuthorize("hasRole('NORMAL')")
-	@GetMapping("/published-page={pageNumber}")
+	@GetMapping("/page-{pageNumber}")
 	public String viewPublishedQuizzesPage(@PathVariable int pageNumber, Model model, Principal principal) {
 		loadCommonData(model, principal);
 		model.addAttribute("title", "Quizzes");

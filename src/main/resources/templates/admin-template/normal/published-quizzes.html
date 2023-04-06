@@ -51,7 +51,7 @@
                                                     <a th:href="@{/backend}">Dashboard</a>
                                                 </li>
                                                 <li class="breadcrumb-item">
-                                                	<a th:href="@{/backend/quizzes/published-page=0}">Quizzes</a>
+                                                	<a th:href="@{/backend/quizzes/page-0}">Quizzes</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -113,9 +113,9 @@
 	                                                        	<!-- Pagination -->
 												                <nav aria-label="Page navigation example ">
 												                    <ul class="pagination">
-												                        <li th:if="${currentPage != 0}" class="page-item"><a class="page-link" th:href="@{'/backend/quizzes/published-page=' + ${currentPage-1}}">Prev</a></li>			
-												                        <li th:classappend="${currentPage == page-1? 'active' : ''}" th:each="page : ${#numbers.sequence(1, totalPages)}" class="page-item"><a class="page-link" th:href="@{'/backend/quizzes/published-page=' + ${page-1}}"><span th:text="${page}"></span></a></li>
-																		<li th:if="${currentPage+1 != totalPages}" class="page-item"><a class="page-link" th:href="@{'/backend/quizzes/published-page=' + ${currentPage+1}}">Next</a></li>
+												                        <li th:if="${currentPage != 0}" class="page-item"><a class="page-link" th:href="@{'/backend/quizzes/page-' + ${currentPage-1}}">Prev</a></li>			
+												                        <li th:classappend="${currentPage == page-1? 'active' : ''}" th:each="page : ${#numbers.sequence(1, totalPages)}" class="page-item"><a class="page-link" th:href="@{'/backend/quizzes/page-' + ${page-1}}"><span th:text="${page}"></span></a></li>
+																		<li th:if="${currentPage+1 != totalPages}" class="page-item"><a class="page-link" th:href="@{'/backend/quizzes/page-' + ${currentPage+1}}">Next</a></li>
 												                    </ul>
 												                </nav>	
 											                </div>
