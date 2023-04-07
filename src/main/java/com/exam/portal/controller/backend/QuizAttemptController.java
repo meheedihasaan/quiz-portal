@@ -47,4 +47,15 @@ public class QuizAttemptController {
 		return "admin-template/normal/quiz-rules";
 	}
 	
+	@PreAuthorize("hasRole('NORMAL')")
+	@GetMapping("/{id}/{title}/attempt")
+	public String viewAttemptQuize(@PathVariable int id, Model model, Principal principal) {
+		loadCommonData(model, principal);
+		model.addAttribute("quizzesAcive", "active");
+		Quiz quiz = this.quizService.getQuizById(id);
+		model.addAttribute("title", quiz.getTitle());
+		model.addAttribute("quiz", quiz);
+		return "admin-template/normal/attempt-quiz";
+	}
+	
 }

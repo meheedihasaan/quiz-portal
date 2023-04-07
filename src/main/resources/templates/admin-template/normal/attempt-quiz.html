@@ -61,54 +61,12 @@
                                                 <div class="card">
                                                     <div class="card-header pb-0">
                                                         <div class="d-inline">
-									                        <h5 class="mr-3">Important Instructions</h5>
+									                        <h5 class="mr-3">Questions</h5>
 									                    </div>
-                                                        <div class="card-header-right">
-															<ul class="list-unstyled card-option">
-																<li><i class="fa fa-chevron-left"></i></li>
-																<li><i class="fa fa-window-maximize full-card"></i></li>
-																<li><i class="fa fa-minus minimize-card"></i></li>
-																<li><i class="fa fa-refresh reload-card"></i></li>
-																<li><i class="fa fa-times close-card"></i></li>
-															</ul>
-														</div>
 														<hr/>
                                                     </div>
                                                     <div class="card-block">
-                                                    	<div class="row px-3">
-                                                    		<div class="col-12">
-                                                    			<ul>
-		                                                    		<li style="list-style-type: disc">
-		                                                    			This quiz is only for practice purposes.
-		                                                    		</li>
-		                                                    		<li style="list-style-type: disc">
-		                                                    			You can attempt this quiz any number of times.
-		                                                    		</li>
-		                                                    		<li style="list-style-type: disc">
-		                                                    			There are <span class="font-weight-bold" th:text="${quiz.totalQuestions}"></span> questions.
-		                                                    		</li>
-		                                                    		<li style="list-style-type: disc">
-		                                                    			All the questions are MCQ type.
-		                                                    		</li>
-		                                                    		<li style="list-style-type: disc">
-		                                                    			Each question has <span class="font-weight-bold" th:with="marks = ${quiz.totalMarks} / ${quiz.totalQuestions}" th:text="${marks}"></span> marks.
-		                                                    		</li>
-		                                                    		<li style="list-style-type: disc">
-		                                                    			There are no negative marks for wrong answers.
-		                                                    		</li>
-		                                                    		<li style="list-style-type: disc">
-		                                                    			You will get <span class="font-weight-bold" th:text="${quiz.duration}"></span> minutes to submit your answer.
-		                                                    		</li>
-		                                                    	</ul>
-                                                    		</div>
-                                                    	</div>
-                                                    	<hr />
-                                                    	<div class="row px-3 text-center">
-                                                    		<div class="col-12">
-                                                    			<p>Click <span>Start Quiz</span> button to start the quiz. The timer will start the time you click on the button. You can not resume the quiz.</p>
-	                                                    		<a class="btn btn-primary text-center" th:href="@{/backend/quizzes/{id}/{title}/attempt (id = ${quiz.id}, title = ${quiz.title}) }">Start Quiz</a>
-                                                    		</div>
-                                                    	</div>
+                                                    	
                                                     </div>
                                                 </div>
                                             </div>
