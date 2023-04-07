@@ -103,7 +103,7 @@
 				                                                        <h6 class="badge badge-warning m-b-10">Duration: <span th:text="${quiz.duration}"></span> Minutes</h6>
 				                                                        <p th:text="${quiz.description}" class="m-b-25"></p>                                                      
 				                                                        
-				                                                        <a class="btn btn-primary btn-sm" th:href="@{/backend/quizzes/{id}/{title}/terms (id = ${quiz.id}, title = ${quiz.title}) }">Attempt Quiz</a>
+				                                                        <a class="btn btn-primary btn-sm" th:href="@{/backend/quizzes/{id}/{title}/quiz-rules (id = ${quiz.id}, title = ${quiz.title}) }">Attempt Quiz</a>
 			                                                    	</div>
 				                                                </div>
 				                                            </div>
