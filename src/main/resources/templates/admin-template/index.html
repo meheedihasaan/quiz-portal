@@ -109,7 +109,7 @@
 				                                            <div th:each="quiz : ${quizzes}" class="col-md-12">
 				                                                <div class="card text-primary order-card">
 				                                                    <div class="card-block">
-				                                                    	<p class="badge badge-primary m-b-10" th:text="${quiz.title}"></p>
+				                                                    	<p class="badge badge-primary m-b-10" th:text="${quiz.category.name}"></p>
 				                                                    	<h6 class="badge badge-success"  th:text="Published"></h6>
 				                                                    	
 				                                                        <h4 class="m-b-10" th:text="${quiz.title}"></h4>
