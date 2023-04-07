@@ -66,7 +66,33 @@
 														<hr/>
                                                     </div>
                                                     <div class="card-block">
-                                                    	
+                                                    	<div class="row">                                                 
+				                                            <div th:each="question, rowCount : ${questionPage}" class="col-md-12">
+				                                                <div class="card text-primary order-card">
+				                                                    <div class="card-block">
+				                                                    	<p><b><span th:text="${rowCount.count+(currentPage*25)}+'. '"></span><span th:text="${question.content}"></span></b></p>
+				                                                    	<div class="row">
+				                                                    		<div class="col-md-6">
+				                                                    			<p><b>(a) </b> <span th:text="${question.optionA}"></span></p>
+				                                                    		</div>
+				                                                    		<div class="col-md-6">
+				                                                    			<p><b>(b) </b> <span th:text="${question.optionB}"></span></p>
+				                                                    		</div>
+				                                                    		<div class="col-md-6">
+				                                                    			<p><b>(c) </b> <span th:text="${question.optionC}"></span></p>
+				                                                    		</div>
+				                                                    		<div class="col-md-6">
+				                                                    			<p><b>(d) </b> <span th:text="${question.optionD}"></span></p>
+				                                                    		</div>
+				                                                    	</div>
+				                                                    	<hr />
+				                                                    	<p><b>Correct Answer:</b> <span th:text="${question.answer}"></span></p>
+				                                                    	<a class="btn btn-success btn-sm mr-3" th:href="@{/backend/quizzes/{quizId}/{title}/questions/{questionId}/edit (quizId = ${quiz.id}, title = ${quiz.title}, questionId = ${question.id}) }" data-toggle="tooltip" data-placement="top" data-original-title="Edit Question" aria-describedby="tooltip529394"><i style="font-size: 16px" class="ti-pencil-alt"></i></a>
+			                                                    		<a class="btn btn-danger btn-sm mr-3" href="#" th:onclick="deleteQuestion([[${quiz.id}]], [[${quiz.title}]], [[${question.id}]])" data-toggle="tooltip" data-placement="top" data-original-title="Delete Question" aria-describedby="tooltip529394"><i style="font-size: 16px" class="ti-trash"></i></a>				                                             			                                                    		
+			                                                    	</div>
+				                                                </div>
+				                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

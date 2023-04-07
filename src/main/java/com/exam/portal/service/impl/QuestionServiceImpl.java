@@ -1,5 +1,7 @@
 package com.exam.portal.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -58,6 +60,13 @@ public class QuestionServiceImpl implements QuestionService {
 		Page<Question> questionPage = questionRepository.findByQuiz(pageable, quiz);
 		return questionPage;
 	}
+	
+	@Override
+	public List<Question> getQuestionsByQuiz(int quizId) {
+		Quiz quiz = this.quizRepository.findById(quizId).orElseThrow(()-> new NotFoundException("Quiz not found."));
+		List<Question> questions = this.questionRepository.findByQuiz(quiz);
+		return questions;
+ 	}
 
 	@Override
 	public Question getQuestionById(int id) {
