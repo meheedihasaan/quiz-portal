@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.exam.portal.entity.Question;
 import com.exam.portal.entity.Quiz;
 import com.exam.portal.entity.Role;
 import com.exam.portal.entity.User;
+import com.exam.portal.service.QuestionService;
 import com.exam.portal.service.QuizService;
 import com.exam.portal.service.UserService;
 
@@ -27,6 +29,9 @@ public class QuizAttemptController {
 	
 	@Autowired
 	private QuizService quizService;
+	
+	@Autowired
+	private QuestionService questionService;
 
 	public void loadCommonData(Model model, Principal principal) {
 		String username = principal.getName();
@@ -51,10 +56,12 @@ public class QuizAttemptController {
 	@GetMapping("/{id}/{title}/attempt")
 	public String viewAttemptQuize(@PathVariable int id, Model model, Principal principal) {
 		loadCommonData(model, principal);
-		model.addAttribute("quizzesAcive", "active");
+		model.addAttribute("quizzesActive", "active");
 		Quiz quiz = this.quizService.getQuizById(id);
 		model.addAttribute("title", quiz.getTitle());
 		model.addAttribute("quiz", quiz);
+		List<Question> questions = this.questionService.getQuestionsByQuiz(id);
+		model.addAttribute("questions", questions);
 		return "admin-template/normal/attempt-quiz";
 	}
 	
