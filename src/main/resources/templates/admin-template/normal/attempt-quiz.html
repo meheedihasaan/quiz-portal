@@ -66,18 +66,20 @@
 														<hr/>
                                                     </div>
                                                     <div class="card-block">
-                                                    	<form method="POST" th:action="@{/backend/quizzes/{id}/{title}/result (id = ${quiz.id}, title = ${quiz.title}) }">
+                                                    	<form method="POST" th:action="@{/backend/quizzes/{id}/{title}/result (id = ${quiz.id}, title = ${quiz.title}) }" th:object="${questionResponse}">
 	                                                    	<div class="row">                                                 
-					                                            <div th:each="question, rowCount : ${questions}" class="col-md-12">
+					                                            <div th:each="question, itr : ${questions}" class="col-md-12">
 					                                                <div class="card text-primary order-card">
 					                                                    <div class="card-block">
-					                                                    	<p><b><span th:text="${rowCount.count}+'. '"></span><span th:text="${question.content}"></span></b></p>
+					                                                    	<p><b><span th:text="${itr.count}+'. '"></span><span th:text="${question.content}"></span></b></p>
 					                                                    	<div class="row px-4">
+					                                                    		<input type="text" th:field="*{responses[__${itr.index}__].id}" th:value="${question.id}" />
 					                                                    		<div class="col-md-6">
 					                                                    			<input 
 					                                                    				type="radio"
 					                                                    				class="form-check-input"
-					                                                    				th:name="${'questions[' + question.id + ']'}" 
+					                                                    				th:name="${question.id}" 
+					                                                    				th:field="*{responses[__${itr.index}__].userAnswer}"
 					                                                    				th:value="${question.optionA}"
 					                                                    			>
 					                                                    			<p th:text="${question.optionA}"></p>
@@ -86,7 +88,8 @@
 					                                                    			<input 
 					                                                    				type="radio"
 					                                                    				class="form-check-input"
-					                                                    				th:name="${'questions[' + question.id + ']'}" 
+					                                                    				th:name="${question.id}" 
+					                                                    				th:field="*{responses[__${itr.index}__].userAnswer}"
 					                                                    				th:value="${question.optionB}"
 					                                                    			>
 					                                                    			<p th:text="${question.optionB}"></p>
@@ -95,7 +98,8 @@
 					                                                    			<input 
 					                                                    				type="radio"
 					                                                    				class="form-check-input"
-					                                                    				th:name="${'questions[' + question.id + ']'}" 
+					                                                    				th:name="${question.id}" 
+					                                                    				th:field="*{responses[__${itr.index}__].userAnswer}" 
 					                                                    				th:value="${question.optionC}"
 					                                                    			>
 					                                                    			<p th:text="${question.optionC}"></p>
@@ -104,7 +108,8 @@
 					                                                    			<input 
 					                                                    				type="radio"
 					                                                    				class="form-check-input"
-					                                                    				th:name="${'questions[' + question.id + ']'}" 
+					                                                    				th:name="${question.id}" 
+					                                                    				th:field="*{responses[__${itr.index}__].userAnswer}" 
 					                                                    				th:value="${question.optionD}"
 					                                                    			>
 					                                                    			<p th:text="${question.optionD}"></p>
