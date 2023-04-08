@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -51,6 +52,9 @@ public class Question {
 	@NotEmpty(message = "Answer is required.")
 	@Size(max = 255, message = "Answer should be less than 255 characters.")
 	private String answer;
+	
+	@Transient
+	private String userAnswer;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Quiz quiz;
