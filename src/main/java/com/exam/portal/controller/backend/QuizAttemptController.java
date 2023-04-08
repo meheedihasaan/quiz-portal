@@ -1,7 +1,9 @@
 package com.exam.portal.controller.backend;
 
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.exam.portal.entity.Question;
 import com.exam.portal.entity.Quiz;
@@ -63,6 +67,18 @@ public class QuizAttemptController {
 		List<Question> questions = this.questionService.getQuestionsByQuiz(id);
 		model.addAttribute("questions", questions);
 		return "admin-template/normal/attempt-quiz";
+	}
+	
+	
+	@PreAuthorize("hasRole('NORMAL')")
+	@PostMapping("/{id}/{title}/result")
+	public String evaluateQuiz(@PathVariable int id, Model model, Principal principal) {
+		loadCommonData(model, principal);
+		model.addAttribute("quizzesActive", "active");
+		Quiz quiz = this.quizService.getQuizById(id);
+		model.addAttribute("title", quiz.getTitle()+" - Result");
+		model.addAttribute("quiz", quiz);
+		return "admin-template/index";
 	}
 	
 }

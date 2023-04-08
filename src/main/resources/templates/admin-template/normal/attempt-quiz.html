@@ -66,7 +66,7 @@
 														<hr/>
                                                     </div>
                                                     <div class="card-block">
-                                                    	<form action="">
+                                                    	<form method="POST" th:action="@{/backend/quizzes/{id}/{title}/result (id = ${quiz.id}, title = ${quiz.title}) }">
 	                                                    	<div class="row">                                                 
 					                                            <div th:each="question, rowCount : ${questions}" class="col-md-12">
 					                                                <div class="card text-primary order-card">
@@ -77,7 +77,7 @@
 					                                                    			<input 
 					                                                    				type="radio"
 					                                                    				class="form-check-input"
-					                                                    				th:name="${rowCount.count}" 
+					                                                    				th:name="${'questions[' + question.id + ']'}" 
 					                                                    				th:value="${question.optionA}"
 					                                                    			>
 					                                                    			<p th:text="${question.optionA}"></p>
@@ -86,7 +86,7 @@
 					                                                    			<input 
 					                                                    				type="radio"
 					                                                    				class="form-check-input"
-					                                                    				th:name="${rowCount.count}" 
+					                                                    				th:name="${'questions[' + question.id + ']'}" 
 					                                                    				th:value="${question.optionB}"
 					                                                    			>
 					                                                    			<p th:text="${question.optionB}"></p>
@@ -95,7 +95,7 @@
 					                                                    			<input 
 					                                                    				type="radio"
 					                                                    				class="form-check-input"
-					                                                    				th:name="${rowCount.count}" 
+					                                                    				th:name="${'questions[' + question.id + ']'}" 
 					                                                    				th:value="${question.optionC}"
 					                                                    			>
 					                                                    			<p th:text="${question.optionC}"></p>
@@ -104,7 +104,7 @@
 					                                                    			<input 
 					                                                    				type="radio"
 					                                                    				class="form-check-input"
-					                                                    				th:name="${rowCount.count}" 
+					                                                    				th:name="${'questions[' + question.id + ']'}" 
 					                                                    				th:value="${question.optionD}"
 					                                                    			>
 					                                                    			<p th:text="${question.optionD}"></p>
