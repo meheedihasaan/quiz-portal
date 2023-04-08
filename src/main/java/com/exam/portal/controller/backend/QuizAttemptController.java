@@ -79,28 +79,35 @@ public class QuizAttemptController {
 		loadCommonData(model, principal);
 		model.addAttribute("quizzesActive", "active");
 		Quiz quiz = this.quizService.getQuizById(id);
-		model.addAttribute("title", quiz.getTitle()+" - Result");
+		model.addAttribute("title", "Result -"+quiz.getTitle());
 		model.addAttribute("quiz", quiz);
 		
 		try {
-			int attemptedQuestion = quiz.getTotalQuestions();
-			int correctAnswer = 0;
+			int attemptedQuestions = quiz.getTotalQuestions();
+			int correctAnswers = 0;
 			List<Question> responses = questionResponse.getResponses();		
 			for (Question response : responses) {
 				Question question = this.questionService.getQuestionById(response.getId());
 				
 				if(response.getUserAnswer() == null) {
-					attemptedQuestion--;
+					attemptedQuestions--;
 					continue;
 				}
 				
-				if(response.getUserAnswer().trim().equals(question.getAnswer())) {
-					correctAnswer++;
+				if(response.getUserAnswer().trim().equals(question.getAnswer().trim())) {
+					correctAnswers++;
 				}
 			}
 			
-			int obtainedMarks = correctAnswer * (quiz.getTotalMarks()/quiz.getTotalQuestions());
-			return "admin-template/index";
+			int obtainedMarks = correctAnswers * (quiz.getTotalMarks()/quiz.getTotalQuestions());
+			double successRate = (double)correctAnswers/(double)attemptedQuestions;
+			int accuracy = (int)Math.floor((successRate*100));
+			
+			model.addAttribute("attemptedQuestions", attemptedQuestions);
+			model.addAttribute("correctAnswers", correctAnswers);
+			model.addAttribute("obtainedMarks", obtainedMarks);
+			model.addAttribute("accuracy", accuracy);
+			return "admin-template/normal/result";
 		}
 		catch (Exception e) {
 			System.out.println(e.getMessage());
