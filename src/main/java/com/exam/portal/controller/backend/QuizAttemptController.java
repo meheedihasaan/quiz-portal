@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.exam.portal.entity.Question;
 import com.exam.portal.entity.QuestionResponse;
@@ -83,12 +82,30 @@ public class QuizAttemptController {
 		model.addAttribute("title", quiz.getTitle()+" - Result");
 		model.addAttribute("quiz", quiz);
 		
-		List<Question> responses = questionResponse.getResponses();		
-		for (Question response : responses) {
-			System.out.println(response.getId()+" "+response.getUserAnswer());
+		try {
+			int attemptedQuestion = quiz.getTotalQuestions();
+			int correctAnswer = 0;
+			List<Question> responses = questionResponse.getResponses();		
+			for (Question response : responses) {
+				Question question = this.questionService.getQuestionById(response.getId());
+				
+				if(response.getUserAnswer() == null) {
+					attemptedQuestion--;
+					continue;
+				}
+				
+				if(response.getUserAnswer().trim().equals(question.getAnswer())) {
+					correctAnswer++;
+				}
+			}
+			
+			int obtainedMarks = correctAnswer * (quiz.getTotalMarks()/quiz.getTotalQuestions());
+			return "admin-template/index";
 		}
-		
-		return "admin-template/index";
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+			return "redirect:/backend";
+		}
 	}
 	
 }
