@@ -56,7 +56,7 @@ public class QuizAttemptController {
 	}
 	
 	@PreAuthorize("hasRole('NORMAL')")
-	@GetMapping("/{id}/{title}/attempt")
+	@GetMapping("/{id}/{title}/start")
 	public String viewAttemptQuize(@PathVariable int id, Model model, Principal principal) {
 		loadCommonData(model, principal);
 		model.addAttribute("quizzesActive", "active");
@@ -69,7 +69,7 @@ public class QuizAttemptController {
 		QuestionResponse questionResponse = new QuestionResponse();
 		questionResponse.setResponses(questions);
 		model.addAttribute("questionResponse", questionResponse);
-		return "admin-template/normal/attempt-quiz";
+		return "admin-template/normal/start-quiz";
 	}
 	
 	

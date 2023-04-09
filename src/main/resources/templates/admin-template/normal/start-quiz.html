@@ -8,7 +8,7 @@
 
 </head>
 
-<body>
+<body th:onload="startQuiz([[${quiz.duration}]])">
     <!-- Pre-loader Starts -->
     <div th:replace="~{admin-template/base::theme-loader-fragment}">
     
@@ -62,11 +62,14 @@
                                                     <div class="card-header pb-0">
                                                         <div class="d-inline">
 									                        <h5 class="mr-3">Questions</h5>
+									                        <div class="card-header-right">
+									                        	<h2 id="show-timer"></h2>
+									                        </div>
 									                    </div>
 														<hr/>
                                                     </div>
                                                     <div class="card-block">
-                                                    	<form method="POST" th:action="@{/backend/quizzes/{id}/{title}/result (id = ${quiz.id}, title = ${quiz.title}) }" th:object="${questionResponse}">
+                                                    	<form method="POST" id="quiz-form" th:action="@{/backend/quizzes/{id}/{title}/result (id = ${quiz.id}, title = ${quiz.title}) }" th:object="${questionResponse}">
 	                                                    	<div class="row">                                                 
 					                                            <div th:each="question, itr : ${questions}" class="col-md-12">
 					                                                <div class="card text-primary order-card">
@@ -141,6 +144,26 @@
             
         </div>
     </div>
+    
+<script>
+	function startQuiz(duration) {
+	  var minute = duration;
+	  var sec = 60;
+	  setInterval(function() {
+	    document.getElementById("show-timer").innerHTML = minute + ":" + sec;
+	    sec--;
+
+	    if (sec == 00) {
+	      minute--;
+	      sec = 60;
+
+	      if (minute == 0) {
+	      	document.getElementById("quiz-form").submit();
+	      }
+	    }
+	  }, 1000);
+	}
+</script>
 
 <!-- Required Jquery -->
 <script type="text/javascript" th:src="@{/admin-resources/js/jquery/jquery.min.js}"></script>
