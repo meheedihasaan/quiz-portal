@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" 
+	  xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+	  
+<head th:replace="~{admin-template/base::head-fragment}">
+
+</head>
+
+<body>
+    <!-- Pre-loader Starts -->
+    <div th:replace="~{admin-template/base::theme-loader-fragment}">
+    
+    </div>
+    <!-- Pre-loader Ends -->
+    
+    <div id="pcoded" class="pcoded">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+        
+			<!-- Header Navbar Starts -->
+            <nav th:replace="~{admin-template/base::header-navbar-fragment}">
+               
+            </nav>
+            <!-- Header Navbar Ends -->
+
+            <div class="pcoded-main-container">
+                <div class="pcoded-wrapper">
+                
+                	<!-- Sidebar Starts -->
+                    <nav th:replace="~{admin-template/base::sidebar-fragment}">
+                        
+                    </nav>
+                    <!-- Sidebar Ends -->
+                    
+                    <!-- Replaceable Content Starts -->
+                    <div class="pcoded-content">
+                        <div class="pcoded-inner-content">
+                            <div class="main-body">
+                                <div class="page-wrapper">
+									<!-- Page-header start -->
+                                    <div class="page-header card">
+                                        <div class="card-block">
+                                        	<p th:text="${quiz.category.name}" class="badge badge-primary m-b-10"></p>
+                                            <h5 class="m-b-10" th:text="${quiz.title}"></h5>
+                                            <div class="breadcrumb-title b-t-default p-t-10">
+                                            	<h6 class="badge badge-info m-b-10">Total Questions: <span th:text="${quiz.totalQuestions}"></span></h6>
+				                                <h6 class="badge badge-secondary m-b-10">Total Marks: <span th:text="${quiz.totalMarks}"></span></h6>
+                                                <h6 class="badge badge-warning m-b-10">Duration: <span th:text="${quiz.duration}"></span> Minutes</h6>
+                                                <p th:text="${quiz.description}"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Page-header end -->
+                                    
+
+                                    <div class="page-body">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="card">
+                                                    <div class="card-header pb-0">
+                                                        <div class="d-inline">
+									                        <h5 class="mr-3">Important Instructions</h5>
+									                    </div>
+                                                        <div class="card-header-right">
+															<ul class="list-unstyled card-option">
+																<li><i class="fa fa-chevron-left"></i></li>
+																<li><i class="fa fa-window-maximize full-card"></i></li>
+																<li><i class="fa fa-minus minimize-card"></i></li>
+																<li><i class="fa fa-refresh reload-card"></i></li>
+																<li><i class="fa fa-times close-card"></i></li>
+															</ul>
+														</div>
+														<hr/>
+                                                    </div>
+                                                    <div class="card-block">
+                                                    	<div class="row px-3">
+                                                    		<div class="col-12">
+                                                    			<ul>
+		                                                    		<li style="list-style-type: disc">
+		                                                    			This quiz is only for practice purposes.
+		                                                    		</li>
+		                                                    		<li style="list-style-type: disc">
+		                                                    			You can attempt this quiz any number of times.
+		                                                    		</li>
+		                                                    		<li style="list-style-type: disc">
+		                                                    			There are <span class="font-weight-bold" th:text="${quiz.totalQuestions}"></span> questions.
+		                                                    		</li>
+		                                                    		<li style="list-style-type: disc">
+		                                                    			All the questions are MCQ type.
+		                                                    		</li>
+		                                                    		<li style="list-style-type: disc">
+		                                                    			Each question has <span class="font-weight-bold" th:with="marks = ${quiz.totalMarks} / ${quiz.totalQuestions}" th:text="${marks}"></span> marks.
+		                                                    		</li>
+		                                                    		<li style="list-style-type: disc">
+		                                                    			There are no negative marks for wrong answers.
+		                                                    		</li>
+		                                                    		<li style="list-style-type: disc">
+		                                                    			You will get <span class="font-weight-bold" th:text="${quiz.duration}"></span> minutes to submit your answer.
+		                                                    		</li>
+		                                                    	</ul>
+                                                    		</div>
+                                                    	</div>
+                                                    	<hr />
+                                                    	<div class="row px-3 text-center">
+                                                    		<div class="col-12">
+                                                    			<p>Click <span>Start Quiz</span> button to start the quiz. The timer will start the time you click on the button. You can not resume the quiz.</p>
+	                                                    		<a class="btn btn-primary text-center" th:href="@{/backend/quizzes/{id}/{title}/start (id = ${quiz.id}, title = ${quiz.title}) }">Start Quiz</a>
+                                                    		</div>
+                                                    	</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                	<!-- Replaceable Content Ends -->
+               
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+<!-- Required Jquery -->
+<script type="text/javascript" th:src="@{/admin-resources/js/jquery/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/admin-resources/js/jquery-ui/jquery-ui.min.js}"></script>
+<script type="text/javascript" th:src="@{/admin-resources/js/popper.js/popper.min.js}"></script>
+<script type="text/javascript" th:src="@{/admin-resources/js/bootstrap/js/bootstrap.min.js}"></script>
+
+<!-- jquery slimscroll js -->
+<script type="text/javascript" th:src="@{/admin-resources/js/jquery-slimscroll/jquery.slimscroll.js}"></script>
+
+<!-- modernizr js -->
+<script type="text/javascript" th:src="@{/admin-resources/js/modernizr/modernizr.js}"></script>
+<script type="text/javascript" th:src="@{/admin-resources/js/modernizr/css-scrollbars.js}"></script>
+
+<!-- Custom js -->
+<script type="text/javascript" th:src="@{/admin-resources/js/script.js}"></script>
+<script th:src="@{/admin-resources/js/pcoded.min.js}"></script>
+<script th:src="@{/admin-resources/js/vartical-demo.js}"></script>
+<script th:src="@{/admin-resources/js/jquery.mCustomScrollbar.concat.min.js}"></script>
+</body>
+
+</html>

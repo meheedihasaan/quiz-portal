@@ -109,7 +109,7 @@
 				                                            <div th:each="quiz : ${quizzes}" class="col-md-12">
 				                                                <div class="card text-primary order-card">
 				                                                    <div class="card-block">
-				                                                    	<p class="badge badge-primary m-b-10" th:text="${quiz.title}"></p>
+				                                                    	<p class="badge badge-primary m-b-10" th:text="${quiz.category.name}"></p>
 				                                                    	<h6 class="badge badge-success"  th:text="Published"></h6>
 				                                                    	
 				                                                        <h4 class="m-b-10" th:text="${quiz.title}"></h4>
@@ -119,7 +119,7 @@
 				                                                        <p class="m-b-25" th:text="${quiz.description}"></p>                                                      
 				                                                        
 				                                                        <a sec:authorize="hasRole('ADMIN')" class="btn btn-primary btn-sm" th:href="@{/backend/quizzes/{id}/{title}/questions/page=0 (id = ${quiz.id}, title = ${quiz.title}) }">View Questions</a>
-				                                                        <a sec:authorize="hasRole('NORMAL')" class="btn btn-primary btn-sm" href="#">Attempt Quiz</a>
+				                                                        <a sec:authorize="hasRole('NORMAL')" class="btn btn-primary btn-sm" th:href="@{/backend/quizzes/{id}/{title}/quiz-rules (id = ${quiz.id}, title = ${quiz.title}) }">Attempt Quiz</a>
 			                                                    	</div>
 				                                                </div>
 				                                            </div>
@@ -130,9 +130,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div id="styleSelector">
-
                             </div>
                         </div>
                     </div>

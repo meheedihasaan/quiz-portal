@@ -122,7 +122,7 @@ public class QuestionController {
 			else if(answer.equals("C")) {
 				answer = question.getOptionC();
 			}
-			else if(answer.equals("C")) {
+			else if(answer.equals("D")) {
 				answer = question.getOptionD();
 			}
 			
@@ -190,7 +190,7 @@ public class QuestionController {
 			else if(answer.equals("C")) {
 				answer = question.getOptionC();
 			}
-			else if(answer.equals("C")) {
+			else if(answer.equals("D")) {
 				answer = question.getOptionD();
 			}
 			
