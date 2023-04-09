@@ -93,25 +93,25 @@
 			                                                        <tr>
 			                                                            <th scope="row">Obtained Marks</th>
 			                                                            <td>
-			                                                            	<span style="font-size: 16px" class="font-weight-bold badge badge-primary" th:text="${obtainedMarks}"></span>
+			                                                            	<span style="font-size: 16px" class="font-weight-bold badge badge-primary" th:text="${quizResult.obtainedMarks}"></span>
 			                                                            </td>
 			                                                        </tr>
 			                                                        <tr>
 			                                                            <th scope="row">Attempted Questions</th>
 			                                                            <td>
-			                                                            	<span style="font-size: 16px" class="font-weight-bold badge badge-primary" th:text="${attemptedQuestions}"></span>
+			                                                            	<span style="font-size: 16px" class="font-weight-bold badge badge-primary" th:text="${quizResult.AttemptedQuestions}"></span>
 			                                                            </td>
 			                                                        </tr>
 			                                                        <tr>
 			                                                            <th scope="row">Correct Answers</th>
 			                                                            <td>
-			                                                            	<span style="font-size: 16px" class="font-weight-bold badge badge-primary" th:text="${correctAnswers}"></span>
+			                                                            	<span style="font-size: 16px" class="font-weight-bold badge badge-primary" th:text="${quizResult.CorrectAnswers}"></span>
 			                                                            </td>
 			                                                        </tr>
 			                                                        <tr>
 			                                                            <th scope="row">Accuracy</th>
 			                                                            <td>
-			                                                            	<span style="font-size: 16px" class="font-weight-bold badge badge-primary" th:text="${accuracy + '%'}"></span>
+			                                                            	<span style="font-size: 16px" class="font-weight-bold badge badge-primary" th:text="${quizResult.accuracy + '%'}"></span>
 			                                                            </td>
 			                                                        </tr>
 			                                                    </tbody>

@@ -105,9 +105,8 @@ public class QuizAttemptController {
 			}
 			
 			int obtainedMarks = correctAnswers * (quiz.getTotalMarks()/quiz.getTotalQuestions());
-			double accuracy = (double)correctAnswers/(double)attemptedQuestions;
-			accuracy = accuracy*100;
-			accuracy = Double.parseDouble(String.format("%.2f", accuracy));
+			double successRate = (double)correctAnswers/(double)attemptedQuestions;
+			int accuracy = (int)Math.floor((successRate*100));
 			
 			QuizResult quizResult = new QuizResult();
 			quizResult.setQuiz(quiz);

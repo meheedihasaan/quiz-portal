@@ -34,7 +34,7 @@ public class QuizResult {
 	
 	private int correctAnswers;
 	
-	private double accuracy;
+	private int accuracy;
 	
 	private Date date = new Date();
 	
