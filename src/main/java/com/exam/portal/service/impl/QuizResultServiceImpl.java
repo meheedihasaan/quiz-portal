@@ -14,8 +14,9 @@ public class QuizResultServiceImpl implements QuizResultService {
 	private QuizResultRepository quizResultRepository;
 
 	@Override
-	public void createQuizResult(QuizResult quizResult) {
-		this.quizResultRepository.save(quizResult);
+	public QuizResult createQuizResult(QuizResult quizResult) {
+		QuizResult savedQuizResult = this.quizResultRepository.save(quizResult);
+		return savedQuizResult;
 	}
 
 }

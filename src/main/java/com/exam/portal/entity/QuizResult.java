@@ -28,7 +28,13 @@ public class QuizResult {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	private int marks;
+	private int obtainedMarks;
+	
+	private int attemptedQuestions;
+	
+	private int correctAnswers;
+	
+	private double accuracy;
 	
 	private Date date = new Date();
 	

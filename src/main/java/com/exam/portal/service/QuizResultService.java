@@ -4,6 +4,6 @@ import com.exam.portal.entity.QuizResult;
 
 public interface QuizResultService {
 
-	void createQuizResult(QuizResult quizResult);
+	QuizResult createQuizResult(QuizResult quizResult);
 	
 }
