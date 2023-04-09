@@ -59,11 +59,13 @@
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="card">
-                                                    <div class="card-header pb-0">
+                                                    <div class="card-header pr-2">
                                                         <div class="d-inline">
 									                        <h5 class="mr-3">Questions</h5>
 									                        <div class="card-header-right">
-									                        	<h2 id="show-timer"></h2>
+									                        	<p style="margin-right: 20px;">
+									                        		<span class="d-inline font-weight-bold" style="font-size: 20px;" id="show-timer"></span> - Minutes Remaining 
+									                        	</p>
 									                        </div>
 									                    </div>
 														<hr/>
@@ -147,21 +149,31 @@
     
 <script>
 	function startQuiz(duration) {
-	  var minute = duration;
-	  var sec = 60;
-	  setInterval(function() {
-	    document.getElementById("show-timer").innerHTML = minute + ":" + sec;
-	    sec--;
-
-	    if (sec == 00) {
-	      minute--;
-	      sec = 60;
-
-	      if (minute == 0) {
-	      	document.getElementById("quiz-form").submit();
-	      }
-	    }
-	  }, 1000);
+		
+	    let time = duration*60;
+	  
+	    setInterval(function() {
+		    let minutes = Math.floor(time/60);
+		    let seconds = time%60;
+		    
+		    if (minutes < 10) {
+		    	minutes = "0"+minutes;
+		    }
+		    
+		    if (seconds < 10) {
+		    	seconds = "0"+seconds;
+		    }
+		    
+	        document.getElementById("show-timer").innerHTML = minutes + ":" + seconds;
+		    
+	        if (time == 00) {	      
+	      	    document.getElementById("quiz-form").submit();
+	        }
+	        
+	        time--; 
+	        
+	    }, 1000);
+	    
 	}
 </script>
 
