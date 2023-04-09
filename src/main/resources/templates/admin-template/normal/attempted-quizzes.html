@@ -90,16 +90,17 @@
 			                                                		</tr>
 			                                                	</thead>
 			                                                    <tbody>
-			                                                        <tr>
-			                                                           
+			                                                        <tr th:each="quizResult, rowCount : ${quizResultPage}">
+			                                                        	<td th:text="${(pageNumber*5) + rowCount.count}"></td>
+			                                                        	<td th:text="${#dates.format(quizResult.date, 'dd-MMM-yyyy')}"></td>
+			                                                        	<td th:text="${quizResult.quiz.title}"></td>
+			                                                        	<td th:text="${quizResult.obtainedMarks}"></td>
+			                                                        	<td>
+			                                                        		<a href=""><i class="ti-eye"></i></a>
+			                                                        	</td> 
 			                                                        </tr>
 			                                                    </tbody>
 			                                                </table>
-			                                            </div>
-			                                            <div class="row text-center">
-			                                            	<div class="col-12">
-			                                            		<a class="btn btn-primary" th:href="@{/backend}">Go to dashboard</a>
-			                                            	</div>
 			                                            </div>
                                                     </div>
                                                 </div>
