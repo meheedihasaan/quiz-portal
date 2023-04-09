@@ -1,5 +1,7 @@
 package com.exam.portal.entity;
 
+import java.util.Date;
+
 import com.exam.portal.constsant.EntityConstant;
 
 import jakarta.persistence.Entity;
@@ -27,6 +29,8 @@ public class QuizResult {
 	private int id;
 	
 	private int marks;
+	
+	private Date date = new Date();
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Quiz quiz;
