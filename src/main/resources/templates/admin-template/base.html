@@ -172,8 +172,8 @@
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
-                                <li sec:authorize="hasRole('NORMAL')">
-                                    <a href="#">
+                                <li sec:authorize="hasRole('NORMAL')" th:class="${attemptedQuizzesActive}">
+                                    <a th:href="@{/backend/attempted-quizzes/page=0}">
                                         <span class="pcoded-micon"><i class="ti-bookmark-alt"></i></span>
                                         <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Attempted Quizzes</span>
                                         <span class="pcoded-mcaret"></span>
