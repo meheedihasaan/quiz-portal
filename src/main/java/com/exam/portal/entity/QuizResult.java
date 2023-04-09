@@ -36,7 +36,7 @@ public class QuizResult {
 	
 	private int accuracy;
 	
-	private Date date;
+	private Date date = new Date();
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Quiz quiz;
