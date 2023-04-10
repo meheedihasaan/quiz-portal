@@ -102,6 +102,18 @@
 			                                                    </tbody>
 			                                                </table>
 			                                            </div>
+			                                            <div class="row">
+                                                        	<div class="col-12">
+	                                                        	<!-- Pagination -->
+												                <nav aria-label="Page navigation example ">
+												                    <ul class="pagination">
+												                        <li th:if="${currentPage != 0}" class="page-item"><a class="page-link" th:href="@{'/backend/attempted-quizzes/page=' + ${currentPage-1}}">Prev</a></li>			
+												                        <li th:classappend="${currentPage == page-1? 'active' : ''}" th:each="page : ${#numbers.sequence(1, totalPages)}" class="page-item"><a class="page-link" th:href="@{'/backend/attempted-quizzes/page=' + ${page-1}}"><span th:text="${page}"></span></a></li>
+																		<li th:if="${currentPage+1 != totalPages}" class="page-item"><a class="page-link" th:href="@{'/backend/attempted-quizzes/page=' + ${currentPage+1}}">Next</a></li>
+												                    </ul>
+												                </nav>
+											                </div>
+                                                        </div>    
                                                     </div>
                                                 </div>
                                             </div>
