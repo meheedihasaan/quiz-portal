@@ -96,7 +96,7 @@
 			                                                        	<td th:text="${quizResult.quiz.title}"></td>
 			                                                        	<td th:text="${quizResult.obtainedMarks}"></td>
 			                                                        	<td>
-			                                                        		<a th:href="@{/backend/attempted-quizzes/{id}/{title} (id = ${quizResult.id}, title = ${quizResult.quiz.title}) }"><i class="ti-eye"></i></a>
+			                                                        		<a th:href="@{/backend/attempted-quizzes/{id}/{quizTitle} (id = ${quizResult.id}, quizTitle = ${quizResult.quiz.title}) }"><i class="ti-eye"></i></a>
 			                                                        	</td> 
 			                                                        </tr>
 			                                                    </tbody>
