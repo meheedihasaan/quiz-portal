@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,6 +38,7 @@ public class QuizResultController {
 		model.addAttribute("role", roles.get(0).getName());
 	}
 	
+	@PreAuthorize("hasRole('NORMAL')")
 	@GetMapping("/attempted-quizzes/page={pageNumber}")
 	public String viewAttemptedQuizzesPage(@PathVariable int pageNumber, Model model, Principal principal) {
 		loadCommonData(model, principal);
@@ -50,14 +52,28 @@ public class QuizResultController {
 		return "admin-template/normal/attempted-quizzes";
 	}
 	
+	@PreAuthorize("hasRole('NORMAL')")
 	@GetMapping("/attempted-quizzes/{resultId}/{quizTitle}")
-	public String viewSingleQuizResult(@PathVariable int resultId, Model model, Principal principal) {
+	public String viewSingleQuizResultPage(@PathVariable int resultId, Model model, Principal principal) {
 		loadCommonData(model, principal);
 		model.addAttribute("attemptedQuizzesActive", "active");
 		QuizResult quizResult = this.quizResultService.getQuizResultById(resultId);
 		model.addAttribute("title", "Result"+quizResult.getQuiz().getTitle());
 		model.addAttribute("quizResult", quizResult);
 		return "admin-template/normal/single-quiz-result";
+	}
+	
+	@PreAuthorize("hasRole('ADMIN')")
+	@GetMapping("/quiz-history/page={pageNumber}")
+	public String viewQuizHistoryPage(@PathVariable int pageNumber, Model model, Principal principal) {
+		loadCommonData(model, principal);
+		model.addAttribute("title", "Quiz History");
+		model.addAttribute("quizHistoryActive", "active");
+		Page<QuizResult> quizResultPage = this.quizResultService.getQuizResults(pageNumber, AppConstant.QUIZ_HISTORY_PAGE_SIZE, "date", "desc");
+		model.addAttribute("quizResultPage", quizResultPage);
+		model.addAttribute("currentPage", pageNumber);
+		model.addAttribute("totalPages", quizResultPage.getTotalPages());
+		return "admin-template/admin/quiz-history";
 	}
 	
 }

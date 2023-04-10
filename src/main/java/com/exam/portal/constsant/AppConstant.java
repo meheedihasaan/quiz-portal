@@ -11,6 +11,7 @@ public class AppConstant {
 	public static final int QUIZ_PAGE_SIZE = 5;
 	public static final int QUESTION_PAGE_SIZE = 25;
 	public static final int QUIZ_RESULT_PAGE_SIZE = 5;
+	public static final int QUIZ_HISTORY_PAGE_SIZE = 5;
 	
 	public AppConstant() {
 		
