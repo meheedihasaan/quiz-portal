@@ -10,6 +10,8 @@ import com.exam.portal.entity.User;
 
 @Repository
 public interface QuizResultRepository extends JpaRepository<QuizResult, Integer> {
+	
+	Page<QuizResult> findAll(Pageable pageable);
 
 	Page<QuizResult> findByUser(User user, Pageable pageable);
 	
