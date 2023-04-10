@@ -8,6 +8,8 @@ public interface QuizResultService {
 
 	QuizResult createQuizResult(QuizResult quizResult);
 	
+	QuizResult getQuizResultById(int id);
+	
 	Page<QuizResult> getQuizResultsByUser(int userId, int pageNumber, int pageSize, String sortBy, String sortDirection);
 	
 }

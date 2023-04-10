@@ -28,6 +28,12 @@ public class QuizResultServiceImpl implements QuizResultService {
 		QuizResult savedQuizResult = this.quizResultRepository.save(quizResult);
 		return savedQuizResult;
 	}
+	
+	@Override
+	public QuizResult getQuizResultById(int id) {
+		QuizResult quizResult = this.quizResultRepository.findById(id).orElseThrow(()-> new NotFoundException("Quiz result not found!"));
+		return quizResult;
+	}
 
 	@Override
 	public Page<QuizResult> getQuizResultsByUser(int userId, int pageNumber, int pageSize, String sortBy, String sortDirection) {
