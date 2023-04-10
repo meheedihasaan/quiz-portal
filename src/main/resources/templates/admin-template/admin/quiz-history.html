@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" 
+	  xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+	  
+<head th:replace="~{admin-template/base::head-fragment}">
+
+</head>
+
+<body>
+    <!-- Pre-loader Starts -->
+    <div th:replace="~{admin-template/base::theme-loader-fragment}">
+    
+    </div>
+    <!-- Pre-loader Ends -->
+    
+    <div id="pcoded" class="pcoded">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+        
+			<!-- Header Navbar Starts -->
+            <nav th:replace="~{admin-template/base::header-navbar-fragment}">
+               
+            </nav>
+            <!-- Header Navbar Ends -->
+
+            <div class="pcoded-main-container">
+                <div class="pcoded-wrapper">
+                
+                	<!-- Sidebar Starts -->
+                    <nav th:replace="~{admin-template/base::sidebar-fragment}">
+                        
+                    </nav>
+                    <!-- Sidebar Ends -->
+                    
+                    <!-- Replaceable Content Starts -->
+                    <div class="pcoded-content">
+                        <div class="pcoded-inner-content">
+                            <div class="main-body">
+                                <div class="page-wrapper">
+									<!-- Page-header start -->
+                                    <div class="page-header card">
+                                        <div class="card-block">
+                                            <h5 class="m-b-10">Quiz History</h5>
+                                            <ul class="breadcrumb-title b-t-default p-t-10">
+                                                <li class="breadcrumb-item">
+                                                    <a th:href="@{/}"> <i class="fa fa-home"></i> </a>
+                                                </li>
+                                                <li class="breadcrumb-item">
+                                                    <a th:href="@{/backend}">Dashboard</a>
+                                                </li>
+                                                <li class="breadcrumb-item">
+                                                	<a th:href="@{/backend/quiz-history/page=0}">Quiz History</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- Page-header end -->
+                                    
+
+                                    <div class="page-body">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="card">
+                                                    <div class="card-header pb-0">
+                                                        <div class="d-inline">
+									                        <h5 class="mr-3">Quizzes Already Finished</h5>
+									                    </div>
+									                    <div class="card-header-right">
+															<ul class="list-unstyled card-option">
+																<li><i class="fa fa-chevron-left"></i></li>
+																<li><i class="fa fa-window-maximize full-card"></i></li>
+																<li><i class="fa fa-minus minimize-card"></i></li>
+																<li><i class="fa fa-refresh reload-card"></i></li>
+																<li><i class="fa fa-times close-card"></i></li>
+															</ul>
+														</div>
+                                                    </div>
+                                                    <div class="card-block">
+                                                    	<div class="table-responsive mt-3">
+			                                                <table class="table">
+			                                                	<thead>
+			                                                		<tr>
+			                                                			<th scope="row">#</th>
+			                                                            <th scope="row">Date</th>
+			                                                            <th scope="row">Quiz Title</th>
+			                                                            <th scope="row">Participant</th>
+			                                                            <th scope="row">Obtained Marks</th>
+			                                                            <th scope="row">Action</th>
+			                                                		</tr>
+			                                                	</thead>
+			                                                    <tbody>
+			                                                        <tr th:each="quizResult, rowCount : ${quizResultPage}">
+			                                                        	<td th:text="${(pageNumber*10) + rowCount.count}"></td>
+			                                                        	<td th:text="${#dates.format(quizResult.date, 'dd-MMM-yyyy')}"></td>
+			                                                        	<td th:text="${quizResult.quiz.title}"></td>
+			                                                        	<td th:text="${quizResult.user.name}"></td>
+			                                                        	<td th:text="${quizResult.obtainedMarks}"></td>
+			                                                        	<td>
+			                                                        		<a th:href="@{/backend/quiz-history/{resultId}/{quizTitle} (resultId = ${quizResult.id}, quizTitle = ${quizResult.quiz.title}) }"><i class="ti-eye"></i></a>
+			                                                        	</td> 
+			                                                        </tr>
+			                                                    </tbody>
+			                                                </table>
+			                                            </div>
+			                                            <div class="row">
+                                                        	<div class="col-12">
+	                                                        	<!-- Pagination -->
+												                <nav aria-label="Page navigation example ">
+												                    <ul class="pagination">
+												                        <li th:if="${currentPage != 0}" class="page-item"><a class="page-link" th:href="@{'/backend/quiz-history/page=' + ${currentPage-1}}">Prev</a></li>			
+												                        <li th:classappend="${currentPage == page-1? 'active' : ''}" th:each="page : ${#numbers.sequence(1, totalPages)}" class="page-item"><a class="page-link" th:href="@{'/backend/quiz-history/page=' + ${page-1}}"><span th:text="${page}"></span></a></li>
+																		<li th:if="${currentPage+1 != totalPages}" class="page-item"><a class="page-link" th:href="@{'/backend/quiz-history/page=' + ${currentPage+1}}">Next</a></li>
+												                    </ul>
+												                </nav>
+											                </div>
+                                                        </div>    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                	<!-- Replaceable Content Ends -->
+               
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+<!-- Required Jquery -->
+<script type="text/javascript" th:src="@{/admin-resources/js/jquery/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/admin-resources/js/jquery-ui/jquery-ui.min.js}"></script>
+<script type="text/javascript" th:src="@{/admin-resources/js/popper.js/popper.min.js}"></script>
+<script type="text/javascript" th:src="@{/admin-resources/js/bootstrap/js/bootstrap.min.js}"></script>
+
+<!-- jquery slimscroll js -->
+<script type="text/javascript" th:src="@{/admin-resources/js/jquery-slimscroll/jquery.slimscroll.js}"></script>
+
+<!-- modernizr js -->
+<script type="text/javascript" th:src="@{/admin-resources/js/modernizr/modernizr.js}"></script>
+<script type="text/javascript" th:src="@{/admin-resources/js/modernizr/css-scrollbars.js}"></script>
+
+<!-- Custom js -->
+<script type="text/javascript" th:src="@{/admin-resources/js/script.js}"></script>
+<script th:src="@{/admin-resources/js/pcoded.min.js}"></script>
+<script th:src="@{/admin-resources/js/vartical-demo.js}"></script>
+<script th:src="@{/admin-resources/js/jquery.mCustomScrollbar.concat.min.js}"></script>
+</body>
+
+</html>
