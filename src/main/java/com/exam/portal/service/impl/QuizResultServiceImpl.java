@@ -30,6 +30,21 @@ public class QuizResultServiceImpl implements QuizResultService {
 	}
 	
 	@Override
+	public Page<QuizResult> getQuizResults(int pageNumber, int pageSize, String sortBy, String sortDirection) {
+		Sort sort = null;
+		if(sortDirection.equalsIgnoreCase("asc")) {
+			sort = Sort.by(sortBy).ascending();
+		}
+		else if(sortDirection.equalsIgnoreCase("desc")) {
+			sort = Sort.by(sortBy).descending();
+		}
+		
+		Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
+		Page<QuizResult> quizResultPage = this.quizResultRepository.findAll(pageable);
+		return quizResultPage;
+	}
+	
+	@Override
 	public QuizResult getQuizResultById(int id) {
 		QuizResult quizResult = this.quizResultRepository.findById(id).orElseThrow(()-> new NotFoundException("Quiz result not found!"));
 		return quizResult;
