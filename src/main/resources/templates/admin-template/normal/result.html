@@ -42,8 +42,8 @@
 									<!-- Page-header start -->
                                     <div class="page-header card">
                                         <div class="card-block">
-                                        	<p th:text="${quizResult.quiz.category.name}" class="badge badge-primary m-b-10"></p>
-                                            <h5 class="m-b-10" th:text="${quizResult.quiz.title}"></h5>
+                                        	<p th:text="${quiz.category.name}" class="badge badge-primary m-b-10"></p>
+                                            <h5 class="m-b-10" th:text="${quiz.title}"></h5>
                                             <div class="breadcrumb-title b-t-default p-t-10">
                                                 <p>Thanks for participating in this quiz. We appreciate your effort. Keep learning.</p>
                                             </div>
@@ -76,42 +76,42 @@
 			                                                    <tbody>
 			                                                        <tr>
 			                                                            <th scope="row">Quiz Title</th>
-			                                                            <td class="font-weight-bold" th:text="${quizResult.quiz.title}"></td>
+			                                                            <td class="font-weight-bold" th:text="${quiz.title}"></td>
 			                                                        </tr>
 			                                                        <tr>
 			                                                            <th scope="row">Total Questions</th>
-			                                                            <td class="font-weight-bold" th:text="${quizResult.quiz.totalQuestions}"></td>
+			                                                            <td class="font-weight-bold" th:text="${quiz.totalQuestions}"></td>
 			                                                        </tr>
 			                                                        <tr>
 			                                                            <th scope="row">TotalMarks</th>
-			                                                            <td class="font-weight-bold" th:text="${quizResult.quiz.totalMarks}"></td>
+			                                                            <td class="font-weight-bold" th:text="${quiz.totalMarks}"></td>
 			                                                        </tr>
 			                                                        <tr>
 			                                                            <th scope="row">Duration</th>
-			                                                            <td><span class="font-weight-bold" th:text="${quizResult.quiz.duration}"></span>  Minutes</td>
+			                                                            <td><span class="font-weight-bold" th:text="${quiz.duration}"></span>  Minutes</td>
 			                                                        </tr>
 			                                                        <tr>
 			                                                            <th scope="row">Obtained Marks</th>
 			                                                            <td>
-			                                                            	<span style="font-size: 16px" class="font-weight-bold badge badge-primary" th:text="${quizResult.obtainedMarks}"></span>
+			                                                            	<span style="font-size: 16px" class="font-weight-bold badge badge-primary" th:text="${obtainedMarks}"></span>
 			                                                            </td>
 			                                                        </tr>
 			                                                        <tr>
 			                                                            <th scope="row">Attempted Questions</th>
 			                                                            <td>
-			                                                            	<span style="font-size: 16px" class="font-weight-bold badge badge-primary" th:text="${quizResult.AttemptedQuestions}"></span>
+			                                                            	<span style="font-size: 16px" class="font-weight-bold badge badge-primary" th:text="${attemptedQuestions}"></span>
 			                                                            </td>
 			                                                        </tr>
 			                                                        <tr>
 			                                                            <th scope="row">Correct Answers</th>
 			                                                            <td>
-			                                                            	<span style="font-size: 16px" class="font-weight-bold badge badge-primary" th:text="${quizResult.CorrectAnswers}"></span>
+			                                                            	<span style="font-size: 16px" class="font-weight-bold badge badge-primary" th:text="${correctAnswers}"></span>
 			                                                            </td>
 			                                                        </tr>
 			                                                        <tr>
 			                                                            <th scope="row">Accuracy</th>
 			                                                            <td>
-			                                                            	<span style="font-size: 16px" class="font-weight-bold badge badge-primary" th:text="${quizResult.accuracy + '%'}"></span>
+			                                                            	<span style="font-size: 16px" class="font-weight-bold badge badge-primary" th:text="${accuracy + '%'}"></span>
 			                                                            </td>
 			                                                        </tr>
 			                                                    </tbody>
