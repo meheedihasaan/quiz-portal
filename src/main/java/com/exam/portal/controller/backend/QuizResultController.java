@@ -76,4 +76,15 @@ public class QuizResultController {
 		return "admin-template/admin/quiz-history";
 	}
 	
+	@PreAuthorize("hasRole('ADMIN')")
+	@GetMapping("/quiz-history/{resultId}/{quizTitle}")
+	public String viewSingleQuizResultHistory(@PathVariable int resultId, Model model, Principal principal) {
+		loadCommonData(model, principal);
+		model.addAttribute("quizHistoryActive", "active");
+		QuizResult quizResult = this.quizResultService.getQuizResultById(resultId);
+		model.addAttribute("title", "Result"+quizResult.getQuiz().getTitle());
+		model.addAttribute("quizResult", quizResult);
+		return "admin-template/admin/single-quiz-result";
+	}
+	
 }
