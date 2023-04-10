@@ -62,7 +62,4 @@ public class Quiz {
 	@JsonIgnore
 	private Set<Question> qustions = new HashSet<>();
 	
-	@OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private Set<QuizResult> quizResults = new HashSet<>();
-	
 }
