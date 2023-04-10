@@ -50,14 +50,14 @@ public class QuizResultController {
 		return "admin-template/normal/attempted-quizzes";
 	}
 	
-	@GetMapping("/attempted-quizzes/{id}/{quizTitle}")
-	public String viewSingleQuizResult(@PathVariable int id, Model model, Principal principal) {
+	@GetMapping("/attempted-quizzes/{resultId}/{quizTitle}")
+	public String viewSingleQuizResult(@PathVariable int resultId, Model model, Principal principal) {
 		loadCommonData(model, principal);
 		model.addAttribute("attemptedQuizzesActive", "active");
-		QuizResult quizResult = this.quizResultService.getQuizResultById(id);
+		QuizResult quizResult = this.quizResultService.getQuizResultById(resultId);
 		model.addAttribute("title", "Result"+quizResult.getQuiz().getTitle());
 		model.addAttribute("quizResult", quizResult);
-		return "admin-template/normal/result";
+		return "admin-template/normal/single-quiz-result";
 	}
 	
 }
