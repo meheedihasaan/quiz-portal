@@ -40,7 +40,7 @@ public class AuthController {
 	) {
 		try {
 			if(bindingResult.hasErrors()) {
-				System.out.println(bindingResult.toString());
+				model.addAttribute("title", "Sign up");
 				model.addAttribute("user", user);
 				return "site-template/sign-up";
 			}

@@ -1,164 +1,127 @@
 <!DOCTYPE html>
-<html lang="en"
+<html lang="en" 
 	  xmlns="http://www.w3.org/1999/xhtml" 
-	  xmlns:th="http://www.thymeleaf.org">
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="shortcut icon" type="image/x-icon" th:href="@{../../site-resources/images/favicon.ico}">
-  <link rel="stylesheet" th:href="@{../../site-resources/css/bootstrap.min.css}">
-  <link rel="stylesheet" type="text/css" th:href="@{../../site-resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css}">
-  <link rel="stylesheet" th:href="@{../../site-resources/css/style-loolab.css}">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <title th:text="${title}"></title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link th:href="@{/site-resources/img/favicon.png}" rel="icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link th:href="@{/site-resources/vendor/aos/aos.css}" rel="stylesheet">
+  <link th:href="@{/site-resources/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+  <link th:href="@{/site-resources/vendor/bootstrap-icons/bootstrap-icons.css}" rel="stylesheet">
+  <link th:href="@{/site-resources/vendor/glightbox/css/glightbox.min.css}" rel="stylesheet">
+  <link th:href="@{/site-resources/vendor/remixicon/remixicon.css}" rel="stylesheet">
+  <link th:href="@{/site-resources/vendor/swiper/swiper-bundle.min.css}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link th:href="@{/site-resources/css/style.css}" rel="stylesheet">
+  
 </head>
+
 <body>
-  <!---Navbar-section--->
-  <nav class="navbar navbar-dark  navbar-expand-md fixed-top">
-    <div class="container">
-       <a class="navbar-brand" th:href="@{/}">Exam Portal</a>
-      <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-      </button>
-         <div class="collapse navbar-collapse" id="navbarNav">
-           <ul class="navbar-nav ml-auto">
-           	 <li class="nav-item">
-               <a class="nav-link" th:href="@{/}">Home</a>
-             </li>
-             
-             <li class="nav-item">
-               <a class="nav-link" href="#explore-head-section">Explore</a>
-             </li>
 
-             <li class="nav-item">
-               <a class="nav-link" href="#contact-head-section">Contact</a>
-             </li>
-             
-             <li class="nav-item">
-               <a class="nav-link" th:href="@{/sign-up}">Sign up</a>
-             </li>
-             
-             <li class="nav-item">
-               <a class="nav-link" th:href="@{/sign-in}">Sign in</a>
-             </li>
-           </ul>
-        </div>
-     </div>
-  </nav>
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-  <!---Home-top-section--->
-  <section id="home-section" class="mt-5">
-    <div class="dark-overlay">
-      <div class="home-inner">
-         <div class="container">
-          <div class="row">
-             <div class="col-12">
-              <h2 class="lead display-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, ducimus.</h2>
-                <div class="d-flex flex-row mt-5">
-                  <div>
-                    <i class="fa fa-check"></i>
-                  </div>
-                    <div class="ml-4">
-                      <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. At quidem unde, nam deserunt vitae sit incidunt voluptates voluptatem excepturi autem quam labore eius earum, quaerat.</p>
-                    </div>
-                </div>
-                <div class="d-flex flex-row">
-                  <div>
-                    <i class="fa fa-check"></i>
-                  </div>
-                  <div class="ml-4">
-                    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus qui iste mollitia dolorem error adipisci voluptatibus quisquam molestiae sunt quidem, labore, delectus corporis maiores fugit.</p>
-                  </div>
-                </div>
-                <div class="d-flex flex-row">
-                  <div>
-                    <i class="fa fa-check"></i>
-                  </div>
-                  <div class="ml-4">
-                    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio nihil autem, cupiditate eius fugiat expedita minus voluptates at libero sed et pariatur totam ex incidunt?</p>
-                  </div>
-                </div>
-             </div>
-            </div>
-           </div>
-        </div>
-     </div>
-  </section>
+      <a th:href="@{/}" class="logo d-flex align-items-center">
+        <img th:src="@{/site-resources/img/logo.png}" alt="">
+        <span>Quiz Portal</span>
+      </a>
 
-  <!---Explore-Head-Section--->
-  <section id="explore-head-section" class="text-center py-5 ">
-   <div class="container">
-     <div class="row">
-       <div class="col-md-12">
-         <h3 class="display-3">Explore</h3>
-         <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum deserunt sapiente impedit nam, eius, ab quidem nesciunt maxime aliquid. Vitae ducimus a officiis facilis repellat asperiores!</p>
-       </div>
-     </div>
-   </div>
-  </section>
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li sec:authorize="!isAuthenticated()">
+          	<a class="nav-link scrollto" th:href="@{/backend}">Sign In</a>
+          </li>
+          <li sec:authorize="isAuthenticated()">
+          	<a class="nav-link scrollto" th:href="@{/backend}">Dashboard</a>
+          </li>
+          <li sec:authorize="!isAuthenticated()">
+          	<a class="getstarted scrollto" th:href="@{/sign-up}">Get Started</a>
+          </li>
+          <li sec:authorize="isAuthenticated()">
+          	<a class="nav-link scrollto" th:href="@{/logout}">Logout</a>
+          </li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
 
-  <!---Explore-Main-Section--->
-  <section id="explore-main-section" class="bg-light text-dark p-3">
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="hero d-flex align-items-center">
+
     <div class="container">
       <div class="row">
-        <div class="col-lg-6 col-md-12">
-          <img class="img-fluid rounded" th:src="@{../../site-resources/images/explore.png}" alt="explore">
-        </div>
-        <div class=" col-lg-6 col-md-12">
-           <h3>Explore Learn & Connect</h3>
-           <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus ullam, sint officia odio dolorem animi provident ipsa temporibus consectetur asperiores nisi est corporis unde.</p>
-          <div class="d-flex flex-row">
-            <div>
-              <i class="fa fa-check"></i>
+        <div class="col-lg-6 d-flex flex-column justify-content-center">
+          <h1 data-aos="fade-up">Evaluate Your Talent With Us</h1>
+          <h2 data-aos="fade-up" data-aos-delay="400">We provide different types of quizzes where you can participate and evaluate your knowledge.</h2>
+          <div data-aos="fade-up" data-aos-delay="600">
+            <div sec:authorize="!isAuthenticated()" class="text-center text-lg-start">
+              <a th:href="@{/sign-up}" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+                <span>Get Started</span>
+                <i class="bi bi-arrow-right"></i>
+              </a>
             </div>
-            <div class="ml-3">
-              <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis incidunt voluptatibus.</p>
+            <div sec:authorize="isAuthenticated()" class="text-center text-lg-start">
+              <a th:href="@{/backend}" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+                <span>Go To Dashboard</span>
+                <i class="bi bi-arrow-right"></i>
+              </a>
             </div>
           </div>
-
-          <div class="d-flex flex-row">
-            <div>
-              <i class="fa fa-check"></i>
-            </div>
-            <div class="ml-3">
-              <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis incidunt voluptatibus.</p>
-            </div>
-          </div>
-
+        </div>
+        <div class="col-lg-6 hero-img" data-aos="zoom-out" data-aos-delay="200">
+          <img th:src="@{/site-resources/img/hero-img.png}" class="img-fluid" alt="">
         </div>
       </div>
     </div>
-  </section>
 
-  <!---contact-head-section--->
-  <section id="contact-head-section" class="bg-info text-center py-5">
+  </section><!-- End Hero -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
     <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-           <h1 class="display-4">Share</h1>
-           <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum deserunt sapiente impedit nam, eius, ab quidem nesciunt maxime aliquid. Vitae ducimus a officiis facilis repellat asperiores!</p>
-        </div>
+      <div class="copyright">
+        &copy; Copyright <strong><span>- 2023</span></strong>. All Rights Reserved.
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/flexstart-bootstrap-startup-template/ -->
+        Developed by <a href="https://github.com/meheedihasaan">Mehedi Hasan</a>
       </div>
     </div>
-  </section>
+  </footer><!-- End Footer -->
+  
+  <!-- Vendor JS Files -->
+  <script th:src="@{/site-resources/vendor/purecounter/purecounter_vanilla.js}"></script>
+  <script th:src="@{/site-resources/vendor/aos/aos.js}"></script>
+  <script th:src="@{/site-resources/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+  <script th:src="@{/site-resources/vendor/glightbox/js/glightbox.min.js}"></script>
+  <script th:src="@{/site-resources/vendor/isotope-layout/isotope.pkgd.min.js}"></script>
+  <script th:src="@{/site-resources/vendor/swiper/swiper-bundle.min.js}"></script>
+  <script th:src="@{/site-resources/vendor/php-email-form/validate.js}"></script>
 
-  <!---Footer-Section--->
-  <section id="footer" class="text-center py-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <h3>Exam Portal</h3>
-          <p>Copyright &copy; 2019</p>
-          <span> Designed By: <a href="#">Mehedi Hasan</a></span>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- Template Main JS File -->
+  <script th:src="@{/site-resources/js/main.js}"></script>
 
-
-  <script th:src="@{../../site-resources/js/popper.min.js}"></script>
-  <script th:src="@{../../site-resources/js/jquery-3.2.1.slim.min.js}"></script>
-  <script th:src="@{../../site-resources/js/bootstrap.min.js}"></script>
 </body>
+
 </html>

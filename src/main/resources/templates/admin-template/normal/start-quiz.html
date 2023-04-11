@@ -166,11 +166,14 @@
 		    
 	        document.getElementById("show-timer").innerHTML = minutes + ":" + seconds;
 		    
-	        if (time == 00) {	      
+	        if (time == 1) {	      
 	      	    document.getElementById("quiz-form").submit();
 	        }
 	        
 	        time--; 
+	        if(time < 0){
+	        	time = 00;
+	        }
 	        
 	    }, 1000);
 	    

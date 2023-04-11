@@ -65,7 +65,7 @@
                                                     <div class="card-header">
                                                         <div class="d-inline">
 									                        <h5 class="mr-3">About Me</h5>
-									                        <a class="btn btn-sm btn-primary" href="" data-toggle="tooltip" data-placement="top" data-original-title="Edit Profile" aria-describedby="tooltip529394"><i class="ti-pencil-alt"></i></a>
+									                        <a class="btn btn-sm btn-primary d-none" href="" data-toggle="tooltip" data-placement="top" data-original-title="Edit Profile" aria-describedby="tooltip529394"><i class="ti-pencil-alt"></i></a>
 									                    </div>
                                                         <div class="card-header-right">
 															<ul class="list-unstyled card-option">
@@ -95,7 +95,7 @@
 			                                                        </tr>
 			                                                        <tr>
 			                                                            <th scope="row">Role</th>
-			                                                            <td><span th:each="role : ${user.roles}" class="badge badge-primary mr-auto" th:text="${role == 'ROLE_ADMIN' ? 'ADMIN' : 'USER'}"></span></td>
+			                                                            <td><span th:each="role : ${user.roles}" class="badge badge-primary mr-auto" th:text="${role.name == 'ROLE_ADMIN' ? 'ADMIN' : 'USER'}"></span></td>
 			                                                        </tr>
 			                                                    </tbody>
 			                                                </table>

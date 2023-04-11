@@ -65,7 +65,7 @@
                                                 <div class="card">
                                                     <div class="card-header pb-0">
                                                         <div class="d-inline">
-									                        <h5 class="mr-3">Attempted Quizzes</h5>
+									                        <h5 class="mr-3">Your Attempt History</h5>
 									                    </div>
 									                    <div class="card-header-right">
 															<ul class="list-unstyled card-option">
@@ -84,16 +84,20 @@
 			                                                		<tr>
 			                                                			<th scope="row">#</th>
 			                                                            <th scope="row">Date</th>
-			                                                            <th scope="row">Quiz Title</th>
+			                                                            <th scope="row">Quiz Category</th>
+			                                                            <th scope="row">Quiz Title</th>			                                                           
+			                                                            <th scope="row">Total Marks</th>
 			                                                            <th scope="row">Obtained Marks</th>
 			                                                            <th scope="row">Action</th>
 			                                                		</tr>
 			                                                	</thead>
 			                                                    <tbody>
 			                                                        <tr th:each="quizResult, rowCount : ${quizResultPage}">
-			                                                        	<td th:text="${(pageNumber*5) + rowCount.count}"></td>
+			                                                        	<td th:text="${rowCount.count + (pageNumber*pageSize)}"></td>
 			                                                        	<td th:text="${#dates.format(quizResult.date, 'dd-MMM-yyyy')}"></td>
+			                                                        	<td th:text="${quizResult.quiz.category.name}"></td>
 			                                                        	<td th:text="${quizResult.quiz.title}"></td>
+			                                                        	<td th:text="${quizResult.quiz.totalMarks}"></td>
 			                                                        	<td th:text="${quizResult.obtainedMarks}"></td>
 			                                                        	<td>
 			                                                        		<a th:href="@{/backend/attempted-quizzes/{resultId}/{quizTitle} (resultId = ${quizResult.id}, quizTitle = ${quizResult.quiz.title}) }"><i class="ti-eye"></i></a>

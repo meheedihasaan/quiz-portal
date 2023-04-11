@@ -84,7 +84,9 @@
 			                                                		<tr>
 			                                                			<th scope="row">#</th>
 			                                                            <th scope="row">Date</th>
+			                                                            <th scope="row">Quiz Category</th>
 			                                                            <th scope="row">Quiz Title</th>
+			                                                            <th scope="row">Total Marks</th>
 			                                                            <th scope="row">Participant</th>
 			                                                            <th scope="row">Obtained Marks</th>
 			                                                            <th scope="row">Action</th>
@@ -92,9 +94,11 @@
 			                                                	</thead>
 			                                                    <tbody>
 			                                                        <tr th:each="quizResult, rowCount : ${quizResultPage}">
-			                                                        	<td th:text="${(pageNumber*10) + rowCount.count}"></td>
+			                                                        	<td th:text="${rowCount.count+(pageNumber*pageSize)}"></td>
 			                                                        	<td th:text="${#dates.format(quizResult.date, 'dd-MMM-yyyy')}"></td>
+			                                                        	<td th:text="${quizResult.quiz.category.name}"></td>
 			                                                        	<td th:text="${quizResult.quiz.title}"></td>
+			                                                        	<td th:text="${quizResult.quiz.totalMarks}"></td>
 			                                                        	<td th:text="${quizResult.user.name}"></td>
 			                                                        	<td th:text="${quizResult.obtainedMarks}"></td>
 			                                                        	<td>
