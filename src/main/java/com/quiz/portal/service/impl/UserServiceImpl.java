@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
 		user.setEnabled(true);
 		user.setAgreed(true);
 		user.setProfileImage("userProfile.jpg");
-		Role role = this.roleRepository.findById(AppConstant.ADMIN_ID).get();
+		Role role = this.roleRepository.findById(AppConstant.NORMAL_ID).get();
 		user.getRoles().add(role);
 		this.userRepository.save(user);
 	}
