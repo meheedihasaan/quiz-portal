@@ -50,6 +50,7 @@ public class AdminController {
 		User user = this.userService.getUserByEmail(principal.getName());
 		model.addAttribute("totalAttempt", quizResultService.countAttemptsByUser(user.getId()));
 		model.addAttribute("totalParticipant", quizResultService.countParticipants());
+		model.addAttribute("maxAccuracy", quizResultService.getMaxAccuracyByUser(user.getId()));
 		List<Quiz> quizzes = this.quizService.getPublishedQuizzes();
 		model.addAttribute("quizzes", quizzes);
 		return "admin-template/index";

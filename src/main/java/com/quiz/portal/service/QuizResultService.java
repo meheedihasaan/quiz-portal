@@ -18,4 +18,6 @@ public interface QuizResultService {
 	
 	long countParticipants();
 	
+	int getMaxAccuracyByUser(int id);
+	
 }

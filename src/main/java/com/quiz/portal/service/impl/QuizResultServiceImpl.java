@@ -85,5 +85,15 @@ public class QuizResultServiceImpl implements QuizResultService {
 		quizResults.forEach((quizResult)-> set.add(quizResult.getUser().getId()));
 		return set.size();
 	}
+	
+	@Override 
+	public int getMaxAccuracyByUser(int userId) {
+		User user = this.userRepository.findById(userId).orElseThrow(()-> new NotFoundException("User not found!"));
+		QuizResult maxQuizResult = this.quizResultRepository.findFirstByUserOrderByAccuracyDesc(user);
+		if(maxQuizResult == null) {
+			return 0;
+		}
+		return maxQuizResult.getAccuracy();
+	}
 
 }
