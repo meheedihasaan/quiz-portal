@@ -95,7 +95,7 @@
 			                                                        </tr>
 			                                                        <tr>
 			                                                            <th scope="row">Role</th>
-			                                                            <td><span class="badge badge-primary mr-auto" th:text="${role == 'ROLE_ADMIN' ? 'ADMIN' : 'USER'}"></span></td>
+			                                                            <td><span th:each="role : ${user.roles}" class="badge badge-primary mr-auto" th:text="${role == 'ROLE_ADMIN' ? 'ADMIN' : 'USER'}"></span></td>
 			                                                        </tr>
 			                                                    </tbody>
 			                                                </table>

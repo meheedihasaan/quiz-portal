@@ -5,11 +5,10 @@ import java.util.Set;
 
 import com.exam.portal.constsant.EntityConstant;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,7 +28,7 @@ public class Role {
 	
 	private String name;
 	
-	@OneToMany(mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private Set<UserRole> userRoles = new HashSet<>();
+	@ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER)
+	private Set<User> users = new HashSet<>();
 	
 }

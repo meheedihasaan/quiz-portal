@@ -2,7 +2,6 @@ package com.exam.portal.controller.backend;
 
 import java.security.Principal;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.exam.portal.entity.Question;
 import com.exam.portal.entity.QuestionResponse;
 import com.exam.portal.entity.Quiz;
-import com.exam.portal.entity.Role;
 import com.exam.portal.entity.User;
 import com.exam.portal.service.QuestionService;
 import com.exam.portal.service.QuizService;
@@ -40,8 +38,6 @@ public class QuizAttemptController {
 		String username = principal.getName();
 		User user = userService.getUserByEmail(username);
 		model.addAttribute("user", user);
-		List<Role> roles = user.getUserRoles().stream().map(userRole-> userRole.getRole()).collect(Collectors.toList());
-		model.addAttribute("role", roles.get(0).getName());
 	}
 	
 	@PreAuthorize("hasRole('NORMAL')")

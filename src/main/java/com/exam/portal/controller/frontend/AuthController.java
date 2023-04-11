@@ -1,10 +1,6 @@
 package com.exam.portal.controller.frontend;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,10 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.exam.portal.constsant.AppConstant;
-import com.exam.portal.entity.Role;
 import com.exam.portal.entity.User;
-import com.exam.portal.entity.UserRole;
 import com.exam.portal.exception.AlreadyExistsException;
 import com.exam.portal.helper.Message;
 import com.exam.portal.service.UserService;
@@ -29,9 +22,6 @@ public class AuthController {
 	
 	@Autowired
 	private UserService userService;
-	
-	@Autowired
-	private PasswordEncoder passwordEncoder;
 
 	@GetMapping("/sign-up")
 	public String viewSignUpPage(Model model) {
@@ -63,23 +53,8 @@ public class AuthController {
 			if(existingUser != null) {
 				throw new AlreadyExistsException("User already exists with email "+user.getEmail()+".");
 			}
-			else {
-				Role role = new Role();
-				role.setId(AppConstant.NORMAL_ID);
-				role.setName(AppConstant.NORMAL);
-				
-				UserRole userRole = new UserRole();
-				userRole.setUser(user);
-				userRole.setRole(role);
-				
-				Set<UserRole> userRoles = new HashSet<>();
-				userRoles.add(userRole);
-				
-				user.setPassword(passwordEncoder.encode(user.getPassword()));
-				user.setEnabled(true);
-				user.setAgreed(true);
-				user.setProfileImage("userProfile.jpg");
-				this.userService.createUser(user, userRoles);
+			else {				
+				this.userService.signUpUser(user);
 				redirectAttributes.addFlashAttribute("message", new Message("alert-primary", "Congratulations! You are successfully registered."));
 				return "redirect:/sign-up";
 			}
