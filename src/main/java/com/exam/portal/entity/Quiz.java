@@ -46,7 +46,7 @@ public class Quiz {
 	@Range(min = 5, max = 100, message = "Toal questions should be between 5 to 100.")
 	private int totalQuestions;
 	
-	@Range(min = 1, max = 100, message = "Quiz duration should be between 1 to 100 minutes.")
+	@Range(min = 5, max = 100, message = "Quiz duration should be between 1 to 100 minutes.")
 	private int duration;
 	
 	@NotEmpty(message = "Quiz description is required.")
