@@ -7,11 +7,11 @@ public class AppConstant {
 	public static final String ADMIN = "ROLE_ADMIN";
 	public static final String NORMAL = "ROLE_NORMAL";
 	
-	public static final int CATEGORY_PAGE_SIZE = 4;
-	public static final int QUIZ_PAGE_SIZE = 5;
-	public static final int QUESTION_PAGE_SIZE = 25;
-	public static final int QUIZ_RESULT_PAGE_SIZE = 5;
-	public static final int QUIZ_HISTORY_PAGE_SIZE = 5;
+	public static final int CATEGORY_PAGE_SIZE = 10;
+	public static final int QUIZ_PAGE_SIZE = 10;
+	public static final int QUESTION_PAGE_SIZE = 10;
+	public static final int QUIZ_RESULT_PAGE_SIZE = 10;
+	public static final int QUIZ_HISTORY_PAGE_SIZE = 10;
 	
 	public AppConstant() {
 		

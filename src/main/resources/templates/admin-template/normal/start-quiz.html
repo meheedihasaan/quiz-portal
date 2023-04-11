@@ -164,6 +164,11 @@
 		    	seconds = "0"+seconds;
 		    }
 		    
+		    if(minutes < 0 && seconds == 0){
+		    	minutes = "00";
+		    	seconds = "00";
+		    }
+		    
 	        document.getElementById("show-timer").innerHTML = minutes + ":" + seconds;
 		    
 	        if (time == 00) {	      

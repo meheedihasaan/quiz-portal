@@ -42,6 +42,7 @@ public class QuizResultController {
 		Page<QuizResult> quizResultPage = this.quizResultService.getQuizResultsByUser(user.getId(), pageNumber, AppConstant.QUIZ_RESULT_PAGE_SIZE, "date", "desc");
 		model.addAttribute("quizResultPage", quizResultPage);
 		model.addAttribute("currentPage", pageNumber);
+		model.addAttribute("pageSize", AppConstant.QUIZ_RESULT_PAGE_SIZE);
 		model.addAttribute("totalPages", quizResultPage.getTotalPages());
 		return "admin-template/normal/attempted-quizzes";
 	}
@@ -66,6 +67,7 @@ public class QuizResultController {
 		Page<QuizResult> quizResultPage = this.quizResultService.getQuizResults(pageNumber, AppConstant.QUIZ_HISTORY_PAGE_SIZE, "date", "desc");
 		model.addAttribute("quizResultPage", quizResultPage);
 		model.addAttribute("currentPage", pageNumber);
+		model.addAttribute("pageSize", AppConstant.QUIZ_HISTORY_PAGE_SIZE);
 		model.addAttribute("totalPages", quizResultPage.getTotalPages());
 		return "admin-template/admin/quiz-history";
 	}

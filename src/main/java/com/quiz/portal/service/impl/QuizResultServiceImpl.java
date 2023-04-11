@@ -1,5 +1,9 @@
 package com.quiz.portal.service.impl;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -65,6 +69,21 @@ public class QuizResultServiceImpl implements QuizResultService {
 		Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
 		Page<QuizResult> quizResultPage = this.quizResultRepository.findByUser(user, pageable);
 		return quizResultPage;
+	}
+	
+	@Override
+	public long countAttemptsByUser(int userId) {
+		User user = this.userRepository.findById(userId).orElseThrow(()-> new NotFoundException("User not found!"));
+		long totalAttempt = this.quizResultRepository.countByUser(user);
+		return totalAttempt;
+	}
+	
+	@Override
+	public long countParticipants() {
+		List<QuizResult> quizResults = this.quizResultRepository.findAll();
+		Set<Integer> set = new HashSet<>();
+		quizResults.forEach((quizResult)-> set.add(quizResult.getUser().getId()));
+		return set.size();
 	}
 
 }

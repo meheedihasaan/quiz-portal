@@ -52,9 +52,10 @@ public class QuestionController {
 		loadCommonData(model, principal);
 		model.addAttribute("title", "Question");
 		model.addAttribute("quizzesActive", "active");
-		Page<Question> questionPage = this.questionService.getQuestionsByQuiz(quizId, pageNumber, AppConstant.QUESTION_PAGE_SIZE, "content", "asc");
+		Page<Question> questionPage = this.questionService.getQuestionsByQuiz(quizId, pageNumber, AppConstant.QUESTION_PAGE_SIZE, "id", "asc");
 		model.addAttribute("questionPage", questionPage);
 		model.addAttribute("currentPage", pageNumber);
+		model.addAttribute("pageSize", AppConstant.QUESTION_PAGE_SIZE);
 		model.addAttribute("totalPages", questionPage.getTotalPages());
 		Quiz quiz = this.quizService.getQuizById(quizId);
 		model.addAttribute("quiz", quiz);

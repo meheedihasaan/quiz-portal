@@ -14,4 +14,8 @@ public interface QuizResultService {
 	
 	Page<QuizResult> getQuizResultsByUser(int userId, int pageNumber, int pageSize, String sortBy, String sortDirection);
 	
+	long countAttemptsByUser(int userId);
+	
+	long countParticipants();
+	
 }
