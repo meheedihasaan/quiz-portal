@@ -2,7 +2,6 @@ package com.exam.portal.controller.backend;
 
 import java.security.Principal;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,7 +20,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.exam.portal.constsant.AppConstant;
 import com.exam.portal.entity.Category;
 import com.exam.portal.entity.Quiz;
-import com.exam.portal.entity.Role;
 import com.exam.portal.entity.User;
 import com.exam.portal.helper.Message;
 import com.exam.portal.service.CategoryService;
@@ -47,8 +45,6 @@ public class QuizController {
 		String email = principal.getName();
 		User user = this.userService.getUserByEmail(email);
 		model.addAttribute("user", user);
-		List<Role> roles = user.getUserRoles().stream().map(userRole-> userRole.getRole()).collect(Collectors.toList());
-		model.addAttribute("role", roles.get(0).getName());
 	}
 
 	@PreAuthorize("hasRole('ADMIN')")

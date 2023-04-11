@@ -1,5 +1,7 @@
 package com.exam.portal.entity;
 
+import java.util.Date;
+
 import com.exam.portal.constsant.EntityConstant;
 
 import jakarta.persistence.Entity;
@@ -19,17 +21,27 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = EntityConstant.USER_ROLE)
-public class UserRole {
-	
+@Table(name = EntityConstant.QUIZ_RESULT)
+public class QuizResult {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	private User user;
+	
+	private int obtainedMarks;
+	
+	private int attemptedQuestions;
+	
+	private int correctAnswers;
+	
+	private int accuracy;
+	
+	private Date date = new Date();
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	private Role role;
+	private Quiz quiz;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	private User user;
 	
 }

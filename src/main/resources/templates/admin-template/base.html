@@ -172,13 +172,6 @@
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
-                                <li sec:authorize="hasRole('NORMAL')">
-                                    <a href="#">
-                                        <span class="pcoded-micon"><i class="ti-bookmark-alt"></i></span>
-                                        <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Attempted Quizzes</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
                                 <li sec:authorize="hasRole('NORMAL')" th:class="${quizzesActive}">
                                     <a th:href="@{/backend/quizzes/page-0}">
                                         <span class="pcoded-micon"><i class="ti-write"></i></span>
@@ -186,7 +179,20 @@
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
-                                
+                                <li sec:authorize="hasRole('NORMAL')" th:class="${attemptedQuizzesActive}">
+                                    <a th:href="@{/backend/attempted-quizzes/page=0}">
+                                        <span class="pcoded-micon"><i class="ti-bookmark-alt"></i></span>
+                                        <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Attempted Quizzes</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                                <li sec:authorize="hasRole('ADMIN')" th:class="${quizHistoryActive}">
+                                    <a th:href="@{/backend/quiz-history/page=0}">
+                                        <span class="pcoded-micon"><i class="ti-harddrives"></i></span>
+                                        <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Quiz History</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>                              
                             </ul>
                             
                             <div class="pcoded-navigatio-lavel" data-i18n="nav.category.other">Other</div>

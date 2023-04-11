@@ -9,8 +9,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.exam.portal.entity.Role;
 import com.exam.portal.entity.User;
-import com.exam.portal.entity.UserRole;
 
 public class UserDetailsImpl implements UserDetails {
 
@@ -22,10 +22,10 @@ public class UserDetailsImpl implements UserDetails {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		Set<UserRole> userRoles = user.getUserRoles();
-		List<SimpleGrantedAuthority> authorities = userRoles
+		Set<Role> roles = user.getRoles();
+		List<SimpleGrantedAuthority> authorities = roles
 												       .stream()
-												       .map(userRole-> new SimpleGrantedAuthority(userRole.getRole().getName()) )
+												       .map(role-> new SimpleGrantedAuthority(role.getName()) )
 												       .collect(Collectors.toList());
 		return authorities;
 	}

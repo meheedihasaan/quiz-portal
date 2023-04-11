@@ -8,6 +8,7 @@ public class EntityConstant {
 	public static final String CATEGORY = "categories";
 	public static final String QUIZ = "quizzes";
 	public static final String QUESTION = "questions";
+	public static final String QUIZ_RESULT = "quiz_results";
 	
 	public EntityConstant() {
 		
