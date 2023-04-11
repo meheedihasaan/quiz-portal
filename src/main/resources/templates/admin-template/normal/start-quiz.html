@@ -164,18 +164,16 @@
 		    	seconds = "0"+seconds;
 		    }
 		    
-		    if(minutes < 0 && seconds == 0){
-		    	minutes = "00";
-		    	seconds = "00";
-		    }
-		    
 	        document.getElementById("show-timer").innerHTML = minutes + ":" + seconds;
 		    
-	        if (time == 00) {	      
+	        if (time == 1) {	      
 	      	    document.getElementById("quiz-form").submit();
 	        }
 	        
 	        time--; 
+	        if(time < 0){
+	        	time = 00;
+	        }
 	        
 	    }, 1000);
 	    
