@@ -9,7 +9,7 @@ public class HomeController {
 
 	@GetMapping("/")
 	public String home(Model model) {
-		model.addAttribute("title", "Exam Portal");
+		model.addAttribute("title", "Quiz Portal");
 		return "site-template/index";
 	}
 		
