@@ -90,7 +90,7 @@
                            <li>
                                <div class="sidebar_toggle"><a href="javascript:void(0)"><i class="ti-menu"></i></a></div>
                            </li>
-                           <li class="header-search">
+                           <li class="header-search d-none">
                                <div class="main-search morphsearch-search">
                                    <div class="input-group">
                                        <span class="input-group-addon search-close"><i class="ti-close"></i></span>
@@ -113,7 +113,7 @@
                                    <i class="ti-angle-down"></i>
                                </a>
                                <ul class="show-notification profile-notification">
-                                   <li>
+                                   <li class="d-none">
                                        <a href="#!">
                                            <i class="ti-settings"></i> Settings
                                        </a>
@@ -121,12 +121,6 @@
                                    <li>
                                        <a th:href="@{/backend/my-profile/{name} (name = ${user.name}) }">
                                            <i class="ti-user"></i> Profile
-                                       </a>
-                                   </li>
-                                   
-                                   <li>
-                                       <a href="auth-lock-screen.html">
-                                           <i class="ti-lock"></i> Lock Screen
                                        </a>
                                    </li>
                                    <li>
