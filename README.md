@@ -1,1 +1,1 @@
-# exam-portal
+# quiz-portal
