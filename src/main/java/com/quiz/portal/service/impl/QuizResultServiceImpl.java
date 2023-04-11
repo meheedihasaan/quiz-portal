@@ -87,13 +87,19 @@ public class QuizResultServiceImpl implements QuizResultService {
 	}
 	
 	@Override 
-	public int getMaxAccuracyByUser(int userId) {
+	public double getAvgAccuracyByUser(int userId) {
 		User user = this.userRepository.findById(userId).orElseThrow(()-> new NotFoundException("User not found!"));
-		QuizResult maxQuizResult = this.quizResultRepository.findFirstByUserOrderByAccuracyDesc(user);
-		if(maxQuizResult == null) {
-			return 0;
+		double avgAccuracy;
+		try {
+			avgAccuracy = this.quizResultRepository.getAvgAccuracyByUser(user);
 		}
-		return maxQuizResult.getAccuracy();
+		catch (Exception e) {
+			avgAccuracy = 0;
+		}
+		
+		String formattedValue = String.format("%.1f", avgAccuracy);
+		avgAccuracy = Double.parseDouble(formattedValue);
+		return avgAccuracy;
 	}
 
 }

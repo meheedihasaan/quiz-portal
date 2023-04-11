@@ -44,13 +44,20 @@ public class AdminController {
 		loadCommonData(model, principal);
 		model.addAttribute("title", "Dashboard");
 		model.addAttribute("dashboardActive", "active");
-		model.addAttribute("totalCategory", categoryService.countCategories());
-		model.addAttribute("totalQuiz", quizService.countQuizzes());
-		model.addAttribute("totalPublishedQuiz", quizService.countPublishedQuizzes());
+		model.addAttribute("totalCategory", this.categoryService.countCategories());
+		model.addAttribute("totalQuiz", this.quizService.countQuizzes());
+		model.addAttribute("totalPublishedQuiz", this.quizService.countPublishedQuizzes());
 		User user = this.userService.getUserByEmail(principal.getName());
-		model.addAttribute("totalAttempt", quizResultService.countAttemptsByUser(user.getId()));
-		model.addAttribute("totalParticipant", quizResultService.countParticipants());
-		model.addAttribute("maxAccuracy", quizResultService.getMaxAccuracyByUser(user.getId()));
+		model.addAttribute("totalAttempt", this.quizResultService.countAttemptsByUser(user.getId()));
+		model.addAttribute("totalParticipant", this.quizResultService.countParticipants());		
+		double avgAccuracy = quizResultService.getAvgAccuracyByUser(user.getId());
+		if(Math.floor(avgAccuracy) == Math.ceil(avgAccuracy)) {
+			model.addAttribute("avgAccuracy", (int)avgAccuracy);
+		}
+		else {
+			model.addAttribute("avgAccuracy", avgAccuracy);
+		}
+		
 		List<Quiz> quizzes = this.quizService.getPublishedQuizzes();
 		model.addAttribute("quizzes", quizzes);
 		return "admin-template/index";

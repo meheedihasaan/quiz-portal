@@ -3,6 +3,8 @@ package com.quiz.portal.repository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.quiz.portal.entity.QuizResult;
@@ -17,6 +19,7 @@ public interface QuizResultRepository extends JpaRepository<QuizResult, Integer>
 	
 	long countByUser(User user);
 	
-	QuizResult findFirstByUserOrderByAccuracyDesc(User user);
+	@Query("SELECT AVG(c.accuracy) FROM QuizResult c WHERE c.user = :user")
+	double getAvgAccuracyByUser(@Param("user") User user);
 	
 }
