@@ -120,8 +120,8 @@
 				                                                        <p class="m-b-25" th:text="${quiz.description}"></p>                                                      
 				                                                        <hr />
 				                                                        
-				                                                        <a sec:authorize="hasRole('ADMIN')" class="btn btn-primary btn-sm" th:href="@{/backend/quizzes/{id}/{title}/questions/page=0 (id = ${quiz.id}, title = ${quiz.title}) }">View Questions</a>
-				                                                        <a sec:authorize="hasRole('NORMAL')" class="btn btn-primary btn-sm" th:href="@{/backend/quizzes/{id}/{title}/quiz-rules (id = ${quiz.id}, title = ${quiz.title}) }">Attempt Quiz</a>
+				                                                        <a sec:authorize="hasRole('ADMIN')" class="btn btn-primary" th:href="@{/backend/quizzes/{id}/{title}/questions/page=0 (id = ${quiz.id}, title = ${quiz.title}) }">View Questions</a>
+				                                                        <a sec:authorize="hasRole('NORMAL')" class="btn btn-primary" th:href="@{/backend/quizzes/{id}/{title}/quiz-rules (id = ${quiz.id}, title = ${quiz.title}) }">Attempt Quiz</a>
 			                                                    	</div>
 				                                                </div>
 				                                            </div>
