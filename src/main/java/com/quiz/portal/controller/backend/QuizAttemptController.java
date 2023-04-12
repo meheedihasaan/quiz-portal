@@ -94,6 +94,8 @@ public class QuizAttemptController {
 				
 				if(response.getUserAnswer() == null) {
 					attemptedQuestions--;
+					question.setUserAnswer(response.getUserAnswer());
+					questions.add(question);
 					continue;
 				}
 				
