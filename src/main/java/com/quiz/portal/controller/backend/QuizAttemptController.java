@@ -1,6 +1,7 @@
 package com.quiz.portal.controller.backend;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,18 +87,24 @@ public class QuizAttemptController {
 		try {
 			int attemptedQuestions = quiz.getTotalQuestions();
 			int correctAnswers = 0;
+			List<Question> questions = new ArrayList<>();
 			List<Question> responses = questionResponse.getResponses();		
 			for (Question response : responses) {
 				Question question = this.questionService.getQuestionById(response.getId());
 				
 				if(response.getUserAnswer() == null) {
 					attemptedQuestions--;
+					question.setUserAnswer(response.getUserAnswer());
+					questions.add(question);
 					continue;
 				}
 				
 				if(response.getUserAnswer().trim().equals(question.getAnswer().trim())) {
 					correctAnswers++;
 				}
+				
+				question.setUserAnswer(response.getUserAnswer());
+				questions.add(question);
 			}
 			
 			int obtainedMarks = correctAnswers * (quiz.getTotalMarks()/quiz.getTotalQuestions());
@@ -114,6 +121,7 @@ public class QuizAttemptController {
 			QuizResult savedQuizResult = this.quizResultService.createQuizResult(quizResult);
 
 			model.addAttribute("quizResult", savedQuizResult);
+			model.addAttribute("questions", questions);
 			return "admin-template/normal/result";
 		}
 		catch (Exception e) {

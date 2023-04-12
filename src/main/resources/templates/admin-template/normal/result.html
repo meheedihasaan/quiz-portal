@@ -51,6 +51,60 @@
                                     </div>
                                     <!-- Page-header end -->
                                     
+                                    <div class="page-body">
+                                    	<div class="row">
+                                    		<div class="col-sm-12">
+                                    			<div class="card">
+                                    				<div class="card-header pb-0">
+                                    					<div class="d-inline">
+                                    						<h5 class="mr-3">Evaluate Your Answer</h5>
+                                    						<div class="card-header-right">
+																<ul class="list-unstyled card-option">
+																	<li><i class="fa fa-chevron-left"></i></li>
+																	<li><i class="fa fa-window-maximize full-card"></i></li>
+																	<li><i class="fa fa-minus minimize-card"></i></li>
+																	<li><i class="fa fa-refresh reload-card"></i></li>
+																	<li><i class="fa fa-times close-card"></i></li>
+																</ul>
+															</div>
+                                    					</div>
+                                    					<hr />
+                                    				</div>
+                                    				<div class="card-block">
+                                    					<div class="row">                                                 
+				                                            <div th:each="question, rowCount : ${questions}" class="col-md-12">
+				                                                <div class="card order-card" th:classappend="${question.answer != question.userAnswer ? 'text-danger' : 'text-primary'}">
+				                                                    <div class="card-block">
+				                                                    	<p><b><span th:text="${rowCount.count}+'. '"></span><span th:text="${question.content}"></span></b></p>
+				                                                    	<div class="row">
+				                                                    		<div class="col-md-6">
+				                                                    			<p><b>(a) </b> <span th:text="${question.optionA}"></span></p>
+				                                                    		</div>
+				                                                    		<div class="col-md-6">
+				                                                    			<p><b>(b) </b> <span th:text="${question.optionB}"></span></p>
+				                                                    		</div>
+				                                                    		<div class="col-md-6">
+				                                                    			<p><b>(c) </b> <span th:text="${question.optionC}"></span></p>
+				                                                    		</div>
+				                                                    		<div class="col-md-6">
+				                                                    			<p><b>(d) </b> <span th:text="${question.optionD}"></span></p>
+				                                                    		</div>
+				                                                    	</div>
+				                                                    	<hr />
+				                                                    	
+				                                                    	<p><b>Your Answer:</b> <span th:text="${question.userAnswer}"></span></p>
+				                                                    	<p th:if="${question.answer == question.userAnswer}"><b>Verdict:</b> <span class="badge badge-primary">Correct</span></p>
+				                                                    	<p th:unless="${question.answer == question.userAnswer}"><b>Verdict:</b> <span class="badge badge-danger">Wrong</span></p>
+				                                                    </div>
+				                                                </div>
+				                                            </div>
+                                                        </div>
+                                    				</div>
+                                    			</div>
+                                    		</div>
+                                    	</div>
+                                    </div>
+                                    
 
                                     <div class="page-body">
                                         <div class="row">
