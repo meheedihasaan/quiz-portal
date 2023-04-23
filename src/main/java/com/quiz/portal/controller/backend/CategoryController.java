@@ -187,7 +187,7 @@ public class CategoryController {
         }
         catch (Exception e) {
         	redirectAttributes.addFlashAttribute("message", new Message("alert-danger", "Something went wrong! "+e.getMessage()));
-			return "redirect:/backend/categories/page=0";  //When category is not found
+			return "redirect:/backend/categories/page=0";
         }
 	}
 	
