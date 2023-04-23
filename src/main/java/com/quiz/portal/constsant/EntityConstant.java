@@ -1,6 +1,6 @@
 package com.quiz.portal.constsant;
 
-public class EntityConstant {
+public final class EntityConstant {
 	
 	public static final String USER = "users";
 	public static final String ROLE = "roles";
@@ -10,7 +10,7 @@ public class EntityConstant {
 	public static final String QUESTION = "questions";
 	public static final String QUIZ_RESULT = "quiz_results";
 	
-	public EntityConstant() {
+	private EntityConstant() {
 		
 	}
 	
