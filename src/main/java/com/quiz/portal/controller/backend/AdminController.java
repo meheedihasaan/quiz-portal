@@ -40,7 +40,7 @@ public class AdminController {
 	}
 
 	@GetMapping
-	public String dashboard(Model model, Principal principal) {
+	public String viewDashboard(Model model, Principal principal) {
 		loadCommonData(model, principal);
 		model.addAttribute("title", "Dashboard");
 		model.addAttribute("dashboardActive", "active");
