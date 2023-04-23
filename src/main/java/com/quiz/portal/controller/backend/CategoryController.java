@@ -2,7 +2,7 @@ package com.quiz.portal.controller.backend;
 
 import java.security.Principal;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -27,18 +27,16 @@ import com.quiz.portal.service.UserService;
 
 import jakarta.validation.Valid;
 
+@RequiredArgsConstructor
 @Controller
 @RequestMapping("/backend/categories")
 public class CategoryController {
-	
-	@Autowired
-	private CategoryService categoryService;
-	
-	@Autowired
-	private QuizService quizService;
-	
-	@Autowired
-	private UserService userService;
+
+	private final CategoryService categoryService;
+
+	private final QuizService quizService;
+
+	private final UserService userService;
 	
 	public void loadCommonData(Model model, Principal principal) {
 		String email = principal.getName();

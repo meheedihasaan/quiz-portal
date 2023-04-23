@@ -1,6 +1,6 @@
 package com.quiz.portal.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -12,17 +12,15 @@ import com.quiz.portal.repository.RoleRepository;
 import com.quiz.portal.repository.UserRepository;
 import com.quiz.portal.service.UserService;
 
+@RequiredArgsConstructor
 @Service
 public class UserServiceImpl implements UserService {
-	
-	@Autowired
-	private UserRepository userRepository;
-	
-	@Autowired
-	private RoleRepository roleRepository;
-	
-	@Autowired
-	private PasswordEncoder passwordEncoder;
+
+	private final UserRepository userRepository;
+
+	private final RoleRepository roleRepository;
+
+	private final PasswordEncoder passwordEncoder;
 
 	@Override
 	public void createUser(User user) {		

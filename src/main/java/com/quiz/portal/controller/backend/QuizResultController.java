@@ -1,7 +1,8 @@
 package com.quiz.portal.controller.backend;
 
 import java.security.Principal;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -16,15 +17,14 @@ import com.quiz.portal.entity.User;
 import com.quiz.portal.service.QuizResultService;
 import com.quiz.portal.service.UserService;
 
+@RequiredArgsConstructor
 @Controller
 @RequestMapping("/backend")
 public class QuizResultController {
-	
-	@Autowired
-	private UserService userService;
-	
-	@Autowired 
-	private QuizResultService quizResultService;
+
+	private final UserService userService;
+
+	private final QuizResultService quizResultService;
 
 	public void loadCommonData(Model model, Principal principal) {
 		String username = principal.getName();

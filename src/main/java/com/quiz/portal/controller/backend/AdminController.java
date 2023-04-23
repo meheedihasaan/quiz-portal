@@ -3,7 +3,7 @@ package com.quiz.portal.controller.backend;
 import java.security.Principal;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,22 +16,18 @@ import com.quiz.portal.service.QuizResultService;
 import com.quiz.portal.service.QuizService;
 import com.quiz.portal.service.UserService;
 
-
+@RequiredArgsConstructor
 @Controller
 @RequestMapping("/backend")
 public class AdminController {
-	
-	@Autowired
-	private UserService userService;
-	
-	@Autowired
-	private CategoryService categoryService;
-	
-	@Autowired 
-	private QuizService quizService;
-	
-	@Autowired
-	private QuizResultService quizResultService;
+
+	private final UserService userService;
+
+	private final CategoryService categoryService;
+
+	private final QuizService quizService;
+
+	private final QuizResultService quizResultService;
 	
 	public void loadCommonData(Model model, Principal principal) {
 		String email = principal.getName();

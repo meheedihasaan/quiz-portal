@@ -4,7 +4,7 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,21 +24,18 @@ import com.quiz.portal.service.QuizResultService;
 import com.quiz.portal.service.QuizService;
 import com.quiz.portal.service.UserService;
 
+@RequiredArgsConstructor
 @Controller
 @RequestMapping("/backend/quizzes")
 public class QuizAttemptController {
-	
-	@Autowired
-	private UserService userService;
-	
-	@Autowired
-	private QuizService quizService;
-	
-	@Autowired
-	private QuestionService questionService;
-	
-	@Autowired
-	private QuizResultService quizResultService;
+
+	private final UserService userService;
+
+	private final QuizService quizService;
+
+	private final QuestionService questionService;
+
+	private final QuizResultService quizResultService;
 
 	public void loadCommonData(Model model, Principal principal) {
 		String username = principal.getName();

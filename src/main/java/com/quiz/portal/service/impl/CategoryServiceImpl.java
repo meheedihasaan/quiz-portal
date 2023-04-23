@@ -2,7 +2,7 @@ package com.quiz.portal.service.impl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -14,11 +14,11 @@ import com.quiz.portal.exception.NotFoundException;
 import com.quiz.portal.repository.CategoryRepository;
 import com.quiz.portal.service.CategoryService;
 
+@RequiredArgsConstructor
 @Service
 public class CategoryServiceImpl implements CategoryService {
-	
-	@Autowired
-	private CategoryRepository categoryRepository;
+
+	private final CategoryRepository categoryRepository;
 
 	@Override
 	public void createCategory(Category category) {

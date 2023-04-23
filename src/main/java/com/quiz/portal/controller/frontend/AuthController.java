@@ -1,6 +1,6 @@
 package com.quiz.portal.controller.frontend;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,11 +17,11 @@ import com.quiz.portal.service.UserService;
 
 import jakarta.validation.Valid;
 
+@RequiredArgsConstructor
 @Controller
 public class AuthController {
-	
-	@Autowired
-	private UserService userService;
+
+	private final UserService userService;
 
 	@GetMapping("/sign-up")
 	public String viewSignUpPage(Model model) {

@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -18,14 +18,13 @@ import com.quiz.portal.repository.QuizResultRepository;
 import com.quiz.portal.repository.UserRepository;
 import com.quiz.portal.service.QuizResultService;
 
+@RequiredArgsConstructor
 @Service
 public class QuizResultServiceImpl implements QuizResultService {
-	
-	@Autowired
-	private QuizResultRepository quizResultRepository;
-	
-	@Autowired
-	private UserRepository userRepository;
+
+	private final QuizResultRepository quizResultRepository;
+
+	private final UserRepository userRepository;
 
 	@Override
 	public QuizResult createQuizResult(QuizResult quizResult) {

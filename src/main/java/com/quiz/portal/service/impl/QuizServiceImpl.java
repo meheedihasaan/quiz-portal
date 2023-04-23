@@ -2,7 +2,7 @@ package com.quiz.portal.service.impl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -16,14 +16,13 @@ import com.quiz.portal.repository.CategoryRepository;
 import com.quiz.portal.repository.QuizRepository;
 import com.quiz.portal.service.QuizService;
 
+@RequiredArgsConstructor
 @Service
 public class QuizServiceImpl implements QuizService {
-	
-	@Autowired
-	private QuizRepository quizRepository;
-	
-	@Autowired
-	private CategoryRepository categoryRepository;
+
+	private final QuizRepository quizRepository;
+
+	private final CategoryRepository categoryRepository;
 
 	@Override
 	public void createQuiz(Quiz quiz) {
