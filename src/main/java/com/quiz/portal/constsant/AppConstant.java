@@ -1,6 +1,6 @@
 package com.quiz.portal.constsant;
 
-public class AppConstant {
+public final class AppConstant {
 
 	public static final int ADMIN_ID = 101;	
 	public static final int NORMAL_ID = 102;
@@ -13,7 +13,7 @@ public class AppConstant {
 	public static final int QUIZ_RESULT_PAGE_SIZE = 10;
 	public static final int QUIZ_HISTORY_PAGE_SIZE = 10;
 	
-	public AppConstant() {
+	private AppConstant() {
 		
 	}
 	
