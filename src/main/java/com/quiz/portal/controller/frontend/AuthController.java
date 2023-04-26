@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.quiz.portal.entity.User;
-import com.quiz.portal.exception.AlreadyExistsException;
+import com.quiz.portal.exception.custom.AlreadyExistsException;
 import com.quiz.portal.helper.Message;
 import com.quiz.portal.service.UserService;
 

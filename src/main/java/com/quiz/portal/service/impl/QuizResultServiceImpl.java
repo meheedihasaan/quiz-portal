@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.quiz.portal.entity.QuizResult;
 import com.quiz.portal.entity.User;
-import com.quiz.portal.exception.NotFoundException;
+import com.quiz.portal.exception.custom.NotFoundException;
 import com.quiz.portal.repository.QuizResultRepository;
 import com.quiz.portal.repository.UserRepository;
 import com.quiz.portal.service.QuizResultService;

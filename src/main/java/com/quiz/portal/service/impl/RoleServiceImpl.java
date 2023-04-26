@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import com.quiz.portal.entity.Role;
-import com.quiz.portal.exception.NotFoundException;
+import com.quiz.portal.exception.custom.NotFoundException;
 import com.quiz.portal.repository.RoleRepository;
 import com.quiz.portal.service.RoleService;
 

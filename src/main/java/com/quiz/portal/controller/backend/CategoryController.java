@@ -19,7 +19,7 @@ import com.quiz.portal.constsant.AppConstant;
 import com.quiz.portal.entity.Category;
 import com.quiz.portal.entity.Quiz;
 import com.quiz.portal.entity.User;
-import com.quiz.portal.exception.AlreadyExistsException;
+import com.quiz.portal.exception.custom.AlreadyExistsException;
 import com.quiz.portal.helper.Message;
 import com.quiz.portal.service.CategoryService;
 import com.quiz.portal.service.QuizService;

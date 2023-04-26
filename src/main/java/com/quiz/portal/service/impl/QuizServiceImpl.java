@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.quiz.portal.entity.Category;
 import com.quiz.portal.entity.Quiz;
-import com.quiz.portal.exception.NotFoundException;
+import com.quiz.portal.exception.custom.NotFoundException;
 import com.quiz.portal.repository.CategoryRepository;
 import com.quiz.portal.repository.QuizRepository;
 import com.quiz.portal.service.QuizService;

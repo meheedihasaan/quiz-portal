@@ -1,4 +1,4 @@
-package com.quiz.portal.exception;
+package com.quiz.portal.exception.custom;
 
 public class NotFoundException extends RuntimeException {
 
