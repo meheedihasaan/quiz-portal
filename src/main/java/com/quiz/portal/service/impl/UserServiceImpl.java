@@ -29,19 +29,19 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User getUserById(int id) {
-		User user = this.userRepository.findById(id).orElseThrow(()-> new NotFoundException("User not found with id: "+id));
+		User user = this.userRepository.findById(id).orElseThrow(()-> new NotFoundException("User not found."));
 		return user;
 	}
 	
 	@Override
 	public User getUserByEmail(String email) {
-		User user = this.userRepository.findByEmail(email);
+		User user = this.userRepository.findByEmail(email).orElseThrow(()-> new NotFoundException("User not found."));
 		return user;
 	}
 
 	@Override
 	public void deleteUser(int id) {
-		User user = this.userRepository.findById(id).orElseThrow(()-> new NotFoundException("User not found with id: "+id));
+		User user = this.userRepository.findById(id).orElseThrow(()-> new NotFoundException("User not found."));
 		this.userRepository.delete(user);
 	}
 	
