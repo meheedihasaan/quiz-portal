@@ -4,6 +4,9 @@ import java.security.Principal;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,39 +35,25 @@ public class QuizResultController {
 		model.addAttribute("user", user);
 	}
 	
-	@PreAuthorize("hasRole('NORMAL')")
-	@GetMapping("/attempted-quizzes/page={pageNumber}")
-	public String viewAttemptedQuizzesPage(@PathVariable int pageNumber, Model model, Principal principal) {
-		loadCommonData(model, principal);
-		model.addAttribute("title", "Attempted Quizzes");
-		model.addAttribute("attemptedQuizzesActive", "active");
-		User user = this.userService.getUserByEmail(principal.getName());
-		Page<QuizResult> quizResultPage = this.quizResultService.getQuizResultsByUser(user.getId(), pageNumber, AppConstant.QUIZ_RESULT_PAGE_SIZE, "date", "desc");
-		model.addAttribute("quizResultPage", quizResultPage);
-		model.addAttribute("currentPage", pageNumber);
-		model.addAttribute("pageSize", AppConstant.QUIZ_RESULT_PAGE_SIZE);
-		model.addAttribute("totalPages", quizResultPage.getTotalPages());
-		return "admin-template/normal/attempted-quizzes";
-	}
-	
-	@PreAuthorize("hasRole('NORMAL')")
-	@GetMapping("/attempted-quizzes/{resultId}/{quizTitle}")
-	public String viewSingleQuizResultPage(@PathVariable int resultId, Model model, Principal principal) {
-		loadCommonData(model, principal);
-		model.addAttribute("attemptedQuizzesActive", "active");
-		QuizResult quizResult = this.quizResultService.getQuizResultById(resultId);
-		model.addAttribute("title", "Result"+quizResult.getQuiz().getTitle());
-		model.addAttribute("quizResult", quizResult);
-		return "admin-template/normal/single-quiz-result";
-	}
-	
 	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/quiz-history/page={pageNumber}")
 	public String viewQuizHistoryPage(@PathVariable int pageNumber, Model model, Principal principal) {
 		loadCommonData(model, principal);
 		model.addAttribute("title", "Quiz History");
 		model.addAttribute("quizHistoryActive", "active");
-		Page<QuizResult> quizResultPage = this.quizResultService.getQuizResults(pageNumber, AppConstant.QUIZ_HISTORY_PAGE_SIZE, "date", "desc");
+		
+		String SORT_BY = "date";
+		String SORT_DIRECTION = "desc";
+		Sort sort = null;
+		if(SORT_DIRECTION.equalsIgnoreCase("asc")) {
+			sort = Sort.by(SORT_BY).ascending();
+		}
+		else if(SORT_DIRECTION.equalsIgnoreCase("desc")) {
+			sort = Sort.by(SORT_BY).descending();
+		}
+		
+		Pageable pageable = PageRequest.of(pageNumber, AppConstant.QUIZ_HISTORY_PAGE_SIZE, sort);
+		Page<QuizResult> quizResultPage = this.quizResultService.getQuizResults(pageable);
 		model.addAttribute("quizResultPage", quizResultPage);
 		model.addAttribute("currentPage", pageNumber);
 		model.addAttribute("pageSize", AppConstant.QUIZ_HISTORY_PAGE_SIZE);
@@ -81,6 +70,44 @@ public class QuizResultController {
 		model.addAttribute("title", "Result"+quizResult.getQuiz().getTitle());
 		model.addAttribute("quizResult", quizResult);
 		return "admin-template/admin/single-quiz-result";
+	}
+	
+	@PreAuthorize("hasRole('NORMAL')")
+	@GetMapping("/attempted-quizzes/page={pageNumber}")
+	public String viewAttemptedQuizzesPage(@PathVariable int pageNumber, Model model, Principal principal) {
+		loadCommonData(model, principal);
+		model.addAttribute("title", "Attempted Quizzes");
+		model.addAttribute("attemptedQuizzesActive", "active");
+		User user = this.userService.getUserByEmail(principal.getName());
+		
+		String SORT_BY = "date";
+		String SORT_DIRECTION = "desc";
+		Sort sort = null;
+		if(SORT_DIRECTION.equalsIgnoreCase("asc")) {
+			sort = Sort.by(SORT_BY).ascending();
+		}
+		else if(SORT_DIRECTION.equalsIgnoreCase("desc")) {
+			sort = Sort.by(SORT_BY).descending();
+		}
+		
+		Pageable pageable = PageRequest.of(pageNumber, AppConstant.QUIZ_RESULT_PAGE_SIZE, sort);
+		Page<QuizResult> quizResultPage = this.quizResultService.getQuizResultsByUser(user.getId(), pageable);
+		model.addAttribute("quizResultPage", quizResultPage);
+		model.addAttribute("currentPage", pageNumber);
+		model.addAttribute("pageSize", AppConstant.QUIZ_RESULT_PAGE_SIZE);
+		model.addAttribute("totalPages", quizResultPage.getTotalPages());
+		return "admin-template/normal/attempted-quizzes";
+	}
+	
+	@PreAuthorize("hasRole('NORMAL')")
+	@GetMapping("/attempted-quizzes/{resultId}/{quizTitle}")
+	public String viewSingleQuizResultPage(@PathVariable int resultId, Model model, Principal principal) {
+		loadCommonData(model, principal);
+		model.addAttribute("attemptedQuizzesActive", "active");
+		QuizResult quizResult = this.quizResultService.getQuizResultById(resultId);
+		model.addAttribute("title", "Result"+quizResult.getQuiz().getTitle());
+		model.addAttribute("quizResult", quizResult);
+		return "admin-template/normal/single-quiz-result";
 	}
 	
 }

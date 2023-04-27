@@ -6,9 +6,7 @@ import java.util.Set;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.quiz.portal.entity.QuizResult;
@@ -33,16 +31,7 @@ public class QuizResultServiceImpl implements QuizResultService {
 	}
 	
 	@Override
-	public Page<QuizResult> getQuizResults(int pageNumber, int pageSize, String sortBy, String sortDirection) {
-		Sort sort = null;
-		if(sortDirection.equalsIgnoreCase("asc")) {
-			sort = Sort.by(sortBy).ascending();
-		}
-		else if(sortDirection.equalsIgnoreCase("desc")) {
-			sort = Sort.by(sortBy).descending();
-		}
-		
-		Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
+	public Page<QuizResult> getQuizResults(Pageable pageable) {
 		Page<QuizResult> quizResultPage = this.quizResultRepository.findAll(pageable);
 		return quizResultPage;
 	}
@@ -54,18 +43,8 @@ public class QuizResultServiceImpl implements QuizResultService {
 	}
 
 	@Override
-	public Page<QuizResult> getQuizResultsByUser(int userId, int pageNumber, int pageSize, String sortBy, String sortDirection) {
+	public Page<QuizResult> getQuizResultsByUser(int userId, Pageable pageable) {
 		User user = this.userRepository.findById(userId).orElseThrow(()-> new NotFoundException("User not found!"));
-		
-		Sort sort = null;
-		if(sortDirection.equalsIgnoreCase("asc")) {
-			sort = Sort.by(sortBy).ascending();
-		}
-		else if(sortDirection.equalsIgnoreCase("desc")) {
-			sort = Sort.by(sortBy).descending();
-		}
-		
-		Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
 		Page<QuizResult> quizResultPage = this.quizResultRepository.findByUser(user, pageable);
 		return quizResultPage;
 	}
