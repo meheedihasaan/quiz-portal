@@ -4,9 +4,7 @@ import java.util.List;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.quiz.portal.entity.Question;
@@ -30,33 +28,15 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
-	public Page<Question> getQuestions(int pageNumber, int pageSize, String sortBy, String sortDirection) {
-		Sort sort = null;
-		if(sortDirection.equalsIgnoreCase("asc")) {
-			sort = Sort.by(sortBy).ascending();
-		}
-		else if(sortDirection.equalsIgnoreCase("desc")) {
-			sort = Sort.by(sortBy).descending();
-		}
-		
-		Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
+	public Page<Question> getQuestions(Pageable pageable) {
 		Page<Question> questionPage = questionRepository.findAll(pageable);
 		return questionPage;
 	}
 	
 	@Override
-	public Page<Question> getQuestionsByQuiz(int quizId, int pageNumber, int pageSize, String sortBy, String sortDirection){
-		Sort sort = null;
-		if(sortDirection.equalsIgnoreCase("asc")) {
-			sort = Sort.by(sortBy).ascending();
-		}
-		else if(sortDirection.equalsIgnoreCase("desc")) {
-			sort = Sort.by(sortBy).descending();
-		}
-		
+	public Page<Question> getQuestionsByQuiz(int quizId, Pageable pageable){
 		Quiz quiz = this.quizRepository.findById(quizId).orElseThrow(()-> new NotFoundException("Quiz not found."));
-		Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
-		Page<Question> questionPage = questionRepository.findByQuiz(pageable, quiz);
+		Page<Question> questionPage = questionRepository.findByQuiz(quiz, pageable);
 		return questionPage;
 	}
 	

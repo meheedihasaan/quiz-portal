@@ -4,6 +4,9 @@ import java.security.Principal;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,6 +41,11 @@ public class QuestionController {
 
 	private final UserService userService;
 	
+	private final String SORT_BY = "id";
+	
+	private final String SORT_DIRECTION = "asc";
+	
+	
 	public void loadCommonData(Model model, Principal principal) {
 		String username = principal.getName();
 		User user = userService.getUserByEmail(username);
@@ -50,7 +58,17 @@ public class QuestionController {
 		loadCommonData(model, principal);
 		model.addAttribute("title", "Question");
 		model.addAttribute("quizzesActive", "active");
-		Page<Question> questionPage = this.questionService.getQuestionsByQuiz(quizId, pageNumber, AppConstant.QUESTION_PAGE_SIZE, "id", "asc");
+		
+		Sort sort = null;
+		if(SORT_DIRECTION.equalsIgnoreCase("asc")) {
+			sort = Sort.by(SORT_BY).ascending();
+		}
+		else if(SORT_DIRECTION.equalsIgnoreCase("desc")) {
+			sort = Sort.by(SORT_BY).descending();
+		}
+		
+		Pageable pageable = PageRequest.of(pageNumber, AppConstant.QUESTION_PAGE_SIZE, sort);
+		Page<Question> questionPage = this.questionService.getQuestionsByQuiz(quizId, pageable);
 		model.addAttribute("questionPage", questionPage);
 		model.addAttribute("currentPage", pageNumber);
 		model.addAttribute("pageSize", AppConstant.QUESTION_PAGE_SIZE);

@@ -12,10 +12,8 @@ import com.quiz.portal.entity.Quiz;
 
 @Repository
 public interface QuestionRepository extends JpaRepository<Question, Integer> {
-
-	Page<Question> findAll(Pageable pageable);
 	
-	Page<Question> findByQuiz(Pageable pageable, Quiz quiz);
+	Page<Question> findByQuiz(Quiz quiz, Pageable pageable);
 	
 	List<Question> findByQuiz(Quiz quiz);
 	
