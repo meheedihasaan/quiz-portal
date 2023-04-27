@@ -3,6 +3,7 @@ package com.quiz.portal.service;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import com.quiz.portal.entity.Category;
 
@@ -10,7 +11,7 @@ public interface CategoryService {
 	
 	void createCategory(Category category);
 	
-	Page<Category> getCategories(int pageNumber, int pageSize, String sortBy, String sortDirection);
+	Page<Category> getCategories(Pageable pageable);
 	
 	List<Category> getCategoryList();
 	

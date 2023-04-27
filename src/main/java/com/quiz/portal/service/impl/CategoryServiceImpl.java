@@ -4,9 +4,7 @@ import java.util.List;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.quiz.portal.entity.Category;
@@ -26,16 +24,7 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 
 	@Override
-	public Page<Category> getCategories(int pageNumber, int pageSize, String sortBy, String sortDirection) {
-		Sort sort = null;
-		if(sortDirection.equalsIgnoreCase("asc")) {
-			sort = Sort.by(sortBy).ascending();
-		}
-		else if(sortDirection.equalsIgnoreCase("desc")) {
-			sort = Sort.by(sortBy).descending();
-		}
-		
-		Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
+	public Page<Category> getCategories(Pageable pageable) {
 		Page<Category> categoryPage = this.categoryRepository.findAll(pageable);
 		return categoryPage;
 	}

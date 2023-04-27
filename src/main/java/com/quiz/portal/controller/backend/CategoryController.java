@@ -4,6 +4,9 @@ import java.security.Principal;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,6 +41,10 @@ public class CategoryController {
 
 	private final UserService userService;
 	
+	private final String SORT_BY = "name";
+	
+	private final String SORT_DIRECTION = "asc";
+	
 	public void loadCommonData(Model model, Principal principal) {
 		String email = principal.getName();
 		User user = this.userService.getUserByEmail(email);
@@ -49,7 +56,17 @@ public class CategoryController {
 		loadCommonData(model, principal);
 		model.addAttribute("title", "Categories");
 		model.addAttribute("categoriesActive", "active");
-		Page<Category> categoryPage = this.categoryService.getCategories(pageNumber, AppConstant.CATEGORY_PAGE_SIZE, "name", "asc");
+		
+		Sort sort = null;
+		if(SORT_DIRECTION.equalsIgnoreCase("asc")) {
+			sort = Sort.by(SORT_BY).ascending();
+		}
+		else if(SORT_DIRECTION.equalsIgnoreCase("desc")) {
+			sort = Sort.by(SORT_BY).descending();
+		}	
+		
+		Pageable pageable = PageRequest.of(pageNumber, AppConstant.CATEGORY_PAGE_SIZE, sort);
+		Page<Category> categoryPage = this.categoryService.getCategories(pageable);
 		model.addAttribute("categoryPage", categoryPage);
 		model.addAttribute("currentPage", pageNumber);
 		model.addAttribute("totalPages", categoryPage.getTotalPages());
