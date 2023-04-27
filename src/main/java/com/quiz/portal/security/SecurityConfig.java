@@ -1,4 +1,4 @@
-package com.quiz.portal.config;
+package com.quiz.portal.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -10,8 +10,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-
-import com.quiz.portal.security.UserDetailsServiceImpl;
 
 @RequiredArgsConstructor
 @Configuration
@@ -53,6 +51,7 @@ public class SecurityConfig {
 			"/pages/**"
 	};
 
+	@SuppressWarnings("removal")
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
