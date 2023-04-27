@@ -5,6 +5,9 @@ import java.util.List;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,7 +54,19 @@ public class QuizController {
 		loadCommonData(model, principal);
 		model.addAttribute("title", "Quizzes");
 		model.addAttribute("quizzesActive", "active");
-		Page<Quiz> quizPage = this.quizService.getQuizzes(pageNumber, AppConstant.QUIZ_PAGE_SIZE, "title", "asc");
+		
+		String SORT_BY = "title";		
+		String SORT_DIRECTION = "asc";
+		Sort sort = null;
+		if(SORT_DIRECTION.equalsIgnoreCase("asc")) {
+			sort = Sort.by(SORT_BY).ascending();
+		}
+		else if(SORT_DIRECTION.equalsIgnoreCase("desc")) {
+			sort = Sort.by(SORT_BY).descending();
+		}
+		
+		Pageable pageable = PageRequest.of(pageNumber, AppConstant.QUIZ_PAGE_SIZE, sort);
+		Page<Quiz> quizPage = this.quizService.getQuizzes(pageable);
 		model.addAttribute("quizPage", quizPage);
 		model.addAttribute("currentPage", pageNumber);
 		model.addAttribute("totalPages", quizPage.getTotalPages());
@@ -64,7 +79,19 @@ public class QuizController {
 		loadCommonData(model, principal);
 		model.addAttribute("title", "Quizzes");
 		model.addAttribute("quizzesActive", "active");
-		Page<Quiz> quizPage = this.quizService.getPublishedQuizzes(pageNumber, AppConstant.QUIZ_PAGE_SIZE, "title", "asc");
+		
+		String SORT_BY = "title";		
+		String SORT_DIRECTION = "asc";
+		Sort sort = null;
+		if(SORT_DIRECTION.equalsIgnoreCase("asc")) {
+			sort = Sort.by(SORT_BY).ascending();
+		}
+		else if(SORT_DIRECTION.equalsIgnoreCase("desc")) {
+			sort = Sort.by(SORT_BY).descending();
+		}
+		
+		Pageable pageable = PageRequest.of(pageNumber, AppConstant.QUIZ_PAGE_SIZE, sort);
+		Page<Quiz> quizPage = this.quizService.getPublishedQuizzes(pageable);
 		model.addAttribute("quizPage", quizPage);
 		model.addAttribute("currentPage", pageNumber);
 		model.addAttribute("totalPages", quizPage.getTotalPages());

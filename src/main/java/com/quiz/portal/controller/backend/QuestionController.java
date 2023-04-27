@@ -41,11 +41,6 @@ public class QuestionController {
 
 	private final UserService userService;
 	
-	private final String SORT_BY = "id";
-	
-	private final String SORT_DIRECTION = "asc";
-	
-	
 	public void loadCommonData(Model model, Principal principal) {
 		String username = principal.getName();
 		User user = userService.getUserByEmail(username);
@@ -59,6 +54,8 @@ public class QuestionController {
 		model.addAttribute("title", "Question");
 		model.addAttribute("quizzesActive", "active");
 		
+		String SORT_BY = "id";
+		String SORT_DIRECTION = "asc";
 		Sort sort = null;
 		if(SORT_DIRECTION.equalsIgnoreCase("asc")) {
 			sort = Sort.by(SORT_BY).ascending();

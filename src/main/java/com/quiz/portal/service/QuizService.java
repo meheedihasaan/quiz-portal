@@ -3,6 +3,7 @@ package com.quiz.portal.service;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import com.quiz.portal.entity.Quiz;
 
@@ -10,15 +11,15 @@ public interface QuizService {
 
 	void createQuiz(Quiz quiz);
 	
-	Page<Quiz> getQuizzes(int pageNumber, int pageSize, String sortBy, String sortDirection);
+	Page<Quiz> getQuizzes(Pageable pageable);
 	
-	Page<Quiz> getQuizzesByCategory(int categoryId, int pageNumber, int pageSize, String sortBy, String sortDirection);
+	Page<Quiz> getQuizzesByCategory(int categoryId, Pageable pageable);
 	
-	Page<Quiz> getPublishedQuizzes(int pageNumber, int pageSize, String sortBy, String sortDirection);
+	Page<Quiz> getPublishedQuizzes(Pageable pageable);
 	
 	List<Quiz> getPublishedQuizzes();
 	
-	Page<Quiz> getPublishedQuizzesByCategory(int categoryId, int pageNumber, int pageSize, String sortBy, String sortDirection);
+	Page<Quiz> getPublishedQuizzesByCategory(int categoryId, Pageable pageable);
 	
 	Quiz getQuizById(int id);
 	

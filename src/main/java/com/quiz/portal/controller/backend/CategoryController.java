@@ -41,10 +41,6 @@ public class CategoryController {
 
 	private final UserService userService;
 	
-	private final String SORT_BY = "name";
-	
-	private final String SORT_DIRECTION = "asc";
-	
 	public void loadCommonData(Model model, Principal principal) {
 		String email = principal.getName();
 		User user = this.userService.getUserByEmail(email);
@@ -57,6 +53,8 @@ public class CategoryController {
 		model.addAttribute("title", "Categories");
 		model.addAttribute("categoriesActive", "active");
 		
+		String SORT_BY = "name";		
+		String SORT_DIRECTION = "asc";
 		Sort sort = null;
 		if(SORT_DIRECTION.equalsIgnoreCase("asc")) {
 			sort = Sort.by(SORT_BY).ascending();
@@ -81,7 +79,19 @@ public class CategoryController {
 		Category category = this.categoryService.getCategoryById(id);
 		model.addAttribute("category", category);
 		model.addAttribute("title", category.getName());
-		Page<Quiz> quizPage = this.quizService.getQuizzesByCategory(id, pageNumber, AppConstant.QUIZ_PAGE_SIZE, "title", "asc");
+		
+		String SORT_BY = "title";
+		String SORT_DIRECTION = "asc";
+		Sort sort = null;
+		if(SORT_DIRECTION.equalsIgnoreCase("asc")) {
+			sort = Sort.by(SORT_BY).ascending();
+		}
+		else if(SORT_DIRECTION.equalsIgnoreCase("desc")) {
+			sort = Sort.by(SORT_BY).descending();
+		}
+		
+		Pageable pageable = PageRequest.of(pageNumber, AppConstant.QUIZ_PAGE_SIZE, sort);
+		Page<Quiz> quizPage = this.quizService.getQuizzesByCategory(id, pageable);
 		model.addAttribute("quizPage", quizPage);
 		model.addAttribute("currentPage", pageNumber);
 		model.addAttribute("totalPages", quizPage.getTotalPages());
@@ -96,7 +106,19 @@ public class CategoryController {
 		Category category = this.categoryService.getCategoryById(id);
 		model.addAttribute("category", category);
 		model.addAttribute("title", category.getName());
-		Page<Quiz> quizPage = this.quizService.getPublishedQuizzesByCategory(id, pageNumber, AppConstant.QUIZ_PAGE_SIZE, "title", "asc");
+		
+		String SORT_BY = "title";
+		String SORT_DIRECTION = "asc";
+		Sort sort = null;
+		if(SORT_DIRECTION.equalsIgnoreCase("asc")) {
+			sort = Sort.by(SORT_BY).ascending();
+		}
+		else if(SORT_DIRECTION.equalsIgnoreCase("desc")) {
+			sort = Sort.by(SORT_BY).descending();
+		}
+		
+		Pageable pageable = PageRequest.of(pageNumber, AppConstant.QUIZ_PAGE_SIZE, sort);
+		Page<Quiz> quizPage = this.quizService.getPublishedQuizzesByCategory(id, pageable);
 		model.addAttribute("quizPage", quizPage);
 		model.addAttribute("currentPage", pageNumber);
 		model.addAttribute("totalPages", quizPage.getTotalPages());
