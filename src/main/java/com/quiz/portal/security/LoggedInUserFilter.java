@@ -18,7 +18,7 @@ public class LoggedInUserFilter extends OncePerRequestFilter {
 			throws ServletException, IOException {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if(auth != null && auth.isAuthenticated() && request.getRequestURI().equals("/sign-in")) {
-			response.sendRedirect("/backend/dashboard");
+			response.sendRedirect("/backend");
 		}
 		else {
 			filterChain.doFilter(request, response);
