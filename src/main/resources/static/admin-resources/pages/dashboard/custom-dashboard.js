@@ -1,5 +1,5 @@
 'use strict';
-$(document).ready(function() {
+$(document).ready(function () {
 
     // chart js function start
     function buildchartoption() {
@@ -63,12 +63,12 @@ $(document).ready(function() {
             }
         };
     }
+
     // chart js function end
 
 
-
     // statustic start
-    $(function() {
+    $(function () {
         var ctx = document.getElementById('Statistics-chart').getContext("2d");
         var greenline = ctx.createLinearGradient(500, 0, 100, 0);
         greenline.addColorStop(0, '#fd93a8');
@@ -81,20 +81,20 @@ $(document).ready(function() {
             data: {
                 labels: ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL"],
                 datasets: [{
-                        label: "Data",
-                        borderColor: blueline,
-                        pointBorderColor: blueline,
-                        pointBackgroundColor: blueline,
-                        pointHoverBackgroundColor: blueline,
-                        pointHoverBorderColor: blueline,
-                        pointBorderWidth: 10,
-                        pointHoverRadius: 10,
-                        pointHoverBorderWidth: 1,
-                        pointRadius: 0,
-                        fill: false,
-                        borderWidth: 4,
-                        data: [20, 50, 30, 50, 20, 70, 30]
-                    },
+                    label: "Data",
+                    borderColor: blueline,
+                    pointBorderColor: blueline,
+                    pointBackgroundColor: blueline,
+                    pointHoverBackgroundColor: blueline,
+                    pointHoverBorderColor: blueline,
+                    pointBorderWidth: 10,
+                    pointHoverRadius: 10,
+                    pointHoverBorderWidth: 1,
+                    pointRadius: 0,
+                    fill: false,
+                    borderWidth: 4,
+                    data: [20, 50, 30, 50, 20, 70, 30]
+                },
                     {
                         label: "Data",
                         borderColor: greenline,
@@ -221,6 +221,7 @@ $(document).ready(function() {
             }]
         };
     }
+
     var ctx = document.getElementById('seo-card1').getContext("2d");
     var gradientFill = ctx.createLinearGradient(300, 0, 0, 300);
     gradientFill.addColorStop(1, "#b9fdef");

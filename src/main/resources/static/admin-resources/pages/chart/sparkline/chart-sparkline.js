@@ -1,5 +1,5 @@
 "use strict";
-$(document).ready(function() {
+$(document).ready(function () {
     /*Line*/
     $(".linechart").sparkline([5, 6, 7, 9, 9, 5, 3, 2, 2, 4, 6, 7], {
         type: 'line',
@@ -10,7 +10,6 @@ $(document).ready(function() {
         fillColor: 'rgba(251, 154, 125, 0.50)',
         spotColor: '#bdc3c7'
     });
-
 
 
     /*Bar*/
@@ -40,7 +39,7 @@ $(document).ready(function() {
     var mousetravel = 0;
     var mpoints = [];
     var mpoints_max = 30;
-    $('body').mousemove(function(e) {
+    $('body').mousemove(function (e) {
         var mousex = e.pageX;
         var mousey = e.pageY;
         if (lastmousex > -1)
@@ -48,7 +47,7 @@ $(document).ready(function() {
         lastmousex = mousex;
         lastmousey = mousey;
     });
-    var mdraw = function() {
+    var mdraw = function () {
         var md = new Date();
         var timenow = md.getTime();
         if (lastmousetime && lastmousetime != timenow) {
@@ -74,7 +73,6 @@ $(document).ready(function() {
     }
     var mtimer = setTimeout(mdraw, mrefreshinterval); // We could use setInterval instead, but I prefer To Do it this way
     $.sparkline_display_visible();
-
 
 
     /*custom line chart*/

@@ -1,6 +1,6 @@
 'use strict';
 
-$(document).ready(function() {
+$(document).ready(function () {
 
     widgetChart();
 
@@ -35,6 +35,7 @@ $(document).ready(function() {
             data: buildchartjs('rgb(147, 190, 82)', [45, 25, 35, 20, 45, 20, 40, 10, 30, 45], 'rgba(147, 190, 82,0.2)'),
             options: buildchartoption(),
         });
+
         //  viral Own js start
         function buildstackchartjs(a, b, f) {
             if (f == null) {
@@ -149,6 +150,7 @@ $(document).ready(function() {
                 }
             };
         }
+
         var chart = AmCharts.makeChart("statestics-chart", {
             "type": "serial",
             "marginTop": 0,
@@ -266,17 +268,17 @@ $(document).ready(function() {
 
         });
         var updatingChart1 = $("#project-over-sub-1").peity("line", {
-           fill: "rgba(70, 128, 254,0.2)",
-           stroke: "rgb(70, 128, 254)"
-       });
-       var updatingChart1 = $("#project-over-sub-2").peity("line", {
-           fill: "rgba(252, 97, 128,0.2)",
-           stroke: "rgb(252, 97, 128)"
-       });
-       var updatingChart1 = $("#project-over-sub-3").peity("line", {
-           fill: "rgba(255, 182, 77,0.2)",
-           stroke: "rgb(255, 182, 77)"
-       });
+            fill: "rgba(70, 128, 254,0.2)",
+            stroke: "rgb(70, 128, 254)"
+        });
+        var updatingChart1 = $("#project-over-sub-2").peity("line", {
+            fill: "rgba(252, 97, 128,0.2)",
+            stroke: "rgb(252, 97, 128)"
+        });
+        var updatingChart1 = $("#project-over-sub-3").peity("line", {
+            fill: "rgba(255, 182, 77,0.2)",
+            stroke: "rgb(255, 182, 77)"
+        });
         // Project Ovewview Ends
 
     };

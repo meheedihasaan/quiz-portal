@@ -1,7 +1,7 @@
 "use strict";
-$(document).ready(function() {
+$(document).ready(function () {
     //area chart
-    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.load('current', {'packages': ['corechart']});
     google.charts.setOnLoadCallback(drawChart);
 
     function drawChart() {
@@ -14,7 +14,7 @@ $(document).ready(function() {
         ]);
 
         var options = {
-            vAxis: { minValue: 0 },
+            vAxis: {minValue: 0},
             colors: ['#93BE52', '#FE8A7D']
         };
 
@@ -23,7 +23,7 @@ $(document).ready(function() {
     }
 
     //stacking area chart
-    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.load('current', {'packages': ['corechart']});
     google.charts.setOnLoadCallback(drawChartStacking);
 
     function drawChartStacking() {
@@ -38,8 +38,8 @@ $(document).ready(function() {
         var options_stacked = {
             isStacked: true,
             height: 300,
-            legend: { position: 'top', maxLines: 3 },
-            vAxis: { minValue: 0 },
+            legend: {position: 'top', maxLines: 3},
+            vAxis: {minValue: 0},
             colors: ['#93BE52', '#4680ff']
         };
 
@@ -48,7 +48,7 @@ $(document).ready(function() {
     }
 
     //BAR CHART
-    google.charts.load('current', { packages: ['corechart', 'bar'] });
+    google.charts.load('current', {packages: ['corechart', 'bar']});
     google.charts.setOnLoadCallback(drawStacked);
 
     function drawStacked() {
@@ -63,7 +63,7 @@ $(document).ready(function() {
 
         var options = {
             title: 'Population of Largest U.S. Cities',
-            chartArea: { width: '50%' },
+            chartArea: {width: '50%'},
             isStacked: true,
             hAxis: {
                 title: 'Total Population',
@@ -79,7 +79,7 @@ $(document).ready(function() {
     }
 
     //Bubble Chart
-    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.load('current', {'packages': ['corechart']});
     google.charts.setOnLoadCallback(drawSeriesChart);
 
     function drawSeriesChart() {
@@ -101,9 +101,9 @@ $(document).ready(function() {
         var options = {
             title: 'Correlation between life expectancy, fertility rate ' +
                 'and population of some world countries (2010)',
-            hAxis: { title: 'Life Expectancy' },
-            vAxis: { title: 'Fertility Rate' },
-            bubble: { textStyle: { fontSize: 11 } },
+            hAxis: {title: 'Life Expectancy'},
+            vAxis: {title: 'Fertility Rate'},
+            bubble: {textStyle: {fontSize: 11}},
             colors: ['#93BE52', '#4680ff', '#FC6180']
         };
 
@@ -112,7 +112,7 @@ $(document).ready(function() {
     }
 
     //Candlestick charts
-    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.load('current', {'packages': ['corechart']});
     google.charts.setOnLoadCallback(drawChartCandlestick);
 
     function drawChartCandlestick() {
@@ -136,7 +136,7 @@ $(document).ready(function() {
     }
 
     //Waterfall charts
-    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.load('current', {'packages': ['corechart']});
     google.charts.setOnLoadCallback(drawChartWaterfall);
 
     function drawChartWaterfall() {
@@ -151,10 +151,10 @@ $(document).ready(function() {
 
         var optionsWaterfall = {
             legend: 'none',
-            bar: { groupWidth: '100%' }, // Remove space between bars.
+            bar: {groupWidth: '100%'}, // Remove space between bars.
             candlestick: {
-                fallingColor: { strokeWidth: 0, fill: '#69CEC6' }, // red
-                risingColor: { strokeWidth: 0, fill: '#FE8A7D' } // green
+                fallingColor: {strokeWidth: 0, fill: '#69CEC6'}, // red
+                risingColor: {strokeWidth: 0, fill: '#FE8A7D'} // green
             }
         };
 
@@ -163,7 +163,7 @@ $(document).ready(function() {
     }
 
     //Combo chart
-    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.load('current', {'packages': ['corechart']});
     google.charts.setOnLoadCallback(drawVisualization);
 
     function drawVisualization() {
@@ -179,10 +179,10 @@ $(document).ready(function() {
 
         var options = {
             title: 'Monthly Coffee Production by Country',
-            vAxis: { title: 'Cups' },
-            hAxis: { title: 'Month' },
+            vAxis: {title: 'Cups'},
+            hAxis: {title: 'Month'},
             seriesType: 'bars',
-            series: { 5: { type: 'line' } },
+            series: {5: {type: 'line'}},
             colors: ['#93BE52', '#69CEC6', '#FE8A7D', '#4680ff', '#FFB64D', '#FC6180']
         };
 
@@ -191,7 +191,7 @@ $(document).ready(function() {
     }
 
     //Donut chart
-    google.charts.load("current", { packages: ["corechart"] });
+    google.charts.load("current", {packages: ["corechart"]});
     google.charts.setOnLoadCallback(drawChartDonut);
 
     function drawChartDonut() {
@@ -215,7 +215,7 @@ $(document).ready(function() {
     }
 
     //EXPLOADING A SLICE CHART
-    google.charts.load("current", { packages: ["corechart"] });
+    google.charts.load("current", {packages: ["corechart"]});
     google.charts.setOnLoadCallback(drawChartExploading);
 
     function drawChartExploading() {
@@ -243,10 +243,10 @@ $(document).ready(function() {
             legend: 'none',
             pieSliceText: 'label',
             slices: {
-                4: { offset: 0.2 },
-                12: { offset: 0.3 },
-                14: { offset: 0.4 },
-                15: { offset: 0.5 },
+                4: {offset: 0.2},
+                12: {offset: 0.3},
+                14: {offset: 0.4},
+                15: {offset: 0.5},
             },
             colors: ['#93BE52', '#69CEC6', '#FE8A7D', '#4680ff', '#FFB64D', '#FC6180']
         };
@@ -256,7 +256,7 @@ $(document).ready(function() {
     }
 
     //Slice Visibility Threshold
-    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.load('current', {'packages': ['corechart']});
     google.charts.setOnLoadCallback(drawChartThreshold);
 
     function drawChartThreshold() {

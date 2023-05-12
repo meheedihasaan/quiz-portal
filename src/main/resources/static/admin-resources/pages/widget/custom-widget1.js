@@ -1,6 +1,6 @@
 'use strict';
 
-$(document).ready(function() {
+$(document).ready(function () {
     widgetChart();
 
     /*Area chart*/
@@ -113,7 +113,7 @@ $(document).ready(function() {
             nowRange: 75,
             targetRange: 75
         });
-        setTimeout(function() {
+        setTimeout(function () {
             $('.sadball').createWaterBall('updateRange', 23);
             $('.happyball').createWaterBall('updateRange', 75);
         }, 1000);
@@ -377,8 +377,7 @@ $(document).ready(function() {
 });
 
 
-
-$(document).ready(function() {
+$(document).ready(function () {
     widgetChart();
 
     function widgetChart() {
@@ -495,7 +494,7 @@ $(document).ready(function() {
         });
 
 
-        $(function() {
+        $(function () {
             var chart = AmCharts.makeChart("sale-prediction", {
                 "theme": "light",
                 "hideCredits": true,
@@ -572,7 +571,7 @@ $(document).ready(function() {
 
 
         });
-        $(function() {
+        $(function () {
             var chart = AmCharts.makeChart("gap-target", {
                 "theme": "light",
                 "hideCredits": true,
@@ -633,7 +632,7 @@ $(document).ready(function() {
         });
         //  reconded change chart
         $(".dial").knob({
-            draw: function() {
+            draw: function () {
                 // "tron" case
                 if (this.$.data('skin') == 'tron') {
                     this.cursorExt = 0.3;
@@ -665,7 +664,6 @@ $(document).ready(function() {
 });
 
 // ============================= chart.js ================================
-
 
 
 function buildchartjs(a, b, f) {
@@ -756,7 +754,7 @@ function buildchartoption() {
 }
 
 
-$(document).ready(function() {
+$(document).ready(function () {
 
     widgetChart();
 
@@ -780,7 +778,7 @@ $(document).ready(function() {
                 "title": "Sales",
                 "position": "left",
                 "autoGridCount": false,
-                "labelFunction": function(value) {
+                "labelFunction": function (value) {
                     return Math.round(value);
                 }
             }, {
@@ -1211,7 +1209,7 @@ $(document).ready(function() {
 
         //  reconded change chart
         $(".dial").knob({
-            draw: function() {
+            draw: function () {
                 // "tron" case
                 if (this.$.data('skin') == 'tron') {
                     this.cursorExt = 0.3;

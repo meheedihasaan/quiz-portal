@@ -1,10 +1,11 @@
 'use strict';
-$(document).ready(function() {
+$(document).ready(function () {
 
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         areaChart();
     });
+
     /*Area chart*/
     function areaChart() {
         var updatingChart1 = $("span#amount-processed").peity("line", {
@@ -31,7 +32,7 @@ $(document).ready(function() {
                 "title": "Sales",
                 "position": "left",
                 "autoGridCount": false,
-                "labelFunction": function(value) {
+                "labelFunction": function (value) {
                     return Math.round(value);
                 }
             }, {
@@ -225,9 +226,9 @@ $(document).ready(function() {
                 "unlistedAreasAlpha": 0.9
             },
             "zoomControl": {
-              "panControlEnabled": false,
-              "zoomControlEnabled": false,
-              "homeButtonEnabled": false
+                "panControlEnabled": false,
+                "zoomControlEnabled": false,
+                "homeButtonEnabled": false
             },
 
             "backgroundZoomsToTop": true,
@@ -238,7 +239,7 @@ $(document).ready(function() {
         // Project Overview start
 
         //real-time update- 1
-        $(function() {
+        $(function () {
 
             // We use an inline data source in the example, usually data would
             // be fetched from a server
@@ -279,7 +280,7 @@ $(document).ready(function() {
             // Set up the control widget
 
             var updateInterval = 30;
-            $("#updateInterval").val(updateInterval).change(function() {
+            $("#updateInterval").val(updateInterval).change(function () {
                 var v = $(this).val();
                 if (v && !isNaN(+v)) {
                     updateInterval = +v;

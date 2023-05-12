@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequiredArgsConstructor
 public class HomeController {
 
-	@GetMapping("/")
-	public String home(Model model) {
-		model.addAttribute("title", "Quiz Portal");
-		return "site-template/index";
-	}
-		
+    @GetMapping("/")
+    public String home(Model model) {
+        model.addAttribute("title", "Quiz Portal");
+        return "site-template/index";
+    }
+
 }

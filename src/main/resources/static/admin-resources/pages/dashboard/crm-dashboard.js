@@ -1,6 +1,6 @@
 'use strict';
 
-$(document).ready(function() {
+$(document).ready(function () {
 
     widgetChart();
 
@@ -17,7 +17,7 @@ $(document).ready(function() {
                 "title": "Sales",
                 "position": "left",
                 "autoGridCount": false,
-                "labelFunction": function(value) {
+                "labelFunction": function (value) {
                     return Math.round(value);
                 }
             }, {
@@ -164,7 +164,7 @@ $(document).ready(function() {
         });
         // amount-spent start
         //real-time update- 1
-        $(function() {
+        $(function () {
 
             // We use an inline data source in the example, usually data would
             // be fetched from a server
@@ -205,7 +205,7 @@ $(document).ready(function() {
             // Set up the control widget
 
             var updateInterval = 30;
-            $("#updateInterval").val(updateInterval).change(function() {
+            $("#updateInterval").val(updateInterval).change(function () {
                 var v = $(this).val();
                 if (v && !isNaN(+v)) {
                     updateInterval = +v;
@@ -271,104 +271,104 @@ $(document).ready(function() {
         // REVENUE STATUS weekly Ends
 
         var chart = AmCharts.makeChart("last-week-sales", {
-           "type": "serial",
-           "theme": "light",
-           "hideCredits": true,
-           "marginRight": 0,
-           "marginLeft": 0,
-           "autoMarginOffset": 0,
-           "dataDateFormat": "YYYY-MM-DD",
-           "valueAxes": [{
-               "id": "v1",
-               "axisAlpha": 0,
-               "lineAlpha": 0,
-               "gridAlpha": 0,
-               "fontSize": 0,
-               "position": "left",
-               "ignoreAxisWidth": true
-           }],
-           "balloon": {
-               "borderThickness": 1,
-               "shadowAlpha": 0
-           },
-           "graphs": [{
-               "id": "g1",
-               "balloon": {
-                   "drop": true,
-                   "adjustBorderColor": false,
-                   "color": "#FC6180",
-                   "type": "smoothedLine"
-               },
-               "fillAlphas": 0,
-               "bullet": "round",
-               "bulletBorderAlpha": 1,
-               "bulletColor": "#FFFFFF",
-               "bulletSize": 5,
-               "hideBulletsCount": 50,
-               "lineThickness": 2,
-               "type": "smoothedLine",
-               "lineColor": "#fff",
-               "title": "red line",
-               "useLineColorForBulletBorder": true,
-               "valueField": "value",
-               "balloonText": "<span style='font-size:18px;'>[[value]]</span>"
-           }],
-           "chartCursor": {
-               "valueLineEnabled": false,
-               "valueLineBalloonEnabled": false,
-               "cursorAlpha": 0,
-               "cursorColor": "#fff",
-               "color": "#FC6180",
-               "zoomable": false,
-               "valueZoomable": false,
-               "valueLineAlpha": 0.5
-           },
-           "categoryField": "date",
-           "categoryAxis": {
-               "startOnAxis": true,
-               "parseDates": false,
-               "dashLength": 1,
-               "minorGridEnabled": false,
-               "axisAlpha": 0,
-               "parseDates": true,
-               "color": '#fff',
-               "inside": true,
-               "lineAlpha": 0,
-               "gridAlpha": 0,
-           },
-           "dataProvider": [{
-               "date": "2012-11-19",
-               "value": 87
-           }, {
-               "date": "2012-11-20",
-               "value": 83
-           }, {
-               "date": "2012-11-21",
-               "value": 85
-           }, {
-               "date": "2012-11-22",
-               "value": 81
-           }, {
-               "date": "2012-11-23",
-               "value": 82
-           }, {
-               "date": "2012-11-24",
-               "value": 79
-           }, {
-               "date": "2012-11-25",
-               "value": 73
-           }, {
-               "date": "2012-11-26",
-               "value": 75
-           }, {
-               "date": "2012-11-27",
-               "value": 71
-           }]
-       });
+            "type": "serial",
+            "theme": "light",
+            "hideCredits": true,
+            "marginRight": 0,
+            "marginLeft": 0,
+            "autoMarginOffset": 0,
+            "dataDateFormat": "YYYY-MM-DD",
+            "valueAxes": [{
+                "id": "v1",
+                "axisAlpha": 0,
+                "lineAlpha": 0,
+                "gridAlpha": 0,
+                "fontSize": 0,
+                "position": "left",
+                "ignoreAxisWidth": true
+            }],
+            "balloon": {
+                "borderThickness": 1,
+                "shadowAlpha": 0
+            },
+            "graphs": [{
+                "id": "g1",
+                "balloon": {
+                    "drop": true,
+                    "adjustBorderColor": false,
+                    "color": "#FC6180",
+                    "type": "smoothedLine"
+                },
+                "fillAlphas": 0,
+                "bullet": "round",
+                "bulletBorderAlpha": 1,
+                "bulletColor": "#FFFFFF",
+                "bulletSize": 5,
+                "hideBulletsCount": 50,
+                "lineThickness": 2,
+                "type": "smoothedLine",
+                "lineColor": "#fff",
+                "title": "red line",
+                "useLineColorForBulletBorder": true,
+                "valueField": "value",
+                "balloonText": "<span style='font-size:18px;'>[[value]]</span>"
+            }],
+            "chartCursor": {
+                "valueLineEnabled": false,
+                "valueLineBalloonEnabled": false,
+                "cursorAlpha": 0,
+                "cursorColor": "#fff",
+                "color": "#FC6180",
+                "zoomable": false,
+                "valueZoomable": false,
+                "valueLineAlpha": 0.5
+            },
+            "categoryField": "date",
+            "categoryAxis": {
+                "startOnAxis": true,
+                "parseDates": false,
+                "dashLength": 1,
+                "minorGridEnabled": false,
+                "axisAlpha": 0,
+                "parseDates": true,
+                "color": '#fff',
+                "inside": true,
+                "lineAlpha": 0,
+                "gridAlpha": 0,
+            },
+            "dataProvider": [{
+                "date": "2012-11-19",
+                "value": 87
+            }, {
+                "date": "2012-11-20",
+                "value": 83
+            }, {
+                "date": "2012-11-21",
+                "value": 85
+            }, {
+                "date": "2012-11-22",
+                "value": 81
+            }, {
+                "date": "2012-11-23",
+                "value": 82
+            }, {
+                "date": "2012-11-24",
+                "value": 79
+            }, {
+                "date": "2012-11-25",
+                "value": 73
+            }, {
+                "date": "2012-11-26",
+                "value": 75
+            }, {
+                "date": "2012-11-27",
+                "value": 71
+            }]
+        });
 
 
         $(".dial").knob({
-            draw: function() {
+            draw: function () {
                 // "tron" case
                 if (this.$.data('skin') == 'tron') {
                     this.cursorExt = 0.3;
@@ -471,7 +471,7 @@ $(document).ready(function() {
             bindto: '#invoice',
             size: {
                 height: 300,
-                width:220,
+                width: 220,
             },
             data: {
                 columns: [

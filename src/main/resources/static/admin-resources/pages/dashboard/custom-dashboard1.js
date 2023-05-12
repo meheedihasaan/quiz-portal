@@ -1,8 +1,9 @@
 'use strict';
-$(document).ready(function() {
-    $(document).ready(function() {
+$(document).ready(function () {
+    $(document).ready(function () {
         areaChart();
     });
+
     /*Area chart*/
     function areaChart() {
         var chart = AmCharts.makeChart("statestics-chart", {
@@ -109,7 +110,7 @@ $(document).ready(function() {
             }
 
         });
-        $(function() {
+        $(function () {
 
             // We use an inline data source in the example, usually data would
             // be fetched from a server
@@ -150,7 +151,7 @@ $(document).ready(function() {
             // Set up the control widget
 
             var updateInterval = 30;
-            $("#updateInterval").val(updateInterval).change(function() {
+            $("#updateInterval").val(updateInterval).change(function () {
                 var v = $(this).val();
                 if (v && !isNaN(+v)) {
                     updateInterval = +v;
@@ -202,7 +203,7 @@ $(document).ready(function() {
             update();
 
         });
-        $(function() {
+        $(function () {
             var chart = AmCharts.makeChart("gap-target", {
                 "theme": "light",
                 "hideCredits": true,
@@ -263,7 +264,7 @@ $(document).ready(function() {
         });
         //  reconded change chart
         $(".dial").knob({
-            draw: function() {
+            draw: function () {
                 // "tron" case
                 if (this.$.data('skin') == 'tron') {
                     this.cursorExt = 0.3;
@@ -305,7 +306,7 @@ $(document).ready(function() {
                 "title": "Sales",
                 "position": "left",
                 "autoGridCount": false,
-                "labelFunction": function(value) {
+                "labelFunction": function (value) {
                     return Math.round(value);
                 }
             }, {

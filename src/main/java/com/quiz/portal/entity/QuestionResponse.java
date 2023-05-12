@@ -1,12 +1,12 @@
 package com.quiz.portal.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -14,10 +14,10 @@ import lombok.Setter;
 @NoArgsConstructor
 public class QuestionResponse {
 
-	private List<Question> responses = new ArrayList<>();
-	
-	public void add(Question question) {
-		responses.add(question);
-	}
-	
+    private List<Question> responses = new ArrayList<>();
+
+    public void add(Question question) {
+        responses.add(question);
+    }
+
 }

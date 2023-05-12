@@ -1,8 +1,8 @@
 "use strict";
-$(window).on('resize',function() {
+$(window).on('resize', function () {
 
     $(".dial").knob({
-        draw: function() {
+        draw: function () {
             // "tron" case
             if (this.$.data('skin') == 'tron') {
                 this.cursorExt = 0.3;
@@ -34,10 +34,10 @@ $(window).on('resize',function() {
 });
 
 
-$(document).ready(function() {
+$(document).ready(function () {
     /*× Overloaded 'draw' method*/
     $(".dial").knob({
-        draw: function() {
+        draw: function () {
             // "tron" case
             if (this.$.data('skin') == 'tron') {
                 this.cursorExt = 0.3;

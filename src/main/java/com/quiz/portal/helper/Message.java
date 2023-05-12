@@ -11,8 +11,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Message {
 
-	private String type;
-	
-	private String content;
-	
+    private String type;
+
+    private String content;
+
 }

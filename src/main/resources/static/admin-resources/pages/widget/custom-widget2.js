@@ -1,6 +1,6 @@
 'use strict';
 
-$(document).ready(function() {
+$(document).ready(function () {
 
     widgetChart();
 
@@ -59,6 +59,7 @@ $(document).ready(function() {
             data: buildstackchartjs('#fff', [66, 60, 50, 55, 20, 55, 10, 35, 15, 25]),
             options: buildchartoption(),
         });
+
         //  viral Own js start
         function buildstackchartjs(a, b, f) {
             if (f == null) {
@@ -192,7 +193,7 @@ $(document).ready(function() {
                 "title": "Sales",
                 "position": "left",
                 "autoGridCount": false,
-                "labelFunction": function(value) {
+                "labelFunction": function (value) {
                     return Math.round(value);
                 }
             }, {
@@ -670,9 +671,9 @@ $(document).ready(function() {
             refresh: 1000,
             easing: 'linear',
             dash: [{
-                    key: 'min',
-                    duration: 999
-                },
+                key: 'min',
+                duration: 999
+            },
                 {
                     key: 'sec',
                     duration: 949
@@ -1506,7 +1507,7 @@ $(document).ready(function() {
         });
         //  reconded change chart
         $(".dial").knob({
-            draw: function() {
+            draw: function () {
                 // "tron" case
                 if (this.$.data('skin') == 'tron') {
                     this.cursorExt = 0.3;

@@ -1,10 +1,10 @@
 "use strict";
-$(document).ready(function() {
+$(document).ready(function () {
     // $('.theme-loader').addClass('loaded');
     $('.theme-loader').animate({
         'opacity': '0',
     }, 1200);
-    setTimeout(function() {
+    setTimeout(function () {
         $('.theme-loader').remove();
     }, 2000);
     // $('.pcoded').addClass('loaded');
