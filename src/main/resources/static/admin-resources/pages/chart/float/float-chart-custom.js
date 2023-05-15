@@ -1,6 +1,6 @@
 "use strict";
-$(document).ready(function() {
-    $(window).on('resize',function() {
+$(document).ready(function () {
+    $(window).on('resize', function () {
         categoryChart();
         strackingChart();
         pieChart();
@@ -87,7 +87,6 @@ $(document).ready(function() {
     };
 
 
-
     /*pie chart-Withour legend*/
     function pieChart() {
         var data1 = [{
@@ -150,7 +149,7 @@ $(document).ready(function() {
 
 
     //  series types chart
-    $(function() {
+    $(function () {
 
         var d1 = [];
         for (var i = 0; i < 14; i += 0.5) {
@@ -186,23 +185,23 @@ $(document).ready(function() {
 
         $.plot("#seriestypes", [{
             data: d1,
-            lines: { show: true, fill: true }
+            lines: {show: true, fill: true}
         }, {
             data: d2,
-            bars: { show: true }
+            bars: {show: true}
         }, {
             data: d3,
-            points: { show: true }
+            points: {show: true}
         }, {
             data: d4,
-            lines: { show: true }
+            lines: {show: true}
         }, {
             data: d5,
-            lines: { show: true },
-            points: { show: true }
+            lines: {show: true},
+            points: {show: true}
         }, {
             data: d6,
-            lines: { show: true, steps: true }
+            lines: {show: true, steps: true}
         }]);
 
         // Add the Flot version string to the footer
@@ -211,7 +210,7 @@ $(document).ready(function() {
     });
 
     //real-time update
-    $(function() {
+    $(function () {
 
         // We use an inline data source in the example, usually data would
         // be fetched from a server
@@ -253,7 +252,7 @@ $(document).ready(function() {
         // Set up the control widget
 
         var updateInterval = 30;
-        $("#updateInterval").val(updateInterval).change(function() {
+        $("#updateInterval").val(updateInterval).change(function () {
             var v = $(this).val();
             if (v && !isNaN(+v)) {
                 updateInterval = +v;
@@ -297,38 +296,38 @@ $(document).ready(function() {
     });
 
     //Adding Annotations
-    $(function() {
+    $(function () {
 
         var d1 = [];
         for (var i = 0; i < 20; ++i) {
             d1.push([i, Math.sin(i)]);
         }
 
-        var data = [{ data: d1, label: "Pressure", color: "#333" }];
+        var data = [{data: d1, label: "Pressure", color: "#333"}];
 
         var markings = [
-            { color: "#f6f6f6", yaxis: { from: 1 } },
-            { color: "#f6f6f6", yaxis: { to: -1 } },
-            { color: "#000", lineWidth: 1, xaxis: { from: 2, to: 2 } },
-            { color: "#000", lineWidth: 1, xaxis: { from: 8, to: 8 } }
+            {color: "#f6f6f6", yaxis: {from: 1}},
+            {color: "#f6f6f6", yaxis: {to: -1}},
+            {color: "#000", lineWidth: 1, xaxis: {from: 2, to: 2}},
+            {color: "#000", lineWidth: 1, xaxis: {from: 8, to: 8}}
         ];
 
         var placeholder = $("#addingannotation");
 
         var plot = $.plot(placeholder, data, {
-            bars: { show: true, barWidth: 0.5, fill: 0.9 },
-            xaxis: { ticks: [], autoscaleMargin: 0.02 },
-            yaxis: { min: -2, max: 2 },
-            grid: { markings: markings }
+            bars: {show: true, barWidth: 0.5, fill: 0.9},
+            xaxis: {ticks: [], autoscaleMargin: 0.02},
+            yaxis: {min: -2, max: 2},
+            grid: {markings: markings}
         });
 
-        var o = plot.pointOffset({ x: 2, y: -1.2 });
+        var o = plot.pointOffset({x: 2, y: -1.2});
 
         // Append it to the placeholder that Flot already uses for positioning
 
         placeholder.append("<div style='position:absolute;left:" + (o.left + 4) + "px;top:" + o.top + "px;color:#666;font-size:smaller'>Warming up</div>");
 
-        o = plot.pointOffset({ x: 8, y: -1.2 });
+        o = plot.pointOffset({x: 8, y: -1.2});
         placeholder.append("<div style='position:absolute;left:" + (o.left + 4) + "px;top:" + o.top + "px;color:#666;font-size:smaller'>Actual measurements</div>");
 
         // Draw a little arrow on top of the last label to demonstrate canvas
@@ -350,9 +349,10 @@ $(document).ready(function() {
     });
 
     //Percentiles
-    $(function() {
+    $(function () {
 
-        var males = { "8%": [
+        var males = {
+            "8%": [
                 [2, 20.0],
                 [3, 30.3],
                 [4, 40.0],
@@ -504,9 +504,11 @@ $(document).ready(function() {
                 [17, 176.8],
                 [18, 176.4],
                 [19, 177.4]
-            ] };
+            ]
+        };
 
-        var females = { "15%": [
+        var females = {
+            "15%": [
                 [2, 84.8],
                 [3, 93.7],
                 [4, 100.6],
@@ -658,22 +660,71 @@ $(document).ready(function() {
                 [17, 162.2],
                 [18, 162.8],
                 [19, 163.3]
-            ] };
+            ]
+        };
 
         var dataset = [
-            { label: "Female mean", data: females["mean"], lines: { show: true }, color: "rgb(255,50,50)" },
-            { id: "f15%", data: females["1%"], lines: { show: true, lineWidth: 0, fill: false }, color: "rgb(255,50,50)" },
-            { id: "f25%", data: females["3%"], lines: { show: true, lineWidth: 0, fill: 0.2 }, color: "rgb(255,50,50)", fillBetween: "f15%" },
-            { id: "f50%", data: females["6%"], lines: { show: true, lineWidth: 0.5, fill: 0.4, shadowSize: 0 }, color: "rgb(255,50,50)", fillBetween: "f25%" },
-            { id: "f75%", data: females["8%"], lines: { show: true, lineWidth: 0, fill: 0.4 }, color: "rgb(255,50,50)", fillBetween: "f50%" },
-            { id: "f85%", data: females["12%"], lines: { show: true, lineWidth: 0, fill: 0.2 }, color: "rgb(255,50,50)", fillBetween: "f75%" },
+            {label: "Female mean", data: females["mean"], lines: {show: true}, color: "rgb(255,50,50)"},
+            {id: "f15%", data: females["1%"], lines: {show: true, lineWidth: 0, fill: false}, color: "rgb(255,50,50)"},
+            {
+                id: "f25%",
+                data: females["3%"],
+                lines: {show: true, lineWidth: 0, fill: 0.2},
+                color: "rgb(255,50,50)",
+                fillBetween: "f15%"
+            },
+            {
+                id: "f50%",
+                data: females["6%"],
+                lines: {show: true, lineWidth: 0.5, fill: 0.4, shadowSize: 0},
+                color: "rgb(255,50,50)",
+                fillBetween: "f25%"
+            },
+            {
+                id: "f75%",
+                data: females["8%"],
+                lines: {show: true, lineWidth: 0, fill: 0.4},
+                color: "rgb(255,50,50)",
+                fillBetween: "f50%"
+            },
+            {
+                id: "f85%",
+                data: females["12%"],
+                lines: {show: true, lineWidth: 0, fill: 0.2},
+                color: "rgb(255,50,50)",
+                fillBetween: "f75%"
+            },
 
-            { label: "Male mean", data: males["mean"], lines: { show: true }, color: "#01C0C8producxt" },
-            { id: "m15%", data: males["10%"], lines: { show: true, lineWidth: 0, fill: false }, color: "#99E6E9" },
-            { id: "m25%", data: males["12%"], lines: { show: true, lineWidth: 0, fill: 0.2 }, color: "#99E6E9", fillBetween: "m15%" },
-            { id: "m50%", data: males["20%"], lines: { show: true, lineWidth: 0.5, fill: 0.4, shadowSize: 0 }, color: "rgb(50,50,255)", fillBetween: "m25%" },
-            { id: "m75%", data: males["22%"], lines: { show: true, lineWidth: 0, fill: 0.4 }, color: "#99E6E9", fillBetween: "m50%" },
-            { id: "m85%", data: males["25%"], lines: { show: true, lineWidth: 0, fill: 0.2 }, color: "#99E6E9", fillBetween: "m75%" }
+            {label: "Male mean", data: males["mean"], lines: {show: true}, color: "#01C0C8producxt"},
+            {id: "m15%", data: males["10%"], lines: {show: true, lineWidth: 0, fill: false}, color: "#99E6E9"},
+            {
+                id: "m25%",
+                data: males["12%"],
+                lines: {show: true, lineWidth: 0, fill: 0.2},
+                color: "#99E6E9",
+                fillBetween: "m15%"
+            },
+            {
+                id: "m50%",
+                data: males["20%"],
+                lines: {show: true, lineWidth: 0.5, fill: 0.4, shadowSize: 0},
+                color: "rgb(50,50,255)",
+                fillBetween: "m25%"
+            },
+            {
+                id: "m75%",
+                data: males["22%"],
+                lines: {show: true, lineWidth: 0, fill: 0.4},
+                color: "#99E6E9",
+                fillBetween: "m50%"
+            },
+            {
+                id: "m85%",
+                data: males["25%"],
+                lines: {show: true, lineWidth: 0, fill: 0.2},
+                color: "#99E6E9",
+                fillBetween: "m75%"
+            }
         ];
 
         $.plot($("#percentiles"), dataset, {
@@ -681,7 +732,7 @@ $(document).ready(function() {
                 tickDecimals: 0
             },
             yaxis: {
-                tickFormatter: function(v) {
+                tickFormatter: function (v) {
                     return v + " cm";
                 }
             },

@@ -1,12 +1,14 @@
 .pcoded {
-    &[layout-type="dark"] {
-        color: #fff;
-        .card{
-            background-color: $dark-layout-color;
-        }
-        .pcoded-main-container{
-            background-color: lighten($dark-layout-color,10%);
-        }
+  &[layout-type="dark"] {
+    color: #fff;
 
+    .card {
+      background-color: $dark-layout-color;
     }
+
+    .pcoded-main-container {
+      background-color: lighten($dark-layout-color, 10%);
+    }
+
+  }
 }

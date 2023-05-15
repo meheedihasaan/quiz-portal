@@ -1,16 +1,16 @@
 'use strict';
-$(document).ready(function() {
+$(document).ready(function () {
 
-    $(window).on('resize', function() {
+    $(window).on('resize', function () {
         dashboardEcharts();
     });
 
-    $(window).on('load', function() {
+    $(window).on('load', function () {
         dashboardEcharts();
     });
 
 
-    $("a[data-toggle=\"tab\"]").on("shown.bs.tab", function(e) {
+    $("a[data-toggle=\"tab\"]").on("shown.bs.tab", function (e) {
         dashboardEcharts();
     });
 
@@ -21,7 +21,7 @@ $(document).ready(function() {
         var option = {
             tooltip: {
                 trigger: 'item',
-                formatter: function(params) {
+                formatter: function (params) {
                     var date = new Date(params.value[0]);
                     var data = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes();
                     return data + '<br/>' + params.value[1] + ', ' + params.value[2];
@@ -49,10 +49,10 @@ $(document).ready(function() {
                 name: 'Profit',
                 type: 'line',
                 showAllSymbol: true,
-                symbolSize: function(value) {
+                symbolSize: function (value) {
                     return Math.round(value[2] / 10) + 2;
                 },
-                data: (function() {
+                data: (function () {
                     var d = [];
                     var len = 0;
                     var now = new Date();
@@ -82,12 +82,12 @@ $(document).ready(function() {
         "searching": true
     });
 
-    $("a[data-toggle=\"tab\"]").on("shown.bs.tab", function(e) {
+    $("a[data-toggle=\"tab\"]").on("shown.bs.tab", function (e) {
         $($.fn.dataTable.tables(true)).DataTable().columns.adjust();
     });
 
     //    Edit information of user-profile
-    $('#edit-cancel').on('click', function() {
+    $('#edit-cancel').on('click', function () {
 
         var c = $('#edit-btn').find("i");
         c.removeClass('icofont-close');
@@ -100,7 +100,7 @@ $(document).ready(function() {
     $('.edit-info').hide();
 
 
-    $('#edit-btn').on('click', function() {
+    $('#edit-btn').on('click', function () {
         var b = $(this).find("i");
         var edit_class = b.attr('class');
         if (edit_class == 'icofont icofont-edit') {
@@ -280,7 +280,7 @@ $(document).ready(function() {
     });
 
     //edit user description
-    $('#edit-cancel-btn').on('click', function() {
+    $('#edit-cancel-btn').on('click', function () {
 
         var c = $('#edit-info-btn').find("i");
         c.removeClass('icofont-close');
@@ -293,7 +293,7 @@ $(document).ready(function() {
     $('.edit-desc').hide();
 
 
-    $('#edit-info-btn').on('click', function() {
+    $('#edit-info-btn').on('click', function () {
         var b = $(this).find("i");
         var edit_class = b.attr('class');
         if (edit_class == 'icofont icofont-edit') {
@@ -395,10 +395,10 @@ $(document).ready(function() {
             previous: "icofont icofont-rounded-left"
         }
     });
-    $("#datetimepicker6").on("dp.change", function(e) {
+    $("#datetimepicker6").on("dp.change", function (e) {
         $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
     });
-    $("#datetimepicker7").on("dp.change", function(e) {
+    $("#datetimepicker7").on("dp.change", function (e) {
         $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
     });
 
@@ -452,12 +452,12 @@ $(document).ready(function() {
     });
 
     $('input[name="daterange"]').daterangepicker();
-    $(function() {
+    $(function () {
         $('input[name="birthdate"]').daterangepicker({
                 singleDatePicker: true,
                 showDropdowns: true
             },
-            function(start, end, label) {
+            function (start, end, label) {
                 var years = moment().diff(start, 'years');
                 alert("You are " + years + " years old.");
             });
@@ -468,11 +468,11 @@ $(document).ready(function() {
                 cancelLabel: 'Clear'
             }
         });
-        $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
+        $('input[name="datefilter"]').on('apply.daterangepicker', function (ev, picker) {
             $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
         });
 
-        $('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
+        $('input[name="datefilter"]').on('cancel.daterangepicker', function (ev, picker) {
             $(this).val('');
         });
 
@@ -499,7 +499,7 @@ $(document).ready(function() {
 
         cb(start, end);
 
-        $('.input-daterange input').each(function() {
+        $('.input-daterange input').each(function () {
             $(this).datepicker();
         });
         $('#sandbox-container .input-daterange').datepicker({
@@ -541,7 +541,7 @@ $(document).ready(function() {
             "startDate": "11/30/2016",
             "endDate": "12/06/2016",
             "drops": "up"
-        }, function(start, end, label) {
+        }, function (start, end, label) {
             console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
         });
     });
@@ -549,17 +549,15 @@ $(document).ready(function() {
     // Date-dropper js start
 
     $("#dropper-default").dateDropper({
-            dropWidth: 200,
-            dropPrimaryColor: "#1abc9c",
-            dropBorder: "1px solid #1abc9c"
-        }),
+        dropWidth: 200,
+        dropPrimaryColor: "#1abc9c",
+        dropBorder: "1px solid #1abc9c"
+    }),
         // Date-dropper js end
 
 
-
-
         // Mini-color js start
-        $('.demo').each(function() {
+        $('.demo').each(function () {
             //
             // Dear reader, it's actually very easy to initialize MiniColors. For example:
             //
@@ -579,7 +577,7 @@ $(document).ready(function() {
                 opacity: $(this).attr('data-opacity'),
                 position: $(this).attr('data-position') || 'bottom left',
                 swatches: $(this).attr('data-swatches') ? $(this).attr('data-swatches').split('|') : [],
-                change: function(value, opacity) {
+                change: function (value, opacity) {
                     if (!value) return;
                     if (opacity) value += ', ' + opacity;
                     if (typeof console === 'object') {

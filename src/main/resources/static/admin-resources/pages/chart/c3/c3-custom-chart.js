@@ -1,5 +1,5 @@
 "use strict";
-$(document).ready(function() {
+$(document).ready(function () {
     /*Stacked Area Chart*/
     var chart = c3.generate({
         bindto: '#chart',
@@ -44,12 +44,12 @@ $(document).ready(function() {
         },
         grid: {
             y: {
-                lines: [{ value: 0 }]
+                lines: [{value: 0}]
             }
         }
     });
 
-    setTimeout(function() {
+    setTimeout(function () {
         chart.groups([
             ['data1', 'data2', 'data3']
         ])
@@ -63,7 +63,7 @@ $(document).ready(function() {
     //     });
     // }, 1500);
 
-    setTimeout(function() {
+    setTimeout(function () {
         chart.groups([
             ['data1', 'data2', 'data3', 'data4']
         ])
@@ -79,9 +79,15 @@ $(document).ready(function() {
                 ['data2', 120],
             ],
             type: 'donut',
-            onclick: function(d, i) { console.log("onclick", d, i); },
-            onmouseover: function(d, i) { console.log("onmouseover", d, i); },
-            onmouseout: function(d, i) { console.log("onmouseout", d, i); }
+            onclick: function (d, i) {
+                console.log("onclick", d, i);
+            },
+            onmouseover: function (d, i) {
+                console.log("onmouseover", d, i);
+            },
+            onmouseout: function (d, i) {
+                console.log("onmouseout", d, i);
+            }
         },
         color: {
             pattern: ['#4C5667', '#1ABC9C']
@@ -101,7 +107,7 @@ $(document).ready(function() {
      });
      }, 1500);*/
 
-    setTimeout(function() {
+    setTimeout(function () {
         chart.unload({
             ids: 'data1'
         });
@@ -121,9 +127,15 @@ $(document).ready(function() {
                 ['data2', 120],
             ],
             type: 'pie',
-            onclick: function(d, i) { console.log("onclick", d, i); },
-            onmouseover: function(d, i) { console.log("onmouseover", d, i); },
-            onmouseout: function(d, i) { console.log("onmouseout", d, i); }
+            onclick: function (d, i) {
+                console.log("onclick", d, i);
+            },
+            onmouseover: function (d, i) {
+                console.log("onmouseover", d, i);
+            },
+            onmouseout: function (d, i) {
+                console.log("onmouseout", d, i);
+            }
         },
         color: {
             pattern: ['#1ABC9C', '#4C5667', '#00C292', '#AB8CE4']
@@ -140,7 +152,7 @@ $(document).ready(function() {
      });
      }, 1500);*/
 
-    setTimeout(function() {
+    setTimeout(function () {
         chart.unload({
             ids: 'data1'
         });
@@ -202,8 +214,8 @@ $(document).ready(function() {
     /*Scatter Plot Chart Chart*/
     var chart = c3.generate({
         bindto: '#chart6',
-        size: { height: 400 },
-        color: { pattern: ["#2C3E50", "#1ABC9C"] },
+        size: {height: 400},
+        color: {pattern: ["#2C3E50", "#1ABC9C"]},
         data: {
             xs: {
                 setosa: 'setosa_x',
@@ -231,7 +243,7 @@ $(document).ready(function() {
         }
     });
 
-    setTimeout(function() {
+    setTimeout(function () {
         chart.load({
             xs: {
                 virginica: 'virginica_x'
@@ -243,13 +255,13 @@ $(document).ready(function() {
         });
     }, 1000);
 
-    setTimeout(function() {
+    setTimeout(function () {
         chart.unload({
             ids: 'setosa'
         });
     }, 2000);
 
-    setTimeout(function() {
+    setTimeout(function () {
         chart.load({
             columns: [
                 ["virginica", 0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.3, 0.2, 0.2, 0.1, 0.2, 0.2, 0.1, 0.1, 0.2, 0.4, 0.4, 0.3, 0.3, 0.3, 0.2, 0.4, 0.2, 0.5, 0.2, 0.2, 0.4, 0.2, 0.2, 0.2, 0.2, 0.4, 0.1, 0.2, 0.2, 0.2, 0.2, 0.1, 0.2, 0.2, 0.3, 0.3, 0.2, 0.6, 0.4, 0.3, 0.2, 0.2, 0.2, 0.2],

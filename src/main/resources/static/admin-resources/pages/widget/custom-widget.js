@@ -1,7 +1,8 @@
 'use strict';
 
-$(document).ready(function() {
+$(document).ready(function () {
     widgetChart();
+
     function widgetChart() {
         $("#tax-deduction-graph").peity("bar", {
             fill: ["#4680ff"],
@@ -19,10 +20,10 @@ $(document).ready(function() {
             "hideCredits": true,
             "marginRight": 0,
             "dataProvider": [{
-                    "year": "Jan",
-                    "v1": 0.5,
-                    "v2": 1.5
-                },
+                "year": "Jan",
+                "v1": 0.5,
+                "v2": 1.5
+            },
                 {
                     "year": "Feb",
                     "v1": 1.5,
@@ -119,21 +120,21 @@ $(document).ready(function() {
             "categoryAxis": {
                 "gridPosition": "start",
                 "position": "left",
-                "lineAlpha":0,
-                "gridAlpha":0,
+                "lineAlpha": 0,
+                "gridAlpha": 0,
             },
             "trendLines": [],
             "graphs": [{
-                    "balloonText": "Income:[[value]]",
-                    "fillAlphas": 0.8,
-                    "id": "AmGraph-1",
-                    "lineAlpha": 0.2,
-                    "title": "Income",
-                    "type": "column",
-                    // "fillColors": "#9BBAFF",
-                    "fillColors": "#fc6180",
-                    "valueField": "income"
-                },
+                "balloonText": "Income:[[value]]",
+                "fillAlphas": 0.8,
+                "id": "AmGraph-1",
+                "lineAlpha": 0.2,
+                "title": "Income",
+                "type": "column",
+                // "fillColors": "#9BBAFF",
+                "fillColors": "#fc6180",
+                "valueField": "income"
+            },
                 {
                     "balloonText": "Expenses:[[value]]",
                     "fillAlphas": 0.8,
@@ -155,10 +156,10 @@ $(document).ready(function() {
             "balloon": {},
             "titles": [],
             "dataProvider": [{
-                    "year": 2005,
-                    "income": 23.5,
-                    "expenses": 18.1
-                },
+                "year": 2005,
+                "income": 23.5,
+                "expenses": 18.1
+            },
                 {
                     "year": 2006,
                     "income": 26.2,
@@ -244,9 +245,7 @@ $(document).ready(function() {
                         threshold: 1
                     }
                 },
-                legend: {
-
-                }
+                legend: {}
             });
         }
 
@@ -391,7 +390,7 @@ $(document).ready(function() {
         });
 
 
-        $(function() {
+        $(function () {
             var chart = AmCharts.makeChart("sale-prediction", {
                 "theme": "light",
                 "hideCredits": true,
@@ -468,7 +467,7 @@ $(document).ready(function() {
 
 
         });
-        $(function() {
+        $(function () {
             var chart = AmCharts.makeChart("gap-target", {
                 "theme": "light",
                 "hideCredits": true,
@@ -529,7 +528,7 @@ $(document).ready(function() {
         });
         //  reconded change chart
         $(".dial").knob({
-            draw: function() {
+            draw: function () {
                 // "tron" case
                 if (this.$.data('skin') == 'tron') {
                     this.cursorExt = 0.3;
@@ -559,7 +558,6 @@ $(document).ready(function() {
         });
     };
 });
-
 
 
 // ============================= chart.js ================================

@@ -1,5 +1,5 @@
 "use strict";
-$(document).ready(function() {
+$(document).ready(function () {
     var chartData = [{
         "date": "2012-01-01",
         "distance": 227,
@@ -72,7 +72,7 @@ $(document).ready(function() {
         "date": "2012-01-11"
     }, {
         "date": "2012-01-12"
-    }, ];
+    },];
     var chart = AmCharts.makeChart("chartdiv", {
         type: "serial",
         theme: "light",

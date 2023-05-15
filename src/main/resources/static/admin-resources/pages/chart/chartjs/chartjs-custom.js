@@ -1,5 +1,5 @@
 "use strict";
-$(document).ready(function(){
+$(document).ready(function () {
     /*Doughnut chart*/
     var ctx = document.getElementById("myChart");
     var data = {

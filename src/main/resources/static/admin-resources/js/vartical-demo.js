@@ -15,12 +15,12 @@ $(document).ready(function () {
         ActiveItemStyle: 'style0',
         ItemBorder: true,
         ItemBorderStyle: 'none',
-        NavbarImage:'false',
-        ActiveNavbarImage:'img1',
+        NavbarImage: 'false',
+        ActiveNavbarImage: 'img1',
         SubItemBorder: true,
         DropDownIconStyle: 'style3', // Value should be style1,style2,style3
         menutype: 'st2', // Value should be st1, st2, st3, st4, st5 menu icon style
-        layouttype:'light', // Value should be light / dark
+        layouttype: 'light', // Value should be light / dark
         FixedNavbarPosition: true,  // Value should be true / false  header postion
         FixedHeaderPosition: true,  // Value should be true / false  sidebar menu postion
         collapseVerticalLeftHeader: true,

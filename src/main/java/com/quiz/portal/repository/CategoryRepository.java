@@ -1,17 +1,14 @@
 package com.quiz.portal.repository;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import com.quiz.portal.entity.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.quiz.portal.entity.Category;
+import java.util.UUID;
 
 @Repository
-public interface CategoryRepository extends JpaRepository<Category, Integer> {
-	
-	Page<Category> findAll(Pageable pageable);
+public interface CategoryRepository extends JpaRepository<Category, UUID> {
 
-	Category findByNameIgnoreCase(String name);
-	
+    Category findByNameIgnoreCase(String name);
+
 }

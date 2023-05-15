@@ -1,6 +1,6 @@
 'use strict';
 
-$(document).ready(function() {
+$(document).ready(function () {
     widgetChart();
 
     /*Area chart*/
@@ -17,7 +17,7 @@ $(document).ready(function() {
                 "title": "Visitors",
                 "position": "left",
                 "autoGridCount": false,
-                "labelFunction": function(value) {
+                "labelFunction": function (value) {
                     return "$" + Math.round(value) + "M";
                 }
             }, {
@@ -201,7 +201,7 @@ $(document).ready(function() {
         });
 
         //statetics-graph1 update 2
-        $(function() {
+        $(function () {
 
             // We use an inline data source in the example, usually data would
             // be fetched from a server
@@ -242,7 +242,7 @@ $(document).ready(function() {
             // Set up the control widget
 
             var updateInterval = 30;
-            $("#updateInterval").val(updateInterval).change(function() {
+            $("#updateInterval").val(updateInterval).change(function () {
                 var v = $(this).val();
                 if (v && !isNaN(+v)) {
                     updateInterval = +v;
@@ -299,7 +299,7 @@ $(document).ready(function() {
         });
 
         //real-time update 3
-        $(function() {
+        $(function () {
 
             // We use an inline data source in the example, usually data would
             // be fetched from a server
@@ -340,7 +340,7 @@ $(document).ready(function() {
             // Set up the control widget
 
             var updateInterval = 30;
-            $("#updateInterval").val(updateInterval).change(function() {
+            $("#updateInterval").val(updateInterval).change(function () {
                 var v = $(this).val();
                 if (v && !isNaN(+v)) {
                     updateInterval = +v;
@@ -396,7 +396,7 @@ $(document).ready(function() {
             update();
 
         });
-        $(function() {
+        $(function () {
 
             // We use an inline data source in the example, usually data would
             // be fetched from a server
@@ -437,7 +437,7 @@ $(document).ready(function() {
             // Set up the control widget
 
             var updateInterval = 30;
-            $("#updateInterval").val(updateInterval).change(function() {
+            $("#updateInterval").val(updateInterval).change(function () {
                 var v = $(this).val();
                 if (v && !isNaN(+v)) {
                     updateInterval = +v;
@@ -491,7 +491,7 @@ $(document).ready(function() {
         });
 
         //real-time update 4
-        $(function() {
+        $(function () {
 
             // We use an inline data source in the example, usually data would
             // be fetched from a server
@@ -532,7 +532,7 @@ $(document).ready(function() {
             // Set up the control widget
 
             var updateInterval = 30;
-            $("#updateInterval").val(updateInterval).change(function() {
+            $("#updateInterval").val(updateInterval).change(function () {
                 var v = $(this).val();
                 if (v && !isNaN(+v)) {
                     updateInterval = +v;
@@ -572,6 +572,7 @@ $(document).ready(function() {
                     show: false,
                 }
             });
+
             //STATETICS chart Ends
             function update() {
 
@@ -686,8 +687,7 @@ $(document).ready(function() {
 });
 
 
-
-$(document).ready(function() {
+$(document).ready(function () {
     widgetChart();
 
     function widgetChart() {
@@ -697,10 +697,10 @@ $(document).ready(function() {
             "hideCredits": true,
             "marginRight": 0,
             "dataProvider": [{
-                    "year": "Jan",
-                    "v1": 0.5,
-                    "v2": 1.5
-                },
+                "year": "Jan",
+                "v1": 0.5,
+                "v2": 1.5
+            },
                 {
                     "year": "Feb",
                     "v1": 1.5,
@@ -802,16 +802,16 @@ $(document).ready(function() {
             },
             "trendLines": [],
             "graphs": [{
-                    "balloonText": "Income:[[value]]",
-                    "fillAlphas": 0.8,
-                    "id": "AmGraph-1",
-                    "lineAlpha": 0.2,
-                    "title": "Income",
-                    "type": "column",
-                    // "fillColors": "#9BBAFF",
-                    "fillColors": "#fc6180",
-                    "valueField": "income"
-                },
+                "balloonText": "Income:[[value]]",
+                "fillAlphas": 0.8,
+                "id": "AmGraph-1",
+                "lineAlpha": 0.2,
+                "title": "Income",
+                "type": "column",
+                // "fillColors": "#9BBAFF",
+                "fillColors": "#fc6180",
+                "valueField": "income"
+            },
                 {
                     "balloonText": "Expenses:[[value]]",
                     "fillAlphas": 0.8,
@@ -833,10 +833,10 @@ $(document).ready(function() {
             "balloon": {},
             "titles": [],
             "dataProvider": [{
-                    "year": 2005,
-                    "income": 23.5,
-                    "expenses": 18.1
-                },
+                "year": 2005,
+                "income": 23.5,
+                "expenses": 18.1
+            },
                 {
                     "year": 2006,
                     "income": 26.2,
@@ -928,7 +928,6 @@ $(document).ready(function() {
 
     };
 });
-
 
 
 // ============================= chart.js ================================
@@ -1081,7 +1080,7 @@ function buildchartoption() {
 }
 
 
-$(document).ready(function() {
+$(document).ready(function () {
 
     widgetChart();
 
@@ -1136,6 +1135,7 @@ $(document).ready(function() {
             data: buildstackchartjs('#fff', [66, 60, 50, 55, 20, 55, 10, 35, 15, 25]),
             options: buildchartoption(),
         });
+
         //  viral Own js start
         function buildstackchartjs(a, b, f) {
             if (f == null) {
@@ -1309,7 +1309,6 @@ $(document).ready(function() {
             }
         });
 
-    
 
         // website Traffic
         var chart = AmCharts.makeChart("website-traffic", {

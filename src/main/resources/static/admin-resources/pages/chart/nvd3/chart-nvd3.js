@@ -1,11 +1,11 @@
 "use strict";
-$(document).ready(function() {
+$(document).ready(function () {
     /*Line chart start*/
     /*These lines are all chart setup.  Pick and choose which chart features you want to utilize. */
-    nv.addGraph(function() {
+    nv.addGraph(function () {
         var chart = nv.models.lineChart()
-            .margin({ top: 50 })
-            .margin({ left: 100 }) //Adjust chart margins to give the x-axis some breathing room.
+            .margin({top: 50})
+            .margin({left: 100}) //Adjust chart margins to give the x-axis some breathing room.
             .useInteractiveGuideline(true) //We want nice looking tooltips and a guideline!
             .showLegend(true) //Show the legend, allowing users to turn on/off line series.
             .showYAxis(true) //Show the y-axis
@@ -28,9 +28,12 @@ $(document).ready(function() {
             .call(chart); //Finally, render the chart!
 
         //Update the chart when window resizes.
-        nv.utils.windowResize(function() { chart.update() });
+        nv.utils.windowResize(function () {
+            chart.update()
+        });
         return chart;
     });
+
     /**************************************
      * Simple test data generator
      */
@@ -41,9 +44,9 @@ $(document).ready(function() {
 
         //Data is represented as an array of {x,y} pairs.
         for (var i = 0; i < 100; i++) {
-            sin.push({ x: i, y: Math.sin(i / 10) });
-            sin2.push({ x: i, y: Math.sin(i / 10) * 0.25 + 0.5 });
-            cos.push({ x: i, y: .5 * Math.cos(i / 10) });
+            sin.push({x: i, y: Math.sin(i / 10)});
+            sin2.push({x: i, y: Math.sin(i / 10) * 0.25 + 0.5});
+            cos.push({x: i, y: .5 * Math.cos(i / 10)});
         }
 
         //Line chart data should be sent as an array of series objects.
@@ -64,15 +67,17 @@ $(document).ready(function() {
     }
 
     /*Bar chart start*/
-    nv.addGraph(function() {
+    nv.addGraph(function () {
         var chart = nv.models.discreteBarChart()
-            .x(function(d) {
-                return d.label }) //Specify the data accessors.
-            .y(function(d) {
-                return d.value })
-            .staggerLabels(true) //Too many bars and not enough room? Try staggering labels.
-            /* .tooltips(false)    */ //Don't show tooltips
-            .showValues(true) //...instead, show the bar value right on top of each bar.
+                .x(function (d) {
+                    return d.label
+                }) //Specify the data accessors.
+                .y(function (d) {
+                    return d.value
+                })
+                .staggerLabels(true) //Too many bars and not enough room? Try staggering labels.
+                /* .tooltips(false)    */ //Don't show tooltips
+                .showValues(true) //...instead, show the bar value right on top of each bar.
             /*     .transitionDuration(350)*/
         ;
 
@@ -127,7 +132,7 @@ $(document).ready(function() {
     }
 
     /*Scatter chart start*/
-    nv.addGraph(function() {
+    nv.addGraph(function () {
         var chart = nv.models.scatterChart()
             .showDistX(true) //showDist, when true, will display those little distribution lines on the axis.
             .showDistY(true)
@@ -175,7 +180,7 @@ $(document).ready(function() {
                     x: random(),
                     y: random(),
                     size: Math.random() //Configure the size of each scatter point
-                        ,
+                    ,
                     shape: (Math.random() > 0.95) ? shapes[j % 6] : "circle" //Configure the shape of each scatter point.
                 });
             }
@@ -185,7 +190,7 @@ $(document).ready(function() {
     }
 
     /*Stacked/Group chart start*/
-    nv.addGraph(function() {
+    nv.addGraph(function () {
         var chart = nv.models.multiBarChart()
             /* .transitionDuration(350)*/
             .reduceXTicks(true) //If 'false', every single x-axis tick label will be rendered.
@@ -211,7 +216,7 @@ $(document).ready(function() {
 
     //Generate some nice data.
     function stackedData() {
-        return stream_layers(3, 10 + Math.random() * 100, .1).map(function(data, i) {
+        return stream_layers(3, 10 + Math.random() * 100, .1).map(function (data, i) {
             return {
                 key: 'Stream #' + i,
                 values: data
@@ -220,12 +225,14 @@ $(document).ready(function() {
     }
 
     /*Regular Pie chart*/
-    nv.addGraph(function() {
+    nv.addGraph(function () {
         var chart = nv.models.pieChart()
-            .x(function(d) {
-                return d.label })
-            .y(function(d) {
-                return d.value })
+            .x(function (d) {
+                return d.label
+            })
+            .y(function (d) {
+                return d.value
+            })
             .showLabels(true);
 
         d3.select("#piechart").append('svg')
@@ -236,12 +243,14 @@ $(document).ready(function() {
         return chart;
     });
     //Donut chart example
-    nv.addGraph(function() {
+    nv.addGraph(function () {
         var chart = nv.models.pieChart()
-            .x(function(d) {
-                return d.label })
-            .y(function(d) {
-                return d.value })
+            .x(function (d) {
+                return d.label
+            })
+            .y(function (d) {
+                return d.value
+            })
             .showLabels(true) //Display pie labels
             .labelThreshold(.05) //Configure the minimum slice size for labels to show up
             .labelType("percent") //Configure what type of data to show in the label. Can be "key", "value" or "percent"
@@ -256,6 +265,7 @@ $(document).ready(function() {
         nv.utils.windowResize(chart.update);
         return chart;
     });
+
     //Pie chart example data. Note how there is only a single array of key-value pairs.
     function pieData() {
         return [{
