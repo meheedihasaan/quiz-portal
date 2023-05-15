@@ -32,7 +32,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public Boolean existsRoleByRoleName(String roleName) {
-        return this.roleRepository.ExistsRoleByRoleName(roleName);
+        return this.roleRepository.existsRoleByRoleName(roleName);
     }
 
 }

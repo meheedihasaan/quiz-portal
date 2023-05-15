@@ -24,7 +24,7 @@ public class UserDetailsImpl implements UserDetails {
         Set<Role> roles = user.getRoles();
         List<SimpleGrantedAuthority> authorities = roles
                 .stream()
-                .map(role -> new SimpleGrantedAuthority(role.getName()))
+                .map(role -> new SimpleGrantedAuthority(role.getRoleName()))
                 .collect(Collectors.toList());
         return authorities;
     }

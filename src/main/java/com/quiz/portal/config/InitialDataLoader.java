@@ -38,7 +38,7 @@ public class InitialDataLoader implements ApplicationListener<ApplicationContext
             roleService.createRole(normalRole);
         }
 
-        if(!isSuperAdminExists(AppConstant.SUPER_ADMIN_EMAIL)) {
+        if(!isSuperAdminAlreadyExists(AppConstant.SUPER_ADMIN_EMAIL)) {
             Set<Role> roles = new HashSet<>();
             roles.add(roleService.getRoleByRoleName(AppConstant.ADMIN));
 
@@ -58,7 +58,7 @@ public class InitialDataLoader implements ApplicationListener<ApplicationContext
         return roleService.existsRoleByRoleName(roleName);
     }
 
-    private Boolean isSuperAdminExists(String email) {
+    private Boolean isSuperAdminAlreadyExists(String email) {
         return userService.existsUserByEmail(email);
     }
 
