@@ -4,7 +4,6 @@ This is a simple Quiz Portal site where you can evaluate your knowledge on diffe
 
 Live: https://quiz-portal.up.railway.app/
 
-Credentials:
 * Admin - Email: mahin@gmail.com, Password: mahin
 * User  - Email: ahsan@gmail.com, Password: ahsan
 
