@@ -22,21 +22,18 @@ import java.util.UUID;
 @Table(name = EntityConstant.CATEGORY)
 public class Category {
 
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
+    Set<Quiz> quizzes = new LinkedHashSet<>();
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-
     @NotEmpty(message = "Category name is required.")
     @Size(min = 4, max = 50, message = "Category name should be between 4 to 50 characters.")
     private String name;
-
     @Column(length = 5000)
     @NotEmpty(message = "Category Description is required.")
     @Size(min = 10, max = 5000, message = "Category description should be between 10 to 5000 characters.")
     private String description;
-
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonIgnore
-    Set<Quiz> quizzes = new LinkedHashSet<>();
 
 }

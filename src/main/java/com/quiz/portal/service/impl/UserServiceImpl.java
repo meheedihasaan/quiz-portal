@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Set;
 import java.util.UUID;
 
 @RequiredArgsConstructor
@@ -40,6 +41,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserByEmail(String email) {
+        return this.userRepository.findByEmail(email).orElse(null);
+    }
+
+    @Override
+    public User getUserByEmailWithException(String email) {
         return this.userRepository.findByEmail(email).orElseThrow(() -> new NotFoundException("User not found."));
     }
 
@@ -61,7 +67,7 @@ public class UserServiceImpl implements UserService {
         user.setAgreed(true);
         user.setProfileImage("userProfile.jpg");
         Role role = this.roleRepository.findByRoleName(AppConstant.NORMAL).orElseThrow(()-> new NotFoundException("Role not found!"));
-        user.getRoles().add(role);
+        user.setRoles(Set.of(role));
         this.userRepository.save(user);
     }
 

@@ -14,6 +14,8 @@ public interface UserService {
 
     User getUserByEmail(String email);
 
+    User getUserByEmailWithException(String email);
+
     Boolean existsUserByEmail(String email);
 
     void deleteUser(UUID id);

@@ -38,7 +38,7 @@ public class CategoryController {
 
     public void loadCommonData(Model model, Principal principal) {
         String email = principal.getName();
-        User user = this.userService.getUserByEmail(email);
+        User user = this.userService.getUserByEmailWithException(email);
         model.addAttribute("user", user);
     }
 

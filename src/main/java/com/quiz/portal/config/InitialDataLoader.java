@@ -26,19 +26,19 @@ public class InitialDataLoader implements ApplicationListener<ApplicationContext
 
     @Override
     public void onApplicationEvent(ApplicationContextEvent event) {
-        if(!isRoleAlreadyExists(AppConstant.ADMIN)) {
+        if (!isRoleAlreadyExists(AppConstant.ADMIN)) {
             Role adminRole = new Role();
             adminRole.setRoleName(AppConstant.ADMIN);
             roleService.createRole(adminRole);
         }
 
-        if(!isRoleAlreadyExists(AppConstant.NORMAL)) {
+        if (!isRoleAlreadyExists(AppConstant.NORMAL)) {
             Role normalRole = new Role();
             normalRole.setRoleName(AppConstant.NORMAL);
             roleService.createRole(normalRole);
         }
 
-        if(!isSuperAdminAlreadyExists(AppConstant.SUPER_ADMIN_EMAIL)) {
+        if (!isSuperAdminAlreadyExists(AppConstant.SUPER_ADMIN_EMAIL)) {
             Set<Role> roles = new HashSet<>();
             roles.add(roleService.getRoleByRoleName(AppConstant.ADMIN));
 

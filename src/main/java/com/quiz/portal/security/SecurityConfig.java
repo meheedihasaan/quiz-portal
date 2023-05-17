@@ -18,6 +18,23 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 
+    public static final String[] STATIC_RESOURCES = {
+            "/admin-resources/**",
+            "/site-resources/**",
+            "/css/**",
+            "/js/**",
+            "/images/**",
+            "/images-old/**",
+            "/scss/**",
+            "/icon/**",
+            "/pages/**"
+    };
+    private static final String[] PUBLIC_URLS = {
+            "/",
+            "/sign-up",
+            "/sign-in",
+            "/sign-in/process"
+    };
     private final UserDetailsServiceImpl userDetailsService;
 
     @Bean
@@ -32,25 +49,6 @@ public class SecurityConfig {
         provider.setPasswordEncoder(passwordEncoder());
         return provider;
     }
-
-    private static final String[] PUBLIC_URLS = {
-            "/",
-            "/sign-up",
-            "/sign-in",
-            "/sign-in/process"
-    };
-
-    public static final String[] STATIC_RESOURCES = {
-            "/admin-resources/**",
-            "/site-resources/**",
-            "/css/**",
-            "/js/**",
-            "/images/**",
-            "/images-old/**",
-            "/scss/**",
-            "/icon/**",
-            "/pages/**"
-    };
 
     @SuppressWarnings("removal")
     @Bean

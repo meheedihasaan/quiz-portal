@@ -1,7 +1,5 @@
 package com.quiz.portal.constsant;
 
-import java.util.UUID;
-
 public final class AppConstant {
 
     public static final String SUPER_ADMIN_NAME = "Super Admin";

@@ -31,7 +31,7 @@ public class QuizResultController {
 
     public void loadCommonData(Model model, Principal principal) {
         String username = principal.getName();
-        User user = userService.getUserByEmail(username);
+        User user = userService.getUserByEmailWithException(username);
         model.addAttribute("user", user);
     }
 
@@ -77,7 +77,7 @@ public class QuizResultController {
         loadCommonData(model, principal);
         model.addAttribute("title", "Attempted Quizzes");
         model.addAttribute("attemptedQuizzesActive", "active");
-        User user = this.userService.getUserByEmail(principal.getName());
+        User user = this.userService.getUserByEmailWithException(principal.getName());
 
         String SORT_BY = "date";
         String SORT_DIRECTION = "desc";

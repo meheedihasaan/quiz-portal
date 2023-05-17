@@ -37,7 +37,7 @@ public class QuestionController {
 
     public void loadCommonData(Model model, Principal principal) {
         String username = principal.getName();
-        User user = userService.getUserByEmail(username);
+        User user = userService.getUserByEmailWithException(username);
         model.addAttribute("user", user);
     }
 
