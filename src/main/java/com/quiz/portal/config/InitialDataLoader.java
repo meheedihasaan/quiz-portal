@@ -5,14 +5,13 @@ import com.quiz.portal.entity.Role;
 import com.quiz.portal.entity.User;
 import com.quiz.portal.service.RoleService;
 import com.quiz.portal.service.UserService;
+import java.util.HashSet;
+import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ApplicationContextEvent;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-
-import java.util.HashSet;
-import java.util.Set;
 
 @RequiredArgsConstructor
 @Component
@@ -61,5 +60,4 @@ public class InitialDataLoader implements ApplicationListener<ApplicationContext
     private Boolean isSuperAdminAlreadyExists(String email) {
         return userService.existsUserByEmail(email);
     }
-
 }

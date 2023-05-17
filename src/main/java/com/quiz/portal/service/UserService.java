@@ -1,7 +1,6 @@
 package com.quiz.portal.service;
 
 import com.quiz.portal.entity.User;
-
 import java.util.UUID;
 
 public interface UserService {
@@ -21,5 +20,4 @@ public interface UserService {
     void deleteUser(UUID id);
 
     void signUpUser(User user);
-
 }

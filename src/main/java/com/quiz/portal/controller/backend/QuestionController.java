@@ -9,6 +9,8 @@ import com.quiz.portal.service.QuestionService;
 import com.quiz.portal.service.QuizService;
 import com.quiz.portal.service.UserService;
 import jakarta.validation.Valid;
+import java.security.Principal;
+import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,9 +22,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.security.Principal;
-import java.util.UUID;
 
 @RequiredArgsConstructor
 @Controller
@@ -43,7 +42,8 @@ public class QuestionController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/quizzes/{quizId}/{title}/questions/page={pageNumber}")
-    public String viewQuestionsPage(@PathVariable UUID quizId, @PathVariable int pageNumber, Model model, Principal principal) {
+    public String viewQuestionsPage(
+            @PathVariable UUID quizId, @PathVariable int pageNumber, Model model, Principal principal) {
         loadCommonData(model, principal);
         model.addAttribute("title", "Question");
         model.addAttribute("quizzesActive", "active");
@@ -70,17 +70,19 @@ public class QuestionController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/quizzes/{quizId}/{title}/questions/add")
-    public String viewNewQuestionPage(@PathVariable UUID quizId, Model model, Principal principal, RedirectAttributes redirectAttributes) {
+    public String viewNewQuestionPage(
+            @PathVariable UUID quizId, Model model, Principal principal, RedirectAttributes redirectAttributes) {
         loadCommonData(model, principal);
         model.addAttribute("title", "Add Question");
         model.addAttribute("quizzesActive", "active");
 
-        //To check if quiz is exist or not
+        // To check if quiz is exist or not
         Quiz quiz;
         try {
             quiz = this.quizService.getQuizById(quizId);
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("message", new Message("alert-danger", "Something went wrong! " + e.getMessage()));
+            redirectAttributes.addFlashAttribute(
+                    "message", new Message("alert-danger", "Something went wrong! " + e.getMessage()));
             return "redirect:/backend/quizzes/page=0";
         }
 
@@ -98,8 +100,7 @@ public class QuestionController {
             @RequestParam(value = "answer") String answer,
             RedirectAttributes redirectAttributes,
             Model model,
-            Principal principal
-    ) {
+            Principal principal) {
         loadCommonData(model, principal);
         model.addAttribute("title", "Add Question");
         model.addAttribute("quizzesActive", "active");
@@ -128,23 +129,31 @@ public class QuestionController {
             question.setAnswer(answer);
             question.setQuiz(quiz);
             this.questionService.createQuestion(question);
-            redirectAttributes.addFlashAttribute("message", new Message("alert-primary", "Question is added successfully."));
+            redirectAttributes.addFlashAttribute(
+                    "message", new Message("alert-primary", "Question is added successfully."));
             return "redirect:/backend/quizzes/" + quiz.getId() + "/" + quiz.getTitle() + "/questions/add";
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("message", new Message("alert-primary", "Something went wrong! " + e.getMessage()));
+            redirectAttributes.addFlashAttribute(
+                    "message", new Message("alert-primary", "Something went wrong! " + e.getMessage()));
             return "redirect:/backend/quizzes/" + quiz.getId() + "/" + quiz.getTitle() + "/questions/add";
         }
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/quizzes/{quizId}/{title}/questions/{questionId}/edit")
-    public String viewEditQuestionPage(@PathVariable UUID quizId, @PathVariable UUID questionId, Model model, Principal principal, RedirectAttributes redirectAttributes) {
-        //To check if quiz is exist or not
+    public String viewEditQuestionPage(
+            @PathVariable UUID quizId,
+            @PathVariable UUID questionId,
+            Model model,
+            Principal principal,
+            RedirectAttributes redirectAttributes) {
+        // To check if quiz is exist or not
         Quiz quiz;
         try {
             quiz = this.quizService.getQuizById(quizId);
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("message", new Message("alert-danger", "Something went wrong! " + e.getMessage()));
+            redirectAttributes.addFlashAttribute(
+                    "message", new Message("alert-danger", "Something went wrong! " + e.getMessage()));
             return "redirect:/backend/quizzes/page=0";
         }
 
@@ -157,7 +166,8 @@ public class QuestionController {
             model.addAttribute("question", question);
             return "admin-template/admin/edit-question";
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("message", new Message("alert-danger", "Something went wrong! " + e.getMessage()));
+            redirectAttributes.addFlashAttribute(
+                    "message", new Message("alert-danger", "Something went wrong! " + e.getMessage()));
             return "redirect:/backend/quizzes/" + quiz.getId() + "/" + quiz.getTitle() + "/questions/page=0";
         }
     }
@@ -172,8 +182,7 @@ public class QuestionController {
             @RequestParam(value = "answer") String answer,
             RedirectAttributes redirectAttributes,
             Model model,
-            Principal principal
-    ) {
+            Principal principal) {
         loadCommonData(model, principal);
         model.addAttribute("title", "Edit Question");
         model.addAttribute("quizzesActive", "active");
@@ -189,7 +198,7 @@ public class QuestionController {
                 answer = question.getOptionD();
             }
 
-            question.setAnswer(answer);  //To pass the answer in view if there is validation error
+            question.setAnswer(answer); // To pass the answer in view if there is validation error
 
             if (bindingResult.hasErrors()) {
                 model.addAttribute("question", question);
@@ -198,27 +207,31 @@ public class QuestionController {
             }
 
             this.questionService.updateQuestion(question.getId(), question);
-            redirectAttributes.addFlashAttribute("message", new Message("alert-primary", "Question is updated successfully."));
+            redirectAttributes.addFlashAttribute(
+                    "message", new Message("alert-primary", "Question is updated successfully."));
             return "redirect:/backend/quizzes/" + quiz.getId() + "/" + quiz.getTitle() + "/questions/page=0";
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("message", new Message("alert-danger", "Something went wrong! " + e.getMessage()));
+            redirectAttributes.addFlashAttribute(
+                    "message", new Message("alert-danger", "Something went wrong! " + e.getMessage()));
             return "redirect:/backend/quizzes/" + quiz.getId() + "/" + quiz.getTitle() + "/questions/page=0";
         }
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/quizzes/{quizId}/{title}/questions/{questionId}/delete")
-    public String deleteQuestion(@PathVariable UUID quizId, @PathVariable UUID questionId, RedirectAttributes redirectAttributes) {
+    public String deleteQuestion(
+            @PathVariable UUID quizId, @PathVariable UUID questionId, RedirectAttributes redirectAttributes) {
         Quiz quiz = this.quizService.getQuizById(quizId);
         try {
             this.questionService.deleteQuestion(questionId);
-            redirectAttributes.addFlashAttribute("message", new Message("alert-success", "Question is deleted successfully."));
+            redirectAttributes.addFlashAttribute(
+                    "message", new Message("alert-success", "Question is deleted successfully."));
             return "redirect:/backend/quizzes/" + quiz.getId() + "/" + quiz.getTitle() + "/questions/page=0";
 
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("message", new Message("alert-danger", "Something went wrong! " + e.getMessage()));
+            redirectAttributes.addFlashAttribute(
+                    "message", new Message("alert-danger", "Something went wrong! " + e.getMessage()));
             return "redirect:/backend/quizzes/" + quiz.getId() + "/" + quiz.getTitle() + "/questions/page=0";
         }
     }
-
 }

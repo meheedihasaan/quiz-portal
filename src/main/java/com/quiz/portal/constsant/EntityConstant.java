@@ -10,8 +10,5 @@ public final class EntityConstant {
     public static final String QUESTION = "questions";
     public static final String QUIZ_RESULT = "quiz_results";
 
-    private EntityConstant() {
-
-    }
-
+    private EntityConstant() {}
 }

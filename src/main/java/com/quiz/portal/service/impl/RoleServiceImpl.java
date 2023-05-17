@@ -4,10 +4,9 @@ import com.quiz.portal.entity.Role;
 import com.quiz.portal.exception.custom.NotFoundException;
 import com.quiz.portal.repository.RoleRepository;
 import com.quiz.portal.service.RoleService;
+import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.UUID;
 
 @RequiredArgsConstructor
 @Service
@@ -17,7 +16,6 @@ public class RoleServiceImpl implements RoleService {
 
     public void createRole(Role role) {
         this.roleRepository.save(role);
-
     }
 
     @Override
@@ -27,12 +25,11 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public Role getRoleByRoleName(String roleName) {
-        return this.roleRepository.findByRoleName(roleName).orElseThrow(()-> new NotFoundException("Role not found"));
+        return this.roleRepository.findByRoleName(roleName).orElseThrow(() -> new NotFoundException("Role not found"));
     }
 
     @Override
     public Boolean existsRoleByRoleName(String roleName) {
         return this.roleRepository.existsRoleByRoleName(roleName);
     }
-
 }

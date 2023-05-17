@@ -6,13 +6,12 @@ import com.quiz.portal.exception.custom.NotFoundException;
 import com.quiz.portal.repository.CategoryRepository;
 import com.quiz.portal.repository.QuizRepository;
 import com.quiz.portal.service.QuizService;
+import java.util.List;
+import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.UUID;
 
 @RequiredArgsConstructor
 @Service
@@ -34,7 +33,9 @@ public class QuizServiceImpl implements QuizService {
 
     @Override
     public Page<Quiz> getQuizzesByCategory(UUID categoryId, Pageable pageable) {
-        Category category = this.categoryRepository.findById(categoryId).orElseThrow(() -> new NotFoundException("Category not found."));
+        Category category = this.categoryRepository
+                .findById(categoryId)
+                .orElseThrow(() -> new NotFoundException("Category not found."));
         return this.quizRepository.findByCategory(category, pageable);
     }
 
@@ -50,7 +51,9 @@ public class QuizServiceImpl implements QuizService {
 
     @Override
     public Page<Quiz> getPublishedQuizzesByCategory(UUID categoryId, Pageable pageable) {
-        Category category = this.categoryRepository.findById(categoryId).orElseThrow(() -> new NotFoundException("Category not found."));
+        Category category = this.categoryRepository
+                .findById(categoryId)
+                .orElseThrow(() -> new NotFoundException("Category not found."));
         return this.quizRepository.findByCategoryAndIsActive(category, true, pageable);
     }
 
@@ -61,7 +64,8 @@ public class QuizServiceImpl implements QuizService {
 
     @Override
     public void updateQuiz(UUID id, Quiz quiz) {
-        Quiz existingQuiz = this.quizRepository.findById(id).orElseThrow(() -> new NotFoundException("Quiz not found."));
+        Quiz existingQuiz =
+                this.quizRepository.findById(id).orElseThrow(() -> new NotFoundException("Quiz not found."));
         existingQuiz.setTitle(quiz.getTitle());
         existingQuiz.setCategory(quiz.getCategory());
         existingQuiz.setTotalQuestions(quiz.getTotalQuestions());
@@ -75,7 +79,7 @@ public class QuizServiceImpl implements QuizService {
     @Override
     public void deleteQuiz(UUID id) {
         Quiz quiz = this.quizRepository.findById(id).orElseThrow(() -> new NotFoundException("Quiz not found."));
-        //quiz.getCategory().getQuizzes().remove(quiz);
+        // quiz.getCategory().getQuizzes().remove(quiz);
         this.quizRepository.delete(quiz);
     }
 
@@ -88,5 +92,4 @@ public class QuizServiceImpl implements QuizService {
     public long countPublishedQuizzes() {
         return this.quizRepository.countByIsActive(true);
     }
-
 }

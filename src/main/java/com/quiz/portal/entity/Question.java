@@ -4,12 +4,11 @@ import com.quiz.portal.constsant.EntityConstant;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
+import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -52,5 +51,4 @@ public class Question {
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Quiz quiz;
-
 }

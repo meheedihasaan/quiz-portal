@@ -2,11 +2,10 @@ package com.quiz.portal.service;
 
 import com.quiz.portal.entity.Question;
 import com.quiz.portal.entity.Quiz;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-
 import java.util.List;
 import java.util.UUID;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface QuestionService {
 
@@ -25,5 +24,4 @@ public interface QuestionService {
     void deleteQuestion(UUID id);
 
     long countByQuiz(Quiz quiz);
-
 }

@@ -1,10 +1,9 @@
 package com.quiz.portal.service;
 
 import com.quiz.portal.entity.QuizResult;
+import java.util.UUID;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-
-import java.util.UUID;
 
 public interface QuizResultService {
 
@@ -21,5 +20,4 @@ public interface QuizResultService {
     long countParticipants();
 
     double getAvgAccuracyByUser(UUID userId);
-
 }

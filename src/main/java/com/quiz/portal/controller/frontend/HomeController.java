@@ -14,5 +14,4 @@ public class HomeController {
         model.addAttribute("title", "Quiz Portal");
         return "site-template/index";
     }
-
 }

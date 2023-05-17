@@ -9,6 +9,9 @@ import com.quiz.portal.service.CategoryService;
 import com.quiz.portal.service.QuizService;
 import com.quiz.portal.service.UserService;
 import jakarta.validation.Valid;
+import java.security.Principal;
+import java.util.List;
+import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,10 +23,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.security.Principal;
-import java.util.List;
-import java.util.UUID;
 
 @RequiredArgsConstructor
 @Controller
@@ -111,8 +110,7 @@ public class QuizController {
             @RequestParam(name = "isActive", defaultValue = "false") boolean isActive,
             RedirectAttributes redirectAttributes,
             Model model,
-            Principal principal
-    ) {
+            Principal principal) {
         loadCommonData(model, principal);
         model.addAttribute("title", "New Quiz");
         model.addAttribute("quizzesActive", "active");
@@ -128,17 +126,20 @@ public class QuizController {
             quiz.setCategory(category);
             quiz.setActive(isActive);
             this.quizService.createQuiz(quiz);
-            redirectAttributes.addFlashAttribute("message", new Message("alert-primary", "Quiz is created successfully"));
+            redirectAttributes.addFlashAttribute(
+                    "message", new Message("alert-primary", "Quiz is created successfully"));
             return "redirect:/backend/quizzes/new";
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("message", new Message("alert-danger", "Something went wrong! " + e.getMessage()));
+            redirectAttributes.addFlashAttribute(
+                    "message", new Message("alert-danger", "Something went wrong! " + e.getMessage()));
             return "redirect:/backend/quizzes/new";
         }
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/{id}/edit")
-    public String viewEditQuizPage(@PathVariable UUID id, Model model, Principal principal, RedirectAttributes redirectAttributes) {
+    public String viewEditQuizPage(
+            @PathVariable UUID id, Model model, Principal principal, RedirectAttributes redirectAttributes) {
         try {
             loadCommonData(model, principal);
             model.addAttribute("title", "Edit Quiz");
@@ -149,7 +150,8 @@ public class QuizController {
             model.addAttribute("categories", categories);
             return "admin-template/admin/edit-quiz";
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("message", new Message("alert-danger", "Something went wrong! " + e.getMessage()));
+            redirectAttributes.addFlashAttribute(
+                    "message", new Message("alert-danger", "Something went wrong! " + e.getMessage()));
             return "redirect:/backend/quizzes/page=1";
         }
     }
@@ -163,8 +165,7 @@ public class QuizController {
             @RequestParam(name = "isActive", defaultValue = "false") boolean isActive,
             RedirectAttributes redirectAttributes,
             Model model,
-            Principal principal
-    ) {
+            Principal principal) {
         loadCommonData(model, principal);
         model.addAttribute("title", "Edit Quiz");
         model.addAttribute("quizzesActive", "active");
@@ -182,10 +183,12 @@ public class QuizController {
             quiz.setCategory(category);
             quiz.setActive(isActive);
             this.quizService.updateQuiz(quiz.getId(), quiz);
-            redirectAttributes.addFlashAttribute("message", new Message("alert-primary", "Quiz is updated successfully."));
+            redirectAttributes.addFlashAttribute(
+                    "message", new Message("alert-primary", "Quiz is updated successfully."));
             return "redirect:/backend/quizzes/page=0";
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("message", new Message("alert-danger", "Something went wrong! " + e.getMessage()));
+            redirectAttributes.addFlashAttribute(
+                    "message", new Message("alert-danger", "Something went wrong! " + e.getMessage()));
             return "redirect:/backend/quizzes/page=0";
         }
     }
@@ -195,12 +198,13 @@ public class QuizController {
     public String deleteQuiz(@PathVariable UUID id, RedirectAttributes redirectAttributes) {
         try {
             this.quizService.deleteQuiz(id);
-            redirectAttributes.addFlashAttribute("message", new Message("alert-success", "Quiz is deleted successfully."));
+            redirectAttributes.addFlashAttribute(
+                    "message", new Message("alert-success", "Quiz is deleted successfully."));
             return "redirect:/backend/quizzes/page=0";
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("message", new Message("alert-danger", "Something went wrong! " + e.getMessage()));
+            redirectAttributes.addFlashAttribute(
+                    "message", new Message("alert-danger", "Something went wrong! " + e.getMessage()));
             return "redirect:/backend/quizzes/page=0";
         }
     }
-
 }

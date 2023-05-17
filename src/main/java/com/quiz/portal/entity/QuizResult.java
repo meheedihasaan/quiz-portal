@@ -2,13 +2,12 @@ package com.quiz.portal.entity;
 
 import com.quiz.portal.constsant.EntityConstant;
 import jakarta.persistence.*;
+import java.util.Date;
+import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.Date;
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -37,5 +36,4 @@ public class QuizResult {
 
     @ManyToOne(fetch = FetchType.EAGER)
     private User user;
-
 }

@@ -19,22 +19,17 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
 
     public static final String[] STATIC_RESOURCES = {
-            "/admin-resources/**",
-            "/site-resources/**",
-            "/css/**",
-            "/js/**",
-            "/images/**",
-            "/images-old/**",
-            "/scss/**",
-            "/icon/**",
-            "/pages/**"
+        "/admin-resources/**",
+        "/site-resources/**",
+        "/css/**",
+        "/js/**",
+        "/images/**",
+        "/images-old/**",
+        "/scss/**",
+        "/icon/**",
+        "/pages/**"
     };
-    private static final String[] PUBLIC_URLS = {
-            "/",
-            "/sign-up",
-            "/sign-in",
-            "/sign-in/process"
-    };
+    private static final String[] PUBLIC_URLS = {"/", "/sign-up", "/sign-in", "/sign-in/process"};
     private final UserDetailsServiceImpl userDetailsService;
 
     @Bean
@@ -53,14 +48,13 @@ public class SecurityConfig {
     @SuppressWarnings("removal")
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-                .authorizeHttpRequests(
-                        authorize ->
-                                authorize
-                                        .requestMatchers(STATIC_RESOURCES).permitAll()
-                                        .requestMatchers(PUBLIC_URLS).permitAll()
-                                        .requestMatchers("/backend/**").hasAnyRole("ADMIN", "NORMAL")
-                )
+        http.authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers(STATIC_RESOURCES)
+                        .permitAll()
+                        .requestMatchers(PUBLIC_URLS)
+                        .permitAll()
+                        .requestMatchers("/backend/**")
+                        .hasAnyRole("ADMIN", "NORMAL"))
                 .formLogin()
                 .loginPage("/sign-in")
                 .loginProcessingUrl("/sign-in/process")
@@ -76,5 +70,4 @@ public class SecurityConfig {
         http.addFilterAfter(new LoggedInUserFilter(), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
-
 }

@@ -10,6 +10,8 @@ import com.quiz.portal.service.CategoryService;
 import com.quiz.portal.service.QuizService;
 import com.quiz.portal.service.UserService;
 import jakarta.validation.Valid;
+import java.security.Principal;
+import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,9 +23,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.security.Principal;
-import java.util.UUID;
 
 @RequiredArgsConstructor
 @Controller
@@ -67,7 +66,8 @@ public class CategoryController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/{id}/{name}/quizzes/page={pageNumber}")
-    public String viewCategorizedQuizPage(@PathVariable UUID id, @PathVariable int pageNumber, Model model, Principal principal) {
+    public String viewCategorizedQuizPage(
+            @PathVariable UUID id, @PathVariable int pageNumber, Model model, Principal principal) {
         loadCommonData(model, principal);
         model.addAttribute("categoriesActive", "active");
         Category category = this.categoryService.getCategoryById(id);
@@ -93,7 +93,8 @@ public class CategoryController {
 
     @PreAuthorize("hasRole('NORMAL')")
     @GetMapping("/{id}/{name}/quizzes/page-{pageNumber}")
-    public String viewCategorizedPublishedQuizzes(@PathVariable UUID id, @PathVariable int pageNumber, Model model, Principal principal) {
+    public String viewCategorizedPublishedQuizzes(
+            @PathVariable UUID id, @PathVariable int pageNumber, Model model, Principal principal) {
         loadCommonData(model, principal);
         model.addAttribute("categoriesActive", "active");
         Category category = this.categoryService.getCategoryById(id);
@@ -134,8 +135,7 @@ public class CategoryController {
             BindingResult bindingResult,
             RedirectAttributes redirectAttributes,
             Model model,
-            Principal principal
-    ) {
+            Principal principal) {
         loadCommonData(model, principal);
         model.addAttribute("title", "New Category");
         model.addAttribute("categoriesActive", "active");
@@ -150,18 +150,21 @@ public class CategoryController {
                 throw new AlreadyExistsException("Category already exists with name " + category.getName() + ".");
             } else {
                 this.categoryService.createCategory(category);
-                redirectAttributes.addFlashAttribute("message", new Message("alert-primary", "Category is created successfully."));
+                redirectAttributes.addFlashAttribute(
+                        "message", new Message("alert-primary", "Category is created successfully."));
                 return "redirect:/backend/categories/new";
             }
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("message", new Message("alert-danger", "Something went wrong! " + e.getMessage()));
+            redirectAttributes.addFlashAttribute(
+                    "message", new Message("alert-danger", "Something went wrong! " + e.getMessage()));
             return "redirect:/backend/categories/new";
         }
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/{id}/edit")
-    public String viewEditCategoryPage(@PathVariable UUID id, Model model, Principal principal, RedirectAttributes redirectAttributes) {
+    public String viewEditCategoryPage(
+            @PathVariable UUID id, Model model, Principal principal, RedirectAttributes redirectAttributes) {
         try {
             loadCommonData(model, principal);
             model.addAttribute("title", "Edit Category");
@@ -170,8 +173,9 @@ public class CategoryController {
             model.addAttribute("category", category);
             return "admin-template/admin/edit-category";
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("message", new Message("alert-danger", "Something went wrong! " + e.getMessage()));
-            return "redirect:/backend/categories/page=0";  //When category is not found
+            redirectAttributes.addFlashAttribute(
+                    "message", new Message("alert-danger", "Something went wrong! " + e.getMessage()));
+            return "redirect:/backend/categories/page=0"; // When category is not found
         }
     }
 
@@ -182,8 +186,7 @@ public class CategoryController {
             BindingResult bindingResult,
             RedirectAttributes redirectAttributes,
             Model model,
-            Principal principal
-    ) {
+            Principal principal) {
         loadCommonData(model, principal);
         model.addAttribute("title", "Edit Category");
         model.addAttribute("categoriesActive", "active");
@@ -194,10 +197,12 @@ public class CategoryController {
             }
 
             this.categoryService.updateCategory(category.getId(), category);
-            redirectAttributes.addFlashAttribute("message", new Message("alert-primary", "Category is updated successfully."));
+            redirectAttributes.addFlashAttribute(
+                    "message", new Message("alert-primary", "Category is updated successfully."));
             return "redirect:/backend/categories/page=0";
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("message", new Message("alert-danger", "Something went wrong! " + e.getMessage()));
+            redirectAttributes.addFlashAttribute(
+                    "message", new Message("alert-danger", "Something went wrong! " + e.getMessage()));
             return "redirect:/backend/categories/page=0";
         }
     }
@@ -207,12 +212,13 @@ public class CategoryController {
     public String deleteCategory(@PathVariable UUID id, RedirectAttributes redirectAttributes) {
         try {
             this.categoryService.deleteCategory(id);
-            redirectAttributes.addFlashAttribute("message", new Message("alert-success", "Category is deleted successfully."));
+            redirectAttributes.addFlashAttribute(
+                    "message", new Message("alert-success", "Category is deleted successfully."));
             return "redirect:/backend/categories/page=0";
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("message", new Message("alert-danger", "Something went wrong! " + e.getMessage()));
+            redirectAttributes.addFlashAttribute(
+                    "message", new Message("alert-danger", "Something went wrong! " + e.getMessage()));
             return "redirect:/backend/categories/page=0";
         }
     }
-
 }

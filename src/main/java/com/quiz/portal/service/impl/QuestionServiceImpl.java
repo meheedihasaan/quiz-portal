@@ -6,13 +6,12 @@ import com.quiz.portal.exception.custom.NotFoundException;
 import com.quiz.portal.repository.QuestionRepository;
 import com.quiz.portal.repository.QuizRepository;
 import com.quiz.portal.service.QuestionService;
+import java.util.List;
+import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.UUID;
 
 @RequiredArgsConstructor
 @Service
@@ -51,7 +50,8 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public void updateQuestion(UUID id, Question question) {
-        Question existingQuestion = this.questionRepository.findById(id).orElseThrow(() -> new NotFoundException("Question not found."));
+        Question existingQuestion =
+                this.questionRepository.findById(id).orElseThrow(() -> new NotFoundException("Question not found."));
         existingQuestion.setContent(question.getContent());
         existingQuestion.setOptionA(question.getOptionA());
         existingQuestion.setOptionB(question.getOptionB());
@@ -63,7 +63,8 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public void deleteQuestion(UUID id) {
-        Question question = this.questionRepository.findById(id).orElseThrow(() -> new NotFoundException("Question not found."));
+        Question question =
+                this.questionRepository.findById(id).orElseThrow(() -> new NotFoundException("Question not found."));
         this.questionRepository.delete(question);
     }
 
@@ -71,5 +72,4 @@ public class QuestionServiceImpl implements QuestionService {
     public long countByQuiz(Quiz quiz) {
         return this.questionRepository.countByQuiz(quiz);
     }
-
 }

@@ -7,12 +7,11 @@ import com.quiz.portal.exception.custom.NotFoundException;
 import com.quiz.portal.repository.RoleRepository;
 import com.quiz.portal.repository.UserRepository;
 import com.quiz.portal.service.UserService;
+import java.util.Set;
+import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.Set;
-import java.util.UUID;
 
 @RequiredArgsConstructor
 @Service
@@ -66,9 +65,10 @@ public class UserServiceImpl implements UserService {
         user.setEnabled(true);
         user.setAgreed(true);
         user.setProfileImage("userProfile.jpg");
-        Role role = this.roleRepository.findByRoleName(AppConstant.NORMAL).orElseThrow(()-> new NotFoundException("Role not found!"));
+        Role role = this.roleRepository
+                .findByRoleName(AppConstant.NORMAL)
+                .orElseThrow(() -> new NotFoundException("Role not found!"));
         user.setRoles(Set.of(role));
         this.userRepository.save(user);
     }
-
 }

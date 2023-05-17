@@ -4,13 +4,12 @@ import com.quiz.portal.entity.Category;
 import com.quiz.portal.exception.custom.NotFoundException;
 import com.quiz.portal.repository.CategoryRepository;
 import com.quiz.portal.service.CategoryService;
+import java.util.List;
+import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.UUID;
 
 @RequiredArgsConstructor
 @Service
@@ -45,7 +44,8 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public void updateCategory(UUID id, Category category) {
-        Category existingCategory = this.categoryRepository.findById(id).orElseThrow(() -> new NotFoundException("Category not found."));
+        Category existingCategory =
+                this.categoryRepository.findById(id).orElseThrow(() -> new NotFoundException("Category not found."));
         existingCategory.setName(category.getName());
         existingCategory.setDescription(category.getDescription());
         this.categoryRepository.save(existingCategory);
@@ -53,7 +53,8 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public void deleteCategory(UUID id) {
-        Category category = this.categoryRepository.findById(id).orElseThrow(() -> new NotFoundException("Category not found."));
+        Category category =
+                this.categoryRepository.findById(id).orElseThrow(() -> new NotFoundException("Category not found."));
         this.categoryRepository.delete(category);
     }
 
@@ -61,5 +62,4 @@ public class CategoryServiceImpl implements CategoryService {
     public long countCategories() {
         return this.categoryRepository.count();
     }
-
 }

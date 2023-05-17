@@ -1,7 +1,6 @@
 package com.quiz.portal.service;
 
 import com.quiz.portal.entity.Role;
-
 import java.util.UUID;
 
 public interface RoleService {
@@ -13,5 +12,4 @@ public interface RoleService {
     Role getRoleByRoleName(String roleName);
 
     Boolean existsRoleByRoleName(String roleName);
-
 }

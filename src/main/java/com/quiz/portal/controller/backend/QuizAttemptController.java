@@ -5,16 +5,15 @@ import com.quiz.portal.service.QuestionService;
 import com.quiz.portal.service.QuizResultService;
 import com.quiz.portal.service.QuizService;
 import com.quiz.portal.service.UserService;
+import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.security.Principal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
 
 @RequiredArgsConstructor
 @Controller
@@ -63,10 +62,13 @@ public class QuizAttemptController {
         return "admin-template/normal/start-quiz";
     }
 
-
     @PreAuthorize("hasRole('NORMAL')")
     @PostMapping("/{id}/{title}/result")
-    public String evaluateQuiz(@PathVariable UUID id, @ModelAttribute("questionResponse") QuestionResponse questionResponse, Model model, Principal principal) {
+    public String evaluateQuiz(
+            @PathVariable UUID id,
+            @ModelAttribute("questionResponse") QuestionResponse questionResponse,
+            Model model,
+            Principal principal) {
         loadCommonData(model, principal);
         model.addAttribute("quizzesActive", "active");
         Quiz quiz = this.quizService.getQuizById(id);
@@ -117,5 +119,4 @@ public class QuizAttemptController {
             return "redirect:/backend";
         }
     }
-
 }

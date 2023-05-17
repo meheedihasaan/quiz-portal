@@ -6,15 +6,14 @@ import com.quiz.portal.exception.custom.NotFoundException;
 import com.quiz.portal.repository.QuizResultRepository;
 import com.quiz.portal.repository.UserRepository;
 import com.quiz.portal.service.QuizResultService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
@@ -36,7 +35,9 @@ public class QuizResultServiceImpl implements QuizResultService {
 
     @Override
     public QuizResult getQuizResultById(UUID id) {
-        return this.quizResultRepository.findById(id).orElseThrow(() -> new NotFoundException("Quiz result not found!"));
+        return this.quizResultRepository
+                .findById(id)
+                .orElseThrow(() -> new NotFoundException("Quiz result not found!"));
     }
 
     @Override
@@ -73,5 +74,4 @@ public class QuizResultServiceImpl implements QuizResultService {
         avgAccuracy = Double.parseDouble(formattedValue);
         return avgAccuracy;
     }
-
 }

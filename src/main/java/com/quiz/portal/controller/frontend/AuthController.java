@@ -34,8 +34,7 @@ public class AuthController {
             BindingResult bindingResult,
             @RequestParam(value = "isAgreed", defaultValue = "false") boolean isAgreed,
             RedirectAttributes redirectAttributes,
-            Model model
-    ) {
+            Model model) {
         try {
             if (bindingResult.hasErrors()) {
                 model.addAttribute("title", "Sign up");
@@ -44,7 +43,8 @@ public class AuthController {
             }
 
             if (!isAgreed) {
-                throw new Exception("You have not agreed with terms and condition. Please re-fill the form and check the terms and condition to sign up.");
+                throw new Exception(
+                        "You have not agreed with terms and condition. Please re-fill the form and check the terms and condition to sign up.");
             }
 
             User existingUser = this.userService.getUserByEmail(user.getEmail());
@@ -52,11 +52,13 @@ public class AuthController {
                 throw new AlreadyExistsException("User already exists with email " + user.getEmail() + ".");
             } else {
                 this.userService.signUpUser(user);
-                redirectAttributes.addFlashAttribute("message", new Message("alert-primary", "Congratulations! You are successfully registered."));
+                redirectAttributes.addFlashAttribute(
+                        "message", new Message("alert-primary", "Congratulations! You are successfully registered."));
                 return "redirect:/sign-up";
             }
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("message", new Message("alert-danger", "Something went wrong! " + e.getMessage()));
+            redirectAttributes.addFlashAttribute(
+                    "message", new Message("alert-danger", "Something went wrong! " + e.getMessage()));
             return "redirect:/sign-up";
         }
     }
@@ -66,6 +68,4 @@ public class AuthController {
         model.addAttribute("title", "Sign in");
         return "site-template/sign-in";
     }
-
 }
-	
