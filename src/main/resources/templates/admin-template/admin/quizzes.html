@@ -107,7 +107,7 @@
 				                                                        
 				                                                        <a class="mr-3" th:href="@{/backend/quizzes/{id}/{title}/questions/page=0 (id = ${quiz.id}, title = ${quiz.title}) }" data-toggle="tooltip" data-placement="top" data-original-title="View Questions" aria-describedby="tooltip529394"><i style="font-size: 16px" class="ti-eye"></i></a>			                                                    					                                                  
 				                                                        <a class="mr-3" th:href="@{/backend/quizzes/{id}/edit (id = ${quiz.id}) }" data-toggle="tooltip" data-placement="top" data-original-title="Edit Quiz" aria-describedby="tooltip529394"><i style="font-size: 16px" class="ti-pencil-alt"></i></a>
-			                                                    		<a class="mr-3" href="#" th:onclick="|deleteQuiz(${quiz.id})|"  data-toggle="tooltip" data-placement="top" data-original-title="Delete Quiz" aria-describedby="tooltip529394"><i style="font-size: 16px" class="ti-trash"></i></a>				                                             			         
+			                                                    		<a class="mr-3" href="#" th:onclick="deleteQuiz(${quiz.id})"  data-toggle="tooltip" data-placement="top" data-original-title="Delete Quiz" aria-describedby="tooltip529394"><i style="font-size: 16px" class="ti-trash"></i></a>
 			                                                    	</div>
 				                                                </div>
 				                                            </div>
