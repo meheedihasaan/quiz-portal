@@ -1,10 +1,10 @@
 package com.quiz.portal.entity;
 
 import com.quiz.portal.constsant.EntityConstant;
+import com.quiz.portal.model.audit.AuditModel;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
-import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,11 +16,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name = EntityConstant.QUESTION)
-public class Question {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+public class Question extends AuditModel<String> {
 
     @NotEmpty(message = "Content is required.")
     @Size(min = 10, max = 255, message = "Content should be between 10 to 255 characters.")

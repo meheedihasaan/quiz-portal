@@ -1,13 +1,13 @@
 package com.quiz.portal.entity;
 
 import com.quiz.portal.constsant.EntityConstant;
+import com.quiz.portal.model.audit.AuditModel;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,11 +19,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name = EntityConstant.USER)
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+public class User extends AuditModel<String> {
 
     @NotEmpty(message = "Name is required.")
     @Size(min = 4, max = 50, message = "Name should be between 4 to 50 characters.")
