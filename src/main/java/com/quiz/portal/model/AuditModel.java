@@ -1,4 +1,4 @@
-package com.quiz.portal;
+package com.quiz.portal.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
