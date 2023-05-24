@@ -1,9 +1,9 @@
 package com.quiz.portal.entity;
 
 import com.quiz.portal.constsant.EntityConstant;
+import com.quiz.portal.model.audit.AuditModel;
 import jakarta.persistence.*;
 import java.util.Date;
-import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,11 +15,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name = EntityConstant.QUIZ_RESULT)
-public class QuizResult {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+public class QuizResult extends AuditModel<String> {
 
     private int obtainedMarks;
 
