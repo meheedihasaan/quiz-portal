@@ -18,6 +18,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 
+    private final CustomLoginSuccessHandler successHandler;
+
+    private final UserDetailsServiceImpl userDetailsService;
+
     public static final String[] STATIC_RESOURCES = {
         "/admin-resources/**",
         "/site-resources/**",
@@ -30,7 +34,6 @@ public class SecurityConfig {
         "/pages/**"
     };
     private static final String[] PUBLIC_URLS = {"/", "/sign-up", "/sign-in", "/sign-in/process"};
-    private final UserDetailsServiceImpl userDetailsService;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -55,19 +58,16 @@ public class SecurityConfig {
                         .permitAll()
                         .requestMatchers("/backend/**")
                         .hasAnyRole("ADMIN", "NORMAL"))
-                .formLogin()
-                .loginPage("/sign-in")
-                .loginProcessingUrl("/sign-in/process")
-                .defaultSuccessUrl("/backend")
+                .formLogin().loginPage("/sign-in").loginProcessingUrl("/sign-in/process").successHandler(successHandler)
                 .and()
-                .logout()
-                .logoutSuccessUrl("/")
+                .oauth2Login().loginPage("/sign-in").successHandler(successHandler)
                 .and()
-                .csrf()
-                .disable();
+                .logout().logoutSuccessUrl("/")
+                .and()
+                .csrf().disable();
 
         http.authenticationProvider(authenticationProvider());
-        http.addFilterAfter(new LoggedInUserFilter(), UsernamePasswordAuthenticationFilter.class);
+        //http.addFilterAfter(new LoggedInUserFilter(), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 }
