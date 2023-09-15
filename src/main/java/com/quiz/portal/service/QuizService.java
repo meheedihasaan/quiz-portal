@@ -1,32 +1,84 @@
 package com.quiz.portal.service;
 
+import com.quiz.portal.entity.Category;
 import com.quiz.portal.entity.Quiz;
+import com.quiz.portal.exception.custom.NotFoundException;
+import com.quiz.portal.repository.CategoryRepository;
+import com.quiz.portal.repository.QuizRepository;
+
 import java.util.List;
 import java.util.UUID;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
-public interface QuizService {
+@RequiredArgsConstructor
+@Service
+public class QuizService {
 
-    void createQuiz(Quiz quiz);
+    private final QuizRepository quizRepository;
 
-    Page<Quiz> getQuizzes(Pageable pageable);
+    private final CategoryRepository categoryRepository;
 
-    Page<Quiz> getQuizzesByCategory(UUID categoryId, Pageable pageable);
+    public void createQuiz(Quiz quiz) {
+        quizRepository.save(quiz);
+    }
 
-    Page<Quiz> getPublishedQuizzes(Pageable pageable);
+    public Page<Quiz> getQuizzes(Pageable pageable) {
+        return this.quizRepository.findAll(pageable);
+    }
 
-    List<Quiz> getPublishedQuizzes();
+    public Page<Quiz> getQuizzesByCategory(UUID categoryId, Pageable pageable) {
+        Category category = this.categoryRepository
+                .findById(categoryId)
+                .orElseThrow(() -> new NotFoundException("Category not found."));
+        return this.quizRepository.findByCategory(category, pageable);
+    }
 
-    Page<Quiz> getPublishedQuizzesByCategory(UUID categoryId, Pageable pageable);
+    public Page<Quiz> getPublishedQuizzes(Pageable pageable) {
+        return this.quizRepository.findByIsActive(true, pageable);
+    }
 
-    Quiz getQuizById(UUID id);
+    public List<Quiz> getPublishedQuizzes() {
+        return this.quizRepository.findByIsActive(true);
+    }
 
-    void updateQuiz(UUID id, Quiz quiz);
+    public Page<Quiz> getPublishedQuizzesByCategory(UUID categoryId, Pageable pageable) {
+        Category category = this.categoryRepository
+                .findById(categoryId)
+                .orElseThrow(() -> new NotFoundException("Category not found."));
+        return this.quizRepository.findByCategoryAndIsActive(category, true, pageable);
+    }
 
-    void deleteQuiz(UUID id);
+    public Quiz getQuizById(UUID id) {
+        return this.quizRepository.findById(id).orElseThrow(() -> new NotFoundException("Quiz not found."));
+    }
 
-    long countQuizzes();
+    public void updateQuiz(UUID id, Quiz quiz) {
+        Quiz existingQuiz =
+                this.quizRepository.findById(id).orElseThrow(() -> new NotFoundException("Quiz not found."));
+        existingQuiz.setTitle(quiz.getTitle());
+        existingQuiz.setCategory(quiz.getCategory());
+        existingQuiz.setTotalQuestions(quiz.getTotalQuestions());
+        existingQuiz.setTotalMarks(quiz.getTotalMarks());
+        existingQuiz.setDuration(quiz.getDuration());
+        existingQuiz.setActive(quiz.isActive());
+        existingQuiz.setDescription(quiz.getDescription());
+        this.quizRepository.save(existingQuiz);
+    }
 
-    long countPublishedQuizzes();
+    public void deleteQuiz(UUID id) {
+        Quiz quiz = this.quizRepository.findById(id).orElseThrow(() -> new NotFoundException("Quiz not found."));
+        // quiz.getCategory().getQuizzes().remove(quiz);
+        this.quizRepository.delete(quiz);
+    }
+
+    public long countQuizzes() {
+        return this.quizRepository.count();
+    }
+
+    public long countPublishedQuizzes() {
+        return this.quizRepository.countByIsActive(true);
+    }
 }

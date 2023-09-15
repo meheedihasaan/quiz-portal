@@ -1,23 +1,66 @@
 package com.quiz.portal.service;
 
+import com.quiz.portal.constsant.AppConstant;
+import com.quiz.portal.entity.Role;
 import com.quiz.portal.entity.User;
+import com.quiz.portal.exception.custom.NotFoundException;
+import com.quiz.portal.repository.RoleRepository;
+import com.quiz.portal.repository.UserRepository;
+
+import java.util.Set;
 import java.util.UUID;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
-public interface UserService {
+@RequiredArgsConstructor
+@Service
+public class UserService {
 
-    void saveUser(User user);
+    private final UserRepository userRepository;
 
-    void createUser(User user);
+    private final RoleRepository roleRepository;
 
-    User getUserById(UUID id);
+    private final PasswordEncoder passwordEncoder;
 
-    User getUserByEmail(String email);
+    public void saveUser(User user) {
+        this.userRepository.save(user);
+    }
 
-    User getUserByEmailWithException(String email);
+    public void createUser(User user) {
+        this.userRepository.save(user);
+    }
 
-    Boolean existsUserByEmail(String email);
+    public User getUserById(UUID id) {
+        return this.userRepository.findById(id).orElseThrow(() -> new NotFoundException("User not found."));
+    }
 
-    void deleteUser(UUID id);
+    public User getUserByEmail(String email) {
+        return this.userRepository.findByEmail(email).orElse(null);
+    }
 
-    void signUpUser(User user);
+    public User getUserByEmailWithException(String email) {
+        return this.userRepository.findByEmail(email).orElseThrow(() -> new NotFoundException("User not found."));
+    }
+
+    public Boolean existsUserByEmail(String email) {
+        return this.userRepository.existsUserByEmail(email);
+    }
+
+    public void deleteUser(UUID id) {
+        User user = this.userRepository.findById(id).orElseThrow(() -> new NotFoundException("User not found."));
+        this.userRepository.delete(user);
+    }
+
+    public void signUpUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setEnabled(true);
+        user.setAgreed(true);
+        user.setProfileImage("userProfile.jpg");
+        Role role = this.roleRepository
+                .findByRoleName(AppConstant.NORMAL)
+                .orElseThrow(() -> new NotFoundException("Role not found!"));
+        user.setRoles(Set.of(role));
+        this.userRepository.save(user);
+    }
 }

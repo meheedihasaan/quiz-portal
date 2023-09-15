@@ -1,26 +1,57 @@
 package com.quiz.portal.service;
 
 import com.quiz.portal.entity.Category;
+import com.quiz.portal.exception.custom.NotFoundException;
+import com.quiz.portal.repository.CategoryRepository;
+
 import java.util.List;
 import java.util.UUID;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
-public interface CategoryService {
+@RequiredArgsConstructor
+@Service
+public class CategoryService {
 
-    void createCategory(Category category);
+    private final CategoryRepository categoryRepository;
 
-    Page<Category> getCategories(Pageable pageable);
+    public void createCategory(Category category) {
+        this.categoryRepository.save(category);
+    }
 
-    List<Category> getCategoryList();
+    public Page<Category> getCategories(Pageable pageable) {
+        return this.categoryRepository.findAll(pageable);
+    }
 
-    Category getCategoryById(UUID id);
+    public List<Category> getCategoryList() {
+        return this.categoryRepository.findAll();
+    }
 
-    Category getCategoryByName(String name);
+    public Category getCategoryById(UUID id) {
+        return this.categoryRepository.findById(id).orElseThrow(() -> new NotFoundException("Category not found."));
+    }
 
-    void updateCategory(UUID id, Category category);
+    public Category getCategoryByName(String name) {
+        return this.categoryRepository.findByNameIgnoreCase(name);
+    }
 
-    void deleteCategory(UUID id);
+    public void updateCategory(UUID id, Category category) {
+        Category existingCategory =
+                this.categoryRepository.findById(id).orElseThrow(() -> new NotFoundException("Category not found."));
+        existingCategory.setName(category.getName());
+        existingCategory.setDescription(category.getDescription());
+        this.categoryRepository.save(existingCategory);
+    }
 
-    long countCategories();
+    public void deleteCategory(UUID id) {
+        Category category =
+                this.categoryRepository.findById(id).orElseThrow(() -> new NotFoundException("Category not found."));
+        this.categoryRepository.delete(category);
+    }
+
+    public long countCategories() {
+        return this.categoryRepository.count();
+    }
 }

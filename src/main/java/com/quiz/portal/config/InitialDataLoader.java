@@ -3,10 +3,12 @@ package com.quiz.portal.config;
 import com.quiz.portal.constsant.AppConstant;
 import com.quiz.portal.entity.Role;
 import com.quiz.portal.entity.User;
-import com.quiz.portal.service.RoleService;
-import com.quiz.portal.service.UserService;
+
 import java.util.HashSet;
 import java.util.Set;
+
+import com.quiz.portal.service.RoleService;
+import com.quiz.portal.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ApplicationContextEvent;
