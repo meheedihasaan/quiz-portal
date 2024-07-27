@@ -53,4 +53,4 @@ mvn spring-boot:run
 Or, you can run this application via the <span style = "color: cyan">Run</span> button of your preferred IDE.
 
 ### User Manuals
-There are two types of user - Admin and Participant. Admin can create categories and manage them. Admin can create quizzes on different categories and manage them. Admin can add question into these quizzes. Admin can activated and deactivated a particular quiz. A participant have to register first and then he can participate in a quiz any number of times. He can evaluate his answer.
+There are two types of user - Admin and Participant. Admin can create categories and manage them. Admin can create quizzes on different categories and manage them. Admin can add questions to these quizzes. Admin can activate and deactivate a particular quiz. A participant has to register first and then he can participate in a quiz any number of times. He can evaluate his answer.
