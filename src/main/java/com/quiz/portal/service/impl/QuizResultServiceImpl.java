@@ -70,7 +70,7 @@ public class QuizResultServiceImpl implements QuizResultService {
             avgAccuracy = 0;
         }
 
-        String formattedValue = String.format("%.1f", avgAccuracy);
+        String formattedValue = "%.1f".formatted(avgAccuracy);
         avgAccuracy = Double.parseDouble(formattedValue);
         return avgAccuracy;
     }

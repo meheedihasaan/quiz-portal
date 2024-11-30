@@ -1,10 +1,10 @@
-package com.exam.portal;
+package com.quiz.portal;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ExamPortalApplicationTests {
+class QuizPortalApplicationTests {
 
     @Test
     void contextLoads() {}
