@@ -38,5 +38,5 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.ACCESS_KEY }}
           script: |
-            pkill -f 'java -jar' || true
-            nohup java -jar /home/${{ secrets.USER }}/quiz-portal/*.jar > app.log 2>&1 &
+            sudo systemctl stop quiz-portal.service
+            sudo systemctl start quiz-portal.service
