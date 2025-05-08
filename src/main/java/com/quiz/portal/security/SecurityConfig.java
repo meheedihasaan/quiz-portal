@@ -29,7 +29,7 @@ public class SecurityConfig {
         "/icon/**",
         "/pages/**"
     };
-    private static final String[] PUBLIC_URLS = {"/", "/sign-up", "/sign-in", "/sign-in/process"};
+    private static final String[] PUBLIC_URLS = {"/", "/sign-up", "/sign-in", "/sign-in/process", "/actuator/**"};
     private final UserDetailsServiceImpl userDetailsService;
 
     @Bean
@@ -49,12 +49,9 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(STATIC_RESOURCES)
-                        .permitAll()
-                        .requestMatchers(PUBLIC_URLS)
-                        .permitAll()
-                        .requestMatchers("/backend/**")
-                        .hasAnyRole("ADMIN", "NORMAL"))
+                        .requestMatchers(STATIC_RESOURCES).permitAll()
+                        .requestMatchers(PUBLIC_URLS).permitAll()
+                        .requestMatchers("/backend/**").hasAnyRole("ADMIN", "NORMAL").anyRequest().authenticated())
                 .formLogin()
                 .loginPage("/sign-in")
                 .loginProcessingUrl("/sign-in/process")
