@@ -31,7 +31,7 @@ jobs:
           key: ${{ secrets.ACCESS_KEY }}
           source: |
             target/*.jar
-            src/main/resources/logback-production.xml
+            quiz-portal/src/main/resources/logback-production.xml
           target: /home/${{ secrets.USER }}/quiz-portal
 
       - name: Restart Spring Boot App on EC2
