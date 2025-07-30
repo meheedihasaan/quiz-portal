@@ -22,7 +22,6 @@ jobs:
 
       - name: Build with Maven
         run: mvn clean package -DskipTests
-        working-directory: quiz-portal
 
       - name: Copy JAR to EC2
         uses: appleboy/scp-action@v0.1.3
@@ -30,9 +29,7 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
           key: ${{ secrets.ACCESS_KEY }}
-          source: |
-            target/*.jar
-            src/main/resources/logback-production.xml
+          source: target/*.jar
           target: /home/${{ secrets.USER }}/quiz-portal
 
       - name: Restart Spring Boot App on EC2
